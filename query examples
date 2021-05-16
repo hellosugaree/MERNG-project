@@ -1,0 +1,46 @@
+mutation{
+  register(registerInput: {
+    username: "1234"
+    password: "1234"
+    confirmPassword: "1234"
+    email: "test@test.com"
+  }) {
+  	id
+    email
+    username
+    createdAt
+    token
+  }
+}
+
+
+
+mutation {
+  login(username: "", password: "") {
+    id
+    email
+    token
+    username
+    createdAt
+  }
+}
+
+
+query {
+  getPosts {
+    id
+    username
+    body
+    createdAt
+    
+  }
+}
+
+query{
+  getpost(postId: "609aef522e2dd35d8b73c894") {
+    id
+    username
+    createdAt
+    body
+  }
+}

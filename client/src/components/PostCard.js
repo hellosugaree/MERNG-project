@@ -6,12 +6,13 @@ import { useMutation } from '@apollo/client';
 import { LIKE_POST } from '../gql/gql';
 import { AuthContext } from '../context/auth';
 import { useForm } from '../utilities/hooks';
+
 function PostCard(props) {
   const { id, username, createdAt, body, likes, likeCount, commentCount } = props.post;
   const { user } = useContext(AuthContext); // use to determine if a user is logged in
   const [likePost, { loading, data }] = useMutation(LIKE_POST, {
     done(_, data) {
-      
+  
     },
     onError(err) {
       handleFormErrors(err);

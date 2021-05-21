@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Form, Card } from 'semantic-ui-react';
 import { useForm } from '../utilities/hooks';
-import { useMutation } from '@apollo/client';
+import { useMutation, gql } from '@apollo/client';
 import { CREATE_POST } from '../gql/gql';
 import { AuthContext } from '../context/auth';
 import FormError from '../components/FormError';
@@ -17,8 +17,31 @@ function CreatePost (props) {
         } = useForm(createPostCallback, { title: '', body: '' });
   
   const [createPost, { loading, data }] = useMutation(CREATE_POST, {
-    update(_, result) {
-      window.location.reload()
+    update(cache, { data: { createPost }}) {
+      // update the cache when new post created so main page will render the post
+      // see https://www.apollographql.com/docs/react/data/mutations/
+      cache.modify({
+        fields: {
+          getPosts (existingPosts = []) {
+            const newPostRef = cache.writeFragment({
+              data: createPost,
+              fragment: gql `
+                fragment NewPostRef on Post {
+                  id body createdAt username likeCount
+                  likes {
+                    username
+                  }
+                  commentCount
+                  comments {
+                    id username createdAt body
+                  }
+                }
+              `
+            });
+            return [... existingPosts, newPostRef];
+          }
+        }
+      })      
     },
     onError(err) {
       handleFormErrors(err);
@@ -77,3 +100,14 @@ function CreatePost (props) {
 
 
 export default CreatePost;
+
+
+
+// const ADD_TODO = gql`
+//   mutation AddTodo($type: String!) {
+//     addTodo(type: $type) {
+//       id
+//       type
+//     }
+//   }
+// `;

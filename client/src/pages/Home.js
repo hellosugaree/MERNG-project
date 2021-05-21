@@ -15,7 +15,7 @@ function Home() {
   if (error) return `Error: ${error}`;
   
   if (data) {
-    console.log(data.getPosts);
+    // console.log(data.getPosts);
   }
 
   

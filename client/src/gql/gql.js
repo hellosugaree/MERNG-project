@@ -36,8 +36,9 @@ export const REGISTER_USER = gql `
   }
 `;
 
+// note, the name behind the query names the query data in your apollo cache
 export const FETCH_POSTS_QUERY = gql `
-  {
+  query getPosts {
     getPosts {
       id body createdAt username likeCount
       likes {

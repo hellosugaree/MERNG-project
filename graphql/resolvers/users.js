@@ -38,13 +38,13 @@ module.exports = {
       
       if (!userFound) {
         errors.general = 'User not found';
-        throw new UserInputError('User not found', { errors });    
+        throw new UserInputError('User not found', errors);    
       }
     
       const passMatch = await bcrypt.compare(password, userFound.password); // compare password from input to password in database
        if (!passMatch) { // password doesn't match
         errors.password = 'Incorrect password';
-        throw new UserInputError('Incorrect password', { errors });
+        throw new UserInputError('Incorrect password', errors);
        }
 
        const token = issueToken(userFound); // issue web token
@@ -70,20 +70,17 @@ module.exports = {
       }, 
       context, info) { // context and info not used in this example
 
-      // Make sure username is unique
-      const userFound = await User.findOne({ username });
-      if (userFound) {
-        throw new UserInputError('Username is taken'), {  // uses UserInputError from apollo-server
-          errors: { // errors object used on front end to display errors on the UI
-            username: 'This username is taken'
-          }
-        } 
-      }
-
       //validate user data
-      // get valid and errors values from validateRegisterInput and assign to valid and erros variables
+      // validateRegisterInput returns { valid, errors }, so we destructure it here
       const { valid, errors } = validateRegisterInput(username, email, password, confirmPassword);
       if (!valid) {
+        throw new UserInputError('User input Error', errors);
+      }
+        
+      // Make sure username is unique once we validate all other form data formatting
+      const userFound = await User.findOne({ username });
+      if (userFound) {
+        errors.username = 'This username is already taken';
         throw new UserInputError('User input Error', errors);
       }
 

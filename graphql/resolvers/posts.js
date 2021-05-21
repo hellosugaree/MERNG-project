@@ -3,7 +3,7 @@ const Like = require('../../models/Like');
 const Comment = require('../../models/Comment');
 const checkAuth = require('../../utilities/check-auth'); // import auth check function
 const { UserInputError, AuthenticationError } = require('apollo-server');
-const { validateCommentInput } = require('../../utilities/validators');
+const { validateCommentInput, validatePostInput } = require('../../utilities/validators');
 
 module.exports = {
   Query: {
@@ -37,12 +37,15 @@ module.exports = {
       // check authorization token via checkAuth function in utilities
       const user = checkAuth(context);
       // if code gets to this point, there were no errors from checkAuth so a user definitely exists
+      const { errors, valid } = validatePostInput(title, body);
+      if (!valid) {
+        throw new UserInputError('User input error', errors);
+      }
       const newPost = new Post ({
         user: user.id,
         username: user.username,
         title,
         body,
-        numLikes: 0,
         createdAt: new Date().toISOString()
       });
 
@@ -118,7 +121,6 @@ module.exports = {
         if (likeIndex > -1) {
           // already existing like by this user
           postFound.likes.splice(likeIndex, 1);
-          postFound.numLikes -= 1;
         } else {
           // no existing like by this user
           const newLike = new Like({
@@ -126,7 +128,6 @@ module.exports = {
             createdAt: new Date().toISOString()
           });
           postFound.likes.unshift(newLike);
-          postFound.numLikes +=1;
         }
         await postFound.save();
         return postFound;

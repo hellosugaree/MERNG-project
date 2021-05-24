@@ -40,7 +40,7 @@ export default function MenuBar() {
           to="/"    
         />
         
-        <img style={logoStyle} src='/img/striped-bass-small.png' alt='striped bass'/>
+        <Image style={logoStyle} src='/img/striped-bass-small.png' alt='striped bass'/>
         
         {/*Link imported from react-router-dom */}
         {/* links to a path that gets picked up by router in App */}

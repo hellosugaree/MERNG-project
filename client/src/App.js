@@ -19,12 +19,6 @@ import { AuthContext } from './context/auth';
 /* wrap entire App in auth provider to give access to context across components for managing auth, etc */
 function App() {
   const context = useContext(AuthContext);
-  console.log(context);
-
-  function PrivateRoute ({ component, ...rest }) {
-    return (<Route {...rest} />);
-  }
-
 
   return (
     <AuthProvider>

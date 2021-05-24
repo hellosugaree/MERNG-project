@@ -48,7 +48,6 @@ module.exports = {
         body,
         createdAt: new Date().toISOString()
       });
-
       const post = await newPost.save();
       return post;
     },
@@ -58,12 +57,15 @@ module.exports = {
       try {
         const postFound = await Post.findById(postId);
         if (postFound.username === user.username) {  // make sure person trying to delete is person who created post
-          await postFound.delete();
-          return postFound;
+          const postDeleted = await postFound.delete();
+          console.log(postDeleted);
+          return postDeleted;
         } else {
+          console.log('else')
           throw new AuthenticationError('Not authorized to delete post');
         }
       } catch (err) {
+        console.log('caught error')
         console.log('Post not found');
         throw new Error(err);
       }

@@ -40,7 +40,7 @@ export const REGISTER_USER = gql `
 export const FETCH_POSTS_QUERY = gql `
   query getPosts {
     getPosts {
-      id body createdAt username likeCount
+      id body createdAt username likeCount title
       likes {
         username
       }
@@ -65,16 +65,39 @@ export const LIKE_POST = gql `
 export const CREATE_POST = gql `
   mutation createPost($title: String!, $body: String!){
     createPost(title: $title, body: $body){
-      id
-      username
+      id 
+      body 
+      createdAt 
+      username 
+      likeCount 
       title
-      body
-      createdAt
-      likeCount
+      likes {
+        username
+      }
       commentCount
+      comments {
+        id username createdAt body
+      }
     }
   }
-
 `;
 
-
+export const DELETE_POST = gql `
+  mutation deletePost($postId: ID!) {
+    deletePost(postId: $postId){
+      id 
+      body 
+      createdAt 
+      username 
+      likeCount 
+      title
+      likes {
+        username
+      }
+      commentCount
+      comments {
+        id username createdAt body
+      }
+    }
+  }
+`;

@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import { Form, Card } from 'semantic-ui-react';
 import { useForm } from '../utilities/hooks';
-import { useMutation, gql } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { CREATE_POST } from '../gql/gql';
 import { AuthContext } from '../context/auth';
 import FormError from '../components/FormError';
+import { FETCH_POSTS_QUERY } from '../gql/gql';
 
 function CreatePost (props) {
   const { user } = useContext(AuthContext);
@@ -17,33 +18,55 @@ function CreatePost (props) {
         } = useForm(createPostCallback, { title: '', body: '' });
   
   const [createPost, { loading, data }] = useMutation(CREATE_POST, {
-    update(cache, { data: { createPost }}) {
+    // update(cache, { data: { newPost }}) {
       // update the cache when new post created so main page will render the post
       // see https://www.apollographql.com/docs/react/data/mutations/
-      cache.modify({
-        fields: {
-          getPosts (existingPosts = []) {
-            const newPostRef = cache.writeFragment({
-              data: createPost,
-              fragment: gql `
-                fragment NewPostRef on Post {
-                  id body createdAt username likeCount
-                  likes {
-                    username
-                  }
-                  commentCount
-                  comments {
-                    id username createdAt body
-                  }
-                }
-              `
-            });
-            return [... existingPosts, newPostRef];
-          }
+      // cache.modify({
+      //   fields: {
+      //     getPosts (existingPosts = []) {
+      //       const newPostRef = cache.writeFragment({
+      //         data: newPost,
+      //         fragment: gql `
+      //           fragment NewPostRef on Post {
+      //             id body createdAt username likeCount
+      //             likes {
+      //               username
+      //             }
+      //             commentCount
+      //             comments {
+      //               id username createdAt body
+      //             }
+      //           }
+      //         `
+      //       });
+      //       return [... existingPosts, newPostRef];
+      //       values.body = '';
+      //       values.title ='';
+      //     }
+      //   }
+      // })      
+    // }
+    // another way to modify cache is to read the entire query from cache,
+    // append our new data to it, then write the query back to the cache:
+    // createPost is destructured from data.createPost and stores the new post
+    update(cache, { data: { createPost } }) {
+      // get property getPosts from cache.readquery and asign it to cachedPostData
+      const { getPosts : cachedPostData } = cache.readQuery({
+        query: FETCH_POSTS_QUERY    // our gql file used to make the query initially
+      });
+      // write our combined data back to the cache
+      cache.writeQuery({ 
+        query: FETCH_POSTS_QUERY, 
+        data: {
+          getPosts: [createPost, ...cachedPostData]
         }
-      })      
-    },
+      }); 
+        values.body = '';
+        values.title ='';   
+    }
+    ,
     onError(err) {
+      console.log(err)
       handleFormErrors(err);
     }
   });
@@ -52,6 +75,7 @@ function CreatePost (props) {
   function createPostCallback() {
     createPost({variables: values});
   };
+
 
   return (
     <div style={{margin: '20px auto 10px auto', maxWidth: 400}}>
@@ -78,6 +102,7 @@ function CreatePost (props) {
         </Form.Group>
         <Form.Group >
           <Form.TextArea
+            style={{marginBottom: 10}}
             width={16}
             placeholder='post body'
             type='body'
@@ -88,8 +113,8 @@ function CreatePost (props) {
           />
         </Form.Group> 
         {Object.keys(errors).length > 0 && (<FormError errors={errors.errorMessages} />)}
-        <Form.Group style={{margin: '0px auto 0px auto'}}>
-          <Form.Button color='blue' type="submit">Submit</Form.Button>
+        <Form.Group style={{display: 'block'}}>
+          <Form.Button style={{display: 'block', margin: '0px auto 0px auto'}} color='blue' type="submit">Submit</Form.Button>
         </Form.Group> 
 
       </Form>

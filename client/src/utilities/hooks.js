@@ -21,8 +21,7 @@ export const useForm = (callback, initialValues) => { // initial values and obje
 
   // Error processing
   const handleFormErrors = (err) => {
-    console.log(Object.keys(err));
-    console.log(err.graphQLErrors[0].message)
+    console.log(err);
     const errorMessages = [];
     // handle graphQLErrors
     if (err.graphQLErrors.length > 0) { 
@@ -40,8 +39,7 @@ export const useForm = (callback, initialValues) => { // initial values and obje
         logout();
         return window.location.replace('/login')
       }
-
-      console.log(err.graphQLErrors[0].extensions.exception)
+  
       const graphQLErrors = err.graphQLErrors[0].extensions.exception;
       for (const key in graphQLErrors) {
         if (key !== 'stacktrace') {

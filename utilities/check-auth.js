@@ -6,7 +6,6 @@ module.exports = (context) => {
   // context has object { headers, ... }
   // console.log(context.headers);
   const authHeader = context.headers.authorization;
-  console.log(context.headers);
   if (authHeader) { // check to make sure auth header was sent with context
     // Auth header has format of string with 'Bearer (token here)'
     const token = authHeader.split('Bearer ')[1]; // get just the token part from the auth header

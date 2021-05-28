@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Form } from 'semantic-ui-react';
+import { Form, Grid } from 'semantic-ui-react';
 import { useMutation } from '@apollo/client';
 import FormError from '../components/FormError';
 import { REGISTER_USER } from '../gql/gql';
@@ -33,11 +33,14 @@ function Register(props) {
 
 
   return (
-    <div >
-      <h1 className="page-title">Register</h1>
-      {/* classname loading gives a spinner in semantic-ui */}
-      <Form error={errors ? true : false} onSubmit={onSubmit} className={loading ? 'loading' : ''}>
-        <Form.Group style={{paddingBottom: 20}}>
+    <div className='register-page'>
+      <Grid centered>
+        <Grid.Row>
+          <h1 className="page-title">Register</h1>
+        </Grid.Row>
+      <Grid.Row>
+      <Form style={{display: 'block', margin: '20px auto 0px auto', width: 300}} error={errors ? true : false} onSubmit={onSubmit} className={loading ? 'loading' : ''}>
+        <Form.Group >
           <Form.Input 
             required 
             label='Username' 
@@ -46,39 +49,41 @@ function Register(props) {
             name='username'
             value={values.username}
             onChange={handleChange}
-            error={errors.username ? true : false}
+            error={errors.errorFields && errors.errorFields.username}
           />
           <Form.Input required label='Email address' placeholder='email address' 
             type="email"
             name='email'
             value={values.email}
             onChange={handleChange}
-            error={errors.email ? true : false}            
+            error={errors.errorFields && errors.errorFields.email}            
           />
         </Form.Group>
-        <Form.Group style={{paddingBottom: 20}}>
+        <Form.Group >
           <Form.Input required label='Password' placeholder='password' 
             type="password"
             name='password'
             value={values.password}
             onChange={handleChange}
-            error={errors.password ? true : false}
+            error={errors.errorFields && errors.errorFields.password}
           />
           <Form.Input required label='Confirm password' placeholder='confirm password' 
             type="password"
             name='confirmPassword'
             value={values.confirmPassword}
             onChange={handleChange}
-            error={errors.confirmPassword ? true : false}
+            error={errors.errorFields && errors.errorFields.confirmPassword}
           />
         </Form.Group>
         
         {Object.keys(errors).length > 0 && (<FormError errors={errors.errorMessages} />)}
 
         <Form.Checkbox style={{padding: 20}} label='I agree to the Terms and Conditions' />
-        <Form.Button type="submit">Submit</Form.Button>
+        <Form.Button color='teal' type="submit">Submit</Form.Button>
       </Form>
+      </Grid.Row>
 
+      </Grid>
     </div>
   );
 }

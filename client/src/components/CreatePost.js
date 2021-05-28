@@ -86,7 +86,7 @@ function CreatePost (props) {
       <Card.Header content='Create a post' style={{fontSize: 20, fontWeight: 'bold', padding: '5px 0px 10px 0px'}} textAlign='center' /> 
     
 
-      <Form fluid style={{width: 350, margin: '5px auto 20px auto', padding: '0px 10px 0px 10px'}} 
+      <Form fluid style={{width: 350, margin: '5px auto 5px auto', padding: '0px 10px 0px 10px'}} 
       error={errors ? true : false} onSubmit={onSubmit} className={loading ? 'loading' : ''}
       >
         <Form.Group fluid style={{paddingBottom: 10}}>
@@ -97,7 +97,7 @@ function CreatePost (props) {
             name='title'
             value={values.title}
             onChange={handleChange}
-            error={errors.title ? true : false}            
+            error={errors.errorFields && errors.errorFields.title}            
           />
         </Form.Group>
         <Form.Group >
@@ -109,7 +109,7 @@ function CreatePost (props) {
             name='body'
             value={values.body}
             onChange={handleChange}
-            error={errors.body ? true : false}
+            error={errors.errorFields && errors.errorFields.body}
           />
         </Form.Group> 
         {Object.keys(errors).length > 0 && (<FormError errors={errors.errorMessages} />)}

@@ -31,13 +31,14 @@ module.exports = {
       const { errors, valid } = validateLoginInput(username, password); // same as const errors = validateLoginInput.errors, etc
       
       if (!valid) {
+        console.log(errors.body)
         throw new UserInputError('User input error', errors);
       }
       
       const userFound = await User.findOne({ username }); // same as username: username
       
       if (!userFound) {
-        errors.general = 'User not found';
+        errors.username = 'User not found';
         throw new UserInputError('User not found', errors);    
       }
     
@@ -91,6 +92,7 @@ module.exports = {
         email,
         username,
         password,
+        catches: [],
         createdAt: new Date().toISOString()
       });
 

@@ -1,5 +1,6 @@
 const postsResolvers = require('./posts');
 const usersResolvers = require('./users');
+const catchesResolvers = require('./catches');
 
 module.exports = {
   Post: {
@@ -18,6 +19,6 @@ module.exports = {
   Mutation: {
     ...usersResolvers.Mutation, // gets Mutation from ./users
     ...postsResolvers.Mutation,
-
+    ...catchesResolvers.Mutation
   }
 };

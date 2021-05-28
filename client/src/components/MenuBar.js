@@ -1,8 +1,11 @@
 import React, { useState, useContext } from 'react';
-import { Menu, Image, Button, Sticky } from 'semantic-ui-react';
+import { Menu, Image, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { menuColor } from '../colors';
 import { AuthContext } from '../context/auth';
+import '../App.css';
+
+
 
 export default function MenuBar() {
 
@@ -30,79 +33,69 @@ export default function MenuBar() {
 
   const loggedOutMenu = () => {
     return (
-      <Sticky>
-      <Menu size="massive" attached='top' style={{backgroundColor: 'white', marginBottom: 20}} color={menuColor} tabular>
-        <Menu.Item
-          name='home'
-          active={activeItem === 'home'}
-          onClick={handleItemClick}
-          as={Link} 
-          to="/"    
-        />
-        
-        <Image style={logoStyle} src='/img/striped-bass-small.png' alt='striped bass'/>
-        
-        {/*Link imported from react-router-dom */}
-        {/* links to a path that gets picked up by router in App */}
-        <Menu.Menu position='right'>
-        <Menu.Item
-          name='login'
-          active={activeItem === 'login'}
-          onClick={handleItemClick}
-          as={Link}
-          to="/login"
-        />
-        <Menu.Item
-          name='register'
-          active={activeItem === 'register'}
-          onClick={handleItemClick}
-          as={Link}
-          to="/register"
-        />
-      </Menu.Menu>
-    </Menu>
-    </Sticky>
+        <Menu size='huge' style={{backgroundColor: 'white'}} color={menuColor} tabular>
+          <Menu.Item
+            name='home'
+            active={activeItem === 'home'}
+            onClick={handleItemClick}
+            as={Link} 
+            to="/"    
+          />
+          
+          <Image style={logoStyle} src='/img/striped-bass-small.png' alt='striped bass'/>
+          
+          {/*Link imported from react-router-dom */}
+          {/* links to a path that gets picked up by router in App */}
+          <Menu.Menu position='right'>
+          <Menu.Item
+            name='login'
+            active={activeItem === 'login'}
+            onClick={handleItemClick}
+            as={Link}
+            to="/login"
+          />
+          <Menu.Item
+            name='register'
+            active={activeItem === 'register'}
+            onClick={handleItemClick}
+            as={Link}
+            to="/register"
+          />
+        </Menu.Menu>
+      </Menu>
     );
   }
 //          content={context.user.username}
   const loggedInMenu = () => {
     return (
-      <div>
-      <Sticky>
-      <Menu size="huge" style={{backgroundColor: 'white'}} attached='top' color={menuColor} tabular>
-        <Menu.Item>
-          <Button
-            circular
-            color='teal'
+        <Menu size='huge' style={{backgroundColor: 'white'}} color={menuColor} tabular>
+          <Menu.Item
             name='home'
+            active={activeItem === 'home'}
             onClick={handleItemClick}
-            as={Link} 
-            to="/"   
             content={context.user.username}
+            as={Link} 
+            to="/"    
           />
-        </Menu.Item>
-        
-        <img style={logoStyle} src='/img/striped-bass-small.png' alt='striped bass'/>
-    
-        {/*Link imported from react-router-dom */}
-        {/* links to a path that gets picked up by router in App */}
-        <Menu.Menu position='right'>
-          <Menu.Item
-            name='preferences'
-            onClick={handleItemClick}
-            active={activeItem === 'preferences'}
-            as={Link}
-            to='/preferences'
-          />
-          <Menu.Item
-            name='logout'
-            onClick={handleLogout}
-          />
-      </Menu.Menu>
-    </Menu>
-    </Sticky>
-    </div>
-
+          
+           <img style={logoStyle} src='/img/striped-bass-small.png' alt='striped bass'/>
+      
+          {/*Link imported from react-router-dom */}
+          {/* links to a path that gets picked up by router in App */}
+          <Menu.Menu position='right'>
+            <Menu.Item
+              name='preferences'
+              onClick={handleItemClick}
+              active={activeItem === 'preferences'}
+              as={Link}
+              to='/preferences'
+            />
+            <Menu.Item
+              name='logout'
+              onClick={handleLogout}
+            />
+        </Menu.Menu>
+      </Menu>
     );
   }
   
@@ -117,6 +110,20 @@ export default function MenuBar() {
 }
 
     /*
+
+            <Button
+              circular
+              compact
+              size='mini'
+              color='teal'
+              name='home'
+              onClick={handleItemClick}
+              as={Link} 
+              to="/"   
+              content={context.user.username}
+            />
+
+
     <Segment attached='bottom'>
       <img src='/images/wireframe/paragraph.png' />
     </Segment>

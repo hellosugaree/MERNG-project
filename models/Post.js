@@ -22,10 +22,10 @@ const postSchema = new mongoose.Schema({
     }
   ],
   
-  // explanation not super clear but something to do with linking something later in mongoose
+  // store the userId so we can query posts by userId
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'users'
+    ref: 'User'
   }
 
 });

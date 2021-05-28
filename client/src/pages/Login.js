@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import FormError from '../components/FormError';
-import { Form } from 'semantic-ui-react';
+import { Form, Grid } from 'semantic-ui-react';
 import { useMutation } from '@apollo/client';
 import { useForm } from '../utilities/hooks';
 import { LOGIN_USER } from '../gql/gql';
@@ -18,8 +18,8 @@ function Login(props) {
     update(_, result){ // called when executed successfully
       // call context.login with the user data returned from graphQL mutation to add it to state
       context.login(result.data.login);
-      console.log(result.data.login);
-      props.history.push('/');
+      // props.history.push('/');
+    window.location.pathname='/';
     },
     onError(err) {
       handleFormErrors(err);
@@ -33,11 +33,16 @@ function Login(props) {
 
 
   return (
-    <div>
-      <h1 className='page-title'>Login</h1>
+    <div className='login-page'>
+    <Grid centered >
       
-      <Form error={errors ? true : false} onSubmit={onSubmit} className={loading ? 'loading' : ''}>
-        <Form.Group style={{paddingBottom: 20}}>
+      <Grid.Row>
+        <h1 className='page-title'>Login</h1>
+      </Grid.Row>
+
+      <Grid.Row>
+      <Form error={ errors ? true : false } onSubmit={onSubmit} className={loading ? 'loading' : ''}>
+        <Form.Group >
           <Form.Input 
             required 
             label='Username' 
@@ -46,20 +51,24 @@ function Login(props) {
             name='username'
             value={values.username}
             onChange={handleChange}
+            error={errors.errorFields && errors.errorFields.username}
           />
           <Form.Input required label='Password' placeholder='Password' 
             type="password"
             name='password'
+            autoComplete='current-password'
             value={values.password}
             onChange={handleChange}
+            error={errors.errorFields && errors.errorFields.password}
           />
         </Form.Group>
 
         {Object.keys(errors).length > 0 && (<FormError errors={errors.errorMessages} />)}
 
-        <Form.Button type="submit">Submit</Form.Button>
+        <Form.Button color='teal' type="submit">Submit</Form.Button>
         </Form>
- 
+        </Grid.Row>
+    </Grid>
     </div>
   );
 }

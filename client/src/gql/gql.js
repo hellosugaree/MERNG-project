@@ -14,39 +14,27 @@ export const LOGIN_USER = gql `
   }
 `;
 
-export const REGISTER_USER = gql `
-  mutation register(
-    $username: String!
-    $email: String!
-    $password: String!
-    $confirmPassword: String!
-  ) {
-    register (registerInput: {
-      username: $username 
-      email: $email
-      password: $password
-      confirmPassword: $confirmPassword
-    }) {
-      id
-      username
-      email
-      token
-      createdAt
-    }
-  }
-`;
+
 
 // note, the name behind the query names the query data in your apollo cache
 export const FETCH_POSTS_QUERY = gql `
   query getPosts {
     getPosts {
-      id body createdAt username likeCount title
+      id 
+      body 
+      createdAt 
+      username 
+      likeCount 
+      title
       likes {
         username
       }
       commentCount
       comments {
-        id username createdAt body
+        id 
+        username 
+        createdAt 
+        body
       }
     }
   }
@@ -54,7 +42,7 @@ export const FETCH_POSTS_QUERY = gql `
 
 
 export const LIKE_POST = gql `
-  mutation likePost($postId: String!) {
+  mutation likePost($postId: ID!) {
     likePost(postId: $postId){
       id
       likeCount
@@ -98,6 +86,83 @@ export const DELETE_POST = gql `
       comments {
         id username createdAt body
       }
+    }
+  }
+`;
+
+
+export const CREATE_COMMENT = gql `
+  mutation createComment($postId: ID!, $body: String!) {
+    createComment(postId: $postId, body: $body) {
+      id
+      username
+      body
+      createdAt
+    }
+  }
+`;
+
+export const DELETE_COMMENT = gql `
+  mutation deleteComment($postId: ID!, $commentId: ID!) {
+    deleteComment(postId: $postId, commentId: $commentId) {
+      id
+      username
+      body
+      createdAt
+    }
+  }
+`;
+
+export const REGISTER_USER = gql `
+  mutation register(
+    $username: String!
+    $email: String!
+    $password: String!
+    $confirmPassword: String!
+  ) {
+    register (registerInput: {
+      username: $username 
+      email: $email
+      password: $password
+      confirmPassword: $confirmPassword
+    }) {
+      id
+      username
+      email
+      token
+      createdAt
+    }
+  }
+`;
+
+
+
+export const CREATE_CATCH = gql `
+  mutation createCatch(   
+    $species: String!,
+    $fishingType: String!,
+    $catchDate: String!,
+    $catchLocation: String,
+    $catchLength: Int,
+    $notes: String
+  ) {
+    createCatch(catchInput: {
+      species: $species,
+      fishingType: $fishingType,
+      catchDate: $catchDate,
+      catchLocation: $catchLocation,
+      catchLength: $catchLength,
+      notes: $notes
+    }) {
+      user
+      username
+      createdAt
+      species
+      fishingType
+      catchDate
+      catchLocation
+      catchLength
+      notes
     }
   }
 `;

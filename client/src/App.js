@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import Preferences from './pages/Preferences';
 import MenuBar from './components/MenuBar';
 import CreatePost from './components/CreatePost';
+import CreateCatch from './components/CreateCatch';
 import { RedirectAuthenticatedUsers, ProtectedRoute } from './utilities/AuthRoutes';
 //other imports
 import { Container } from 'semantic-ui-react';
@@ -23,14 +24,18 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <Container> {/* ends up rendering <div class='ui container'> */}
+        <div style={{margin: '0px auto 0px auto', maxWidth: 1200}}>
+          <div style={{height: '100vh', overflow: 'hidden'}}>
           <MenuBar />
           <Route exact path='/' component={Home} />
+          <Route exact path='/logcatch' component={CreateCatch} />
           <RedirectAuthenticatedUsers redirectTo='/' exact path='/register' component={Register} />
           <RedirectAuthenticatedUsers redirectTo='/' exact path='/login' component={Login} />
           <ProtectedRoute redirectTo='/login' exact path='/preferences' component={Preferences} />
           <ProtectedRoute redirectTo='/login' exact path='/post' component={CreatePost} />
-        </Container>
+          </div>
+          
+          </div>
       </Router>
     </AuthProvider>
   );

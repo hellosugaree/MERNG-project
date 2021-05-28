@@ -35,21 +35,12 @@ const PostCardMenu = (props) => {
       
     }
 
-
-
-
-
-
-
-
+  // array of menu items for our dropdown menu  
   const dropdownItems = [
     { key: 'edit', icon:  {name: 'edit', color: 'grey'}, text: 'edit', value: 'edit', selected: false},
     { key: 'delete', onClick: handleDeleteClick, icon: {name: 'trash', color: 'grey'}, text: 'delete', value: 'delete', selected: false}
   ];
   
-
-
-
   return (
       <Dropdown
       upward
@@ -66,38 +57,5 @@ const PostCardMenu = (props) => {
   );
 };
 
-//    <div style={{border: '1px solid', borderColor: 'lightgrey', borderRadius: '50%', display: 'block', float: 'right'}}>
-
-
-
 
 export default PostCardMenu;
-
-{/* 
-  
-  <Dropdown.Item
-        name='delete post'
-        as={
-          
-        }
-      ></Dropdown.Item> 
-    
-    
-        <Button basic fluid icon={{name:'trash'}} as={Dropdown.Item}/>
-      <Dropdown.Menu>
-      <Button basic fluid icon={{name:'trash'}} as={Dropdown.Item}/>
-      </Dropdown.Menu>
-          <Dropdown
-      upward
-      style={{float: 'right'}}
-      compact
-      floating
-      className='icon'
-      icon={{name: 'ellipsis vertical', color: 'grey'}}
-      options={dropdownItems}
-      trigger={<></>}
-      >
-
-
-
-    */}

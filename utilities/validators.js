@@ -63,8 +63,7 @@ module.exports.validatePostInput = (title, body) => {
 
 module.exports.validateCatchInput = (species, fishingType, catchDate, catchLocation, catchLength) => {
   const errors = {};
-  console.log(catchLength);
-  console.log(typeof catchLength)
+
   if (species.trim() === '') {
     errors.species = 'Please select a species or check "Unknown species"'
   }
@@ -75,7 +74,7 @@ module.exports.validateCatchInput = (species, fishingType, catchDate, catchLocat
     errors.catchDate = 'Please select a catch date'
   }
   
-  if (typeof catchLength !== 'number'){
+  if (catchLength && typeof catchLength !== 'number'){
     errors.catchLength = 'Please enter a valid number for catch length'
   }
   return {

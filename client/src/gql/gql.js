@@ -166,3 +166,35 @@ export const CREATE_CATCH = gql `
     }
   }
 `;
+
+// userId is optional if you want to query a specific user's catches
+export const GET_CATCHES = gql `
+  query getCatches($catchesToReturn: Int, $userId: ID) {
+    getCatches(userId: $userId, catchesToReturn: $catchesToReturn) {
+      id
+      user
+      username
+      species
+      fishingType
+      catchDate
+      catchLocation
+      catchLength
+      notes
+      createdAt
+    }
+  }
+`;
+
+
+export const GET_USER_BASIC_DATA = gql `
+
+  query getUser($userId: ID) {
+    getUser(userId: $userId) {
+      username
+      catches
+      catchCount
+      createdAt
+    }
+  }
+
+`;

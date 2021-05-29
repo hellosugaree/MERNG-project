@@ -3,7 +3,6 @@ const Catch = require('../../models/Catch');
 const User = require('../../models/User');
 const { validateCatchInput } = require ('../../utilities/validators');
 const { UserInputError, AuthenticationError } = require('apollo-server');
-
 /*
 For logging fish catches
 fields: {
@@ -35,6 +34,23 @@ fields: {
 
 */
 module.exports = {
+
+  Query: {
+    async getCatches(_, { catchesToReturn = 200, userId = null }) {
+      try {
+        // different handling depending on whether or not a userId is supplied
+        const catches = userId 
+          ? await Catch.find({user: userId}).limit(catchesToReturn).sort({createdAt: -1})
+          : await Catch.find().limit(catchesToReturn).sort({createdAt: -1});
+          console.log(catches);
+          return catches;
+      } catch (err) {
+        throw new Error(err);
+      }
+    }
+
+  },
+
   Mutation: {
     // create a new catch
     async createCatch (_, 

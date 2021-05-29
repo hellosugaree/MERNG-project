@@ -94,6 +94,7 @@ const AutoSearchInput = (props) => {
       e.preventDefault();
     }
   }
+  
   const logState = () => {
     console.log(state.value);
     console.log(state.results);

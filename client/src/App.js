@@ -10,6 +10,7 @@ import Preferences from './pages/Preferences';
 import MenuBar from './components/MenuBar';
 import CreatePost from './components/CreatePost';
 import CreateCatch from './components/CreateCatch';
+import HomeSplashPage from './pages/HomeSplashPage';
 import { RedirectAuthenticatedUsers, ProtectedRoute } from './utilities/AuthRoutes';
 //other imports
 import { Container } from 'semantic-ui-react';
@@ -27,7 +28,8 @@ function App() {
         <div style={{margin: '0px auto 0px auto', maxWidth: 1200}}>
           <div style={{height: '100vh', overflow: 'hidden'}}>
           <MenuBar />
-          <Route exact path='/' component={Home} />
+          <ProtectedRoute redirectTo='/splash' exact path='/' component={Home}/>
+          <Route exact path='/splash' component={HomeSplashPage} />
           <Route exact path='/logcatch' component={CreateCatch} />
           <RedirectAuthenticatedUsers redirectTo='/' exact path='/register' component={Register} />
           <RedirectAuthenticatedUsers redirectTo='/' exact path='/login' component={Login} />

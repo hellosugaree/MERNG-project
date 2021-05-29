@@ -24,6 +24,19 @@ const issueToken = function(user) {
 
 
 module.exports = {
+  
+  Query: {
+    async getUser(_, { userId }) {
+      try {
+        console.log(userId)
+        const userPublicData = await User.findById(userId);
+        return userPublicData;
+      } catch (err) {
+        throw new Error (err);
+      }
+    }
+  },
+  
   Mutation: {
     
     // validate login

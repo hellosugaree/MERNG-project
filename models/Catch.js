@@ -8,9 +8,7 @@ const catchSchema = new mongoose.Schema({
   catchDate: String,
   catchLocation: String,
   createdAt: String,
-  sessionId: String,
   notes: String,
-
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'

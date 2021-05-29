@@ -5,6 +5,7 @@ const typeDefs = gql`
   """comment"""
   type Post {
     id: ID!
+    user: ID!
     username: String!
     title: String
     body: String!
@@ -20,6 +21,7 @@ const typeDefs = gql`
     username: String!
     body: String!
     createdAt: String!
+    user: ID!
   }
 
   type Like {
@@ -35,6 +37,7 @@ const typeDefs = gql`
     username: String!
     createdAt: String!
     catches: [ID]!
+    catchCount: Int!
   }
   
   
@@ -72,8 +75,10 @@ const typeDefs = gql`
 
   type Query {
     sayHi: String!
-    getPosts(postsToReturn: Int): [Post]
+    getPosts(postsToReturn: Int, userId: ID): [Post]
     getPost(postId: ID!): Post
+    getCatches(catchesToReturn: Int, userId: ID): [Catch]
+    getUser(userId: ID): User
   }
 
   type Mutation {

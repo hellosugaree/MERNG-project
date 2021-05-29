@@ -49,10 +49,13 @@ const [createCatch, { loading }] = useMutation(CREATE_CATCH, {
           */
 
 
-
-const searchSubmit = (e) => {
-  
-}
+// function to prevent form from submitting when enter is pressed in an input field
+  const preventFormSubmitOnEnter = (event) => {
+    if (event.code === 'Enter') {
+      // prevent enter from submitting form
+      event.preventDefault();
+    }
+  }
 
 
 // process values sent back from our search input and update them into the form state values
@@ -74,37 +77,26 @@ function createCatchCallback() {
   // we need to convert the date from our date selector to a date object.toISOString to store dates consistently
   // set the local time of catch to 12:00 then convert to ISO to store
   const localDate = new Date(values.catchDate);
-  localDate.setHours(12);
-  localDate.setMinutes(0);
-  localDate.setSeconds(0);
+  // set time to 12:00:00
+  localDate.setHours(12); localDate.setMinutes(0); localDate.setSeconds(0);
+  // converto to ISO String
   const ISODate = localDate.toISOString();
   for (const key in values) console.log(`${key}: ${values[key]}`)
 
   // take our form inputs and feed them appropriately to the server
   const filteredInput = {...values};
   filteredInput.catchDate = ISODate;
+
   if (Number.parseInt(values.catchLength)) {
-    console.log('found length')
-    filteredInput.catchLength = values.catchLength;
+    filteredInput.catchLength = Number.parseInt(values.catchLength);
   } else {
+    console.log('invalid int')
     delete filteredInput.catchLength;
   }
+
+  // const testValues = {species: "trout", fishingType: "offshore", catchLength: 3, catchDate: "adss", notes: "", catchLocation: "" };
   console.log(filteredInput);
-  // if (values.catchLocation){
-  //   console.log('found catchlocation')
-  //   filteredInput.catchLocation = values.catchLocation;
-  // }
-  // if (values.notes){
-  //   console.log('found notes')
-  //   filteredInput.notes = values.notes;
-  // }
-  // if (values.species){
-  //   console.log('found species')
-  //   filteredInput.species = values.species;
-  // }
-  const testValues = {species: "trout", fishingType: "offshore", catchLength: 3, catchDate: "adss", notes: "", catchLocation: "" };
-  console.log(testValues);
-  createCatch({ variables: testValues })
+  createCatch({ variables: filteredInput });
 }
 
 return (
@@ -136,22 +128,29 @@ return (
               controlledValue={values.species}
             />
             </Form.Field>
+            {/* LENGTH */}
             <Form.Field width={4}>
               <Form.Input 
-              type='number'
-              label='Length (inches)'
-              placeholder='Length'
-              name='catchLength'
-              value={values.catchLength}
-              onChange={handleChange}
-            />
+                type='number'
+                label='Length (inches)'
+                placeholder='Length'
+                name='catchLength'
+                min='1'
+                max='1200'
+                value={values.catchLength}
+                onChange={handleChange}
+                onKeyPress={preventFormSubmitOnEnter}
+
+              />
             </Form.Field>
         </Form.Group>
+        {/* UNKOWN SPECIES CHECKBOX */}
         <Form.Group style={{marginBottom: 20}}>
         <Form.Checkbox 
           label='Unknown species'
           onClick={handleUnknownSpeciesClick}
           checked={values.species==='Unknown'}
+          onKeyPress={preventFormSubmitOnEnter}
         />
         </Form.Group>
 
@@ -167,6 +166,7 @@ return (
             name='fishingType'
             checked={values.fishingType === 'onshore'}
             onClick={handleChange}
+            onKeyPress={preventFormSubmitOnEnter}
           />
           <Form.Radio
             id='2'
@@ -175,6 +175,8 @@ return (
             name='fishingType'
             checked={values.fishingType === 'inshore'}
             onClick={handleChange}
+            onKeyPress={preventFormSubmitOnEnter}
+
           />
           <Form.Radio
             id='3'
@@ -183,6 +185,7 @@ return (
             name='fishingType'
             checked={values.fishingType === 'offshore'}
             onClick={handleChange}
+            onKeyPress={preventFormSubmitOnEnter}
           />
         </Form.Group>
         </div>
@@ -196,6 +199,7 @@ return (
               name='catchLocation'
               value={values.catchLocation}
               onChange={handleChange}
+              onKeyPress={preventFormSubmitOnEnter}
             />
           </Form.Field>
         </Form.Group>        
@@ -210,6 +214,7 @@ return (
               value={values.notes}
               onChange={handleChange}
               error={errors.errorFields && errors.errorFields.notes}
+              
             />
           </Form.Field>
         </Form.Group> 

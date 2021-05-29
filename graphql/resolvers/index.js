@@ -9,8 +9,14 @@ module.exports = {
     likeCount: (parent) => parent.likes.length,
     commentCount: (parent) => parent.comments.length
   },
+  User : {
+    catchCount: (parent) => parent.catches.length
+  },
+
   Query: {
     ...postsResolvers.Query,  // gets stuff inside query from ./posts
+    ...catchesResolvers.Query,
+    ...usersResolvers.Query,
     
     sayHi(){
       return 'hello';

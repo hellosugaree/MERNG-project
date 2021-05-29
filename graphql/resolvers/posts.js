@@ -7,10 +7,14 @@ const { validateCommentInput, validatePostInput } = require('../../utilities/val
 
 module.exports = {
   Query: {
-    async getPosts(_, { postsToReturn = 200 }){ // return 200 by default if no value specified in query
+    async getPosts(_, { postsToReturn = 200, userId = null }){ // return 200 by default if no value specified in query
       try {
+
         // sort posts by createdAt to put newest posts first in array
-        const posts = await Post.find().limit(postsToReturn).sort({ createdAt: -1 }); 
+        // if no userId is provided in arguments, return all posts, otherwise return posts with specific userId
+        const posts = userId 
+          ? await Post.find({user: userId}).limit(postsToReturn).sort({ createdAt: -1 }) 
+          : await Post.find().limit(postsToReturn).sort({ createdAt: -1 }); 
         return posts;
       } catch (err) {
         throw new Error(err);
@@ -79,6 +83,7 @@ module.exports = {
       const postFound = await Post.findById(postId);
       if (postFound) {
         const newComment = new Comment({
+          user: user.id,
           username: user.username,
           body,
           createdAt: new Date().toISOString()

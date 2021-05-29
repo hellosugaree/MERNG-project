@@ -27,6 +27,7 @@ export const useForm = (callback, initialValues) => { // initial values and obje
     event.preventDefault();
     console.log('submit')
     setErrors({});
+    setValues(initialValues);
     callback();
   };
 

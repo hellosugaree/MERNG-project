@@ -1,12 +1,12 @@
 import React from 'react';
 import { useMutation, gql } from '@apollo/client';
-import { Menu, Icon, Button, Dropdown, Grid } from 'semantic-ui-react';
+import { Dropdown } from 'semantic-ui-react';
 import { DELETE_COMMENT } from '../gql/gql';
 
 const CommentCardMenu = (props) => {
 
     // delete a post
-    const [deleteComment, { loading, data }] = useMutation(DELETE_COMMENT, {
+    const [deleteComment, { loading }] = useMutation(DELETE_COMMENT, {
       update(cache, { data: { deleteComment: deletedComment }}){
         // get the comments from this post
         const { comments: postComments, commentCount } = cache.readFragment({
@@ -73,12 +73,13 @@ const CommentCardMenu = (props) => {
   
   return (
       <Dropdown
-      size='tiny'
-      upward
-      style={{float: 'right'}}
-      compact
-      className='icon'
-      icon={{name: 'ellipsis vertical', color: 'grey'}}
+        loading={loading}
+        size='tiny'
+        upward
+        style={{float: 'right'}}
+        compact
+        className='icon'
+        icon={{name: 'ellipsis vertical', color: 'grey'}}
       >
         <Dropdown.Menu>
         {dropdownItems.map(item => (<Dropdown.Item key={item.key} {...item} />))}

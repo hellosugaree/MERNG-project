@@ -34,7 +34,7 @@ function Login(props) {
 
   return (
     <div className='login-page'>
-    <Grid centered >
+    <Grid centered style={{margin: 0}}>
       
       <Grid.Row>
         <h1 className='page-title'>Login</h1>

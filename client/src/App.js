@@ -11,17 +11,15 @@ import MenuBar from './components/MenuBar';
 import CreatePost from './components/CreatePost';
 import CreateCatch from './components/CreateCatch';
 import HomeSplashPage from './pages/HomeSplashPage';
+import GoogleMap from './components/GoogleMap';
+import Test from './pages/Test';
 import { RedirectAuthenticatedUsers, ProtectedRoute } from './utilities/AuthRoutes';
 //other imports
-import { Container } from 'semantic-ui-react';
 import { AuthProvider } from './context/auth';
-import React, { useContext } from 'react';
-import { AuthContext } from './context/auth';
+import React from 'react';
 
 /* wrap entire App in auth provider to give access to context across components for managing auth, etc */
 function App() {
-  const context = useContext(AuthContext);
-
   return (
     <AuthProvider>
       <Router>
@@ -31,6 +29,8 @@ function App() {
           <ProtectedRoute redirectTo='/splash' exact path='/' component={Home}/>
           <Route exact path='/splash' component={HomeSplashPage} />
           <Route exact path='/logcatch' component={CreateCatch} />
+          <Route exact path='/googlemap' component={GoogleMap} />    
+          <Route exact path='/test' component={Test} /> 
           <RedirectAuthenticatedUsers redirectTo='/' exact path='/register' component={Register} />
           <RedirectAuthenticatedUsers redirectTo='/' exact path='/login' component={Login} />
           <ProtectedRoute redirectTo='/login' exact path='/preferences' component={Preferences} />

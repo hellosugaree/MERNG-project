@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
-import { Card, Button, Image, Popup, Transition, Menu, Icon, Form, Comment } from 'semantic-ui-react';
+import { Card, Button, Image, Comment, Grid, Popup } from 'semantic-ui-react';
 import { DateTime } from 'luxon';
-import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LIKE_POST } from '../gql/gql';
@@ -25,11 +24,13 @@ function PostCard(props) {
   const [shakeComment, setShakeComment] = useState(false);
   const [commentsToShow, setCommentsToShow] = useState(2);
   const [showCreateComment, setShowCreateComment] = useState({isMounted: false, show: false});
-
+  const [displayLikes, setDisplayLikes] = useState(false);
   // like a post
   const [likePost, { loading, data }] = useMutation(LIKE_POST, {
-    done(_, data) {
-  
+    update(cache, data) {
+      console.log('done');
+      console.log(cache);
+      console.log(data);
     },
     onError(err) {
       handleFormErrors(err);
@@ -37,10 +38,26 @@ function PostCard(props) {
   });
 
 
+  // show likes when hover over like button
+  let displayLikesTimer;
+  const likeMouseOn = () => {
+    // don't display anything if no likes
+    if (likeCount === 0) return;
+    clearTimeout(displayLikesTimer);
+    console.log('mouse in')
+    displayLikesTimer = setTimeout(() => setDisplayLikes(true), 800);
+  };
+  const likeMouseOff = () => {
+    clearTimeout(displayLikesTimer);
+    setDisplayLikes(false);
+  }
 
   // like click handler
   const handleLikeClick = (event) => {
     event.preventDefault();
+    // clear the likes display so it will refresh with the new likes
+    setDisplayLikes(false);
+    
     if (!user) {
       setShakeLike(true)
       return setTimeout(() => setShakeLike(false), 2000);
@@ -74,14 +91,56 @@ function PostCard(props) {
 
     const showMoreComments = () => {
       setCommentsToShow((prevState) => setCommentsToShow(prevState + 2));
-    }
+    };
 
     const showLessComments = () => {
       setCommentsToShow((prevState) => setCommentsToShow(prevState - 2));
+    };
+
+
+
+    // process likes for display in hover
+    const mapLikes = () => {
+      // edge case 1 like
+      if (likeCount === 1) {
+        if (likes[0].username === user.username) {
+          // console.log(likes)
+          return 'You liked this';
+        } else {
+          return `${likes[0].username} liked this`;
+        }
+      }
+      // get an array of just usernames
+      let likedBy = likes.map(like => like.username);
+      // check to see if the user liked this post, and if so remove that like so we can display it first
+      let likedByUser = false;
+      const userLikeIndex = likedBy.indexOf(user.username);
+      if (userLikeIndex > -1) {
+        likedByUser = true;
+        likedBy.splice(userLikeIndex, 1)
+      }
+      if (likedBy.length <= 5) {
+        const lastLike = likedBy.pop();
+        return `${likedByUser ? 'You, ': ''}${likedBy.join(', ')} and ${lastLike} liked this`;
+      }
+      if (likedBy.length > 5) {
+        // just show the first few likes...
+        console.log(likedBy)
+        if (likedByUser) {
+          // pull off one less user
+          likedBy = likedBy.slice(0,3);
+        } else {
+          likedBy = likedBy.slice(0,4);
+        }
+        const lastLike = likedBy.pop();
+        console.log(`like count ${likeCount}`)
+        console.log(likedBy.join(', '))
+        return `${likedByUser ? 'You, ': ''}${likedBy.join(', ')}, ${lastLike}, and ${likeCount - 1 - likedBy.length - (likedByUser ? 1 : 0)} others like this`;
+      }
     }
 
     return (
-    <Card fluid style={{ maxWidth: 350, margin: '10px auto 10px auto'}} > {/* fluid lets the cards stretch to fill */}
+    <Card fluid style={{ maxWidth: 400, margin: '10px auto 10px auto'}} > {/* fluid lets the cards stretch to fill */}
       <Card.Content>
         <Image
           floated='right'
@@ -131,44 +190,43 @@ function PostCard(props) {
           )
         }
 
-      <Card.Content extra>
-        <Button.Group fluid compact>
-        <Popup 
-            disabled={shakeLike ? false : true } 
-            content={user ? '' : 'You must log in to like post'} 
-            open
-            trigger={
+      <Card.Content extra style={{margin: 0, padding: 10}}>
+        <Grid style={{margin: 0, padding: 0}} columns={2}>
+          <Grid.Column mobile={16} tablet={8} computer={8} style={{padding: 0, margin: 0}}>
             <Button
-                style={{animation: shakeLike ? 'shake 0.5s' : 'none'}}
-                basic
+                className='ui fluid'
+                style={{position: 'relative', margin: 0, padding: 0, animation: shakeLike ? 'shake 0.5s' : 'none'}}
                 size='mini'
+                basic
                 color='teal'
                 icon='thumbs up'
                 label={{ basic: true, color: 'teal', pointing: 'left', content: likeCount }}
                 onClick={shakeLike ? null : handleLikeClick}
                 loading={loading}
+                onMouseEnter={likeMouseOn}
+                onMouseLeave={likeMouseOff}
             />
-            }
-            />
-
-          <Popup 
-            disabled={shakeComment ? false : true } 
-            content={user ? '' : 'You must log in to comment'} 
-            open
-            trigger={
+            <div style={{display: displayLikes ? '' : 'none', maxWidth: '100%', backgroundColor: 'white', color: 'black', border: '1px solid grey', borderRadius: 5, padding: 5, position: 'absolute', bottom: 40, zIndex: 100}}>
+              {mapLikes()}
+            </div>
+          
+              {/* <Popup content={likes.map(like => like.username)} /> */}
+            </Grid.Column>
+            <Grid.Column mobile={16} tablet={8} computer={8} style={{padding: 0, margin: 0}}>
               <Button
-                style={{animation: shakeComment ? 'shake 0.5s' : 'none'}}
-                size='mini'
-                basic
-                color='blue'
-                icon='comment'
-                label={{ basic: true, color: 'blue', pointing: 'left', content: commentCount }}
-                onClick={shakeComment? null : handleCommentClick}
-              />
-            } 
-          />
-        </Button.Group>
- 
+                  className='ui fluid'
+                  style={{position: 'relative', margin: 0, padding: 0, animation: shakeComment ? 'shake 0.5s' : 'none'}}
+                  size='mini'
+                  basic
+                  color='blue'
+                  icon='comment'
+                  label={{ basic: true, color: 'blue', pointing: 'left', content: commentCount }}
+                  onClick={shakeComment? null : handleCommentClick}
+                  
+                />
+            </Grid.Column>
+          </Grid>
+
       </Card.Content>
 
 

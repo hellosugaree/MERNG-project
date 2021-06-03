@@ -4,9 +4,12 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.3.18",
+    "@arcgis/core": "^4.19.3",
+    "@googlemaps/js-api-loader": "^1.11.4",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "dotenv": "^8.2.0",
     "graphql": "^15.5.0",
     "jwt-decode": "^3.1.2",
     "luxon": "^1.27.0",

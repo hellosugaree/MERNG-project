@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Menu, Image, Button } from 'semantic-ui-react';
+import { Menu, Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { menuColor } from '../colors';
 import { AuthContext } from '../context/auth';

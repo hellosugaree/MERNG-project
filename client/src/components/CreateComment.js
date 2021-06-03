@@ -1,7 +1,7 @@
 import React from 'react';
 import { useMutation, gql } from '@apollo/client'
 import { Form } from 'semantic-ui-react';
-import { CREATE_COMMENT, FETCH_POSTS_QUERY } from '../gql/gql';
+import { CREATE_COMMENT } from '../gql/gql';
 import { useForm } from '../utilities/hooks';
 import FormError from '../components/FormError';
 
@@ -64,26 +64,35 @@ function createCommentCallback() {
 
 
   return (
-    <Form style={{margin: '5px auto 0 auto', padding: '0px 10px 0px 10px'}} 
-    error={errors ? true : false} onSubmit={onSubmit} className={loading ? 'loading' : ''}
-    >
-      <Form.Group inline>
-      <Form.TextArea
-          style={{display: 'inline-block', float: 'left'}}
-          width={16}
-          rows={1}
-          placeholder='comment...' 
-          type="text"
-          name='body'
-          value={values.body}
-          onChange={handleChange}
-          error={(errors.errorFields && errors.errorFields.body) ? true : false}            
-        />
-         <Form.Button style={{display: 'inline-block', float: 'right'}} icon={{name: 'send'}} fluid color='blue' type="submit" />
-      </Form.Group>
-      
-      {Object.keys(errors).length > 0 && (<FormError errors={errors.errorMessages} />)}
-    </Form>
+    <div style={{margin: '0px 10px 10px 10px'}}>
+      <Form style={{margin: 0}}
+        error={errors ? true : false} onSubmit={onSubmit} className={loading ? 'loading' : ''}
+      >
+        <div style={{display: 'flex', alignItems: 'flex-end'}}>
+         <div style={{flexGrow: 1}}>
+            <Form.TextArea
+              style={{margin: 0}}
+              rows={1}
+              placeholder='comment...' 
+              type="text"
+              name='body'
+              value={values.body}
+              onChange={handleChange}
+              error={(errors.errorFields && errors.errorFields.body) ? true : false}            
+            />
+          </div>
+
+          <div >
+            <Form.Button style={{margin: 0, minHeight: 40}} icon={{name: 'send'}} color='blue' type="submit" />
+          </div>
+        </div>
+              {Object.keys(errors).length > 0 && (<FormError errors={errors.errorMessages} />)}
+
+      </Form>
+
+    </div>
+    
+    
   );
 };
 

@@ -34,7 +34,7 @@ function Register(props) {
 
   return (
     <div className='register-page'>
-      <Grid centered>
+      <Grid centered style={{marginTop: 0}}>
         <Grid.Row>
           <h1 className="page-title">Register</h1>
         </Grid.Row>

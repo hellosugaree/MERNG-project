@@ -46,6 +46,10 @@ export const LIKE_POST = gql `
     likePost(postId: $postId){
       id
       likeCount
+      likes {
+        id
+        username
+      }
     }
   }
 `;

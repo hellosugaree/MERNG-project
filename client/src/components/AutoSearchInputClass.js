@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import { Search, Grid, Header, Segment, Label, Input } from 'semantic-ui-react'
+import { Search } from 'semantic-ui-react'
 
 const source = [
   {
@@ -290,14 +290,13 @@ export default class AutoSearchInputClass extends Component {
   }
   
   render() {
-    const { isLoading, value, results } = this.state
+    const { isLoading, results } = this.state
 
     const resultsRenderer = ({species, aliases}) => <div><span style={{fontWeight: 'bold', fontSize: 15}}>{species}</span><div>{aliases.map(alias => <span style={{fontSize: 14}} key={alias}>{alias} </span>)}</div></div>
 
     return (
           <div>
           <Search
-          
             onKeyPress={this.handleKeyPress}
             showNoResults={false}
             input={{ icon: 'search', iconPosition: 'left' }}

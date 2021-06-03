@@ -1,4 +1,5 @@
 import React from 'react';
+import { Grid } from 'semantic-ui-react';
 
 
 
@@ -6,8 +7,12 @@ import React from 'react';
 
 function Preferences() {
   return (
-    <div>
-      <h1 className='page-title'>Preferences</h1>
+    <div className='preferences-page'>
+      <Grid columns={1} style={{marginTop: 0}}>
+        <Grid.Column>
+         <h1 className='page-title'>Preferences</h1>
+        </Grid.Column>
+      </Grid>
     </div>
   );
 };

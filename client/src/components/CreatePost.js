@@ -1,14 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Form, Card } from 'semantic-ui-react';
 import { useForm } from '../utilities/hooks';
 import { useMutation } from '@apollo/client';
 import { CREATE_POST } from '../gql/gql';
-import { AuthContext } from '../context/auth';
 import FormError from '../components/FormError';
 import { FETCH_POSTS_QUERY } from '../gql/gql';
 
 function CreatePost (props) {
-  const { user } = useContext(AuthContext);
   // errors get processed by handleFormErrors
   const { handleChange,
           onSubmit,
@@ -17,7 +15,7 @@ function CreatePost (props) {
           errors    
         } = useForm(createPostCallback, { title: '', body: '' });
   
-  const [createPost, { loading, data }] = useMutation(CREATE_POST, {
+  const [createPost, { loading }] = useMutation(CREATE_POST, {
     // update(cache, { data: { newPost }}) {
       // update the cache when new post created so main page will render the post
       // see https://www.apollographql.com/docs/react/data/mutations/
@@ -78,12 +76,9 @@ function CreatePost (props) {
 
 
   return (
-    <div style={{margin: '20px auto 10px auto', maxWidth: 400}}>
+    <div style={{margin: '10px auto 10px auto', maxWidth: 400}}>
     <Card fluid  >
-      <Card.Header style={{fontSize: 20, fontWeight: 'bold', padding: '10px 0px 0px 0px'}} textAlign='center' > 
-        {user.username ? user.username : 'You must login to post'} 
-      </Card.Header>
-      <Card.Header content='Create a post' style={{fontSize: 20, fontWeight: 'bold', padding: '5px 0px 10px 0px'}} textAlign='center' /> 
+      <Card.Header content='Create a post' style={{fontSize: 20, fontWeight: 'bold', padding: '10px 0px'}} textAlign='center' /> 
     
 
       <Form fluid style={{width: 350, margin: '5px auto 5px auto', padding: '0px 10px 0px 10px'}} 

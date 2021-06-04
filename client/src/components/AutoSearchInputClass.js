@@ -265,7 +265,8 @@ export default class AutoSearchInputClass extends Component {
   handleSearchChange = (e, { value }) => {
     this.setState({ isLoading: true, value }, 
       // pass our updated value for the input to our parent (the form) in the setState callback
-      () => this.props.passInputValueToParent(this.state.value));
+      () => this.props.passInputValueToParent(this.state.value)
+    );
 
     setTimeout(() => {
       if (this.state.value.length < 1) return this.setState(initialState)

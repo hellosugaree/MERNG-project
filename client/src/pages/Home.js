@@ -1,10 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { Grid, Transition, Menu, Button, Card, Segment, Dropdown } from 'semantic-ui-react';
-import PostCard from '../components/PostCard';
-import CatchCard from '../components/CatchCard';
-import CreatePost from '../components/CreatePost';
-import CreateCatch from '../components/CreateCatch';
+import { Grid, Card, Dropdown } from 'semantic-ui-react';
 import PostFeed from '../components/PostFeed';
 import CatchFeed from '../components/CatchFeed';
 import WeatherFeed from '../components/WeatherFeed';
@@ -13,7 +9,8 @@ import { FETCH_POSTS_QUERY, GET_CATCHES, GET_USER_BASIC_DATA } from '../gql/gql'
 import '../App.css';
 import { AuthContext } from '../context/auth';
 import { DateTime } from 'luxon';
-import { getDefaultValues } from '@apollo/client/utilities';
+import BeachAccessLocations from '../components/BeachAccessLocations';
+
 
 
 function Home(props) {
@@ -118,9 +115,22 @@ function Home(props) {
       content: (
         <div style={{margin: '-8px 0px', display: 'flex', alignItems: 'center' }}>
         <div style={{height: 30, width: 50, backgroundColor: '#2E69C2', borderRadius: 5, display:'flex'}}>
-          <img src='/img/icons/weather-icon.png' style={{ width: 50, margin: '0px auto 0px auto'}} />
+          <img src='/img/icons/weather-icon.png' style={{ width: 50, margin: '0px auto 0px auto', borderRadius: 5}} />
         </div>
         <div style={{marginLeft: 10, fontSize: 18, fontWeight: 600}}>Weather feed</div>
+        </div>
+      )
+    },
+
+    {
+      key: 'beach access',
+      value: 3,
+      content: (
+        <div style={{margin: '-8px 0px', display: 'flex', alignItems: 'center' }}>
+        <div style={{height: 30, width: 50, backgroundColor: '#2E69C2', borderRadius: 5, display:'flex'}}>
+          <img src='/img/icons/beach-icon-small.jpg' style={{ width: 50, margin: '0px auto 0px auto', borderRadius: 5}} />
+        </div>
+        <div style={{marginLeft: 10, fontSize: 18, fontWeight: 600}}>Beach Access Locations</div>
         </div>
       )
     }
@@ -225,7 +235,9 @@ function Home(props) {
           {leftMainContentPanelDropdownIndex === 2 && (
             <WeatherFeed />
           )}
-          
+          {leftMainContentPanelDropdownIndex === 3 && (
+            <BeachAccessLocations />
+          )}
           </Grid.Column>
 
 
@@ -254,7 +266,10 @@ function Home(props) {
           )}
           {rightMainContentPanelDropdownIndex === 2 && (
             <WeatherFeed />
-          )}          
+          )}      
+          {rightMainContentPanelDropdownIndex === 3 && (
+            <BeachAccessLocations />
+          )}    
           </Grid.Column>
 
 

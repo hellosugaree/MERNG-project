@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Card, Button, Image, Comment, Grid, Popup } from 'semantic-ui-react';
+import { Card, Button, Image, Comment, Grid } from 'semantic-ui-react';
 import { DateTime } from 'luxon';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
@@ -26,7 +26,7 @@ function PostCard(props) {
   const [showCreateComment, setShowCreateComment] = useState({isMounted: false, show: false});
   const [displayLikes, setDisplayLikes] = useState(false);
   // like a post
-  const [likePost, { loading, data }] = useMutation(LIKE_POST, {
+  const [likePost, { loading }] = useMutation(LIKE_POST, {
     update(cache, data) {
       console.log('done');
       console.log(cache);

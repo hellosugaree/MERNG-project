@@ -12,7 +12,7 @@ import CreatePost from './components/CreatePost';
 import CreateCatch from './components/CreateCatch';
 import HomeSplashPage from './pages/HomeSplashPage';
 import GoogleMap from './components/GoogleMap';
-import Test from './pages/Test';
+import BeachAccessLocations from './components/BeachAccessLocations';
 import { RedirectAuthenticatedUsers, ProtectedRoute } from './utilities/AuthRoutes';
 //other imports
 import { AuthProvider } from './context/auth';
@@ -30,7 +30,7 @@ function App() {
           <Route exact path='/splash' component={HomeSplashPage} />
           <Route exact path='/logcatch' component={CreateCatch} />
           <Route exact path='/googlemap' component={GoogleMap} />    
-          <Route exact path='/test' component={Test} /> 
+          <Route exact path='/test' component={BeachAccessLocations} /> 
           <RedirectAuthenticatedUsers redirectTo='/' exact path='/register' component={Register} />
           <RedirectAuthenticatedUsers redirectTo='/' exact path='/login' component={Login} />
           <ProtectedRoute redirectTo='/login' exact path='/preferences' component={Preferences} />

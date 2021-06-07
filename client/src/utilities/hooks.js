@@ -1,5 +1,5 @@
 
-import React, { useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { AuthContext } from '../context/auth';
 // takes a callback which will be our query or mutation function for that form which will be defined in that component
 
@@ -14,7 +14,6 @@ export const useForm = (callback, initialValues) => { // initial values and obje
   const handleChange = event => {
     // update state when form values change
     setValues({...values, [event.target.name]: event.target.value});
-    console.log(values);
   };
 
   // handle change in date selection fields
@@ -25,7 +24,6 @@ export const useForm = (callback, initialValues) => { // initial values and obje
   // handle form submit
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log('submit')
     setErrors({});
     setValues(initialValues);
     callback();

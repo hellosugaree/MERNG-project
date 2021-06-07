@@ -20,7 +20,7 @@ function Home(props) {
     variables: { userId: user.id }, onError: (err) => console.log(err)
   } );
 
-  const { loading: loadingUserCatches, error: userCatchesError, data: userCatchesData } = useQuery(GET_CATCHES, {
+  const { loading: userCatchesLoading, error: userCatchesError, data: userCatchesData } = useQuery(GET_CATCHES, {
     variables: { catchesToReturn: 100, userId: user.id }
   });
 
@@ -29,22 +29,21 @@ function Home(props) {
   const { loading: feedCatchesLoading, error: feedCatchesError, data: feedCatchesData } = useQuery(GET_CATCHES);
 
   const [displayOptions, setDisplayOptions] = useState({ showCreateCatch: false });
+  const [rightMainContentPanel, setRightMainContentPanel] = useState('catches');
   // control for dropdown to select content on the left and right main panel, uses index of the options array
   const [leftMainContentPanelDropdownIndex, setLeftMainContentPanelDropdownIndex] = useState(0);
   const [rightMainContentPanelDropdownIndex, setRightMainContentPanelDropdownIndex] = useState(1);
 
   // only for testing purposes
-/*   const handleLog = () => {
+  const handleLog = () => {
     // userCatchesData.getCatches.forEach(catch => console.log(catch));
     console.log(userCatchesData.getCatches)
     userCatchesData.getCatches.forEach(val => console.log(val))
     const longestCatch = Math.max(...userCatchesData.getCatches.map(value => value.catchLength));
-    console.log(longestCatch); 
+    console.log(longestCatch);
 
     // console.log(userCatchesData.getCatches.reduce((prev, current) => prev.catchLength - current.catchLength).catchLength)
   }
-*/
-
 
   const handleSidebarClick = (event) => {
     console.log(event.target.name);
@@ -62,6 +61,25 @@ function Home(props) {
     biggestCatch = Math.max(...userCatchesData.getCatches.map(value => value.catchLength))
   }
 
+
+  const postSortOptions = [
+    {
+      key: 'Post date ascending',
+      text: 'Post date ascending',
+      value: 'Post date ascending',
+      icon: 'calendar plus outline',
+    },
+
+    {
+      key: 'Post date descending',
+      text: 'Post date descending',
+      value: 'Post date descending',
+      icon: 'calendar minus outline'
+    }
+    
+  ];
+
+
 // /      image: {as: 'div', style:{ height: 30, width: 50, border:'2px solid black', borderRadius: 5}, src: '/img/icons/post-icon-blue-small.jpg'}
 
   const leftMainContentPanelDropdownOptions = [
@@ -69,9 +87,9 @@ function Home(props) {
       key: 'posts',
       value: 0,
       content: (
-        <div style={{margin: '-8px 0px', display: 'flex', alignItems: 'center'}}>
+        <div style={{margin: '-8px 0px', display: 'flex', alignItems: 'center' }}>
         <div style={{height: 30, width: 50, backgroundColor: '#6795CE', borderRadius: 5, display:'flex'}}>
-          <img src='/img/icons/post-icon-blue-small.jpg' alt='Posts feed icon' style={{maxHeight: '95%', margin: '0px auto 0px auto'}} />
+          <img src='/img/icons/post-icon-blue-small.jpg' style={{maxHeight: '95%', margin: '0px auto 0px auto'}} />
         </div>
         <div style={{marginLeft: 10, fontSize: 18, fontWeight: 600}}>Post feed</div>
         </div>
@@ -82,9 +100,9 @@ function Home(props) {
       key: 'catches',
       value: 1,
       content: (
-        <div style={{margin: '-8px 0px', display: 'flex', alignItems: 'center'}}>
+        <div style={{margin: '-8px 0px', display: 'flex', alignItems: 'center' }}>
         <div style={{height: 30, width: 50, backgroundColor: '#71B1AD', borderRadius: 5, display:'flex'}}>
-          <img src='/img/icons/halibut-teal-background-tiny.jpg' alt='Catches feed icon' style={{maxHeight: '95%', margin: '0px auto 0px auto'}} />
+          <img src='/img/icons/halibut-teal-background-tiny.jpg' style={{maxHeight: '95%', margin: '0px auto 0px auto'}} />
         </div>
         <div style={{marginLeft: 10, fontSize: 18, fontWeight: 600}}>Catch feed</div>
         </div>
@@ -95,9 +113,9 @@ function Home(props) {
       key: 'weather',
       value: 2,
       content: (
-        <div style={{margin: '-8px 0px', display: 'flex', alignItems: 'center'}}>
+        <div style={{margin: '-8px 0px', display: 'flex', alignItems: 'center' }}>
         <div style={{height: 30, width: 50, backgroundColor: '#2E69C2', borderRadius: 5, display:'flex'}}>
-          <img src='/img/icons/weather-icon.png' alt='Weather feed icon' style={{ width: 50, margin: '0px auto 0px auto', borderRadius: 5}} />
+          <img src='/img/icons/weather-icon.png' style={{ width: 50, margin: '0px auto 0px auto', borderRadius: 5}} />
         </div>
         <div style={{marginLeft: 10, fontSize: 18, fontWeight: 600}}>Weather feed</div>
         </div>
@@ -108,9 +126,9 @@ function Home(props) {
       key: 'beach access',
       value: 3,
       content: (
-        <div style={{margin: '-8px 0px', display: 'flex', alignItems: 'center', width: 200 }}>
+        <div style={{margin: '-8px 0px', display: 'flex', alignItems: 'center' }}>
         <div style={{height: 30, width: 50, backgroundColor: '#2E69C2', borderRadius: 5, display:'flex'}}>
-          <img src='/img/icons/beach-icon-small.jpg' alt='Beach access page icon' style={{ width: 50, margin: '0px auto 0px auto', borderRadius: 5}} />
+          <img src='/img/icons/beach-icon-small.jpg' style={{ width: 50, margin: '0px auto 0px auto', borderRadius: 5}} />
         </div>
         <div style={{marginLeft: 10, fontSize: 18, fontWeight: 600}}>Beach Access Locations</div>
         </div>
@@ -130,10 +148,9 @@ function Home(props) {
   return (
   
     <div className='home-page'>
-      <div className='home-page-outer-flex-container' style={{display: 'flex', height: '100%', border: '1px solid blue'}}>
+      <Grid columns={2} style={{minWidth: 900, overflow: 'hidden', height: '100%', marginRight: 'auto', marginLeft: 'auto'}}>
         {/* SIDEBAR PANEL */}
-
-        <div className='sidebar-flex-container' style={{display: 'flex', padding: 10}} >
+        <Grid.Column width={4} className='side-bar'>
           {/* Render different sidebar when user not logged in */}
           {!user && (
             <Grid.Row>
@@ -149,10 +166,8 @@ function Home(props) {
                   {/* USER STATS CARD */}
                   <Card style={{marginBottom: 15}}>
                   <Card.Content>
-                  {userStatsError && <Card.Header>Failed to load user stats</Card.Header>}
-                  {userCatchesError && <Card.Header>Failed to load user catches</Card.Header>}
+                  {userCatchesError && <Card.Header>Failed to load user stats</Card.Header>}
                   {loadingUserStats && (<Card.Header>Loading user stats</Card.Header>)}
-                  {loadingUserCatches && (<Card.Header>Loading user catches</Card.Header>)}
                   {userStatsData && (
                     <>
                     <Card.Header>Your stats</Card.Header>
@@ -160,6 +175,9 @@ function Home(props) {
                     <Card.Description>Catch count: {userStatsData.getUser.catchCount}</Card.Description>
                     {userHasBiggestCatch && <Card.Description>Biggest catch {biggestCatch} inches</Card.Description>}
                     </>
+                  
+                
+                  
                   )}
                   </Card.Content>
                   </Card>
@@ -181,63 +199,60 @@ function Home(props) {
             </Grid.Row>
           </div>
           )}
-        </div>
+        </Grid.Column>
 
-        {/* MAIN CONTENT PANEL */}      
-        <div className='main-content-flex-container' style={{display: 'flex', margin: 5, overflowY: 'scroll', flexGrow: 1}}>
+        {/* MAIN CONTENT PANEL IS A THE SECOND COLUMN FROM MAIN GRID */}      
+        <Grid.Column width={12} style={{border: '2px solid blue', height: '100%', overflow: 'hidden'}} >
         {/* MAIN CONTENT PANEL HAS A GRID WITH 2 COLUMNS */}
-
+        <Grid columns={2} >
         {/* FIRST MAIN CONTENT COLUMN -- POSTS */}
-        <div className='left-main-content-flex-container' style={{display: 'flex',  flexDirection: 'column', flexGrow: 1, padding: 10, margin: 5}}>
-
-          <div style={{display: 'flex', justifyContent: 'center', marginBottom: 15}}>
-            <div style={{display: 'flex', flexGrow: 1, maxWidth: 400}}>
-              <Dropdown
-                fluid
-                selection
-                selectOnNavigation={false}
-                options={leftMainContentPanelDropdownOptions}
-                onChange={handleLeftMainContentPanelDropdownChange}
-                value={leftMainContentPanelDropdownIndex}
-                trigger={leftMainContentPanelDropdownOptions[leftMainContentPanelDropdownIndex].content}
-                />
-            </div>
-          </div>
-          <div style={{}}>
-            {/* RENDER POST FEED IF SELECTED ON DROPDOWN */}
-            {leftMainContentPanelDropdownIndex === 0 && (
-              <PostFeed user={user} loading={loading} error={error} data={data} />
-            )}
-            {/* RENDER CATCH FEED IF SELECTED ON DROPDOWN */}
-            {leftMainContentPanelDropdownIndex === 1 && (
-              <CatchFeed user={user} feedCatchesLoading={feedCatchesLoading} feedCatchesError={feedCatchesError} feedCatchesData={feedCatchesData} displayOptions={displayOptions}/>
-            )}
-            {leftMainContentPanelDropdownIndex === 2 && (
-              <WeatherFeed />
-            )}
-            {leftMainContentPanelDropdownIndex === 3 && (
-              <BeachAccessLocations />
-            )}
-          </div>
+        <Grid.Column width={8}> 
+        
+        <Grid.Row>
+        <div style={{maxWidth: 400, marginBottom: 15}}>
+          <Dropdown
+              fluid
+              selection
+              selectOnNavigation={false}
+              options={leftMainContentPanelDropdownOptions}
+              onChange={handleLeftMainContentPanelDropdownChange}
+              value={leftMainContentPanelDropdownIndex}
+              trigger={leftMainContentPanelDropdownOptions[leftMainContentPanelDropdownIndex].content}
+            />
         </div>
+        </Grid.Row>
+          
+          {/* RENDER POST FEED IF SELECTED ON DROPDOWN */}
+          {leftMainContentPanelDropdownIndex === 0 && (
+            <PostFeed user={user} loading={loading} error={error} data={data} />
+          )}
+          {/* RENDER CATCH FEED IF SELECTED ON DROPDOWN */}
+          {leftMainContentPanelDropdownIndex === 1 && (
+            <CatchFeed user={user} feedCatchesLoading={feedCatchesLoading} feedCatchesError={feedCatchesError} feedCatchesData={feedCatchesData} displayOptions={displayOptions}/>
+          )}
+          {leftMainContentPanelDropdownIndex === 2 && (
+            <WeatherFeed />
+          )}
+          {leftMainContentPanelDropdownIndex === 3 && (
+            <BeachAccessLocations />
+          )}
+          </Grid.Column>
+
 
         {/* SECOND MAIN CONTENT COLUMN -- CATCHES */}
-        <div className='right-main-content-flex-container' style={{display: 'flex', flexGrow: 1, flexDirection: 'column', padding: 10, margin: 5}}>
-
+          <Grid.Column width={8} >
           <Grid.Row>
-          <div style={{display: 'flex', justifyContent: 'center', marginBottom: 15}}>
-            <div style={{display: 'flex', flexGrow: 1, maxWidth: 400}}>
+            <div style={{maxWidth: 400, marginBottom: 15}}>
               <Dropdown
-                fluid
-                selection
-                selectOnNavigation={false}
-                options={leftMainContentPanelDropdownOptions}
-                onChange={handleRightMainContentPanelDropdownChange}
-                value={rightMainContentPanelDropdownIndex}
-                trigger={leftMainContentPanelDropdownOptions[rightMainContentPanelDropdownIndex].content}
-              />
+                  fluid
+                  selection
+                  selectOnNavigation={false}
+                  options={leftMainContentPanelDropdownOptions}
+                  onChange={handleRightMainContentPanelDropdownChange}
+                  value={rightMainContentPanelDropdownIndex}
+                  trigger={leftMainContentPanelDropdownOptions[rightMainContentPanelDropdownIndex].content}
+                />
             </div>
-          </div>
             </Grid.Row>
                       {/* RENDER POST FEED IF SELECTED ON DROPDOWN */}
           {rightMainContentPanelDropdownIndex === 0 && (
@@ -253,11 +268,12 @@ function Home(props) {
           {rightMainContentPanelDropdownIndex === 3 && (
             <BeachAccessLocations />
           )}    
-        </div>
+          </Grid.Column>
+
+          </Grid>
+        </Grid.Column>
+      </Grid>
     </div>
-      
-    </div> {/* OUTER FLEX CONTAINER */}
-    </div> /* OUTER MAIN CONTAINER */
   );
 }
 
@@ -289,7 +305,7 @@ export default Home;
       */
 
 // old post feed from main page
-            /* { error && (
+            {/* { error && (
                 <Grid.Row>
                   <h1 className='page-title'>Couldn't connect to database.<br/>Failed to load posts</h1>
                 </Grid.Row>   
@@ -330,4 +346,4 @@ export default Home;
                   }
                 </Transition.Group>
                 </span>
-              )} */
+              )} */}

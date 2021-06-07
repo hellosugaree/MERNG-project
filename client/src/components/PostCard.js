@@ -17,7 +17,7 @@ function PostCard(props) {
   const { user } = useContext(AuthContext); 
 
   // handle form errors for mutations
-  const { errors, handleFormErrors } = useForm();
+  const { handleFormErrors } = useForm();
 
   // state to manage animation for like and comment buttons when logged out
   const [shakeLike, setShakeLike] = useState(false);
@@ -241,7 +241,7 @@ function PostCard(props) {
 
 export default PostCard;
 
-{/* <Comment.Action  style={{display: 'block'}} onClick={showLessComments} >show less comments...</Comment.Action> */}
+/* <Comment.Action  style={{display: 'block'}} onClick={showLessComments} >show less comments...</Comment.Action> */
 
 
 /*

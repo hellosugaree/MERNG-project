@@ -21,25 +21,30 @@
 .home-page{
   background-color: var(--main-background-color);
   color: rgb(66, 66, 66);
-  height: 100vh;
+  box-sizing: border-box;
+  height: 100%;
+  display: 'flex';
+  align-items: 'center';
+  justify-content: 'space-around';
+  border: 1px solid red;
 }
 
 .register-page{
   background-color: var(--main-background-color);
   color: rgb(66, 66, 66);
-  height: 100vh;
+  height: 100%;
 }
 
 .login-page{
   background-color: var(--main-background-color);
   color: rgb(66, 66, 66);
-  height: 100vh;
+  height: 100%;
 }
 
 .preferences-page{
   background-color: var(--main-background-color);
   color: rgb(66, 66, 66);
-  height: 100vh;
+  height: 100%;
 }
 
 .vertical-menu-container {
@@ -76,9 +81,10 @@
 }
 
 .map-container {
-  border: 2px solid red;
-  height: 500px;
-  width: 500px;
+  border: 2px solid purple;
+  width: 400px;
+  height: 400px;
+  flex-shrink: 1;
 }
 
 .animate-spinner {
@@ -101,4 +107,43 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
   margin: 0; 
+}
+
+.pagination-button {
+  flex-grow: 1;
+  background-color: rgb(221, 244, 252);
+  border: 1px solid lightgrey;
+  padding: 0px;
+}
+
+.pagination-input {
+  font-size: 16px;
+  text-align: center;
+  border: 1px solid lightgrey;
+  width: 30px;
+  flex-grow: 2;
+}
+
+/* 
+.custom-map-control-button {
+  margin-bottom: 20px;
+  height: 50px;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+} */
+
+.custom-map-control-button {
+  background-color: #fff;
+  border: 0;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+  padding: 0 0.5em;
+  font: 400 18px Roboto, Arial, sans-serif;
+  height: 40px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+.custom-map-control-button:hover {
+  background: #ebebeb;
 }

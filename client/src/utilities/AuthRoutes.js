@@ -1,4 +1,4 @@
-import React, {Component, useContext} from 'react';
+import React, { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { AuthContext } from '../context/auth';
 
@@ -24,12 +24,12 @@ export function RedirectAuthenticatedUsers({ component: Component, redirectTo: a
 
 
 // redirect unauthenticated users to address given or render specified component if authenticated
-export function ProtectedRoute ({component: Component, redirectTo: address, ... rest}) {
+export function ProtectedRoute ({ component: Component, redirectTo: address, ...rest }) {
   const { user } = useContext(AuthContext);
 
   return (
     <Route 
-      {...rest}
+      { ...rest }
       render={routeProps =>
         user ? <Component { ...routeProps } /> : <Redirect to={address} />
       }

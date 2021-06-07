@@ -1,12 +1,12 @@
 import React from 'react';
 import { useMutation } from '@apollo/client';
-import { Menu, Icon, Button, Dropdown, Grid } from 'semantic-ui-react';
+import { Dropdown } from 'semantic-ui-react';
 import { DELETE_POST, FETCH_POSTS_QUERY } from '../gql/gql';
 
 const PostCardMenu = (props) => {
 
     // delete a post
-    const [deletePost, { loading, data }] = useMutation(DELETE_POST, {
+    const [deletePost, { loading }] = useMutation(DELETE_POST, {
       update(cache, { data: { deletePost }} ){
         const { getPosts: cachedPostData } = cache.readQuery({
           query: FETCH_POSTS_QUERY
@@ -43,13 +43,14 @@ const PostCardMenu = (props) => {
   
   return (
       <Dropdown
+      loading={ loading }
       upward
       style={{float: 'right'}}
       compact
       className='icon'
       icon={{name: 'ellipsis vertical', color: 'grey'}}
       >
-        <Dropdown.Menu>
+        <Dropdown.Menu >
         {dropdownItems.map(item => (<Dropdown.Item key={item.key} {...item} />))}
         </Dropdown.Menu>
       </Dropdown>

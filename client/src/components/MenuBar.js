@@ -33,7 +33,7 @@ export default function MenuBar() {
 
   const loggedOutMenu = () => {
     return (
-        <Menu size='huge' style={{backgroundColor: 'white'}} color={menuColor} tabular>
+        <Menu size='huge' style={{backgroundColor: 'white', width: '100%'}} color={menuColor} tabular>
           <Menu.Item
             name='home'
             active={activeItem === 'home'}
@@ -68,7 +68,7 @@ export default function MenuBar() {
 //          content={context.user.username}
   const loggedInMenu = () => {
     return (
-        <Menu size='huge' style={{backgroundColor: 'white'}} color={menuColor} tabular>
+        <Menu size='huge' style={{backgroundColor: 'white', width: '100%'}} color={menuColor} tabular>
           <Menu.Item
             name='home'
             active={activeItem === 'home'}

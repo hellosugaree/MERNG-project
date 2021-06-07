@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dropdown, Transition } from 'semantic-ui-react';
+import { Grid, Dropdown, Transition } from 'semantic-ui-react';
 import PostCard from './PostCard';
 import CreatePost from './CreatePost';
 
@@ -24,26 +24,26 @@ const PostFeed = (props) => {
   return (
     <div>
       { props.error && (
-                <div className='grid-row'>
+                <Grid.Row>
                   <h1 className='page-title'>Couldn't connect to database.<br/>Failed to load posts</h1>
-                </div>   
+                </Grid.Row>   
               )}
               
              {(props.user && !props.loading && !props.error) && (
-                <div className='grid-row'>
+                <Grid.Row>
                     <CreatePost />
-                </div>
+                </Grid.Row>
               )}
 
               { props.loading && (
-                <div className='grid-row'>
+                <Grid.Row>
                   <h1 className='page-title'>Loading posts...</h1>
-                </div>   
+                </Grid.Row>   
               )}
 
             {!props.loading && (
               <span >
-                <div className='grid-row'>
+                <Grid.Row>
                   <div style={{display: 'flex', justifyContent: 'center'}}>
                     <Dropdown
                       inline
@@ -51,13 +51,13 @@ const PostFeed = (props) => {
                       defaultValue={postSortOptions[0].value}
                     />
                   </div>
-                </div>
+                </Grid.Row>
 
                 <Transition.Group animation='fly right' duration={600}>
                   {props.data && props.data.getPosts.map(post => (
-                    <div className='grid-row' key={post.id}>
+                    <Grid.Row key={post.id}>
                       <PostCard post={post} />
-                    </div>
+                    </Grid.Row>
                   ))
                   }
                 </Transition.Group>

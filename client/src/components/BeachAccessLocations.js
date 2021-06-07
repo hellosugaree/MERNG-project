@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import _ from 'lodash';
-import { Card, Pagination, Dropdown, Input, Image, Checkbox } from 'semantic-ui-react';
+import { Card, Dropdown, Image, Checkbox, Icon } from 'semantic-ui-react';
 import '../App.css';
 
 // static data options
@@ -202,9 +202,8 @@ const BeachAccessLocations = (props) => {
 
   // function filter access location data
   const applyFilterOptions = locationsToFilter => {
-    console.log(displayFilters)
     console.log('Applying filter options')
-    console.log('unfiltered data')
+    console.log(`Pre filtered locations: ${locationsToFilter.length}`);
     // use this to prevent duplicating the array in case we don't need to sort
     if (displayFilters.county !== 'All counties') {
       console.log('filtering by county')
@@ -226,6 +225,7 @@ const BeachAccessLocations = (props) => {
       console.log('filtering for campground')
       locationsToFilter = locationsToFilter.filter(loc => loc.CAMPGROUND.toLowerCase() === "yes");
     }
+    console.log(`Post filtered locations: ${locationsToFilter.length}`);
     locationsToFilter = sortAccessLocations(locationsToFilter);
     return locationsToFilter;
   }
@@ -233,7 +233,7 @@ const BeachAccessLocations = (props) => {
   // function to fetch data and sort ascending for initial fetch
   const fetchData = async () => {
     console.log('fectching data');
-    setFetchStatus({...fetchStatus, loading: true, error: false});
+    setFetchStatus(prevStatus => ({...prevStatus, loading: true, error: false}));
     // default fetch all locations
     let fetchURL = 'https://api.coastal.ca.gov/access/v1/locations';
     await fetch(fetchURL)
@@ -244,12 +244,12 @@ const BeachAccessLocations = (props) => {
           return a.NameMobileWeb > b.NameMobileWeb ? 1 
           : a.NameMobileWeb < b.NameMobileWeb ? -1 : 0;
         });
-        setFetchStatus({...fetchStatus, loading: false});
+        setFetchStatus(prevStatus => ({...prevStatus, loading: false}));
         setAccessLocations(json);
         setFilteredAccessLocations(json);
       })
       .catch(err => {
-        setFetchStatus({...fetchStatus, error: true, loading: false});
+        setFetchStatus(prevStatus => ({...prevStatus, error: true, loading: false}));
         console.log(err)
       });
   }
@@ -274,6 +274,7 @@ const BeachAccessLocations = (props) => {
 
   const sortAccessLocations = locations => {
     console.log('sorting');
+    setDisplayPage(1);
     switch (displayFilters.sortDropdownValue) {
       case 'Name A-Z':
         const ascendingName = [...locations].sort((a, b) => {
@@ -281,15 +282,14 @@ const BeachAccessLocations = (props) => {
           : a.NameMobileWeb < b.NameMobileWeb ? -1 : 0;
         });
         return ascendingName;
-      break;
-
+      
       case 'Name Z-A':
         const descendingName = [...locations].sort((a, b) => {
           return a.NameMobileWeb < b.NameMobileWeb ? 1 
           : a.NameMobileWeb > b.NameMobileWeb ? -1 : 0;
         });;
         return descendingName;
-      break;
+
       default:
       break; 
     }
@@ -299,48 +299,66 @@ const BeachAccessLocations = (props) => {
   useEffect(() => {
     console.log('displayFilters.sortDropdownValue changed')
     if (filteredAccessLocations) {
-      setFilteredAccessLocations(sortAccessLocations(filteredAccessLocations));
+      setFilteredAccessLocations(prevLocations => sortAccessLocations(prevLocations));
     }
   }, [displayFilters.sortDropdownValue])
 
 
-  // handler for pagination change
-  const handlePageChange = (event, data) => {
-    setDisplayPage(data.activePage);
-  };
-
-
   // handle setting pages to display filter
   const handlePagesToDisplayInputChange = event => {
+
     let inputValue = event.target.value;
     if (inputValue < 1) inputValue = 1;
     if (inputValue > 50) inputValue = 50;
     setDisplayFilters({...displayFilters, itemsPerPage: inputValue});
   };
 
-  // handler for the number input to manually enter a page to display
-  const handleDisplayPageInputChange = e => {
-    const totalPages = Math.ceil(filteredAccessLocations.length / displayFilters.itemsPerPage);
-    // if user tries to input number larger than page count, set to last page
-    if (e.target.value > totalPages) {
-      setDisplayPage(totalPages);
-    } else if (e.target.value < 1) {
-      setDisplayPage(1);
-    } else {
-      setDisplayPage(e.target.value);
+  // handler for pagination change, both button and numeric input to manually enter a page to display
+  const handlePageChange = e => {
+    // forward or back buttons clicked
+    if (e.type === 'click') {
+      // use currentTarget because a click in the nested icon within button will show up as target when clicked
+      if (e.currentTarget.name === 'first') {
+        return setDisplayPage(1);
+      }
+      if (e.currentTarget.name === 'minusFive') {
+        return setDisplayPage(prevPage => prevPage - 5);
+      }
+      if (e.currentTarget.name === 'previous') {
+        return setDisplayPage(prevPage => prevPage - 1);
+      }
+      if (e.currentTarget.name === 'next') {
+        return setDisplayPage(prevPage => prevPage + 1);
+      }
+      if (e.currentTarget.name === 'plusFive') {
+        return setDisplayPage(prevPage => prevPage + 5);
+      }
+      if (e.currentTarget.name === 'last') {
+        return setDisplayPage(Math.ceil(filteredAccessLocations.length / displayFilters.itemsPerPage));
+      }
     }
-  }
+
+    // numeric page input changed directly
+    if (e.type === 'change') {
+      const totalPages = Math.ceil(filteredAccessLocations.length / displayFilters.itemsPerPage);
+      // if user tries to input number larger than page count, set to last page
+      if (e.target.value > totalPages) {
+        setDisplayPage(totalPages);
+      } else if (e.target.value < 1) {
+        setDisplayPage(1);
+      } else {
+        setDisplayPage(e.target.value);
+      }
+    }
+
+  };
 
   // effect called when search by named value changes
   useEffect(() => {
     // if search bar is empty, set the searchedLocations to null
-    if (displayFilters.searchInName === '') {
-      console.log('no more search filters')
-      setSearchedAccessLocations(null);
-    } else  {
       // call our debounced search on the entire dataset
-      debouncedFilterByName.current(accessLocations, displayFilters.searchInName);
-    }
+    debouncedFilterByName.current(accessLocations, displayFilters.searchInName);
+
   }, [displayFilters.searchInName])
 
   // handle change for sort dropdown
@@ -351,14 +369,20 @@ const BeachAccessLocations = (props) => {
 
   // function to filter locations that contain the search term in their name
   function filterByName(currentLocations, currentSearchTerm){
-    console.log('applying filter by name');
-    console.log('pre filtered data')
-    console.log(currentLocations);
-    const filteredByName = currentLocations.filter(loc => {
-      // returns true of any part of name contains search value
-      return loc.NameMobileWeb.toLowerCase().indexOf(currentSearchTerm.toLowerCase()) > -1
-    });
-    setSearchedAccessLocations(filteredByName);
+    console.log('searching by name');
+    // if user empties search bar, reset searched locations to null so we know to apply filters off entire dataset instead of searched dataset
+    if (currentSearchTerm === '') {
+      console.log('Empty search, filter whole dataset instead');
+      setSearchedAccessLocations(null);
+    } else {
+      console.log(`Pre filtered locations: ${currentLocations.length}`);
+      const filteredByName = currentLocations.filter(loc => {
+        // returns true of any part of name contains search value
+        return loc.NameMobileWeb.toLowerCase().indexOf(currentSearchTerm.toLowerCase()) > -1
+      });      
+      console.log(`Post filtered locations: ${filteredByName.length}`);
+      setSearchedAccessLocations(filteredByName);
+    }
     setLoadingSearchInName(false);
   }
   // function to debounce search by name so we don't search until after the user pauses typing
@@ -368,11 +392,7 @@ const BeachAccessLocations = (props) => {
 
   // handle our filter by name input change
   const handleSearchInNameChange = (e) => {
-    if (e.target.value === '') {
-      setLoadingSearchInName(false);
-    } else {
-      setLoadingSearchInName(true);
-    }
+    setLoadingSearchInName(true);
     setDisplayFilters({...displayFilters, searchInName: e.target.value})
   };
 
@@ -429,7 +449,7 @@ const BeachAccessLocations = (props) => {
               {/* TEXT INPUT TO FILTER NAMES */}
               <input
                 style={{zIndex: 1, flexGrow: 1, width: 100, border: '1px solid gray', borderRadius: 5, height: 30, fontSize: 16, padding: '5px 30px 5px 5px'}}
-                disabled={!filteredAccessLocations ? 'true' : ''}
+                disabled={!filteredAccessLocations ? true : false }
                 placeholder='Name contains' 
                 type='text' 
                 name='searchInName' 
@@ -499,20 +519,66 @@ const BeachAccessLocations = (props) => {
                 {/* map our access locations, searched ones if they exist, otherwise just the filtered ones */}
                 {mapAccessLocations(filteredAccessLocations) } 
                 </div>   
-              <div style={{display: 'flex', maxWidth: 400, border: '2px solid red'}}>
-                <Pagination 
-                  nextItem={false}
-                  prevItem={false}
-                  ellipsisItem={false}
-                  boundaryRange={1} 
-                  siblingRange={0}
-                  onPageChange={handlePageChange} 
-                  activePage={displayPage} 
-                  totalPages={Math.ceil(filteredAccessLocations.length / displayFilters.itemsPerPage)} 
-                />
+
+              <div style={{border: '1px solid lightgrey', borderRadius: 5, height: 50,  display: 'flex', alignItems: 'stretch'}}>
+              <button 
+                  className='pagination-button'
+                  type='button' 
+                  name='first'
+                  onClick={handlePageChange}
+                  disabled={displayPage === 1} 
+                >
+                  <Icon name='fast backward' />
+                </button>
+
+                <button 
+                  onClick={handlePageChange}
+                  className='pagination-button'
+                  type='button' name='minusFive'
+                  disabled={displayPage < 5}
+                >
+                  <Icon name='backward' />
+                </button>
+
+                <button 
+                  onClick={handlePageChange}
+                  className='pagination-button'
+                  type='button' name='previous'
+                  disabled={displayPage === 1}
+                >
+                  <Icon name='step backward' />
+                </button>    
+                  <input type='number' className='pagination-input' value={displayPage} onChange={handlePageChange} onClick={e => e.target.select()} />
+                <button 
+                  onClick={handlePageChange}
+                  className='pagination-button'
+                  type='button' name='next'
+                  disabled={displayPage === Math.ceil(filteredAccessLocations.length / displayFilters.itemsPerPage)} 
+                >
+                  <Icon name='step forward' />
+                </button>
+
+                <button 
+                  onClick={handlePageChange}
+                  className='pagination-button'
+                  type='button' name='plusFive'
+                  disabled={Math.ceil(filteredAccessLocations.length / displayFilters.itemsPerPage) - displayPage < 5} 
+                >
+                  <Icon name='forward' />
+                </button>
+
+                <button 
+                  onClick={handlePageChange}
+                  className='pagination-button'
+                  type='button' name='last'
+                  disabled={displayPage === Math.ceil(filteredAccessLocations.length / displayFilters.itemsPerPage)} 
+                >
+                  <Icon name='fast forward' />
+                </button>
+
               </div>
-              <div style={{border: '1px solid green', display: 'flex', justifyContent: 'center'}}>
-               <input type='number' style={{fontSize: 16, height: 30, width: 60, textAlign: 'center'}} value={displayPage} onChange={handleDisplayPageInputChange} onClick={e => e.target.select()} />
+              <div style={{display: 'flex', justifyContent: 'center', color: 'grey'}}>
+                Total pages: {Math.ceil(filteredAccessLocations.length / displayFilters.itemsPerPage)}
               </div>
               
               </>

@@ -81,10 +81,10 @@ function CreatePost (props) {
       <Card.Header content='Create a post' style={{fontSize: 20, fontWeight: 'bold', padding: '10px 0px'}} textAlign='center' /> 
     
 
-      <Form fluid style={{width: 350, margin: '5px auto 5px auto', padding: '0px 10px 0px 10px'}} 
+      <Form style={{width: 350, margin: '5px auto 5px auto', padding: '0px 10px 0px 10px'}} 
       error={errors ? true : false} onSubmit={onSubmit} className={loading ? 'loading' : ''}
       >
-        <Form.Group fluid style={{paddingBottom: 10}}>
+        <Form.Group style={{paddingBottom: 10}}>
           <Form.Input
             width={16}  
             placeholder='post title' 

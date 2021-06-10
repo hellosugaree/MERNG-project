@@ -1,6 +1,7 @@
 const postsResolvers = require('./posts');
 const usersResolvers = require('./users');
 const catchesResolvers = require('./catches');
+const locationScalarResolver = require('./locationScalar');
 
 module.exports = {
   Post: {
@@ -26,5 +27,6 @@ module.exports = {
     ...usersResolvers.Mutation, // gets Mutation from ./users
     ...postsResolvers.Mutation,
     ...catchesResolvers.Mutation
-  }
+  },
+  Location: locationScalarResolver
 };

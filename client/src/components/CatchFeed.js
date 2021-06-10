@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Dropdown, Transition } from 'semantic-ui-react';
 import CatchCard from './CatchCard';
-import CreateCatch from './CreateCatch';
+import CreateCatchForm from './CreateCatchForm';
 
 const CatchFeed = (props) => {
 
@@ -26,7 +26,7 @@ const CatchFeed = (props) => {
 
       {(props.user && !props.feedCatchesLoading && !props.feedCatchesError && props.displayOptions.showCreateCatch) &&
         <Grid.Row>
-          <CreateCatch />
+          <CreateCatchForm />
         </Grid.Row>               
       }
       

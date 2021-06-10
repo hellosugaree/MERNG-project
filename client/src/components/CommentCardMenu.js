@@ -81,7 +81,7 @@ const CommentCardMenu = (props) => {
         className='icon'
         icon={{name: 'ellipsis vertical', color: 'grey'}}
       >
-        <Dropdown.Menu>
+        <Dropdown.Menu direction='left'>
         {dropdownItems.map(item => (<Dropdown.Item key={item.key} {...item} />))}
         </Dropdown.Menu>
       </Dropdown>

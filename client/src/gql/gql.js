@@ -146,7 +146,7 @@ export const CREATE_CATCH = gql `
     $species: String!,
     $fishingType: String!,
     $catchDate: String!,
-    $catchLocation: String,
+    $catchLocation: Location,
     $catchLength: Int,
     $notes: String
   ) {

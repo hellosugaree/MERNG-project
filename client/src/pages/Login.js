@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import FormError from '../components/FormError';
 import { Form, Grid } from 'semantic-ui-react';
 import { useMutation } from '@apollo/client';
@@ -12,14 +12,23 @@ function Login(props) {
 
   // feed it the login callback which will be executed in onSubmit, and default values for the values in state
   // gets all of our event handlers and state management from useform
-  const { handleChange, onSubmit, handleFormErrors, values, errors } = useForm(loginUserCallback, {username: '', password: ''});
+  const { setValues, handleChange, onSubmit, handleFormErrors, values, errors } = useForm(loginUserCallback, {username: '', password: ''});
+
+  // state to show if login successful
+  const [loginSuccess, setLoginSuccess] = useState(false);
 
   const [login, { loading }] = useMutation(LOGIN_USER, {
     update(_, result){ // called when executed successfully
       // call context.login with the user data returned from graphQL mutation to add it to state
       context.login(result.data.login);
-      // props.history.push('/');
-    window.location.pathname='/';
+      setLoginSuccess(true);
+      setValues({username: '', password: ''});
+      // allow no redirect from props in case we render a login in a modal don't kick them off the page
+      if (props.noRedirect) {
+        return;
+      }
+      // redirect if noRedirect prop not specified
+      window.location.pathname='/';
     },
     onError(err) {
       handleFormErrors(err);
@@ -31,9 +40,9 @@ function Login(props) {
     login({variables: values});
   }
 
-
+//className='login-page'
   return (
-    <div className='login-page'>
+    <div >
     <Grid centered style={{margin: 0}}>
       
       <Grid.Row>
@@ -66,6 +75,9 @@ function Login(props) {
         {Object.keys(errors).length > 0 && (<FormError errors={errors.errorMessages} />)}
 
         <Form.Button color='teal' type="submit">Submit</Form.Button>
+        <div style={{display: loginSuccess ? '' : 'none', border: '1px solid lightgrey', padding: 10, fontSize: '16px'}}>
+          You have successfully logged in
+        </div>
         </Form>
         </Grid.Row>
     </Grid>

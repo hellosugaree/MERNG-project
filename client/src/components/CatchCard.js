@@ -7,7 +7,7 @@ import PostCardMenu from '../components/PostCardMenu';
 
 
 function CatchCard(props) {
-  const { id, username, species, catchDate, catchLocation, catchLength, notes} = props.catch;
+  const { id, username, fishingType, species, catchDate, catchLocation, catchLength, notes} = props.catch;
  
   // use to determine if a user is logged in
   const { user } = useContext(AuthContext); 
@@ -25,6 +25,7 @@ function CatchCard(props) {
           
           {/* can pass true to fromNow to remove 'ago' from date display */}
           <Card.Meta as={Link} to={`/catches/${id}`}>{DateTime.fromMillis(Date.parse(catchDate)).toRelative()}</Card.Meta>
+          {fishingType && <Card.Meta>{fishingType}</Card.Meta>}
           {catchLocation && <Card.Meta>{catchLocation}</Card.Meta>}
           <Card.Header style={{marginTop: 5, fontSize: 18}}>{species} {catchLength && <span style={{marginLeft: 8}}>{catchLength} in</span>}</Card.Header>
 

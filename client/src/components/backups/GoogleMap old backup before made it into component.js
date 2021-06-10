@@ -38,9 +38,6 @@ const GoogleMap = props => {
     
   }, []);
 
-  // https://maps.googleapis.com/maps/api/geocode/json?address=24%20Sussex%20Drive%20Ottawa%20ON&key=AIzaSyCiIhYg0zDT2eTO8TY9QAoumCNvJTv6u4w
-
-
 
   const initializeMap = () => {
     // create a custom button for our map to get location

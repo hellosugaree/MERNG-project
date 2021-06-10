@@ -70,10 +70,15 @@ module.exports.validateCatchInput = (species, fishingType, catchDate, catchLocat
   if (fishingType.trim() === '') {
     errors.fishingType = 'Please select fishing type'
   }
+  if (catchDate === null) {
+    errors.catchDate = 'Please select a catch date'
+  }
   if (catchDate.trim() === '') {
     errors.catchDate = 'Please select a catch date'
   }
-  
+  if (catchLocation === null) {
+    errors.catchLocation = 'Please select a catch location'
+  }
   if (catchLength && typeof catchLength !== 'number'){
     errors.catchLength = 'Please enter a valid number for catch length'
   }

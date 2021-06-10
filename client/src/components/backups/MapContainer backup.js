@@ -3,25 +3,32 @@ import { Loader } from "@googlemaps/js-api-loader"
 import GoogleMap from './GoogleMap';
 import GoogleAutocomplete from './GoogleAutocomplete';
 import useGeolocation from '../utilities/useGeolocation';
+import CreateCatchFormOld from './CreateCatchFormOld';
 import '../App.css';
 
 // create custom control elements to send to our map
 // create a custom button for our map to get location
-const locationButton = document.createElement('button');
-locationButton.classList.add("custom-map-control-button");
-locationButton.innerHTML='<i class="blue location arrow icon"></i>';
-console.log('initialized')
+const getCurrentLocationButton = document.createElement('button');
+getCurrentLocationButton.classList.add("custom-map-control-button");
+getCurrentLocationButton.innerHTML='<i class="blue location arrow icon"></i>';
+// create a button to accept our location
+const selectLocationButton = document.createElement('button');
+selectLocationButton.classList.add('custom-map-control-button');
+selectLocationButton.innerHTML='Accept catch location';
+
 
 const MapContainer = props => {
   // array to hold controls that will be added on mount
   const controls = [];
   // create a controls array to pass to the GoogleMap component
-  controls.push({ position: 'BOTTOM_CENTER', element: locationButton, listeners: [{event: 'click', callback: handleGetLocationButtonClick}] });
+  controls.push({ position: 'BOTTOM_CENTER', element: selectLocationButton, listeners: [{event: 'click', callback: handleSelectLocationButtonClick}] });
+  controls.push({ position: 'RIGHT_CENTER', element: getCurrentLocationButton, listeners: [{event: 'click', callback: handleGetLocationButtonClick}] });
 
   // state to check when loader is loaded so we know when to render our map and autocomplete components
   const [apiStatus, setApiStatus] = useState({errors: null, loading: true});
-  // pass this as a prop to our map and the map center will always auto update if we set coords here
-  const [center, setCenter] = useState();
+  // pass this as a prop to our--initial value is default center, and the map center will always auto update if we set coords here
+  const [center, setCenter] = useState({ lat: 33.4672, lng: -117.6981 });
+
   // set up a ref for a marker to mark our current position on the map
   const currentPositionMarkerRef = useRef(null);
 
@@ -32,10 +39,9 @@ const MapContainer = props => {
   const autocompleteRef = useRef();
   const mapContainerRef = useRef();
   const mapRef = useRef();
+  const infoWindowRef = useRef();
 
   useEffect(() => {
-
-
     // load script on mount and set status of load accordingly
     const loader = new Loader({
       // apiKey: `${process.env.REACT_APP_GOOGLE_API_KEY}`,
@@ -62,12 +68,11 @@ const MapContainer = props => {
     console.log('position update detected in useEffect');
     // check if we have a position
     if (geolocationStatus.position) {
-      console.log('we have a position');
-      console.log(geolocationStatus.position);
       // check if we already have a position marker
       if (currentPositionMarkerRef.current) {
         // current position marker exists, update the marker
         console.log('current pos marker already exists');
+        currentPositionMarkerRef.current.setPosition(geolocationStatus.position);
       } else {
         console.log('current pos marker doesn\'t exist, creating new one');
         // current position marker doesn't exist, create a new marker
@@ -76,29 +81,48 @@ const MapContainer = props => {
           map: mapRef.current
         });
         // center the map on current position
-        setCenter(geolocationStatus.position);      }
+      }
+      setCenter(geolocationStatus.position);      
     }
-  }, [geolocationStatus, currentPositionMarkerRef])
+    if (geolocationStatus.errorMessage) {
+      console.log('processing geolocation errors')
+      if (infoWindowRef.current) {
+        infoWindowRef.current.close();
+      }
+      infoWindowRef.current = new window.google.maps.InfoWindow({
+        content: `<div id="content">
+        <div><b>Location error</b></div><br/>
+          <div>${geolocationStatus.errorMessage}</div>
+          </div>`,
+      });
+      infoWindowRef.current.setPosition(mapRef.current.getCenter());
+      infoWindowRef.current.open(mapRef.current);
+    }
+  }, [geolocationStatus.position, geolocationStatus.errorMessage, currentPositionMarkerRef, mapRef, infoWindowRef])
 
 
+    // add listener to close info windows on map click
+    useEffect(() => {
+      if(mapRef.current) {
+        console.log('adding listener')
+        mapRef.current.addListener('click', () => {
+          if (infoWindowRef.current) {
+            infoWindowRef.current.close();
+          }
+        });
+      }
+    }, [mapRef.current, infoWindowRef]);
+  
 
-
-
-
-  const handleClick = () => {
-    setCenter({ lat: 33.4672, lng: -117.6981 });
-    
-    new window.google.maps.Marker({
-      position: { lat: 33.4672, lng: -117.6981 },
-      map: mapRef.current
-    });
-
-  };
+  function handleSelectLocationButtonClick() {
+    console.log('selected location');
+    console.log(mapRef.current.getCenter().toJSON());
+  }
 
   
 
   function handlePlaceSelect() {
-    console.log('callback')
+    console.log('place select callback')
     // get the place the user selected
     const place = autocompleteRef.current.getPlace();
     console.log(JSON.stringify(place));
@@ -164,11 +188,9 @@ const MapContainer = props => {
   }
 
   return (
-    <div>
-      <div className='home-page'>
-        <div style={{display: 'flex', border: '2px dashed blue'}}>
+        <div style={{display: 'flex', border: '2px dashed blue', justifyContent: 'center', flexDirection: 'column'}}>
           <div className='map-container' style={{display: 'flex', flexDirection: 'column'}}>
-            <input ref={autocompleteInputRef} type='text' style={{height: 40}} />
+            <input ref={autocompleteInputRef} type='text' placeholder='Enter a location to center the map' style={{height: 40}} />
             <div id='map' ref={mapContainerRef}/>
               {apiStatus.loading && <h1>Loading map</h1>}
 
@@ -177,22 +199,17 @@ const MapContainer = props => {
               <div>
                 <GoogleMap 
                   mapRef={mapRef} 
-                  onPlaceSelect={handlePlaceSelect} 
                   mapContainer={mapContainerRef} 
                   center={center} 
                   controls={controls}
                 />
-
                 <GoogleAutocomplete autocomplete={autocompleteRef} autocompleteInput={autocompleteInputRef} onPlaceSelect={handlePlaceSelect} />
               </div>
             }
-            
           </div>
-        </div>
-        <button type='button' onClick={handleClick} > test </button>
+          <CreateCatchForm />
 
-      </div>
-    </div>
+        </div>
   );
 }
 

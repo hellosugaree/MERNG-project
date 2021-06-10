@@ -9,9 +9,9 @@ import Login from './pages/Login';
 import Preferences from './pages/Preferences';
 import MenuBar from './components/MenuBar';
 import CreatePost from './components/CreatePost';
-import CreateCatch from './components/CreateCatch';
 import HomeSplashPage from './pages/HomeSplashPage';
-import MapContainer from './components/MapContainer';
+import CreateCatchForm from './components/CreateCatchForm';
+import MapCatches from './components/MapCatches';
 import BeachAccessLocations from './components/BeachAccessLocations';
 import { RedirectAuthenticatedUsers, ProtectedRoute } from './utilities/AuthRoutes';
 //other imports
@@ -34,9 +34,9 @@ function App() {
             <div style={{ width: '100%', height: '100%', boxSizing: 'border-box', overflow: 'hidden'}}>
               <ProtectedRoute redirectTo='/splash' exact path='/' component={Home}/>
               <Route exact path='/splash' component={HomeSplashPage} />
-              <Route exact path='/logcatch' component={CreateCatch} />
-              <Route exact path='/googlemap' component={MapContainer} />    
+              <Route exact path='/googlemap' component={CreateCatchForm} />    
               <Route exact path='/test' component={BeachAccessLocations} /> 
+              <Route exact path='/mapcatches' component={MapCatches} /> 
               <RedirectAuthenticatedUsers redirectTo='/' exact path='/register' component={Register} />
               <RedirectAuthenticatedUsers redirectTo='/' exact path='/login' component={Login} />
               <ProtectedRoute redirectTo='/login' exact path='/preferences' component={Preferences} />

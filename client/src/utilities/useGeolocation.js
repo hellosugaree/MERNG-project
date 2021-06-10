@@ -14,14 +14,13 @@ geolocationStatus has 3 properties:
 */
 
 const useGeolocation = () => {
-  const [geolocationStatus, setGeolocationStatus] = useState({ loading: false, error: null, position: null})
+  const initialState = { loading: false, error: null, errorMessage: null, position: null };
+  const [geolocationStatus, setGeolocationStatus] = useState(initialState);
 
   const getPosition = () => {
     setGeolocationStatus({ 
-      ...geolocationStatus, 
+      ...initialState, 
       loading: true, 
-      error: null, 
-      position: null
     });
 
     if (navigator.geolocation) {
@@ -29,21 +28,37 @@ const useGeolocation = () => {
         const position = { lat: loc.coords.latitude, lng: loc.coords.longitude };
         // update successful location status in state
         setGeolocationStatus({ 
-          ...geolocationStatus, 
-          loading: false, 
-          error: null, 
+          ...initialState, 
           position
         });
       }, err => {
         // update error in location status in state
-        setGeolocationStatus({ ...geolocationStatus, loading: false, error: err });
+        let errorMessage = '';
+        switch (err.code) {
+          case 1:
+            errorMessage = 'Unable to get location. Please enable location services';
+          break;
+          case 2:
+            errorMessage = 'Your current position is unavailable. Please try again later.';
+          break;
+          case 3:
+            errorMessage = 'Location request timed out. Please try again';
+          break;
+          default:
+          break;
+        }
+        setGeolocationStatus({ 
+          ...initialState, 
+          error: err,
+          errorMessage
+        });
       }, { timeout: 20000 });
     } else {
       // set error for navigator.geolocation unsuppored
       setGeolocationStatus({
-        ...geolocationStatus,
-        loading: false,
-        error: { code: 4 }
+        ...initialState,
+        error: { code: 4 },
+        errorMessage: 'Unable to get current location. Your browser does not support geolocation.'
       });
     }
     
@@ -53,10 +68,6 @@ const useGeolocation = () => {
     getPosition,
     geolocationStatus
   };
-
-
 }
-
-
 
 export default useGeolocation;

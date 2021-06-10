@@ -65,13 +65,16 @@ module.exports = {
       }, 
       context) {
         console.log('Processing createCatch on server');
+
+        // check context for authorization token in header
+        const user = checkAuth(context);
+        
         const { valid, errors } = validateCatchInput(species, fishingType, catchDate, catchLocation, catchLength);
         if (!valid) {
           throw new UserInputError('User input Error', errors);
         }
         console.log('passed catch validation')
-        // check context for authorization token in header
-        const user = checkAuth(context);
+
         // create a new catch
 
         const newCatch = new Catch({
@@ -80,7 +83,7 @@ module.exports = {
           species,
           fishingType,
           catchDate,
-          catchLocation: catchLocation || null,
+          catchLocation: catchLocation,
           createdAt: new Date().toISOString(),
           notes: notes || null,
           catchLength: catchLength || null

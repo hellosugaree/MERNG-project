@@ -48,15 +48,15 @@ const typeDefs = gql`
     email: String!
   }
 
-
+  scalar Location
 
   type Catch {
     id: ID!
     username: String!
     species: String!
     fishingType: String!
-    catchDate: String!
-    catchLocation: String
+    catchDate: String
+    catchLocation: Location
     catchLength: Int
     notes: String
     createdAt: String!
@@ -68,7 +68,7 @@ const typeDefs = gql`
     species: String!
     fishingType: String!
     catchDate: String!
-    catchLocation: String
+    catchLocation: Location
     notes: String
     catchLength: Int
   }

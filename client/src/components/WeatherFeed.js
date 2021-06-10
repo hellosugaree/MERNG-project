@@ -39,7 +39,7 @@ const WeatherFeed = (props) => {
     <div>
       {!weatherData && <h1 className='page-title'>Loading forecast...</h1>}
       {weatherData && weatherData.slice(0,6).map(period => (
-        <WeatherCard weatherImage={period.icon} forecastDay={period.name} shortForecast={period.shortForecast} forecastDescription={period.detailedForecast}/>
+        <WeatherCard key={period.number} weatherImage={period.icon} forecastDay={period.name} shortForecast={period.shortForecast} forecastDescription={period.detailedForecast}/>
       ))}
     </div>
   );

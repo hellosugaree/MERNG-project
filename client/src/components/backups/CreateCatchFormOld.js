@@ -1,51 +1,55 @@
-import React from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { AuthContext } from '../../context/auth';
 import { useMutation } from '@apollo/client';
-import { CREATE_CATCH } from '../gql/gql'
+import { CREATE_CATCH } from '../../gql/gql'
 import { Form, Card } from 'semantic-ui-react';
-import { useForm } from '../utilities/hooks';
-import FormError from './FormError';
+import { useForm } from '../../utilities/hooks';
+import FormError from '../FormError';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import AutoSearchInputClass from './AutoSearchInputClass';
+import AutoSearchInputClass from '../AutoSearchInputClass';
+import Modal from '../Modal';
 
-const CreateCatch = (props) => {
-  const { errors, values, onSubmit, handleChange, handleDateChange, handleFormErrors, setValues } 
-    = useForm(createCatchCallback, {
-      species: '',
-      fishingType: 'inshore',
-      catchDate: new Date(),
-      catchLocation: '',
-      catchLength: '',
-      notes: ''
-    });
+const CreateCatchFormOld = (props) => {
 
+  const initialValues = {
+    species: '',
+    fishingType: 'inshore',
+    catchDate: new Date(),
+    catchLength: '',
+    notes: '',
+    catchLocation: null
+  };
+
+  const { errors, values, showModal, modalContent, onSubmit, handleChange, handleDateChange, handleFormErrors, setValues } 
+    = useForm(createCatchCallback, initialValues);
+
+
+    // useEffect to monitor location 
+    useEffect(() => {
+      console.log('useEffect to set catchLocation in form values')
+      if (props.catchLocation){
+        // setValues(prevValues => ({ ...prevValues, catchLocation: JSON.stringify(props.catchLocation) }));
+        setValues(prevValues => ({ ...prevValues, catchLocation: props.catchLocation }));
+      }
+    }, [props.catchLocation, setValues]);
 
 
   const [createCatch, { loading }] = useMutation(CREATE_CATCH, {
     options: () => ({ errorPolicy: 'all' }),
     update(cache, data) {
       console.log(data);
+      // clear the form
+      setValues(initialValues);
     },
     onError(err) {
-      console.log(err.graphQLErrors)
-      console.log(err.networkError)
-      console.log(err.message);
-      console.log(err.extraInfo)
+      // console.log(err.graphQLErrors)
+      // console.log(err.networkError)
+      // console.log(err.message);
+      // console.log(err.extraInfo)
       handleFormErrors(err);
     }
   });
-
-  /*
-  username: user.username,
-            user: user.id,
-            species,
-            fishingType,
-            catchDate,
-            catchLocation: catchLocation || null,
-            sessionId: sessionId || null,
-            createdAt: new Date().toISOString()
-            */
-
 
   // function to prevent form from submitting when enter is pressed in an input field
     const preventFormSubmitOnEnter = (event) => {
@@ -96,10 +100,18 @@ const CreateCatch = (props) => {
     console.log(filteredInput);
     createCatch({ variables: filteredInput });
   }
-
+  
   return (
-      <div style={{margin: '10px auto 10px auto', maxWidth: 400}}>
-      <Card fluid style={{padding: 5}}>
+    <>
+    {/* THE ACTUAL FORM CARD */}
+    <div>
+      <Modal 
+        show={showModal}
+        bodyContent={modalContent.body} headerContent={modalContent.header} 
+        style={{borderRadius: 5, boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}
+      />
+
+      <Card fluid style={{padding: 10}}>
         <Card.Header content='Log a catch' style={{fontSize: 20, fontWeight: 'bold', padding: '10px 0px 10px 0px'}} textAlign='center' /> 
         <Form unstackable fluid style={{ margin: '0px 5px 0px 5px' }} 
         error={errors ? true : false} onSubmit={onSubmit} className={loading ? 'loading' : ''}
@@ -151,7 +163,16 @@ const CreateCatch = (props) => {
             onKeyPress={preventFormSubmitOnEnter}
           />
           </Form.Group>
-
+          {/* CATCH LOCATION */}
+          <Form.Group style={{marginBottom: 10}} >
+            <Form.Field required>
+              <label>Catch location</label>
+              {/* use onClick from props to get  */}
+              <div onClick={props.onCatchLocationClick} style={{height: 40, width: 300, padding: 10, display: 'flex', alignItems: 'center', border: '1px solid #DEDEDF', borderRadius: 5}}>
+                {props.catchLocation ? `${props.catchLocation.lat.toFixed(5)}, ${props.catchLocation.lng.toFixed(5)}` : 'Click to select location on map'}
+              </div>
+            </Form.Field>
+          </Form.Group>     
 
           {/* RADIO BUTTONS FOR FISHING TYPE */}
           <div className='field'>
@@ -187,20 +208,7 @@ const CreateCatch = (props) => {
             />
           </Form.Group>
           </div>
-          {/* CATCH LOCATION */}
-          <Form.Group style={{marginBottom: 10}} >
-            <Form.Field>
-              <Form.Input 
-                type='text'
-                label='Catch location'
-                placeholder='Catch location'
-                name='catchLocation'
-                value={values.catchLocation}
-                onChange={handleChange}
-                onKeyPress={preventFormSubmitOnEnter}
-              />
-            </Form.Field>
-          </Form.Group>        
+   
           {/* TEXT INPUT FOR NOTES */}
           <Form.Group style={{marginBottom: 10}} >
             <Form.Field width={16}>
@@ -212,25 +220,29 @@ const CreateCatch = (props) => {
                 value={values.notes}
                 onChange={handleChange}
                 error={errors.errorFields && errors.errorFields.notes}
-                
               />
             </Form.Field>
           </Form.Group> 
-
 
         {Object.keys(errors).length > 0 && (<FormError errors={errors.errorMessages} />)}
         <Form.Group style={{display: 'block', marginBottom: 10}}>
           <Form.Button style={{display: 'block', margin: '0px auto 0px auto'}} color='blue' type="submit">Submit</Form.Button>
         </Form.Group> 
       </Form>
+      <button type='button' onClick={() => console.log(values)} > test log</button>
     </Card>
     </div>
+
+    {/* THE MAP COMPONENTS */}
+
+
+    </>
   );
 
 };
 
 
-export default CreateCatch;
+export default CreateCatchFormOld;
 
 
 /*
@@ -240,7 +252,16 @@ export default CreateCatch;
  
         <Form.Button onClick={() => console.log(values)} >log value</Form.Button>
 
-
+              <Form.Input 
+                focus={false}
+                type='text'
+                label='Catch location'
+                placeholder='Catch location'
+                name='catchLocation'
+                
+                value={props.catchLocation ? props.catchLocation : 'Select location on map'}
+                onKeyPress={preventFormSubmitOnEnter}
+              />
 
 
 */

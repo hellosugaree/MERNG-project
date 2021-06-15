@@ -7,8 +7,14 @@ const locationScalar = new GraphQLScalarType({
     // process outgoing data
     serialize(value) {
       console.log('serialize')
-      console.log(value);
-      return value;
+      // console.log(JSON.parse(value));
+      try {
+        const jsonValue = JSON.parse(value);
+        console.log(jsonValue);
+        return jsonValue;
+      } catch {
+        return value;
+      }
       // convert outgoing data back to object
     },
       // process incoming data from variable

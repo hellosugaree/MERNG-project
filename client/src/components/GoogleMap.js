@@ -11,15 +11,15 @@ const GoogleMap = props => {
   // useEffect to update center of map if props.center changes
   useEffect(() => {
     if (props.mapRef.current) {
-      console.log('setting map center from props');
-      console.log(props.center)
+      // console.log('setting map center from props');
+      // console.log(props.center)
       props.mapRef.current.setCenter(props.center);
     }
   }, [props.center, props.mapRef.current]);
 
   // initialize the map on mount 
   useEffect(() => {
-    console.log('initial useEffect called')
+    // console.log('initial useEffect called')
     initializeMap();
   }, []);
 
@@ -28,7 +28,7 @@ const GoogleMap = props => {
       // load and initialize map
       props.mapRef.current = new window.google.maps.Map(props.mapContainer.current, {
         center: props.center,
-        zoom: 13,
+        zoom: props.zoom ? props.zoom : 13,
         ...additionalOptions,
       });
       

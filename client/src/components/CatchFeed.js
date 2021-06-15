@@ -26,7 +26,10 @@ const CatchFeed = (props) => {
 
       {(props.user && !props.feedCatchesLoading && !props.feedCatchesError && props.displayOptions.showCreateCatch) &&
         <Grid.Row>
-          <CreateCatchForm />
+          <div style={{display: 'flex', justifyContent: 'center'}}>
+            <CreateCatchForm />
+          </div>
+
         </Grid.Row>               
       }
       
@@ -49,7 +52,7 @@ const CatchFeed = (props) => {
           </Grid.Row>
           <Transition.Group animation='fly right' duration={600}>
             {props.feedCatchesData.getCatches.map(catchData => (
-              <Grid.Row key={catchData.id}>
+              <Grid.Row style={{padding: '10px 0px 0px 0px'}} key={catchData.id}>
                 <CatchCard catch={catchData} />
               </Grid.Row>
             ))}

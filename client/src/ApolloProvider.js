@@ -3,7 +3,8 @@ import App from './App';
 import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client/react';
 import { setContext } from '@apollo/client/link/context';
-
+import { AuthProvider } from './context/auth';
+import { ModalProvider } from './context/modal'
 
 const httpLink = new HttpLink({
   uri: 'http://localhost:5000/' // our graphQL server
@@ -28,7 +29,12 @@ export const client = new ApolloClient({
 });
 
 export default (
+
   <ApolloProvider client={client}>
-    <App />
+    <AuthProvider>
+      <ModalProvider>
+        <App />
+      </ModalProvider>
+    </AuthProvider>
   </ApolloProvider>
 )

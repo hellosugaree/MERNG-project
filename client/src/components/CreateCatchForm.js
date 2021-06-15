@@ -1,18 +1,18 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
+import { AuthContext } from '../context/auth';
+import { Card, Form } from 'semantic-ui-react';
 import { Loader } from "@googlemaps/js-api-loader"
-import GoogleMap from './GoogleMap';
-import GoogleAutocomplete from './GoogleAutocomplete';
 import useGeolocation from '../utilities/useGeolocation';
 import { useMutation } from '@apollo/client';
 import { CREATE_CATCH } from '../gql/gql'
-import { Form, Card } from 'semantic-ui-react';
 import { useForm } from '../utilities/hooks';
-import FormError from './FormError';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { GET_CATCHES, GET_USER_BASIC_DATA } from '../gql/gql';
 import AutoSearchInputClass from './AutoSearchInputClass';
-import Modal from './Modal';
-
+import FormError from './FormError';
+import GoogleMap from './GoogleMap';
+import GoogleAutocomplete from './GoogleAutocomplete';
 
 import '../App.css';
 
@@ -28,6 +28,7 @@ selectLocationButton.innerHTML='Accept catch location';
 
 
 const CreateCatchForm = props => {
+  const { user } = useContext(AuthContext);
   // array to hold controls that will be added on mount
   const controls = [];
   // create a controls array to pass to the GoogleMap component
@@ -76,6 +77,10 @@ const CreateCatchForm = props => {
           console.log(err);
           setApiStatus({loading: false, errors: err});
         });
+    } 
+    // if map has already been loaded, set the status to loaded
+    if (window.google && showMap && !apiStatus.errors) {
+      setApiStatus({loading: false, errors: null });
     }
   }, [showMap, window.google]);
 
@@ -173,7 +178,7 @@ const CreateCatchForm = props => {
     catchLocation: null
   };
 
-  const { errors, values, showModal, modalContent, onSubmit, handleChange, handleDateChange, handleFormErrors, setValues } 
+  const { errors, values, onSubmit, handleChange, handleDateChange, handleFormErrors, setValues } 
     = useForm(createCatchCallback, initialValues);
 
 
@@ -230,6 +235,96 @@ const CreateCatchForm = props => {
         console.log(catchSaved);
         return catchSaved;
 
+data:
+  createCatch:
+    catchDate: "2021-06-10T19:00:00.401Z"
+    catchLength: null
+    catchLocation: "{\"lat\":33.4999997,\"lng\":-117.747382}"
+    createdAt: "2021-06-10T23:27:21.282Z"
+    fishingType: "inshore"
+    notes: null
+    species: "Striped Bass"
+    user: "609d7bf7352e8e7490d024ba"
+    username: "1234"
+ROOT_QUERY:
+getCatches({"catchesToReturn":100,"userId":"609d7bf7352e8e7490d024ba"}): Array(19)
+0: {__ref: "Catch:60c29fd95ce65714e411a829"}
+1: {__ref: "Catch:60c2981d91024c64d0fc7901"}
+2: {__ref: "Catch:60c29610145bce9720b7a9ea"}
+3: {__ref: "Catch:60c28dfdab1eec97182837f7"}
+4: {__ref: "Catch:60c22f9738bbb02e30a9f227"}
+5: {__ref: "Catch:60c0fbc280e0cba284ec75e8"}
+6: {__ref: "Catch:60c0fb0880e0cba284ec75e7"}
+7: {__ref: "Catch:60c0fa1202c83d79bc5b7cdd"}
+8: {__ref: "Catch:60c0f9e1582cdd6da02ae723"}
+9: {__ref: "Catch:60c0df7f204fc667c027e650"}
+10: {__ref: "Catch:60c0243ac7fd62339ca876b2"}
+11: {__ref: "Catch:60bed8e65e1ad69af8481fda"}
+12: {__ref: "Catch:60b65ad250674a9dec6d4734"}
+13: {__ref: "Catch:60b5483a72139481ec4eddb9"}
+14: {__ref: "Catch:60b1f0259682b585601b4380"}
+15: {__ref: "Catch:60b1842d1c257e3f1841f1b8"}
+16: {__ref: "Catch:60b1835839f80a4e6c29291f"}
+17: {__ref: "Catch:60b15014ff4d382a74614ae6"}
+18: {__ref: "Catch:60b14f89ff4d382a74614ae5"}
+length: 19
+__proto__: Array(0)
+getCatches({}): Array(24)
+0: {__ref: "Catch:60c29fd95ce65714e411a829"}
+1: {__ref: "Catch:60c2981d91024c64d0fc7901"}
+2: {__ref: "Catch:60c29610145bce9720b7a9ea"}
+3: {__ref: "Catch:60c28dfdab1eec97182837f7"}
+4: {__ref: "Catch:60c22f9738bbb02e30a9f227"}
+5: {__ref: "Catch:60c0fbc280e0cba284ec75e8"}
+6: {__ref: "Catch:60c0fb0880e0cba284ec75e7"}
+7: {__ref: "Catch:60c0fa1202c83d79bc5b7cdd"}
+8: {__ref: "Catch:60c0f9e1582cdd6da02ae723"}
+9: {__ref: "Catch:60c0df7f204fc667c027e650"}
+10: {__ref: "Catch:60c0243ac7fd62339ca876b2"}
+11: {__ref: "Catch:60bed8e65e1ad69af8481fda"}
+12: {__ref: "Catch:60b65ad250674a9dec6d4734"}
+13: {__ref: "Catch:60b5483a72139481ec4eddb9"}
+14: {__ref: "Catch:60b1f0259682b585601b4380"}
+15: {__ref: "Catch:60b1842d1c257e3f1841f1b8"}
+16: {__ref: "Catch:60b1835839f80a4e6c29291f"}
+17: {__ref: "Catch:60b15014ff4d382a74614ae6"}
+18: {__ref: "Catch:60b14f89ff4d382a74614ae5"}
+19: {__ref: "Catch:60b13ad13628f961c88db1d6"}
+20: {__ref: "Catch:60b13abc3628f961c88db1d5"}
+21: {__ref: "Catch:60b13a9f3628f961c88db1d4"}
+22: {__ref: "Catch:60b13a993628f961c88db1d3"}
+23: {__ref: "Catch:60b13a8f3628f961c88db1d2"}
+length: 24
+__proto__: Array(0)
+getPosts: (6) [{…}, {…}, {…}, {…}, {…}, {…}]
+getUser({"userId":"609d7bf7352e8e7490d024ba"}):
+catchCount: 19
+catches: Array(19)
+0: "60c29fd95ce65714e411a829"
+1: "60c2981d91024c64d0fc7901"
+2: "60c29610145bce9720b7a9ea"
+3: "60c28dfdab1eec97182837f7"
+4: "60c22f9738bbb02e30a9f227"
+5: "60c0fbc280e0cba284ec75e8"
+6: "60c0fb0880e0cba284ec75e7"
+7: "60c0fa1202c83d79bc5b7cdd"
+8: "60c0f9e1582cdd6da02ae723"
+9: "60c0df7f204fc667c027e650"
+10: "60c0243ac7fd62339ca876b2"
+11: "60bed8e65e1ad69af8481fda"
+12: "60b65ad250674a9dec6d4734"
+13: "60b5483a72139481ec4eddb9"
+14: "60b1f0259682b585601b4380"
+15: "60b1842d1c257e3f1841f1b8"
+16: "60b1835839f80a4e6c29291f"
+17: "60b15014ff4d382a74614ae6"
+18: "60b14f89ff4d382a74614ae5"
+length: 19
+__proto__: Array(0)
+createdAt: "2021-05-13T19:20:23.574Z"
+username: "1234"
+__typename: "User"
+__typename: "Query"
 
   */
 
@@ -237,7 +332,60 @@ const CreateCatchForm = props => {
     options: () => ({ errorPolicy: 'all' }),
     update(cache, data) {
       console.log(data);
+      console.log(cache);
 
+      // read the cached catches query
+      const { getCatches : cachedCatchData } = cache.readQuery({
+        query: GET_CATCHES    // our gql file used to make the query initially
+      });
+
+      // write catch to the caches catches data
+      if (cachedCatchData) {
+        cache.writeQuery({ 
+          query: GET_CATCHES, 
+          data: {
+            getCatches: [data.data.createCatch, ...cachedCatchData]
+          }
+        }); 
+      }
+
+      // update user-specific catches query data
+      const { getCatches : cachedUserCatchData } = cache.readQuery({
+        query: GET_CATCHES,    // our gql file used to make the query initially
+        variables: { catchesToReturn: 100, userId: user.id }
+      });
+
+      // write catch to the caches catches data
+      if (cachedUserCatchData) {
+        cache.writeQuery({ 
+          query: GET_CATCHES,
+          variables: { catchesToReturn: 100, userId: user.id }, 
+          data: {
+            getCatches: [data.data.createCatch, ...cachedUserCatchData]
+          }
+        }); 
+      }
+
+
+      // now update our user data query so our stats are updated
+      const { getUser: cachedUser } = cache.readQuery({
+        query: GET_USER_BASIC_DATA,
+        variables: { userId: user.id },
+      });
+      // now update our user data query so our stats are updated
+      if (cachedUser) {
+        cache.writeQuery({
+          query: GET_USER_BASIC_DATA,
+          variables: { userId: user.id },
+          data: {
+            getUser: {
+              ...cachedUser,
+              catches: [...cachedUser.catches, data.data.createCatch],
+              catchCount: cachedUser.catchCount + 1
+            }
+          }
+        });
+      }
 
 
 
@@ -304,16 +452,20 @@ const CreateCatchForm = props => {
   }
 
   return (
-        <div style={{display: 'flex', padding: 10, justifyContent: 'center', flexDirection: 'column', alignItems: 'center'}}>
-          {/* OUR MAP AND AUTOCOMPLETE */}
-          <div className='map-container' style={{display: showMap ? 'flex' : 'none', flexDirection: 'column', border: '2px solid green'}}>
+        <div style={{maxWidth: 400, justifyContent: 'center',  alignItems: 'center', display: 'flex', flexGrow: 1}}>
+          {/* CONTAINER FOR OUR MAP AND AUTOCOMPLETE */}
+          <div style={{display: showMap ? 'flex' : 'none', flexDirection: 'column', height: 400, width: 200, flexGrow: 2}}>
+            {/* TARGET FOR OUR AUTOCOMPLETE RENDER */}
             <input ref={autocompleteInputRef} type='text' placeholder='Enter a location to center the map' style={{height: 40}} />
-            <div id='map' ref={mapContainerRef}>
+            {/* TARGET FOR OUR MAP RENDER RENDER */}
+            <div id='map' style={{display: 'flex', height: '100%', width: '100%'}}  ref={mapContainerRef}>
+              
               {apiStatus.loading && <h1>Loading map</h1>}
+
             </div>
             { // display our google API components only if the script has loaded without errors
               (!apiStatus.loading && !apiStatus.errors) && 
-              <div>
+              <>
                 <GoogleMap 
                   mapRef={mapRef} 
                   mapContainer={mapContainerRef} 
@@ -321,19 +473,15 @@ const CreateCatchForm = props => {
                   controls={controls}
                 />
                 <GoogleAutocomplete autocomplete={autocompleteRef} autocompleteInput={autocompleteInputRef} onPlaceSelect={handlePlaceSelect} />
-              </div>
+              </>
             }
+
+
+
           </div>
 
           {/* THE ACTUAL FORM CARD */}
-          <div style={{display: showMap ? 'none' : 'flex', width: 400}}>
-            <div>
-              <Modal 
-                show={showModal}
-                bodyContent={modalContent.body} headerContent={modalContent.header} 
-                style={{borderRadius: 5, boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}
-              />
-
+          <div style={{display: showMap ? 'none' : 'flex', width: 300, flexGrow: 1}}>
               <Card fluid style={{padding: 10}}>
                 <Card.Header content='Log a catch' style={{fontSize: 20, fontWeight: 'bold', padding: '10px 0px 10px 0px'}} textAlign='center' /> 
                 <Form unstackable fluid style={{ margin: '0px 5px 0px 5px' }} 
@@ -388,9 +536,9 @@ const CreateCatchForm = props => {
                   </Form.Group>
                   {/* CATCH LOCATION */}
                   <Form.Group style={{marginBottom: 10}} >
-                    <Form.Field required>
+                    <Form.Field required width={16}>
                       <label>Catch location</label>
-                      <div onClick={handleCatchLocationClick} style={{height: 40, width: 300, padding: 10, display: 'flex', alignItems: 'center', border: '1px solid #DEDEDF', borderRadius: 5}}>
+                      <div onClick={handleCatchLocationClick} style={{height: 40, padding: 10, margin: '0px 5px 0px 0px', display: 'flex', alignItems: 'center', border: '1px solid #DEDEDF', borderRadius: 5}}>
                         {values.catchLocation ? `${values.catchLocation.lat.toFixed(5)}, ${values.catchLocation.lng.toFixed(5)}` : 'Click to select location on map'}
                       </div>
                     </Form.Field>
@@ -453,7 +601,6 @@ const CreateCatchForm = props => {
               </Form>
               <button type='button' onClick={() => console.log(values)} > test log</button>
             </Card>
-            </div>
           </div>
         </div>
   );

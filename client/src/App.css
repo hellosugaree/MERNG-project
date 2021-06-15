@@ -4,6 +4,11 @@
   --nav-background-color: rgb(221, 244, 252);
 }
 
+* {
+  box-sizing: border-box;
+}
+
+
 .page-title {
   font-size: 25px;
   text-align: center;
@@ -26,7 +31,6 @@
   display: 'flex';
   align-items: 'center';
   justify-content: 'space-around';
-  border: 1px solid red;
 }
 
 .register-page{
@@ -81,7 +85,6 @@
 }
 
 .map-container {
-  border: 2px solid purple;
   width: 400px;
   height: 400px;
   flex-shrink: 1;
@@ -153,4 +156,84 @@ input[type=number]::-webkit-outer-spin-button {
 .close-modal:hover {
   cursor: pointer;
   box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+  color: #443b2b;
 }
+
+
+.dropdown-menu > button,
+.catch-filter-display {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  font-size: 20px;
+  font-family: inherit;
+  padding: 5px;
+  border: 1px solid lightgray;
+  background-color: white;
+  border-radius: 5px;
+  width: 150px;
+}
+
+/* show list below button when focus */
+.dropdown-menu button:focus + ul {
+  display: flex;
+}
+
+.dropdown-menu ul {
+  min-width: 150px;
+  max-width: 300px;
+  display: none;
+  margin: 0px;
+  padding: 0px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  background-color: white;
+  position: absolute;
+  z-index: 100;
+}
+
+/* dropdown-menu li button  */
+
+.dropdown-menu li,
+.dropdown-menu li button {
+  display: flex;
+  align-items: center ;
+  background-color: white;
+  list-style: none;
+  white-space: nowrap;
+  width: 100%;
+  height: 30px;
+  padding: 5px;
+  font-size: 20px;
+  color: #464242;
+  text-justify: center;
+  font-family: inherit;
+}
+
+.dropdown-menu li:hover, 
+.dropdown-menu button:hover {
+  background-color: #eeeeee;
+}
+
+/* show nested ul within an li on over */
+.dropdown-menu li:hover ul {
+  display: block;
+}
+
+.species-list {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.species-list li {
+  padding: 0;
+}
+
+.species-button {
+  border: 0px;
+  width: 100%;
+  height: 100%;
+} 

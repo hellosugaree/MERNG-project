@@ -15,6 +15,8 @@ import BeachAccessLocations from '../components/BeachAccessLocations';
 
 function Home(props) {
   const { user } = useContext(AuthContext);
+
+  
   
   const { loading: loadingUserStats, error: userStatsError, data: userStatsData } = useQuery(GET_USER_BASIC_DATA, {
     variables: { userId: user.id }, onError: (err) => console.log(err)
@@ -55,6 +57,7 @@ function Home(props) {
     }
   };
 
+  // update our biggest catch if user logs a bigger catch
   let userHasBiggestCatch;
   let biggestCatch;
   if (userCatchesData) {
@@ -130,7 +133,7 @@ function Home(props) {
   return (
   
     <div className='home-page'>
-      <div className='home-page-outer-flex-container' style={{display: 'flex', height: '100%', border: '1px solid blue'}}>
+      <div className='home-page-outer-flex-container' style={{display: 'flex', height: '100%'}}>
         {/* SIDEBAR PANEL */}
 
         <div className='sidebar-flex-container' style={{display: 'flex', padding: 10}} >
@@ -159,6 +162,11 @@ function Home(props) {
                     <Card.Meta>Joined Fishsmart {DateTime.fromMillis(Date.parse(userStatsData.getUser.createdAt)).toRelative()}</Card.Meta>
                     <Card.Description>Catch count: {userStatsData.getUser.catchCount}</Card.Description>
                     {userHasBiggestCatch && <Card.Description>Biggest catch {biggestCatch} inches</Card.Description>}
+                    {userStatsData.getUser.catches.length > 0 && (
+                      <Card.Description style={{marginTop: 10}}>
+                        <a href='/mapcatches' >Show catch map</a>
+                      </Card.Description>
+                    )}
                     </>
                   )}
                   </Card.Content>
@@ -172,7 +180,7 @@ function Home(props) {
                   </button>
                   <button type='button' name='testButton' 
                     className='side-bar-menu-button' 
-                    onClick={() => console.log(Object.keys(process.env))}>
+                    onClick={() => console.log(user)}>
                     test log
                   </button>
                 </Grid.Row>

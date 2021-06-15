@@ -5,12 +5,14 @@ import jwtDecode from 'jwt-decode';
 const AuthContext = createContext({
   user: null,
   login: (data) => {},
-  logout: () => {}
+  logout: () => {},
 });
 
 const initialState = {
   user: null
 };
+
+
 
 // checks if a token already exists, and if so, it will assign the user in initialState to the decodedToken
 // decodedToken contains our user data
@@ -24,13 +26,18 @@ if (localStorage.getItem('authToken')) {
   }
 }
 
+
+
 // reducer takes a dispatch which includes action type and payload and updates state accordingly
 const authReducer = (state, action) => {
   switch(action.type){
     case 'LOGIN':
+      // decode the token from server and store in context
+      const userData = action.payload;
+      const decodedToken = jwtDecode(localStorage.getItem('authToken'));
       return {
         ...state,
-        user: action.payload
+        user: decodedToken
       }
     case 'LOGOUT':
       return {

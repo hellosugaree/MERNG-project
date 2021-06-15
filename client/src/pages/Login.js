@@ -4,12 +4,13 @@ import { Form, Grid } from 'semantic-ui-react';
 import { useMutation } from '@apollo/client';
 import { useForm } from '../utilities/hooks';
 import { LOGIN_USER } from '../gql/gql';
-import { AuthContext } from '../context/auth'; // allows us to access context to keep track of state across entire app
+import { AuthContext } from '../context/auth';
+import { ModalContext } from '../context/modal';
 
 function Login(props) {
   // gives us access to our AuthContext object which conainers user propery and login and logout functions
   const context = useContext(AuthContext);
-
+  const { closeModal } = useContext(ModalContext);
   // feed it the login callback which will be executed in onSubmit, and default values for the values in state
   // gets all of our event handlers and state management from useform
   const { setValues, handleChange, onSubmit, handleFormErrors, values, errors } = useForm(loginUserCallback, {username: '', password: ''});
@@ -23,6 +24,9 @@ function Login(props) {
       context.login(result.data.login);
       setLoginSuccess(true);
       setValues({username: '', password: ''});
+      // close modal in case we are logging in from a modal
+      setTimeout(() => closeModal(), 2000);
+
       // allow no redirect from props in case we render a login in a modal don't kick them off the page
       if (props.noRedirect) {
         return;

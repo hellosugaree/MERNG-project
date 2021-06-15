@@ -11,10 +11,13 @@ function CatchCard(props) {
  
   // use to determine if a user is logged in
   const { user } = useContext(AuthContext); 
+  // style for highlighted card if props.highlighted is true
+  const highlightedStyle = {border: '3px solid grey', boxShadow: '0 1px 4px -1px rgba(0, 0, 0, 0.3)'};
 
     return (
-    <div style={{ maxWidth: 400, margin: '10px auto 10px auto'}}>
-      <Card fluid  > {/* fluid lets the cards stretch to fill */}
+      //onClick={props.onClick}
+    // <div style={{ maxWidth: 400, margin: '10px auto 10px auto'}}>
+      <Card onClick={props.onClick} fluid style={props.highlight ? { ...highlightedStyle, ...props.style } : {...props.style} } > 
         <Card.Content>
           <Image
             floated='right'
@@ -26,21 +29,21 @@ function CatchCard(props) {
           {/* can pass true to fromNow to remove 'ago' from date display */}
           <Card.Meta as={Link} to={`/catches/${id}`}>{DateTime.fromMillis(Date.parse(catchDate)).toRelative()}</Card.Meta>
           {fishingType && <Card.Meta>{fishingType}</Card.Meta>}
-          {catchLocation && <Card.Meta>{catchLocation}</Card.Meta>}
+          {`${catchLocation}` && <Card.Meta>{`${catchLocation}`}</Card.Meta>}
           <Card.Header style={{marginTop: 5, fontSize: 18}}>{species} {catchLength && <span style={{marginLeft: 8}}>{catchLength} in</span>}</Card.Header>
 
           {notes && <Card.Description>{notes}</Card.Description>}
 
 
           {/* show restricted options only on user's post card when user is logged in */}
-          {(user && user.username === props.catch.username) && (
+          {(!props.hideMenu && user && user.username === props.catch.username) && (
             <PostCardMenu postId={props.catch.id}/>
           )
           }
           
         </Card.Content>
       </Card>
-    </div>
+
   );
 }
 

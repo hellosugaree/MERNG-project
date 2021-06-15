@@ -1,6 +1,7 @@
 
 import { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../context/auth';
+import { ModalContext } from '../context/modal';
 import Login from '../pages/Login';
 import '../App.css';
 
@@ -8,26 +9,12 @@ import '../App.css';
 export const useForm = (callback, initialValues) => { // initial values and object to specify default values for form fields
   // import logout so we can logout user and clear all user data from our context if we get back an invalid or missing token from server
   const { logout, user } = useContext(AuthContext); 
+  
+  const { showModal, showLoginModal, closeModal } = useContext(ModalContext);
+
   // controlled form values
   const [ values, setValues ] = useState(initialValues);
   const [ errors, setErrors ] = useState({});
-
-  // state to show and hide our modal for when user tries to do an action that requires authentication
-  const [showModal, setShowModal] = useState(false);
-  const [modalContent, setModalContent] = useState({body: '', header: ''});
-  
-    // close the login modal when user successfully logs in
-    useEffect(() => {
-      if (showModal) {
-        console.log('useEffect for user auth context triggered from create catch form')
-        if (user) {
-          setTimeout(() => setShowModal(false), 1000);
-          setErrors({})
-        }
-      }
-    },[user, setErrors, showModal])
-  
-
 
   // handle change in controlled form values
   const handleChange = event => {
@@ -44,12 +31,11 @@ export const useForm = (callback, initialValues) => { // initial values and obje
   const onSubmit = (event) => {
     event.preventDefault();
     setErrors({});
-    // make sure user is logged in
-
     // execute our form submit callback
+    console.log(user);
     callback();
-
   };
+
 
   // Error processing
   // takes and option callback for a setter to show an error modal window
@@ -64,48 +50,18 @@ export const useForm = (callback, initialValues) => { // initial values and obje
       if (err.graphQLErrors[0].message === 'Authorization header missing') {
         // handle cases where user acesses and tries to use feature that requires login, but the token is missing so no header gets sent
         // redirect to login
-        errorMessages.push('You must be logged in to that')
-        // if we provided a callback, show the modal window
-        if (setShowModal) {
-          const JSXBodyContent = (
-            <div>
-              Please log in to continue...
-              <Login noRedirect={true} />
-            </div>
-          );
-          const JSXHeaderContent = ( 
-            <div style={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                <div style={{textAlign: 'center', flexGrow: 1}}>Not Authorized</div>
-                <div className='close-modal' onClick={() => setShowModal(false)} style={{ alignSelf: 'flex-start', padding: 5, fontSize: '25px'}}>&#10006;</div>
-            </div>
-          );
-          setModalContent({header: JSXHeaderContent, body: JSXBodyContent})
-          setShowModal(true);
-        }
+        // errorMessages.push('You must be logged in to that')
+        // Show the login modal
+        showLoginModal();
         // logout();
         // return window.location.replace('/login')
       }
       if (err.graphQLErrors[0].message === 'Invalid/Expired token') {
         // handle cases where user acesses and tries to use feature that requires login, but the token is missing so no header gets sent
         // redirect to login
-        errorMessages.push('You must be logged in to that')
-        // if we provided a callback, show the modal window
-        if (setShowModal) {
-          const JSXBodyContent = (
-            <div>
-              Please log in to continue...
-              <Login noRedirect={true} />
-            </div>
-          );
-          const JSXHeaderContent = ( 
-            <div style={{display: 'flex'}}>
-              <div>Not Authorized</div>
-              <div style={{alignSelf: 'flex-end'}}>X</div>
-            </div>
-          );
-          setModalContent({header: JSXHeaderContent, body: JSXBodyContent})
-          setShowModal(true);
-        }
+        // errorMessages.push('You must be logged in to that')
+        // Show the login modal
+        showLoginModal()
         // logout();
         // return window.location.replace('/login')
       }
@@ -126,13 +82,14 @@ export const useForm = (callback, initialValues) => { // initial values and obje
     errorMessages.forEach(val => console.log(val));
     // set errors so form can update
     // in future need to add which input fields generated errors to highlight input fields
-    setErrors({errorMessages, errorFields, ...err})
+    if (errorMessages.length > 0){
+      setErrors({errorMessages, errorFields, ...err})
+    }
   }              
 
   // return both functions and values (state) so we can use them in our components
   return {
     showModal,  // use this for the show prop in the Modal component within a form
-    modalContent, // use this for the content prop in the Modal component within a form
     handleChange,
     handleDateChange,
     onSubmit,

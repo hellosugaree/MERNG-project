@@ -5,7 +5,6 @@ import { Card, Image } from 'semantic-ui-react';
 const WeatherCard = (props) => {
 
   return (
-    <div style={{maxWidth: 400, marginBottom: 10}}>
       <Card fluid>
         <Card.Content>
           <Image
@@ -20,7 +19,6 @@ const WeatherCard = (props) => {
           <Card.Description>{props.forecastDescription}</Card.Description>
         </Card.Content>
       </Card>
-    </div>
   );
 
 };

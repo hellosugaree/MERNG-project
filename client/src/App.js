@@ -1,8 +1,9 @@
-import './App.css';
+
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
 import './App.css'; // after semantic import so we can override default semantic-ui styles
 // components
+import ModalPortal from './components/ModalPortal';
 import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
@@ -11,19 +12,22 @@ import MenuBar from './components/MenuBar';
 import CreatePost from './components/CreatePost';
 import HomeSplashPage from './pages/HomeSplashPage';
 import CreateCatchForm from './components/CreateCatchForm';
-import MapCatches from './components/MapCatches';
+import UserCatchesMap from './pages/UserCatchesMap';
 import BeachAccessLocations from './components/BeachAccessLocations';
 import { RedirectAuthenticatedUsers, ProtectedRoute } from './utilities/AuthRoutes';
-//other imports
-import { AuthProvider } from './context/auth';
-import React from 'react';
+
 
 /* wrap entire App in auth provider to give access to context across components for managing auth, etc */
+
+/*
+
+*/
 function App() {
+
   return (
-    <AuthProvider>
       <Router>
         {/* <div style={{margin: '0px auto 0px auto', maxWidth: 1200, border: '10px solid purple', boxSizing: 'border-box'}}> */}
+          <ModalPortal />
           <div style={{height: '100vh', boxSizing: 'border-box', display: 'flex', flexDirection: 'column'}}>
             {/* <div style={{display: 'flex', border: '3px dashed blue', boxSizing: 'border-box'}}> */}
             <div style={{height: 50, backgroundColor: 'white', boxSizing: 'border-box' }}>
@@ -36,7 +40,7 @@ function App() {
               <Route exact path='/splash' component={HomeSplashPage} />
               <Route exact path='/googlemap' component={CreateCatchForm} />    
               <Route exact path='/test' component={BeachAccessLocations} /> 
-              <Route exact path='/mapcatches' component={MapCatches} /> 
+              <ProtectedRoute exact path='/mapcatches' component={UserCatchesMap} /> 
               <RedirectAuthenticatedUsers redirectTo='/' exact path='/register' component={Register} />
               <RedirectAuthenticatedUsers redirectTo='/' exact path='/login' component={Login} />
               <ProtectedRoute redirectTo='/login' exact path='/preferences' component={Preferences} />
@@ -47,7 +51,6 @@ function App() {
           
           {/* </div> */}
       </Router>
-    </AuthProvider>
   );
 }
 

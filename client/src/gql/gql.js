@@ -158,6 +158,7 @@ export const CREATE_CATCH = gql `
       catchLength: $catchLength,
       notes: $notes
     }) {
+      id
       user
       username
       createdAt
@@ -191,7 +192,6 @@ export const GET_CATCHES = gql `
 
 
 export const GET_USER_BASIC_DATA = gql `
-
   query getUser($userId: ID) {
     getUser(userId: $userId) {
       username

@@ -226,10 +226,7 @@ function PostCard(props) {
                 />
             </Grid.Column>
           </Grid>
-
       </Card.Content>
-
-
     </Card>
 
   

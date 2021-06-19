@@ -1,5 +1,5 @@
 
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
 import './App.css'; // after semantic import so we can override default semantic-ui styles
 // components
@@ -8,7 +8,8 @@ import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Preferences from './pages/Preferences';
-import MenuBar from './components/MenuBar';
+// import MenuBar from './components/MenuBar';
+import TopBar from './components/TopBar';
 import CreatePost from './components/CreatePost';
 import HomeSplashPage from './pages/HomeSplashPage';
 import CreateCatchForm from './components/CreateCatchForm';
@@ -30,13 +31,14 @@ function App() {
           <ModalPortal />
           <div style={{height: '100vh', boxSizing: 'border-box', display: 'flex', flexDirection: 'column'}}>
             {/* <div style={{display: 'flex', border: '3px dashed blue', boxSizing: 'border-box'}}> */}
-            <div style={{height: 50, backgroundColor: 'white', boxSizing: 'border-box' }}>
+            {/* <div style={{height: 50, backgroundColor: 'white', boxSizing: 'border-box' }}>
             <MenuBar />
-            </div>
+            </div> */}
+            <TopBar />
             {/* <div style={{height: 100, border: '3px solid black', boxSizing: 'border-box'}}/> */}
             {/* <div className='menu-spacer' style={{height: 50, position: 'fixed'}}/> */}
             <div style={{ width: '100%', height: '100%', boxSizing: 'border-box', overflow: 'hidden'}}>
-              <ProtectedRoute redirectTo='/splash' exact path='/' component={Home}/>
+              <Switch>
               <Route exact path='/splash' component={HomeSplashPage} />
               <Route exact path='/googlemap' component={CreateCatchForm} />    
               <Route exact path='/test' component={BeachAccessLocations} /> 
@@ -45,6 +47,8 @@ function App() {
               <RedirectAuthenticatedUsers redirectTo='/' exact path='/login' component={Login} />
               <ProtectedRoute redirectTo='/login' exact path='/preferences' component={Preferences} />
               <ProtectedRoute redirectTo='/login' exact path='/post' component={CreatePost} />
+              <ProtectedRoute redirectTo='/splash' path='/' component={Home}/>
+              </Switch>
             </div>
             {/* </div> */}
           </div>

@@ -13,7 +13,7 @@ geolocationStatus has 3 properties:
   3) position: will contain position from geolocation in the form of {lat: latitude, lng: longitude} (default null)
 */
 
-const useGeolocation = () => {
+export const useGeolocation = () => {
   const initialState = { loading: false, error: null, errorMessage: null, position: null };
   const [geolocationStatus, setGeolocationStatus] = useState(initialState);
 
@@ -69,5 +69,3 @@ const useGeolocation = () => {
     geolocationStatus
   };
 }
-
-export default useGeolocation;

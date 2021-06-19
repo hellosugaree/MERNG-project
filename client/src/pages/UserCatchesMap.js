@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useState, useRef, createRef } from 'react';
 import { Loader } from "@googlemaps/js-api-loader"
-import { DateTime } from 'luxon';
+import { DateTime, Interval } from 'luxon';
 import { AuthContext } from '../context/auth';
 import { useQuery } from '@apollo/client';
 import { GET_CATCHES } from '../gql/gql';
 import { Icon } from 'semantic-ui-react';
 import CatchCard from '../components/CatchCard';
 import GoogleMap from '../components/GoogleMap';
-import useGeolocation from '../utilities/useGeolocation';
+import LoaderFish from '../components/LoaderFish';
+import { useGeolocation } from '../utilities/useGeolocation';
 import '../App.css';
-import { isNonEmptyArray } from '@apollo/client/utilities';
 
   // create custom control elements to send to our map
   // create a custom button for our map to get location
@@ -21,15 +21,6 @@ import { isNonEmptyArray } from '@apollo/client/utilities';
 const UserCatchesMap = props => {
   
   const { user } = useContext(AuthContext);
-
-  const { loading: loadingUserCatches, error: userCatchesError, data: userCatchesData } = useQuery(GET_CATCHES, {
-    variables: { catchesToReturn: 100, userId: user.id },
-    fetchPolicy: 'cache-and-network'
-  });
-  
-  // if (userCatchesData && !useRef.current) {
-  //   console.log(userCatchesData);
-  // }
   
   const [highlightedCatch, setHighlightedCatch] = useState(null);
   
@@ -56,35 +47,102 @@ const UserCatchesMap = props => {
   const [speciesList, setSpeciesList] = useState([]);
 
   // state to hold selected filters
-  const [filters, setFilters] = useState({ species: [] });
-  const [filteredCatches, setFilteredCatches] = useState([]);
+  const defaultFilters = {apply: false, isDefault: true, species: [], catchDate: 'ALL'};
+  const [filters, setFilters] = useState(defaultFilters);
+  const [filteredCatches, setFilteredCatches] = useState(null);
+
+  // array to hold controls that will be added on mount
+  const controls = [];
+  // create a controls array to pass to the GoogleMap component
+  controls.push({ position: 'RIGHT_CENTER', element: getCurrentLocationButton, listeners: [{event: 'click', callback: handleGetLocationButtonClick}] });
+
+  // state to check when loader is loaded so we know when to render our map and autocomplete components
+  const [apiStatus, setApiStatus] = useState({errors: null, loading: true});
+  // pass this as a prop to our--initial value is default center, and the map center will always auto update if we set coords here
+  const [center, setCenter] = useState({ lat: 33.4672, lng: -117.6981 }); 
+
+  
+  // our query
+  const { loading: loadingUserCatches, error: userCatchesError, data: userCatchesData } = useQuery(GET_CATCHES, {
+    variables: { catchesToReturn: 100, userId: user.id },
+    //  fetchPolicy: 'cache-and-network'
+    onCompleted: ({ getCatches }) => setFilteredCatches(getCatches)
+  });
 
 
-  // useEffect for when we get catch data from server
+
+  // once filteredCatches is initialized with whole dataset, load the map and generate the catch cards and inital marker set 
   useEffect(() => {
+    // wait until there's catch data before loading the map
+    if (filteredCatches && filteredCatches.length > 0 && apiStatus.loading === true) {
+      console.log('loading API');
+      // load script on mount and set status of load accordingly
+      const loader = new Loader({
+        // apiKey: `${process.env.REACT_APP_GOOGLE_API_KEY}`,
+        version: "weekly",
+        libraries: ["places"],
+      });
+      
+      loader.load()
+        .then(() => {
+          console.log('API loaded')
+          // set our status to loaded so we know when to render dependent components
+          setApiStatus({loading: false, errors: null});
+          // get our position
+          getPosition();
+          // generate markers on the map for our catches
+          generateMarkers(filteredCatches);
+          // set our map bounds based on the catches
+          const bounds = calculateBounds(filteredCatches);
+          if (bounds) {
+            mapRef.current.fitBounds(bounds, 50);
+          }
 
-    if (userCatchesData) {
+        })
+        .catch (err => {
+          console.log(err);
+          setApiStatus({loading: false, errors: err});
+        });
+    }
+  }, [setApiStatus, filteredCatches, getPosition, apiStatus]);
+    
+  // once we get once filtered catches is initialized with the original query data, create the species list and catch card refs
+  useEffect(() => {
+    if (userCatchesData && filteredCatches) {
       // create refs for our catch cards the first time we get the data
       if (Object.keys(catchCardRefs.current).length === 0) {
         console.log('creating refs');
-        userCatchesData.getCatches.map(thisCatch => catchCardRefs.current[thisCatch.id] = createRef());
+        filteredCatches.map(thisCatch => catchCardRefs.current[thisCatch.id] = createRef());
       }
       // populate our species list if we haven't already
-      if (speciesList.length === 0 && userCatchesData.getCatches.length > 0){
+      if (speciesList.length === 0 && filteredCatches.length > 0){
         const species = [];
         // create list of unique species from catch cards
-        userCatchesData.getCatches.forEach(catchObj => {
+        filteredCatches.forEach(catchObj => {
           if (species.indexOf(catchObj.species) < 0) {
             species.push(catchObj.species);
           }
         });
         setSpeciesList(species);
       }
-      // initialize our filteredCatches to the catches
-      setFilteredCatches(userCatchesData.getCatches);
     }
-  }, [userCatchesData, catchCardRefs, speciesList, setFilteredCatches])
+  }, [userCatchesData, catchCardRefs, speciesList, filteredCatches])  
 
+    // add listener to close info windows 
+    useEffect(() => {
+      if(mapRef.current) {
+        console.log('adding map click listener for window close')
+        // window.google.maps.event.clearListeners(mapRef.current, 'click');
+        mapRef.current.addListener('click', e => {
+          console.log('map click event listener')
+          if (infoWindowRef.current) {
+            infoWindowRef.current.close();
+          }
+          // unhighlight catch
+          setHighlightedCatch(null);
+        });
+      }
+    }, [mapRef.current, infoWindowRef]);
 
   // useEffect to scroll to the highlighted catch when it gets updated from marker click
   useEffect(() => {
@@ -100,107 +158,40 @@ const UserCatchesMap = props => {
     }
   }, [highlightedCatch])
 
- 
-    // array to hold controls that will be added on mount
-    const controls = [];
-    // create a controls array to pass to the GoogleMap component
-    controls.push({ position: 'RIGHT_CENTER', element: getCurrentLocationButton, listeners: [{event: 'click', callback: handleGetLocationButtonClick}] });
-  
-    // state to check when loader is loaded so we know when to render our map and autocomplete components
-    const [apiStatus, setApiStatus] = useState({errors: null, loading: true});
-    // pass this as a prop to our--initial value is default center, and the map center will always auto update if we set coords here
-    const [center, setCenter] = useState({ lat: 33.4672, lng: -117.6981 });
-    
-  
-    
-      useEffect(() => {
-      // wait until there's catch data before loading the map
-      if (filteredCatches.length > 0 && apiStatus.loading === true) {
-        // load script on mount and set status of load accordingly
-        const loader = new Loader({
-          // apiKey: `${process.env.REACT_APP_GOOGLE_API_KEY}`,
-          version: "weekly",
-          libraries: ["places"],
-        });
-        
-        loader.load()
-          .then(() => {
-            console.log('API loaded')
-            // set our status to loaded so we know when to render dependent components
-            setApiStatus({loading: false, errors: null});
-            // get our position
-            getPosition();
-            console.log(filteredCatches);
-            // generate markers on the map for our catches
-            generateMarkers(filteredCatches);
 
-            // set our map bounds based on the catches
-            const bounds = calculateBounds(filteredCatches);
-            console.log(bounds);
-            if (bounds) {
-              mapRef.current.fitBounds(bounds, 50);
-            }
 
-          })
-          .catch (err => {
-            console.log(err);
-            setApiStatus({loading: false, errors: err});
-          });
-      }
-    }, [setApiStatus, filteredCatches, getPosition, apiStatus]);
-  
-  
 
-    // useEffect to monitor our geoloation position when updated from any getPosition() calls
-    useEffect(() => {
-      console.log('position update detected in useEffect');
-      // check if we have a position
-      if (geolocationStatus.position) {      
-        setCenter(geolocationStatus.position);      
-      }
-      if (geolocationStatus.errorMessage) {
-        console.log('processing geolocation errors')
-        if (infoWindowRef.current) {
-          infoWindowRef.current.close();
-        }
-        infoWindowRef.current = new window.google.maps.InfoWindow({
-          content: `<div id="content">
-          <div><b>Location error</b></div><br/>
-            <div>${geolocationStatus.errorMessage}</div>
-            </div>`,
-        });
-        infoWindowRef.current.setPosition(mapRef.current.getCenter());
-        infoWindowRef.current.open(mapRef.current);
-      }
-    }, [geolocationStatus.position, geolocationStatus.errorMessage, mapRef, infoWindowRef])
-  
-  
-  // add listener to close info windows on map click
+  // useEffect to monitor our geoloation position when updated from any getPosition() calls and center the map to position
   useEffect(() => {
-    console.log('adding listener')
-    if(mapRef.current) {
-      // window.google.maps.event.clearListeners(mapRef.current, 'click');
-      mapRef.current.addListener('click', e => {
-        console.log('map click event listener')
-        if (infoWindowRef.current) {
-          infoWindowRef.current.close();
-        }
-        // unhighlight catch
-        setHighlightedCatch(null);
-      });
+    console.log('position update detected in useEffect');
+    // check if we have a position
+    if (geolocationStatus.position) { 
+      console.log(geolocationStatus.position)     
+      mapRef.current.setCenter(geolocationStatus.position);      
     }
-  }, [mapRef, infoWindowRef]);
-    
+    if (geolocationStatus.errorMessage) {
+      console.log('processing geolocation errors')
+      if (infoWindowRef.current) {
+        infoWindowRef.current.close();
+      }
+      infoWindowRef.current = new window.google.maps.InfoWindow({
+        content: `<div id="content">
+        <div><b>Location error</b></div><br/>
+          <div>${geolocationStatus.errorMessage}</div>
+          </div>`,
+      });
+      infoWindowRef.current.setPosition(mapRef.current.getCenter());
+      infoWindowRef.current.open(mapRef.current);
+    }
+  }, [geolocationStatus.position, geolocationStatus.errorMessage, mapRef, infoWindowRef, setCenter])
+
   
+
 
   // handler for the location button click on map
   function handleGetLocationButtonClick(event) {
     getPosition();
   }
-
-
-
-
 
   // handler for when user clicks a catch card
   const handleCatchCardClick = (e, catchId) => {
@@ -211,23 +202,12 @@ const UserCatchesMap = props => {
     console.log(marker);
     if (marker) {
       window.google.maps.event.trigger( marker, 'click' );
-      // open the label for this marker
-      // console.log(marker.getLabel())
-      // center the map on this catch's marker
-      // console.log(marker.getPosition());
-      // setCenter(marker.getPosition());
     }
-
-    
   };
 
 
   if (userCatchesError) console.log(userCatchesError);
 
-  const refCallback = (e, id) => {
-    catchCardRefs.current[id] = e; 
-    console.log(e);
-  }
 
   // calculate our map bounds based on the catch data so we can contain the data within the map
   function calculateBounds(catchData) {
@@ -270,12 +250,12 @@ const UserCatchesMap = props => {
     infoWindowRef.current = null;
     
 
-
+    const calicoURL = 'http://localhost:3000/img/icons/Calico-Bass-3840-1920.svg'
     const calicoURL2='http://localhost:3000/img/icons/Calico-Bass-3840-1920-test.png'
     // const URLSVG = 'http://localhost:3000/img/icons/svg-icon.svg';
 
     const calicoMarker = {
-      url: calicoURL2,
+      url: calicoURL,
       scaledSize: new window.google.maps.Size(30*1.97642436149, 30),
       // scaledSize: new window.google.maps.Size(40, 20)
     }
@@ -353,44 +333,129 @@ const UserCatchesMap = props => {
     }
   }
 
+  // update our filters object when the user clicks a filter
   const handleFilterClick = (e, property) => {
-    e.stopPropagation();
+    // property is passed as an argument to the onClick handler from the filter button component
+    // clear all filters 
+    if (property === 'clear') {
+      return setFilters({...defaultFilters, apply: true});
+    }
     const valueToFilter = e.target.name;
-    console.log(valueToFilter);
-    console.log(filters.species.indexOf(valueToFilter))
-    // if we only add filters, then we can filter the filtered data
-    let filterFromFullDataset = false; 
     // handle species filters
     if (property === 'species') {
+      // prevent a species filter click from closing the dropdown so the user can select multiple species
+      e.stopPropagation();
       if (filters.species.indexOf(valueToFilter) > -1) {
         // species already being filtered, toggle it off
         console.log('found')
-        filterFromFullDataset = true;
         let newSpeciesArray = filters.species.slice();
         console.log(filters.species.indexOf(valueToFilter))
         newSpeciesArray.splice(filters.species.indexOf(valueToFilter), 1);
-        setFilters(prevFilters => ( { ...prevFilters, species: newSpeciesArray} ));
+        setFilters(prevFilters => ( { ...prevFilters, apply: true, species: newSpeciesArray} ));
       } else {
-        setFilters(prevFilters => ({ ...prevFilters, species: [...prevFilters.species, valueToFilter]}));
+        setFilters(prevFilters => ({ ...prevFilters, apply: true, species: [...prevFilters.species, valueToFilter]}));
       }
     }
-    console.log(filters);
+    if (property === 'catchDate') {
+      // dont change filters if we click the same date so we dont refilter the data for no reason
+      if (filters.catchDate !== e.target.name ){
+        setFilters(prevFilters => ({ ...prevFilters, apply: true, catchDate: e.target.name }))
+      }
+    }
   }
 
-  return (
-    <div className='home-page' style={{padding: 20}}>
-      <div style={{display: 'flex', height: '100%', overflow: 'hidden'}}>
-        <div >
-          {loadingUserCatches && <h1>Loading catch data...</h1>}
-          {userCatchesError && <h1>Sorry, failed to load catch data from server. Please try again later...</h1>}
-          {filteredCatches && 
-            <div style={{display: 'flex'}}>
-            <div className='map-container' style={{display: 'flex', flexDirection: 'column', width: 600, height: 600}}>
-              <div id='map' ref={mapContainerRef}/>
-                {apiStatus.loading && <h1>Loading map</h1>}
+  // useEffect to handle filtering catches when filters change
+  useEffect(() => {
+    // check that apply is true to prevent running before user sets a filters
+    if (filters.apply) {
+      console.log('applying filters')
+      let filteredData = [];
+      // hide all markers
+      catchMarkersRef.current.forEach(markerRef => markerRef.marker.setMap(null));
+      // SPECIES FILTERS
+      if (filters.species.length > 0) {
+        console.log('applying species filters')
+        userCatchesData.getCatches.map(catchObj => {
+          // each catch against the species filter array and push species that match into the filtered data array
+          if (filters.species.indexOf(catchObj.species) >-1) {
+            filteredData.push(catchObj);
+          }
+        });
+      } else {
+        // no species filters, so pass all catch data onto the next set of filters
+        filteredData = [...userCatchesData.getCatches];
+      }
 
-              { // display our google API components only if the script has loaded without errors
-                (!apiStatus.loading && !apiStatus.errors) && 
+      // DATE FILTERS
+      if (filters.catchDate === 'TODAY'){
+        const now = new Date();
+        filteredData = filteredData.filter(catchObj => {
+          const catchDate = new Date(catchObj.catchDate);
+          return (catchDate.getDate() === now.getDate() && catchDate.getMonth() === now.getMonth() && catchDate.getFullYear() === now.getFullYear());
+        }); 
+      }
+      if (filters.catchDate === 'WEEK') {
+        const now = DateTime.now();
+        filteredData = filteredData.filter(catchObj => {
+          const catchDate = DateTime.fromMillis(Date.parse(catchObj.catchDate));
+          return (Interval.fromDateTimes(catchDate, now).toDuration('days').toObject().days <= 7);
+        });
+      }
+      if (filters.catchDate === 'MONTH') {
+        const now = DateTime.now();
+        filteredData = filteredData.filter(catchObj => {
+          const catchDate = DateTime.fromMillis(Date.parse(catchObj.catchDate));
+          return (Interval.fromDateTimes(catchDate, now).toDuration('months').toObject().months <= 1);
+        });
+      }
+      if (filters.catchDate === 'YEAR') {
+        const now = DateTime.now();
+        filteredData = filteredData.filter(catchObj => {
+          const catchDate = DateTime.fromMillis(Date.parse(catchObj.catchDate));
+          return (Interval.fromDateTimes(catchDate, now).toDuration('years').toObject().years <= 1);
+        });
+      }
+
+      // show the markers for our filtered catches
+      filteredData.forEach(catchObj => {
+        const { marker } = catchMarkersRef.current.find(ref => ref.id === catchObj.id);
+        marker.setMap(mapRef.current);
+      })
+      // re center our map with bounds based on new markers
+      if (filteredData.length > 0) {
+        const bounds = calculateBounds(filteredData);
+        mapRef.current.fitBounds(bounds, 50);
+      }
+      setFilteredCatches(() => filteredData);
+
+      // set our default property so we know whether to activate the clear filters button, and set apply to false so we don't trigger refilter
+      if (filters.species.length === 0 && filters.catchDate === 'ALL'){
+        console.log('default')
+        setFilters(prevFilters => ({ ...prevFilters, isDefault: true, apply: false }))
+      } else {
+        console.log('not default')
+        setFilters(prevFilters => ({ ...prevFilters, isDefault: false, apply: false }))
+      }
+    }
+
+  }, [filters, setFilteredCatches, setFilters, userCatchesData, catchMarkersRef.current]);
+
+
+
+  return (
+      <div style={{display: 'flex', height: '100%', paddingRight: 80}}>
+            <div className='map-container'>
+              <div id='map' ref={mapContainerRef} style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                {(apiStatus.loading || loadingUserCatches) && (
+                  <div>
+                    <LoaderFish />
+                    {!filteredCatches && <div>Loading Catch Data...</div>}
+                    {apiStatus.loading && <div>Loading Catch Map...</div>}
+                    {userCatchesError && <div>Sorry, failed to load catch data from server. Please try again later...</div>}
+                  </div>
+                )}
+              </div>
+              {(!apiStatus.loading && !apiStatus.errors) && 
                 <div>
                   <GoogleMap 
                     mapRef={mapRef} 
@@ -401,62 +466,98 @@ const UserCatchesMap = props => {
                   />
                 </div>
               }
-              {/* <button type='button' onClick={handleTestButtonClick} >test</button> */}
             </div>
-          </div>
-          }
-        </div>
+        
         {/* RIGHT SIDE WITH CATCH CARDS AND FILTER OPTIONS */}
-        <div style={{marginLeft: 20, height: 600, display: 'flex', flexDirection: 'column'}}>
-
-          <div style={{padding: '0px 0px 10px 10px', display: 'flex'}}>
+        <div style={{height: 800, display: filteredCatches ? 'flex' : 'none', flexDirection: 'column'}}>
+          {/* CONTAINER FOR FILTER MENU*/}
+          <div style={{paddingLeft: 10, display: 'flex'}}>
             {/* FILTER MENU */}
             <div className='dropdown-menu'>
                 <button onClick={toggleDropdown}>
                   <span>Filters</span> 
                   <Icon style={{marginRight: '0px', marginLeft: 'auto'}} size='small' name='triangle down'/></button>
                 <ul style={{display: showFilterMenu ? 'block' : 'none'}}>
-                {speciesList.length > 0 &&  
-                  <li style={{position: 'relative'}}>
-                    <span>Species</span>
-                    <Icon style={{marginRight: '0px', marginLeft: 'auto'}} size='small' name='triangle right'/>
-                    <ul className='species-list' style={{position: 'absolute', top: 0, left: '100%'}}>
-                      {/* SPECIES FILTER BUTTONS */}
-                        <li>
-                        {filters.species.length > 0 ?
-                          <button onClick={e => {e.stopPropagation(); setFilters(prevFilers => ({ ...prevFilers, species: [] }))}} className='species-button'>
-                            Clear species filters
-                          </button>
-                          :
-                          <button className='species-button' style={{backgroundColor: 'white'}}>Select species</button>
+                  <li>
+                    <button style={filters.isDefault ? {backgroundColor: 'white'} : {}} disabled={filters.isDefault} onClick={(e) => handleFilterClick(e, 'clear')} className='species-button'>
+                      {filters.isDefault ? 'Select filters' : 'Clear Filters'}
+                    </button>                    
+                  </li>
+                  <hr style={{margin: 0}} />
+                  {speciesList.length > 0 &&  
+                    <li style={{position: 'relative'}}>
+                      <span>Species</span>
+                      <Icon style={{marginRight: '0px', marginLeft: 'auto'}} size='small' name='triangle right'/>
+                      <ul className='species-list' style={{position: 'absolute', top: 0, left: '100%'}}>
+                        {/* SPECIES FILTER BUTTONS */}
+                          <li>
+                          {filters.species.length > 0 ?
+                            <button onClick={() => {setFilters(prevFilers => ({ ...prevFilers, species: [] }))}} className='species-button'>
+                              Clear species filters
+                            </button>
+                            :
+                            <button className='species-button' style={{backgroundColor: 'white'}}>Select species</button>
+                          }
+                          </li>
+                        <hr style={{margin: 0, padding: 0}} />
+                        {speciesList.map(species => 
+                          <li key={species}>
+                            <button onClick={e => handleFilterClick(e, 'species')} name={species} className='species-button'>
+                              {species}
+                              <Icon style={{display: filters.species.indexOf(species) > -1 ? '' : 'none', marginLeft: 'auto'}} name='check circle outline' color='green' />
+                            </button>
+                          </li>
+                        )
                         }
-                        </li>
-                      <hr style={{margin: 0, padding: 0}} />
-                      {speciesList.map(species => 
-                        <li key={species}>
-                          <button onClick={e => handleFilterClick(e, 'species')} name={species} className='species-button'>
-                            {species}
-                            <Icon style={{display: filters.species.indexOf(species) > -1 ? '' : 'none', marginLeft: 'auto'}} name='check circle outline'/>
+                      </ul>
+                    </li>
+                  }
+                  <li style={{position: 'relative'}}>
+                    <span>Catch date</span>
+                    <Icon style={{marginRight: '0px', marginLeft: 'auto'}} size='small' name='triangle right'/>
+                    <ul className='catch-date' style={{position: 'absolute', top: 0, left: '100%', minWidth: 175}}>
+                        <li>
+                          <button onClick={e => handleFilterClick(e, 'catchDate')} name='ALL' className='species-button'>
+                            All dates
+                            <Icon style={{display: filters.catchDate === 'ALL' ? '' : 'none', marginLeft: 'auto'}} name='check circle outline' color='green' />
                           </button>
                         </li>
-                      )
-                      }
+                        <li>
+                          <button onClick={e => handleFilterClick(e, 'catchDate')} name='TODAY' className='species-button'>
+                              Today
+                              <Icon style={{display: filters.catchDate === 'TODAY' ? '' : 'none', marginLeft: 'auto'}} name='check circle outline' color='green' />
+                          </button>
+                        </li>
+                        <li>
+                          <button onClick={e => handleFilterClick(e, 'catchDate')} name='WEEK' className='species-button'>
+                              Past week
+                              <Icon style={{display: filters.catchDate === 'WEEK' ? '' : 'none', marginLeft: 'auto'}} name='check circle outline' color='green' />
+                          </button>
+                        </li>
+                        <li>
+                          <button onClick={e => handleFilterClick(e, 'catchDate')} name='MONTH' className='species-button'>
+                              Past month
+                              <Icon style={{display: filters.catchDate === 'MONTH' ? '' : 'none', marginLeft: 'auto'}} name='check circle outline' color='green' />
+                          </button>
+                        </li>                    
+                        <li>
+                          <button onClick={e => handleFilterClick(e, 'catchDate')} name='YEAR' className='species-button'>
+                              Past Year
+                              <Icon style={{display: filters.catchDate === 'YEAR' ? '' : 'none', marginLeft: 'auto'}} name='check circle outline' color='green' />
+                          </button>
+                        </li>       
                     </ul>
                   </li>
-                }
-                  <li>Catch date</li>
                 </ul>
             </div>
-            {/* <div className='catch-filter-display' style={{marginLeft: 10, flexGrow: 1}}>{JSON.stringify(filters)}</div> */}
           </div>
 
 
-          <div style={{padding: '0px 10px', width: 350, minWidth: 250, flexShrink: 1, overflowY: 'scroll'}}>
+          <div style={{padding: '0px 10px', marginTop: 20, width: 325, overflowY: 'scroll'}}>
           { filteredCatches && Object.keys(catchCardRefs.current).length > 0 && filteredCatches.map(thisCatch => 
-            (<div ref={catchCardRefs.current[thisCatch.id]}>
+            (<div key={thisCatch.id} ref={catchCardRefs.current[thisCatch.id]}>
               <CatchCard
                 style={{margin: '10px 0px'}}
-                key={thisCatch.id}
                 hideMenu={true} 
                 onClick={e => handleCatchCardClick(e, thisCatch.id)} 
                 highlight={highlightedCatch===thisCatch.id}
@@ -464,11 +565,13 @@ const UserCatchesMap = props => {
               />
             </div>)
             )
-            }
+          } {
+            filteredCatches && filteredCatches.length === 0 && <h1>No results with current filters</h1>
+          }
           </div>
         </div>
       </div>
-    </div>
+
   );
 };
 
@@ -479,6 +582,27 @@ const UserCatchesMap = props => {
 export default UserCatchesMap;
 
 /*
+
+
+//   const GET_SPECIES = gql`
+//   query Catch($species: String!) {
+//     Catch(species: $species) {
+//       id
+//     }
+//   }
+// `;
+
+  // const { loading: testLoading, error: testError, data: testData } = useQuery(GET_SPECIES, {
+  //   variables: { species: 'Striped Bass' },
+  //   fetchPolicy: 'cache-and-network'
+  // });
+
+  // if (testData) console.log(testData);
+  
+  // if (userCatchesData && !useRef.current) {
+  //   console.log(userCatchesData);
+  // }
+  
 
                       <li><button className='species-button'>Yellowtail</button></li>
                       <li><button className='species-button'>Striper</button></li>

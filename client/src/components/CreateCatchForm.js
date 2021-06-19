@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import { AuthContext } from '../context/auth';
 import { Card, Form } from 'semantic-ui-react';
 import { Loader } from "@googlemaps/js-api-loader"
-import useGeolocation from '../utilities/useGeolocation';
+import { useGeolocation } from '../utilities/useGeolocation';
 import { useMutation } from '@apollo/client';
 import { CREATE_CATCH } from '../gql/gql'
 import { useForm } from '../utilities/hooks';

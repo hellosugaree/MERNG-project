@@ -61,17 +61,17 @@ const MapCatches = props => {
         setApiStatus({loading: false, errors: null});
         // get our position
         getPosition();
-        const calicoURL='http://localhost:3000/img/icons/Calico-Bass-3840-1920.svg';
-        const calicoURL2='http://localhost:3000/img/icons/Calico-Bass-3840-1920-test.png'
-        const URLSVG = 'http://localhost:3000/img/icons/svg-icon.svg';
-        const URLBiter = 'http://localhost:3000/img/icons/Biter-SVG-3840-1920.svg';
-        const svgMarker = {
-          url: URLSVG,
-          scaledSize: new window.google.maps.Size(20*1.97642436149, 20),
-          // scaledSize: new window.google.maps.Size(40, 20)
-        }
+        // const calicoURL='http://localhost:3000/img/icons/Calico-Bass-3840-1920.svg';
+        // const calicoURL2='http://localhost:3000/img/icons/Calico-Bass-3840-1920-test.png'
+        // const URLSVG = 'http://localhost:3000/img/icons/svg-icon.svg';
+        // const URLBiter = 'http://localhost:3000/img/icons/Biter-SVG-3840-1920.svg';
+        // const svgMarker = {
+        //   url: URLSVG,
+        //   scaledSize: new window.google.maps.Size(20*1.97642436149, 20),
+        //   // scaledSize: new window.google.maps.Size(40, 20)
+        // }
         const calicoMarker = {
-          url: calicoURL2,
+          url: calicoURL,
           scaledSize: new window.google.maps.Size(30*1.97642436149, 30),
           // scaledSize: new window.google.maps.Size(40, 20)
         }

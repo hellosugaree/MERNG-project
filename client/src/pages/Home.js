@@ -1,23 +1,28 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { Route, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { Grid, Card, Dropdown } from 'semantic-ui-react';
+import { Icon, Card, Dropdown, TextArea } from 'semantic-ui-react';
+
+
 import PostFeed from '../components/PostFeed';
 import CatchFeed from '../components/CatchFeed';
 import WeatherFeed from '../components/WeatherFeed';
+import LoaderFish from '../components/LoaderFish';
+import DoubleFeed from '../components/DoubleFeed';
+import UserCatchesMap from '../pages/UserCatchesMap';
+import BeachAccessLocations from '../components/BeachAccessLocations';
 
 import { FETCH_POSTS_QUERY, GET_CATCHES, GET_USER_BASIC_DATA } from '../gql/gql';
-import '../App.css';
 import { AuthContext } from '../context/auth';
 import { DateTime } from 'luxon';
-import BeachAccessLocations from '../components/BeachAccessLocations';
+import '../App.css';
 
 
 
 function Home(props) {
+
   const { user } = useContext(AuthContext);
 
-  
-  
   const { loading: loadingUserStats, error: userStatsError, data: userStatsData } = useQuery(GET_USER_BASIC_DATA, {
     variables: { userId: user.id }, onError: (err) => console.log(err)
   } );
@@ -25,6 +30,8 @@ function Home(props) {
   const { loading: loadingUserCatches, error: userCatchesError, data: userCatchesData } = useQuery(GET_CATCHES, {
     variables: { catchesToReturn: 100, userId: user.id }
   });
+ 
+
 
   const { loading, error, data } = useQuery(FETCH_POSTS_QUERY);
 
@@ -47,14 +54,37 @@ function Home(props) {
   }
 */
 
+  // used for our route-specific styling
+  const path = props.location.pathname;
+  // style for our active sidebar button
+  const activeSideBarButtonStyle = {
+    // backgroundColor: '#F4FDFF',
+    boxShadow: 'none',
+    color: 'teal'
+  }
+
 
   const handleSidebarClick = (event) => {
-    console.log(event.target.name);
     if (event.target.name==='logCatch') {
       // props.history.push('/logcatch');
       // toggle showLogCatch
       setDisplayOptions(prevOptions => ({ ...prevOptions, showCreateCatch: !prevOptions.showCreateCatch }));
     }
+    switch (event.target.name) {
+      case 'userCatchMap':
+        props.history.push('/user/catchmap');
+      break;
+      case 'home':
+        props.history.push('/');
+      break;
+      case 'weather':
+        props.history.push('/weather');
+      break;
+    }
+
+
+
+    console.log(props.location.pathname);
   };
 
   // update our biggest catch if user logs a bigger catch
@@ -133,30 +163,18 @@ function Home(props) {
   return (
   
     <div className='home-page'>
-      <div className='home-page-outer-flex-container' style={{display: 'flex', height: '100%'}}>
         {/* SIDEBAR PANEL */}
 
-        <div className='sidebar-flex-container' style={{display: 'flex', padding: 10}} >
-          {/* Render different sidebar when user not logged in */}
-          {!user && (
-            <Grid.Row>
-              <h1 className='page-title'>logged out</h1>
-            </Grid.Row>
-          )}
-          {user && (
-          <div>         
-            <Grid.Row>
-              {/* LOGGED IN SIDEBAR MENU */}
-              <div className='vertical-menu-container'>           
-                <Grid.Row>
+        <div className='home-page-side-bar'>
                   {/* USER STATS CARD */}
-                  <Card style={{marginBottom: 15}}>
+                  <Card fluid style={{marginBottom: 15}}>
                   <Card.Content>
+                  {(!(userStatsData && userCatchesData ) && !(userCatchesError || userStatsError)) && <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}><LoaderFish/></div>}
                   {userStatsError && <Card.Header>Failed to load user stats</Card.Header>}
                   {userCatchesError && <Card.Header>Failed to load user catches</Card.Header>}
                   {loadingUserStats && (<Card.Header>Loading user stats</Card.Header>)}
                   {loadingUserCatches && (<Card.Header>Loading user catches</Card.Header>)}
-                  {userStatsData && (
+                  {userStatsData &&  userCatchesData && (
                     <>
                     <Card.Header>Your stats</Card.Header>
                     <Card.Meta>Joined Fishsmart {DateTime.fromMillis(Date.parse(userStatsData.getUser.createdAt)).toRelative()}</Card.Meta>
@@ -164,15 +182,41 @@ function Home(props) {
                     {userHasBiggestCatch && <Card.Description>Biggest catch {biggestCatch} inches</Card.Description>}
                     {userStatsData.getUser.catches.length > 0 && (
                       <Card.Description style={{marginTop: 10}}>
-                        <a href='/mapcatches' >Show catch map</a>
+                        <Link to='/user/catchmap'>Show catch map</Link>
                       </Card.Description>
                     )}
                     </>
                   )}
                   </Card.Content>
                   </Card>
-                </Grid.Row>
-                <Grid.Row>
+
+                  <button type='button' name='home' 
+                    className='side-bar-menu-button' 
+                    onClick={handleSidebarClick}
+                    style={path === '/' ? activeSideBarButtonStyle : {}}
+                  >
+                    <Icon name='home' style={{marginRight: 10}} />
+                    Home
+                  </button>
+                  {userStatsData && userStatsData.getUser.catches.length > 0 &&
+                    <button type='button' name='userCatchMap' 
+                    className='side-bar-menu-button' 
+                    onClick={handleSidebarClick}
+                    style={ path === '/user/catchmap' ? {... activeSideBarButtonStyle} : {} }
+                    >
+                      <Icon name='map marker alternate' style={{marginRight: 10}} />                    
+                      My Catches
+                    </button>
+                  }
+                  <button type='button' name='weather' 
+                    className='side-bar-menu-button' 
+                    onClick={handleSidebarClick}
+                    style={path === '/weather' ? activeSideBarButtonStyle : {}}
+                  >
+                    <Icon name='sun' style={{marginRight: 10}} />
+                    Weather
+                  </button>
+
                   <button type='button' name='logCatch' 
                     className='side-bar-menu-button' 
                     onClick={handleSidebarClick}>
@@ -183,21 +227,37 @@ function Home(props) {
                     onClick={() => console.log(user)}>
                     test log
                   </button>
-                </Grid.Row>
+         </div>
 
-              </div>
-            </Grid.Row>
-          </div>
-          )}
+        {/* MAIN CONTENT PANEL */}
+        <div className='home-page-main-content'>
+          <Route exact path='/' component={DoubleFeed} />
+          <Route exact path='/user/catchmap'>
+            {(userStatsData && userStatsData.getUser.catches.length > 0) 
+              ? <UserCatchesMap />
+              : <DoubleFeed  />
+            }
+          </Route>
+          <Route exact path='/catchfeed'><CatchFeed user={user} feedCatchesLoading={feedCatchesLoading} feedCatchesError={feedCatchesError} feedCatchesData={feedCatchesData} displayOptions={displayOptions} /></Route>
+          <Route exact path='/weather' component={WeatherFeed} />
         </div>
 
-        {/* MAIN CONTENT PANEL */}      
-        <div className='main-content-flex-container' style={{display: 'flex', margin: 5, overflowY: 'scroll', flexGrow: 1}}>
-        {/* MAIN CONTENT PANEL HAS A GRID WITH 2 COLUMNS */}
+      
 
-        {/* FIRST MAIN CONTENT COLUMN -- POSTS */}
+
+
+
+
+    </div> 
+  );
+}
+
+export default Home;
+
+/*
+    <div className='main-content-flex-container' style={{display: 'flex', margin: 5, overflowY: 'scroll', flexGrow: 1, border: '1px solid red'}}>
+
         <div className='left-main-content-flex-container' style={{display: 'flex',  flexDirection: 'column', flexGrow: 1, padding: 10, margin: 5}}>
-
           <div style={{display: 'flex', justifyContent: 'center', marginBottom: 15}}>
             <div style={{display: 'flex', flexGrow: 1, maxWidth: 400}}>
               <Dropdown
@@ -212,11 +272,9 @@ function Home(props) {
             </div>
           </div>
           <div style={{}}>
-            {/* RENDER POST FEED IF SELECTED ON DROPDOWN */}
             {leftMainContentPanelDropdownIndex === 0 && (
               <PostFeed user={user} loading={loading} error={error} data={data} />
             )}
-            {/* RENDER CATCH FEED IF SELECTED ON DROPDOWN */}
             {leftMainContentPanelDropdownIndex === 1 && (
               <CatchFeed user={user} feedCatchesLoading={feedCatchesLoading} feedCatchesError={feedCatchesError} feedCatchesData={feedCatchesData} displayOptions={displayOptions}/>
             )}
@@ -227,9 +285,9 @@ function Home(props) {
               <BeachAccessLocations />
             )}
           </div>
+
         </div>
 
-        {/* SECOND MAIN CONTENT COLUMN -- CATCHES */}
         <div className='right-main-content-flex-container' style={{display: 'flex', flexGrow: 1, flexDirection: 'column', padding: 10, margin: 5}}>
 
           <Grid.Row>
@@ -246,12 +304,10 @@ function Home(props) {
               />
             </div>
           </div>
-            </Grid.Row>
-                      {/* RENDER POST FEED IF SELECTED ON DROPDOWN */}
+          </Grid.Row>
           {rightMainContentPanelDropdownIndex === 0 && (
             <PostFeed user={user} loading={loading} error={error} data={data} />
           )}
-          {/* RENDER CATCH FEED IF SELECTED ON DROPDOWN */}
           {rightMainContentPanelDropdownIndex === 1 && (
             <CatchFeed user={user} feedCatchesLoading={feedCatchesLoading} feedCatchesError={feedCatchesError} feedCatchesData={feedCatchesData} displayOptions={displayOptions}/>
           )}
@@ -261,81 +317,6 @@ function Home(props) {
           {rightMainContentPanelDropdownIndex === 3 && (
             <BeachAccessLocations />
           )}    
-        </div>
-    </div>
-      
-    </div> {/* OUTER FLEX CONTAINER */}
-    </div> /* OUTER MAIN CONTAINER */
-  );
-}
-
-export default Home;
-
-
-/*
-
-      <Grid.Row>
-        <h1 className='page-title' >Recent Posts</h1>
-      </Grid.Row>
-
-
-                  <Menu secondary compact vertical>
-              <Menu.Item
-                className='side-bar-menu-item'
-                name='main'
-                content={user.username}
-                onClick={handleSidebarClick}
-              />
-              <Menu.Item
-                className='side-bar-menu-item'
-                name='settings'
-                onClick={handleSidebarClick}
-              />
-            </Menu>
-
-
-      */
-
-// old post feed from main page
-            /* { error && (
-                <Grid.Row>
-                  <h1 className='page-title'>Couldn't connect to database.<br/>Failed to load posts</h1>
-                </Grid.Row>   
-              )}
-              
-             {(user && !loading &&!error) && (
-                <Grid.Row>
-                    <CreatePost />
-                </Grid.Row>
-              )}
-
-              { loading && (
-                <Grid.Row>
-                  <h1 className='page-title'>Loading posts...</h1>
-                </Grid.Row>   
-              )}
-
-            {!loading && (
-              <span >
-                <Grid.Row>
-                <Grid columns={1}>
-                  <Grid.Column textAlign='center'>
-                  <Dropdown
-                    inline
-                    options={postSortOptions}
-                    defaultValue={postSortOptions[0].value}
-                  />
-                  </Grid.Column>
-                </Grid>
-
-                </Grid.Row>
-                <Transition.Group animation='fly right' duration={600}>
-                  {data && data.getPosts.map(post => (
-                    <Grid.Row key={post.id}>
-                      <PostCard post={post} />
-                    </Grid.Row>
-                  ))
-                  }
-                </Transition.Group>
-                </span>
-              )} */
+        </div>   
+</div>
+        */

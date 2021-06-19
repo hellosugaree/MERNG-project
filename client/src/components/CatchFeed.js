@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, Dropdown, Transition } from 'semantic-ui-react';
 import CatchCard from './CatchCard';
 import CreateCatchForm from './CreateCatchForm';
+import LoaderFish from './LoaderFish';
 
 const CatchFeed = (props) => {
 
@@ -35,6 +36,7 @@ const CatchFeed = (props) => {
       
       { props.feedCatchesLoading && (
                 <Grid.Row>
+                  <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}><LoaderFish/></div>
                   <h1 className='page-title'>Loading catches...</h1>
                 </Grid.Row>   
               )}

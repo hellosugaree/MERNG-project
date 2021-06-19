@@ -11,11 +11,11 @@ const GoogleMap = props => {
   // useEffect to update center of map if props.center changes
   useEffect(() => {
     if (props.mapRef.current) {
-      // console.log('setting map center from props');
+      console.log('setting map center from props');
       // console.log(props.center)
       props.mapRef.current.setCenter(props.center);
     }
-  }, [props.center, props.mapRef.current]);
+  }, [props.center, props.mapRef]);
 
   // initialize the map on mount 
   useEffect(() => {
@@ -30,6 +30,7 @@ const GoogleMap = props => {
         center: props.center,
         zoom: props.zoom ? props.zoom : 13,
         ...additionalOptions,
+        ...props.options
       });
       
       // push custom controls onto the form
@@ -44,6 +45,7 @@ const GoogleMap = props => {
         });
       }
 
+    if (props.showCenterMarker){
       // set a new crosshair marker at center of map and add it to state so we can set it as center every time the map moves
       // apply current position status to map
       const circleIcon = { 
@@ -57,10 +59,13 @@ const GoogleMap = props => {
         map: props.mapRef.current,
         icon: circleIcon
       });
+    }
   }
 
   function handleCenterChange() {
-    throttledUpdateCenterMarker();
+    if (props.showCenterMarker){
+      throttledUpdateCenterMarker();
+    }
   }
   
   // function we will throttle to update the center marker when map moves

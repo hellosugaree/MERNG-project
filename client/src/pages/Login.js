@@ -62,6 +62,7 @@ function Login(props) {
             placeholder='Username' 
             type="text"
             name='username'
+            autocomplete='username'
             value={values.username}
             onChange={handleChange}
             error={errors.errorFields && errors.errorFields.username}
@@ -69,7 +70,7 @@ function Login(props) {
           <Form.Input required label='Password' placeholder='Password' 
             type="password"
             name='password'
-            autoComplete='current-password'
+            autocomplete='current-password'
             value={values.password}
             onChange={handleChange}
             error={errors.errorFields && errors.errorFields.password}

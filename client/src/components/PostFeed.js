@@ -2,7 +2,7 @@ import React from 'react';
 import { Dropdown, Transition } from 'semantic-ui-react';
 import PostCard from './PostCard';
 import CreatePost from './CreatePost';
-
+import LoaderFish from './LoaderFish';
 const PostFeed = (props) => {
 
   const postSortOptions = [
@@ -37,6 +37,7 @@ const PostFeed = (props) => {
 
               { props.loading && (
                 <div className='grid-row'>
+                  <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}><LoaderFish/></div>
                   <h1 className='page-title'>Loading posts...</h1>
                 </div>   
               )}

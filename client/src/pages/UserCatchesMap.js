@@ -1,14 +1,15 @@
 import React, { useContext, useEffect, useState, useRef, createRef } from 'react';
-import { Loader } from "@googlemaps/js-api-loader"
 import { DateTime, Interval } from 'luxon';
 import { AuthContext } from '../context/auth';
 import { useQuery } from '@apollo/client';
+import { useGoogleMap } from '../utilities/hooks';
 import { GET_CATCHES } from '../gql/gql';
 import { Icon } from 'semantic-ui-react';
 import CatchCard from '../components/CatchCard';
 import GoogleMap from '../components/GoogleMap';
 import LoaderFish from '../components/LoaderFish';
-import { useGeolocation } from '../utilities/useGeolocation';
+import CreateCatchForm from '../components/CreateCatchForm';
+// import { useGeolocation } from '../utilities/useGeolocation';
 import '../App.css';
 
   // create custom control elements to send to our map
@@ -23,15 +24,18 @@ const UserCatchesMap = props => {
   const { user } = useContext(AuthContext);
   
   const [highlightedCatch, setHighlightedCatch] = useState(null);
-  
+  const [showCreateCatch, setShowCreateCatch] = useState(false);
   
   // get our geolocation hook
-  const { getPosition, geolocationStatus } = useGeolocation();
+  // const { getPosition, geolocationStatus } = useGeolocation();
 
-  // refs for map elements
-  const mapContainerRef = useRef(null);
-  const mapRef = useRef(null);
-  const infoWindowRef = useRef(null);
+  const { loadMap, mapContainerRef, mapRef, infoWindowRef, center, basicControls, apiStatus } = useGoogleMap();
+
+
+  // // refs for map elements
+  // const mapContainerRef = useRef(null);
+  // const mapRef = useRef(null);
+  // const infoWindowRef = useRef(null);
   // array to store our catch markers as references so we can bind events to them and access them later
   // format: { id: <id of the catch>, marker: <the marker for that catch>}
   const catchMarkersRef = useRef([]);
@@ -51,82 +55,80 @@ const UserCatchesMap = props => {
   const [filters, setFilters] = useState(defaultFilters);
   const [filteredCatches, setFilteredCatches] = useState(null);
 
-  // array to hold controls that will be added on mount
-  const controls = [];
-  // create a controls array to pass to the GoogleMap component
-  controls.push({ position: 'RIGHT_CENTER', element: getCurrentLocationButton, listeners: [{event: 'click', callback: handleGetLocationButtonClick}] });
+  // state property that tracks map center via callback passed as props to our map component
+  // value will be passed as prop to create catch form
+  const [currentMapCenter, setCurrentMapCenter] = useState(center);
 
-  // state to check when loader is loaded so we know when to render our map and autocomplete components
-  const [apiStatus, setApiStatus] = useState({errors: null, loading: true});
-  // pass this as a prop to our--initial value is default center, and the map center will always auto update if we set coords here
-  const [center, setCenter] = useState({ lat: 33.4672, lng: -117.6981 }); 
+
 
   
   // our query
   const { loading: loadingUserCatches, error: userCatchesError, data: userCatchesData } = useQuery(GET_CATCHES, {
     variables: { catchesToReturn: 100, userId: user.id },
     //  fetchPolicy: 'cache-and-network'
-    onCompleted: ({ getCatches }) => setFilteredCatches(getCatches)
+    // onCompleted: ({ getCatches }) => setFilteredCatches(getCatches)
   });
 
-
-
-  // once filteredCatches is initialized with whole dataset, load the map and generate the catch cards and inital marker set 
+  // set filtered catches query loaded
   useEffect(() => {
-    // wait until there's catch data before loading the map
-    if (filteredCatches && filteredCatches.length > 0 && apiStatus.loading === true) {
-      console.log('loading API');
-      // load script on mount and set status of load accordingly
-      const loader = new Loader({
-        // apiKey: `${process.env.REACT_APP_GOOGLE_API_KEY}`,
-        version: "weekly",
-        libraries: ["places"],
-      });
-      
-      loader.load()
-        .then(() => {
-          console.log('API loaded')
-          // set our status to loaded so we know when to render dependent components
-          setApiStatus({loading: false, errors: null});
-          // get our position
-          getPosition();
-          // generate markers on the map for our catches
-          generateMarkers(filteredCatches);
-          // set our map bounds based on the catches
-          const bounds = calculateBounds(filteredCatches);
-          if (bounds) {
-            mapRef.current.fitBounds(bounds, 50);
-          }
+    if (loadingUserCatches) console.log('loading catches')
+    if (userCatchesError) console.log('user catches error')
+    if (userCatchesData) {
+      console.log(userCatchesData)
+      // reset filter options
+      setFilters(defaultFilters);
+      setHighlightedCatch(null);
+      setFilteredCatches(userCatchesData.getCatches);
+    }
 
-        })
-        .catch (err => {
-          console.log(err);
-          setApiStatus({loading: false, errors: err});
-        });
-    }
-  }, [setApiStatus, filteredCatches, getPosition, apiStatus]);
-    
-  // once we get once filtered catches is initialized with the original query data, create the species list and catch card refs
+  }, [loadingUserCatches, userCatchesError, userCatchesData ])
+
+
+    // once we get once filtered catches is initialized with the original query data, create the species list and catch card refs
+    useEffect(() => {
+      if (filteredCatches && filteredCatches.length > 0) {
+        // create refs for our catch cards the first time we get the data
+        if (Object.keys(catchCardRefs.current).length === 0) {
+          createCatchCardRefs();
+        }
+        // populate our species list if we haven't already
+        if (speciesList.length === 0 && filteredCatches.length > 0){
+          const species = [];
+          // create list of unique species from catch cards
+          filteredCatches.forEach(catchObj => {
+            if (species.indexOf(catchObj.species) < 0) {
+              species.push(catchObj.species);
+            }
+          });
+          setSpeciesList(species);
+        }
+      }
+    }, [userCatchesData, catchCardRefs, speciesList, filteredCatches, createCatchCardRefs])  
+  
+
+
+
+  // useEffect to load map
   useEffect(() => {
-    if (userCatchesData && filteredCatches) {
-      // create refs for our catch cards the first time we get the data
-      if (Object.keys(catchCardRefs.current).length === 0) {
-        console.log('creating refs');
-        filteredCatches.map(thisCatch => catchCardRefs.current[thisCatch.id] = createRef());
-      }
-      // populate our species list if we haven't already
-      if (speciesList.length === 0 && filteredCatches.length > 0){
-        const species = [];
-        // create list of unique species from catch cards
-        filteredCatches.forEach(catchObj => {
-          if (species.indexOf(catchObj.species) < 0) {
-            species.push(catchObj.species);
-          }
-        });
-        setSpeciesList(species);
+    if (apiStatus.loading && !apiStatus.errors) {
+      console.log('map loder useEffect triggered in UserCatchesMap')
+      loadMap();
+    }
+  }, [apiStatus]);
+
+  // initialize our markers after map load or after form is toggled off
+  useEffect(() => {
+    if (!showCreateCatch && !apiStatus.loading && !apiStatus.errors && mapRef.current && filteredCatches && filteredCatches.length > 0 && catchMarkersRef.current.length === 0) {
+      generateMarkers(filteredCatches);
+      // set our map bounds based on the catches
+      const bounds = calculateBounds(filteredCatches);
+      if (bounds) {
+        mapRef.current.fitBounds(bounds, 50);
       }
     }
-  }, [userCatchesData, catchCardRefs, speciesList, filteredCatches])  
+  }, [showCreateCatch, apiStatus, mapRef, filteredCatches, catchMarkersRef, generateMarkers])
+
+
 
     // add listener to close info windows 
     useEffect(() => {
@@ -146,52 +148,19 @@ const UserCatchesMap = props => {
 
   // useEffect to scroll to the highlighted catch when it gets updated from marker click
   useEffect(() => {
-    if (highlightedCatch) {
-      console.log('useeffect for updated highlight')
+    if (highlightedCatch && Object.keys(catchCardRefs.current).length > 0) {
       // scroll to the highlighted catch
       const card = catchCardRefs.current[highlightedCatch].current;
       if (card) {
         card.scrollIntoView();
-        console.log(card);
       }
       // console.log(card);
     }
-  }, [highlightedCatch])
+  }, [highlightedCatch, catchCardRefs])
 
 
 
 
-  // useEffect to monitor our geoloation position when updated from any getPosition() calls and center the map to position
-  useEffect(() => {
-    console.log('position update detected in useEffect');
-    // check if we have a position
-    if (geolocationStatus.position) { 
-      console.log(geolocationStatus.position)     
-      mapRef.current.setCenter(geolocationStatus.position);      
-    }
-    if (geolocationStatus.errorMessage) {
-      console.log('processing geolocation errors')
-      if (infoWindowRef.current) {
-        infoWindowRef.current.close();
-      }
-      infoWindowRef.current = new window.google.maps.InfoWindow({
-        content: `<div id="content">
-        <div><b>Location error</b></div><br/>
-          <div>${geolocationStatus.errorMessage}</div>
-          </div>`,
-      });
-      infoWindowRef.current.setPosition(mapRef.current.getCenter());
-      infoWindowRef.current.open(mapRef.current);
-    }
-  }, [geolocationStatus.position, geolocationStatus.errorMessage, mapRef, infoWindowRef, setCenter])
-
-  
-
-
-  // handler for the location button click on map
-  function handleGetLocationButtonClick(event) {
-    getPosition();
-  }
 
   // handler for when user clicks a catch card
   const handleCatchCardClick = (e, catchId) => {
@@ -199,7 +168,6 @@ const UserCatchesMap = props => {
     // update state for highlighted catch
     setHighlightedCatch(catchId)
     const { marker } = catchMarkersRef.current.find(ref => ref.id === catchId);
-    console.log(marker);
     if (marker) {
       window.google.maps.event.trigger( marker, 'click' );
     }
@@ -224,8 +192,6 @@ const UserCatchesMap = props => {
         return catchObj.catchLocation.lng;
       }
     });
-    console.log(latitudes);
-    console.log(longitudes);
     // get our max and min lat and lng
     const maxLat = Math.max(...latitudes);
     const minLat = Math.min(...latitudes);
@@ -249,29 +215,67 @@ const UserCatchesMap = props => {
     // clear info window refs
     infoWindowRef.current = null;
     
-
     const calicoURL = 'http://localhost:3000/img/icons/Calico-Bass-3840-1920.svg'
     const calicoURL2='http://localhost:3000/img/icons/Calico-Bass-3840-1920-test.png'
     // const URLSVG = 'http://localhost:3000/img/icons/svg-icon.svg';
 
-    const calicoMarker = {
-      url: calicoURL,
-      scaledSize: new window.google.maps.Size(30*1.97642436149, 30),
-      // scaledSize: new window.google.maps.Size(40, 20)
-    }
+    // const calicoMarker = {
+    //   url: calicoURL,
+    //   scaledSize: new window.google.maps.Size(30*1.97642436149, 30),
+    //   // scaledSize: new window.google.maps.Size(40, 20)
+    // }
 
     // create markers for all our catches
     if (catches && catches.length > 0) {
       catches.forEach((catchObj, index) => {
-        // console.log(catchObj);
+        let markerUrl;
+        // backwards compatibility before locations were required objects
         if (catchObj.catchLocation && typeof catchObj.catchLocation === 'object' ) {
-          // create a new marker
+          // select marker based on species
+          
+          if (catchObj.species.match(/calico|sand bass|spotted bass|sculpin/gi)) {
+            // console.log('calico');
+            markerUrl='http://localhost:3000/img/icons/Calico-Bass-3840-1920.svg';
+          }
+          else if (catchObj.species.match(/rockfish/gi)) {
+            // console.log('rockfish');
+            markerUrl='http://localhost:3000/img/icons/Rockfish-3840-1920.svg';
+          }          
+          else if (catchObj.species.match(/tuna|bonito|yellowfin|yellowtail/gi)) {
+            // console.log('tuna|bonito|yellowfin|yellowtail');
+            markerUrl='http://localhost:3000/img/icons/Yellowfin-3840-1920.svg'
+          }
+          else if (catchObj.species.match(/striper|striped bass|stripper/gi)) {
+            // console.log('striper|striped bass|stripper');
+            markerUrl='http://localhost:3000/img/icons/Striped-Bass-3840-1920.svg'
+          }
+          else if (catchObj.species.match(/shark|leopard|mako|thresher/gi)) {
+            // console.log('shark|leopard');
+            markerUrl='http://localhost:3000/img/icons/Leopard-Shark-3840-1920.svg'
+          } 
+          else if (catchObj.species.match(/halibut|flounder|butt/gi)) {
+            // console.log('halibut|flounder|butt');
+            markerUrl='http://localhost:3000/img/icons/Halibut-3840-1920.svg'
+          }                        
+          else {
+            // console.log('default');
+            markerUrl='http://localhost:3000/img/icons/Calico-Bass-3840-1920.svg';
+          }
+          // create the icon object
+          const catchIcon = {
+            url: markerUrl,
+            scaledSize: new window.google.maps.Size(35*1.97642436149, 35),
+            // scaledSize: new window.google.maps.Size(30*1.97642436149, 30),
+            // scaledSize: new window.google.maps.Size(40, 20)
+          }
+          // create a new marker for this catch
           const catchMarker = new window.google.maps.Marker({
             position: {lat: catchObj.catchLocation.lat, lng: catchObj.catchLocation.lng},
             map: mapRef.current,
-            icon: calicoMarker,
+            icon: catchIcon,
             collisionBehavior: window.google.maps.CollisionBehavior.REQUIRED,
           });
+
           // create an info window for the marker
           const infoDivStyle = 'padding-bottom: 5px; font-size: 16px;'
           const infoJSX = `
@@ -288,7 +292,6 @@ const UserCatchesMap = props => {
           });
           // add a click listener to the info window        
           catchMarker.addListener('click', () => {
-            console.log('marker handling click listener')
             if (infoWindowRef.current) {
               infoWindowRef.current.close();
             }
@@ -298,6 +301,7 @@ const UserCatchesMap = props => {
             infoWindowRef.current = infoWindow;
             //highlight the catch
             setHighlightedCatch(catchObj.id);
+            console.log(catchObj.id);
             mapRef.current.setCenter(catchMarker.getPosition());
           }); 
           // store the info window as a ref
@@ -310,7 +314,6 @@ const UserCatchesMap = props => {
         // });
       });
     }
-
   }
 
 
@@ -440,6 +443,181 @@ const UserCatchesMap = props => {
 
   }, [filters, setFilteredCatches, setFilters, userCatchesData, catchMarkersRef.current]);
 
+  // toggle form
+  const handleFormToggle = () => {
+    // toggle form on
+    if (!showCreateCatch) {
+      // toggle off all markers
+      if (catchMarkersRef.current && catchMarkersRef.current.length > 0) {
+        console.log('deleting all markers')
+        catchMarkersRef.current.forEach(markerRef => markerRef.marker.setMap(null));
+        catchMarkersRef.current = [];
+      }
+    } else {
+      // events to run when form toggles off
+      catchCardRefs.current = {};
+    }
+    setShowCreateCatch(prevValue => !prevValue);
+  };
+
+  // callback executed when map center changed, update currentMapCenter state to pass location to create catch form
+  const getCenterFromMap = () => {
+      setCurrentMapCenter(mapRef.current.getCenter().toJSON());
+  };
+
+  function createCatchCardRefs() {
+      console.log('creating refs');
+      if (filteredCatches.length > 0) {
+        filteredCatches.map(thisCatch => {
+          console.log('creating individual ref')
+          console.log(catchCardRefs.current)
+          catchCardRefs.current[thisCatch.id] = createRef()
+        });
+      }
+  }
+
+  // pass to the form to run in update function after successful mutation
+  const successfulCatchLogCallback = (catchObj) => {
+    if (infoWindowRef.current) {
+      infoWindowRef.current.close();
+    }   
+    const infoDivStyle = 'padding-bottom: 5px; font-size: 16px;'
+    const infoJSX = `
+      <div style='width: 150px'>
+        <div style='${infoDivStyle}'><b>Successfully logged ${catchObj.speies}</b></div>
+        <div style='${infoDivStyle}'>Now loading catches...</div>                 
+      </div>`;
+
+    const infoWindow = new window.google.maps.InfoWindow({
+      content: infoJSX
+    });
+
+    infoWindow.setPosition(mapRef.current.getCenter());
+    infoWindow.open(mapRef.current);
+    infoWindowRef.current = infoWindow;
+
+    setTimeout(() => {
+      handleFormToggle();
+    }, 3000);
+  }
+
+  const handleTestLog = () => {
+    if (infoWindowRef.current) {
+      infoWindowRef.current.close();
+    }   
+    const infoDivStyle = 'padding-bottom: 5px; font-size: 16px;'
+    const infoJSX = `
+      <div style='width: 150px'>
+        <div style='${infoDivStyle}'><b>Successfully logged poop</b></div>
+        <div style='${infoDivStyle}'>Now loading catches...</div>                 
+      </div>`;
+
+    const infoWindow = new window.google.maps.InfoWindow({
+      content: infoJSX
+    });
+
+    infoWindow.setPosition(mapRef.current.getCenter());
+    infoWindow.open(mapRef.current);
+    infoWindowRef.current = infoWindow;
+  };
+
+
+  const renderFilterMenu = () => {
+    return (
+      <div className='dropdown-menu'>
+      <button onClick={toggleDropdown}>
+        <span>Filters</span> 
+        <Icon style={{marginRight: '0px', marginLeft: 'auto'}} size='small' name='triangle down'/></button>
+      <ul style={{display: showFilterMenu ? 'block' : 'none'}}>
+        <li>
+          <button style={filters.isDefault ? {backgroundColor: 'white'} : {}} disabled={filters.isDefault} onClick={(e) => handleFilterClick(e, 'clear')} className='species-button'>
+            {filters.isDefault ? 'Select filters' : 'Clear Filters'}
+          </button>                    
+        </li>
+        <hr style={{margin: 0}} />
+        {speciesList.length > 0 &&  
+          <li style={{position: 'relative'}}>
+            <span>Species</span>
+            <Icon style={{marginRight: '0px', marginLeft: 'auto'}} size='small' name='triangle right'/>
+            <ul className='species-list' style={{position: 'absolute', top: 0, left: '100%'}}>
+              {/* SPECIES FILTER BUTTONS */}
+                <li>
+                {filters.species.length > 0 ?
+                  <button onClick={e => handleFilterClick(e, 'clear')} className='species-button'>
+                    Clear species filters
+                  </button>
+                  :
+                  <button className='species-button' style={{backgroundColor: 'white'}}>Select species</button>
+                }
+                </li>
+              <hr style={{margin: 0, padding: 0}} />
+              {speciesList.map(species => 
+                <li key={species}>
+                  <button onClick={e => handleFilterClick(e, 'species')} name={species} className='species-button'>
+                    {species}
+                    <Icon style={{display: filters.species.indexOf(species) > -1 ? '' : 'none', marginLeft: 'auto'}} name='check circle outline' color='green' />
+                  </button>
+                </li>
+              )
+              }
+            </ul>
+          </li>
+        }
+        <li style={{position: 'relative'}}>
+          <span>Catch date</span>
+          <Icon style={{marginRight: '0px', marginLeft: 'auto'}} size='small' name='triangle right'/>
+          <ul className='catch-date' style={{position: 'absolute', top: 0, left: '100%', minWidth: 175}}>
+              <li>
+                <button onClick={e => handleFilterClick(e, 'catchDate')} name='ALL' className='species-button'>
+                  All dates
+                  <Icon style={{display: filters.catchDate === 'ALL' ? '' : 'none', marginLeft: 'auto'}} name='check circle outline' color='green' />
+                </button>
+              </li>
+              <li>
+                <button onClick={e => handleFilterClick(e, 'catchDate')} name='TODAY' className='species-button'>
+                    Today
+                    <Icon style={{display: filters.catchDate === 'TODAY' ? '' : 'none', marginLeft: 'auto'}} name='check circle outline' color='green' />
+                </button>
+              </li>
+              <li>
+                <button onClick={e => handleFilterClick(e, 'catchDate')} name='WEEK' className='species-button'>
+                    Past week
+                    <Icon style={{display: filters.catchDate === 'WEEK' ? '' : 'none', marginLeft: 'auto'}} name='check circle outline' color='green' />
+                </button>
+              </li>
+              <li>
+                <button onClick={e => handleFilterClick(e, 'catchDate')} name='MONTH' className='species-button'>
+                    Past month
+                    <Icon style={{display: filters.catchDate === 'MONTH' ? '' : 'none', marginLeft: 'auto'}} name='check circle outline' color='green' />
+                </button>
+              </li>                    
+              <li>
+                <button onClick={e => handleFilterClick(e, 'catchDate')} name='YEAR' className='species-button'>
+                    Past Year
+                    <Icon style={{display: filters.catchDate === 'YEAR' ? '' : 'none', marginLeft: 'auto'}} name='check circle outline' color='green' />
+                </button>
+              </li>       
+          </ul>
+        </li>
+      </ul>
+  </div>  
+    );
+  };
+
+  const renderCards = () => {
+    return filteredCatches && Object.keys(catchCardRefs.current).length > 0 && filteredCatches.length > 0
+        ? filteredCatches.map(thisCatch => 
+          (<div key={thisCatch.id} ref={catchCardRefs.current[thisCatch.id]}>
+            <CatchCard
+              style={{margin: '10px 0px'}}
+              hideMenu={true} 
+              onClick={e => handleCatchCardClick(e, thisCatch.id)} 
+              highlight={highlightedCatch===thisCatch.id}
+              catch={thisCatch} 
+            />
+          </div>))
+        : <span>No results with current filters</span>
+  };
 
 
   return (
@@ -455,14 +633,17 @@ const UserCatchesMap = props => {
                   </div>
                 )}
               </div>
-              {(!apiStatus.loading && !apiStatus.errors) && 
+              {(!apiStatus.loading && !apiStatus.errors && filteredCatches) && 
                 <div>
                   <GoogleMap 
+                    showCenterMarker={showCreateCatch}
                     mapRef={mapRef} 
                     mapContainer={mapContainerRef} 
                     center={center}
                     zoom={4} 
-                    controls={controls}
+                    controls={basicControls}
+                    // callback to be used on center change in the map component so we can pass back the map center to send as props to the create catch form
+                    onCenterChangeCallback={getCenterFromMap}
                   />
                 </div>
               }
@@ -472,102 +653,18 @@ const UserCatchesMap = props => {
         <div style={{height: 800, display: filteredCatches ? 'flex' : 'none', flexDirection: 'column'}}>
           {/* CONTAINER FOR FILTER MENU*/}
           <div style={{paddingLeft: 10, display: 'flex'}}>
-            {/* FILTER MENU */}
-            <div className='dropdown-menu'>
-                <button onClick={toggleDropdown}>
-                  <span>Filters</span> 
-                  <Icon style={{marginRight: '0px', marginLeft: 'auto'}} size='small' name='triangle down'/></button>
-                <ul style={{display: showFilterMenu ? 'block' : 'none'}}>
-                  <li>
-                    <button style={filters.isDefault ? {backgroundColor: 'white'} : {}} disabled={filters.isDefault} onClick={(e) => handleFilterClick(e, 'clear')} className='species-button'>
-                      {filters.isDefault ? 'Select filters' : 'Clear Filters'}
-                    </button>                    
-                  </li>
-                  <hr style={{margin: 0}} />
-                  {speciesList.length > 0 &&  
-                    <li style={{position: 'relative'}}>
-                      <span>Species</span>
-                      <Icon style={{marginRight: '0px', marginLeft: 'auto'}} size='small' name='triangle right'/>
-                      <ul className='species-list' style={{position: 'absolute', top: 0, left: '100%'}}>
-                        {/* SPECIES FILTER BUTTONS */}
-                          <li>
-                          {filters.species.length > 0 ?
-                            <button onClick={() => {setFilters(prevFilers => ({ ...prevFilers, species: [] }))}} className='species-button'>
-                              Clear species filters
-                            </button>
-                            :
-                            <button className='species-button' style={{backgroundColor: 'white'}}>Select species</button>
-                          }
-                          </li>
-                        <hr style={{margin: 0, padding: 0}} />
-                        {speciesList.map(species => 
-                          <li key={species}>
-                            <button onClick={e => handleFilterClick(e, 'species')} name={species} className='species-button'>
-                              {species}
-                              <Icon style={{display: filters.species.indexOf(species) > -1 ? '' : 'none', marginLeft: 'auto'}} name='check circle outline' color='green' />
-                            </button>
-                          </li>
-                        )
-                        }
-                      </ul>
-                    </li>
-                  }
-                  <li style={{position: 'relative'}}>
-                    <span>Catch date</span>
-                    <Icon style={{marginRight: '0px', marginLeft: 'auto'}} size='small' name='triangle right'/>
-                    <ul className='catch-date' style={{position: 'absolute', top: 0, left: '100%', minWidth: 175}}>
-                        <li>
-                          <button onClick={e => handleFilterClick(e, 'catchDate')} name='ALL' className='species-button'>
-                            All dates
-                            <Icon style={{display: filters.catchDate === 'ALL' ? '' : 'none', marginLeft: 'auto'}} name='check circle outline' color='green' />
-                          </button>
-                        </li>
-                        <li>
-                          <button onClick={e => handleFilterClick(e, 'catchDate')} name='TODAY' className='species-button'>
-                              Today
-                              <Icon style={{display: filters.catchDate === 'TODAY' ? '' : 'none', marginLeft: 'auto'}} name='check circle outline' color='green' />
-                          </button>
-                        </li>
-                        <li>
-                          <button onClick={e => handleFilterClick(e, 'catchDate')} name='WEEK' className='species-button'>
-                              Past week
-                              <Icon style={{display: filters.catchDate === 'WEEK' ? '' : 'none', marginLeft: 'auto'}} name='check circle outline' color='green' />
-                          </button>
-                        </li>
-                        <li>
-                          <button onClick={e => handleFilterClick(e, 'catchDate')} name='MONTH' className='species-button'>
-                              Past month
-                              <Icon style={{display: filters.catchDate === 'MONTH' ? '' : 'none', marginLeft: 'auto'}} name='check circle outline' color='green' />
-                          </button>
-                        </li>                    
-                        <li>
-                          <button onClick={e => handleFilterClick(e, 'catchDate')} name='YEAR' className='species-button'>
-                              Past Year
-                              <Icon style={{display: filters.catchDate === 'YEAR' ? '' : 'none', marginLeft: 'auto'}} name='check circle outline' color='green' />
-                          </button>
-                        </li>       
-                    </ul>
-                  </li>
-                </ul>
-            </div>
+            {renderFilterMenu()}
           </div>
-
-
-          <div style={{padding: '0px 10px', marginTop: 20, width: 325, overflowY: 'scroll'}}>
-          { filteredCatches && Object.keys(catchCardRefs.current).length > 0 && filteredCatches.map(thisCatch => 
-            (<div key={thisCatch.id} ref={catchCardRefs.current[thisCatch.id]}>
-              <CatchCard
-                style={{margin: '10px 0px'}}
-                hideMenu={true} 
-                onClick={e => handleCatchCardClick(e, thisCatch.id)} 
-                highlight={highlightedCatch===thisCatch.id}
-                catch={thisCatch} 
-              />
-            </div>)
-            )
-          } {
-            filteredCatches && filteredCatches.length === 0 && <h1>No results with current filters</h1>
-          }
+          {/* CONTAINER FOR CATCH CARDS*/}
+          <div style={{padding: '0px 10px', marginTop: 20, width: 400, overflowY: 'scroll'}}>
+            <button onClick={handleTestLog}>test log</button>
+            <button onClick={handleFormToggle}>toggle form</button>
+            {
+              showCreateCatch 
+                ? <CreateCatchForm onSuccessCallback={successfulCatchLogCallback} catchLocation={currentMapCenter} />
+                : filteredCatches && Object.keys(catchCardRefs.current).length > 0 && filteredCatches.length > 0 
+                ? renderCards() : null
+            }
           </div>
         </div>
       </div>
@@ -671,6 +768,11 @@ export default UserCatchesMap;
 
 
 
+
+
+
+
+
           {userCatchesData && Object.keys(catchCardRefs.current).length > 0 &&
             userCatchesData.getCatches.map((thisCatch, index) => {
               // add a property for this card to our refs object
@@ -690,3 +792,81 @@ export default UserCatchesMap;
 
 
           */
+
+            // // once filteredCatches is initialized with whole dataset, load the map and generate the catch cards and inital marker set 
+  // useEffect(() => {
+  //   // wait until there's catch data before loading the map
+  //   if (!window.google && filteredCatches && filteredCatches.length > 0 && apiStatus.loading === true) {
+  //     console.log('loading API');
+  //     // load script on mount and set status of load accordingly
+  //     const loader = new Loader({
+  //       // apiKey: `${process.env.REACT_APP_GOOGLE_API_KEY}`,
+  //       version: "weekly",
+  //       libraries: ["places"],
+  //     });
+      
+  //     loader.load()
+  //       .then(() => {
+  //         console.log('API loaded')
+  //         // set our status to loaded so we know when to render dependent components
+  //         setApiStatus({loading: false, errors: null});
+  //         // get our position
+  //         getPosition();
+  //         // generate markers on the map for our catches
+  //         generateMarkers(filteredCatches);
+  //         // set our map bounds based on the catches
+  //         const bounds = calculateBounds(filteredCatches);
+  //         if (bounds) {
+  //           mapRef.current.fitBounds(bounds, 50);
+  //         }
+
+  //       })
+  //       .catch (err => {
+  //         console.log(err);
+  //         setApiStatus({loading: false, errors: err});
+  //       });
+  //   }
+  // }, [setApiStatus, filteredCatches, getPosition, apiStatus]);
+    
+
+    // // array to hold controls that will be added on mount
+  // const controls = [];
+  // // create a controls array to pass to the GoogleMap component
+  // controls.push({ position: 'RIGHT_CENTER', element: getCurrentLocationButton, listeners: [{event: 'click', callback: handleGetLocationButtonClick}] });
+
+  // // state to check when loader is loaded so we know when to render our map and autocomplete components
+  // const [apiStatus, setApiStatus] = useState({errors: null, loading: true});
+  // // pass this as a prop to our--initial value is default center, and the map center will always auto update if we set coords here
+  // const [center, setCenter] = useState({ lat: 33.4672, lng: -117.6981 }); 
+
+    // // useEffect to monitor our geoloation position when updated from any getPosition() calls and center the map to position
+  // useEffect(() => {
+  //   console.log('position update detected in useEffect');
+  //   // check if we have a position
+  //   if (geolocationStatus.position) { 
+  //     console.log(geolocationStatus.position)     
+  //     mapRef.current.setCenter(geolocationStatus.position);      
+  //   }
+  //   if (geolocationStatus.errorMessage) {
+  //     console.log('processing geolocation errors')
+  //     if (infoWindowRef.current) {
+  //       infoWindowRef.current.close();
+  //     }
+  //     infoWindowRef.current = new window.google.maps.InfoWindow({
+  //       content: `<div id="content">
+  //       <div><b>Location error</b></div><br/>
+  //         <div>${geolocationStatus.errorMessage}</div>
+  //         </div>`,
+  //     });
+  //     infoWindowRef.current.setPosition(mapRef.current.getCenter());
+  //     infoWindowRef.current.open(mapRef.current);
+  //   }
+  // }, [geolocationStatus.position, geolocationStatus.errorMessage, mapRef, infoWindowRef, setCenter])
+
+  
+
+
+  // // handler for the location button click on map
+  // function handleGetLocationButtonClick(event) {
+  //   getPosition();
+  // }

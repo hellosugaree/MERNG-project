@@ -5,7 +5,11 @@
   "dependencies": {
     "@apollo/client": "^3.3.18",
     "@arcgis/core": "^4.19.3",
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "@googlemaps/js-api-loader": "^1.11.4",
+    "@googlemaps/markerclustererplus": "^1.2.0",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -47,5 +51,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/google.maps": "^3.45.3"
   }
 }

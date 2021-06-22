@@ -1,8 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Route, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { Icon, Card, Dropdown, TextArea } from 'semantic-ui-react';
-
+import { Icon, Card } from 'semantic-ui-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUmbrellaBeach, faComments, faFish } from '@fortawesome/free-solid-svg-icons'
 
 import PostFeed from '../components/PostFeed';
 import CatchFeed from '../components/CatchFeed';
@@ -38,9 +39,7 @@ function Home(props) {
   const { loading: feedCatchesLoading, error: feedCatchesError, data: feedCatchesData } = useQuery(GET_CATCHES);
 
   const [displayOptions, setDisplayOptions] = useState({ showCreateCatch: false });
-  // control for dropdown to select content on the left and right main panel, uses index of the options array
-  const [leftMainContentPanelDropdownIndex, setLeftMainContentPanelDropdownIndex] = useState(0);
-  const [rightMainContentPanelDropdownIndex, setRightMainContentPanelDropdownIndex] = useState(1);
+
 
   // only for testing purposes
 /*   const handleLog = () => {
@@ -80,6 +79,18 @@ function Home(props) {
       case 'weather':
         props.history.push('/weather');
       break;
+      case 'beaches':
+      props.history.push('/beaches');
+      break;
+      case 'posts':
+      props.history.push('/posts');
+      break;
+      case 'catchfeed':
+      props.history.push('/catchfeed');
+      break;   
+      default:
+        props.history.push('/catchfeed');
+      break;         
     }
 
 
@@ -94,71 +105,6 @@ function Home(props) {
     userHasBiggestCatch = Math.max(...userCatchesData.getCatches.map(value => value.catchLength)) > 0;
     biggestCatch = Math.max(...userCatchesData.getCatches.map(value => value.catchLength))
   }
-
-// /      image: {as: 'div', style:{ height: 30, width: 50, border:'2px solid black', borderRadius: 5}, src: '/img/icons/post-icon-blue-small.jpg'}
-
-  const leftMainContentPanelDropdownOptions = [
-    {
-      key: 'posts',
-      value: 0,
-      content: (
-        <div style={{margin: '-8px 0px', display: 'flex', alignItems: 'center'}}>
-        <div style={{height: 30, width: 50, backgroundColor: '#6795CE', borderRadius: 5, display:'flex'}}>
-          <img src='/img/icons/post-icon-blue-small.jpg' alt='Posts feed icon' style={{maxHeight: '95%', margin: '0px auto 0px auto'}} />
-        </div>
-        <div style={{marginLeft: 10, fontSize: 18, fontWeight: 600}}>Post feed</div>
-        </div>
-      )
-    },
-
-    {
-      key: 'catches',
-      value: 1,
-      content: (
-        <div style={{margin: '-8px 0px', display: 'flex', alignItems: 'center'}}>
-        <div style={{height: 30, width: 50, backgroundColor: '#71B1AD', borderRadius: 5, display:'flex'}}>
-          <img src='/img/icons/halibut-teal-background-tiny.jpg' alt='Catches feed icon' style={{maxHeight: '95%', margin: '0px auto 0px auto'}} />
-        </div>
-        <div style={{marginLeft: 10, fontSize: 18, fontWeight: 600}}>Catch feed</div>
-        </div>
-      )
-    },
-
-    {
-      key: 'weather',
-      value: 2,
-      content: (
-        <div style={{margin: '-8px 0px', display: 'flex', alignItems: 'center'}}>
-        <div style={{height: 30, width: 50, backgroundColor: '#2E69C2', borderRadius: 5, display:'flex'}}>
-          <img src='/img/icons/weather-icon.png' alt='Weather feed icon' style={{ width: 50, margin: '0px auto 0px auto', borderRadius: 5}} />
-        </div>
-        <div style={{marginLeft: 10, fontSize: 18, fontWeight: 600}}>Weather feed</div>
-        </div>
-      )
-    },
-
-    {
-      key: 'beach access',
-      value: 3,
-      content: (
-        <div style={{margin: '-8px 0px', display: 'flex', alignItems: 'center', width: 200 }}>
-        <div style={{height: 30, width: 50, backgroundColor: '#2E69C2', borderRadius: 5, display:'flex'}}>
-          <img src='/img/icons/beach-icon-small.jpg' alt='Beach access page icon' style={{ width: 50, margin: '0px auto 0px auto', borderRadius: 5}} />
-        </div>
-        <div style={{marginLeft: 10, fontSize: 18, fontWeight: 600}}>Beach Access Locations</div>
-        </div>
-      )
-    }
-  ];
-
-  // handlers for the feed selection dropdowns on main content panels
-  const handleLeftMainContentPanelDropdownChange = (event, { value }) => {
-    setLeftMainContentPanelDropdownIndex(value);
-  }
-  const handleRightMainContentPanelDropdownChange = (event, { value }) => {
-    setRightMainContentPanelDropdownIndex(value);
-  }
-
 
   return (
   
@@ -208,6 +154,24 @@ function Home(props) {
                       My Catches
                     </button>
                   }
+
+                  <button type='button' name='posts' 
+                    className='side-bar-menu-button' 
+                    onClick={handleSidebarClick}
+                    style={path === '/posts' ? activeSideBarButtonStyle : {}}
+                  >
+                    <FontAwesomeIcon icon={faComments} style={{marginRight: 10}} />
+                    Posts
+                  </button>
+                  <button type='button' name='catchfeed' 
+                    className='side-bar-menu-button' 
+                    onClick={handleSidebarClick}
+                    style={path === '/catchfeed' ? activeSideBarButtonStyle : {}}
+                  >
+                    <FontAwesomeIcon icon={faFish} style={{marginRight: 10}} />
+                    Catch feed
+                  </button>
+
                   <button type='button' name='weather' 
                     className='side-bar-menu-button' 
                     onClick={handleSidebarClick}
@@ -215,6 +179,15 @@ function Home(props) {
                   >
                     <Icon name='sun' style={{marginRight: 10}} />
                     Weather
+                  </button>
+                  <button type='button' name='beaches' 
+                    className='side-bar-menu-button' 
+                    onClick={handleSidebarClick}
+                    style={path === '/beaches' ? activeSideBarButtonStyle : {}}
+                  >
+                    {/* <Icon name='umbrella-beach' style={{marginRight: 10}} /> */}
+                    <FontAwesomeIcon icon={faUmbrellaBeach} style={{marginRight: 10}} />
+                    Beaches
                   </button>
 
                   <button type='button' name='logCatch' 
@@ -231,15 +204,14 @@ function Home(props) {
 
         {/* MAIN CONTENT PANEL */}
         <div className='home-page-main-content'>
-          <Route exact path='/' component={DoubleFeed} />
-          <Route exact path='/user/catchmap'>
-            {(userStatsData && userStatsData.getUser.catches.length > 0) 
-              ? <UserCatchesMap />
-              : <DoubleFeed  />
-            }
-          </Route>
+          
+          {(userStatsData && userStatsData.getUser.catches.length > 0) && <Route exact path='/user/catchmap' component={UserCatchesMap} />}
           <Route exact path='/catchfeed'><CatchFeed user={user} feedCatchesLoading={feedCatchesLoading} feedCatchesError={feedCatchesError} feedCatchesData={feedCatchesData} displayOptions={displayOptions} /></Route>
           <Route exact path='/weather' component={WeatherFeed} />
+          <Route exact path='/beaches' component={BeachAccessLocations} />
+          <Route exact path='/posts' ><PostFeed user={user} loading={loading} error={error} data={data} /></Route>
+          
+
         </div>
 
       

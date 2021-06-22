@@ -33,7 +33,7 @@ const authReducer = (state, action) => {
   switch(action.type){
     case 'LOGIN':
       // decode the token from server and store in context
-      const userData = action.payload;
+      // const userData = action.payload;
       const decodedToken = jwtDecode(localStorage.getItem('authToken'));
       return {
         ...state,

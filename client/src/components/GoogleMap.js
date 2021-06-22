@@ -1,11 +1,11 @@
-import React, { useRef, useEffect, useMemo } from 'react';
-import _ from 'lodash';
+import React, { useRef, useEffect } from 'react';
+// import _ from 'lodash';
 
 const GoogleMap = props => {
-  const { throttle } = _;
+  // const { throttle } = _;
   // throttled function to update center position marker when map moves
-  const throttledUpdateCenterMarker = useMemo(() => throttle(updateCenterMarker, 50), [updateCenterMarker, throttle],);
-  const centerMarkerRef = useRef();
+  // const throttledUpdateCenterMarker = useMemo(() => throttle(updateCenterMarker, 10), [updateCenterMarker, throttle],);
+  const centerMarkerRef = useRef(null);
   const additionalOptions = { center_changed: handleCenterChange, streetViewControl: false  };
   
   // useEffect to update center of map if props.center changes
@@ -45,7 +45,26 @@ const GoogleMap = props => {
         });
       }
 
-    if (props.showCenterMarker){
+    // if (props.showCenterMarker){
+    //   // set a new crosshair marker at center of map and add it to state so we can set it as center every time the map moves
+    //   // apply current position status to map
+    //   const circleIcon = { 
+    //     scale: 15,
+    //     strokeWeight: 2,
+    //     path: window.google.maps.SymbolPath.CIRCLE 
+    //   };
+    //   // initialize center marker
+    //   centerMarkerRef.current = new window.google.maps.Marker({
+    //     position: props.mapRef.current.getCenter().toJSON(),
+    //     map: props.mapRef.current,
+    //     icon: circleIcon
+    //   });
+    // }
+  }
+
+  // useEffect for when we toggle center marker via props
+  useEffect(() => {
+    if (props.showCenterMarker && !centerMarkerRef.current){
       // set a new crosshair marker at center of map and add it to state so we can set it as center every time the map moves
       // apply current position status to map
       const circleIcon = { 
@@ -60,12 +79,23 @@ const GoogleMap = props => {
         icon: circleIcon
       });
     }
-  }
+    // case to handle if marker is toggled off via props after load
+    if (!props.showCenterMarker && centerMarkerRef.current) {
+      centerMarkerRef.current.setMap(null);
+      centerMarkerRef.current = null;
+    }
+
+  }, [props.showCenterMarker, centerMarkerRef.current]);
+
+
+
 
   function handleCenterChange() {
-    if (props.showCenterMarker){
-      throttledUpdateCenterMarker();
+    // throttledUpdateCenterMarker();
+    if (props.onCenterChangeCallback) {
+      props.onCenterChangeCallback();
     }
+    updateCenterMarker();
   }
   
   // function we will throttle to update the center marker when map moves
@@ -75,7 +105,7 @@ const GoogleMap = props => {
     }
   }
 
-  return <div></div>;
+  return null;
 
 };
 

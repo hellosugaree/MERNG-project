@@ -4,6 +4,8 @@ import { AuthContext } from '../context/auth';
 import { ModalContext } from '../context/modal';
 import { Loader } from "@googlemaps/js-api-loader"
 import { useGeolocation } from './useGeolocation';
+import MarkerClusterer from '@googlemaps/markerclustererplus'
+
 import '../App.css';
 
 
@@ -15,6 +17,8 @@ export const useGoogleMap = () => {
   const mapRef = useRef(null);
   const infoWindowRef = useRef(null);
   const currentPositionMarkerRef = useRef(null);
+  const markersRef = useRef([]);
+  const markerClusterRef = useRef(null);
 
   // center to control map center via props
   const [center, setCenter] = useState({ lat: 33.4672, lng: -117.6981 });
@@ -39,7 +43,7 @@ export const useGoogleMap = () => {
       console.log('API loaded')
       // set our status to loaded so we know when to render dependent components
       setApiStatus({loading: false, errors: null});
-      getPosition();
+        getPosition();
     })
     .catch (err => {
       console.log(err);
@@ -92,8 +96,69 @@ export const useGoogleMap = () => {
   }
   }, [geolocationStatus.position, geolocationStatus.errorMessage, mapRef, infoWindowRef, setCenter])
 
+
+  // fit the map bounds to contain an array of position objects {lat: <float>, lng: <float>}
+  function fitBounds(positions, margin) {
+    const latitudes = [];
+    const longitudes = [];
+    positions.forEach(position => {
+      latitudes.push(position.lat);
+      longitudes.push(position.lng)
+    });
+    // get our max and min lat and lng
+    const maxLat = Math.max(...latitudes);
+    const minLat = Math.min(...latitudes);
+    const maxLng = Math.max(...longitudes);
+    const minLng = Math.min(...longitudes);
+    // return a boundary literal to pass back to our google Map instance
+    const bounds = { north: maxLat, south: minLat, west: minLng, east: maxLng };
+      mapRef.current.fitBounds(bounds, margin ? margin : 0);
+  }
+
+  // map markers, set clear to false if you want to add markers instead of clearing all markers
+  // input is an array in the format of [{position: {lat: <float>, lng: <float>}, id: <string> }, ...]
+  // options are fitBounds: <int> if specified, it will fit bounds with the specified margin when mapping markers
+  function mapMarkers(markerArray, mapRef, clear = true, options = {fitBounds: 50}) {
+    if (!window.google) return null;
+    // clear old markers
+    if (clear && markersRef.current.length > 0) {
+      markersRef.current.forEach(markerRef => markerRef.ref.setMap(null));
+    }
+    markersRef.current = [];
+    // array to hold positions of all markers to fit the map bounds
+    const positions = [];
+    // map the new markers
+    const markers = [];
+    markerArray.forEach(marker => {
+      const newMarker = new window.google.maps.Marker({
+        position: marker.position,
+        map: mapRef.current
+      });
+      markersRef.current.push({id: marker.id, ref: newMarker });
+      positions.push(marker.position);
+      markers.push(newMarker);
+    })
+    if (options.fitBounds && markers.length > 0){
+      fitBounds(positions, options.fitBounds);
+    }
+    if (markerClusterRef.current) {
+      markerClusterRef.current.clearMarkers();
+    }
+    if (markers.length > 0) {
+      markerClusterRef.current = new MarkerClusterer(mapRef.current, markers,
+        {
+          // gridSize: 20,
+          // imagePath: 'http://localhost:3000/img/markerclusterer/m1.png'
+          imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+        });
+    }
+
+  };
+
   return {
     loadMap,
+    mapMarkers,
+    setCenter,
     geolocationStatus,
     mapContainerRef,
     currentPositionMarkerRef,
@@ -101,7 +166,8 @@ export const useGoogleMap = () => {
     infoWindowRef,
     apiStatus,
     basicControls,
-    center
+    center,
+    markersRef
   };
 
 };

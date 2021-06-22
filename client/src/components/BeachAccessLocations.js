@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { useGoogleMap } from '../utilities/hooks';
 import _ from 'lodash';
 import { Card, Dropdown, Image, Checkbox, Icon } from 'semantic-ui-react';
+import GoogleMap from './GoogleMap';
+
 import '../App.css';
 
 // static data options
@@ -142,32 +145,6 @@ const countyDropdownOptions = [
 // "3_Central Coast",
 // "Orange (and LA)"
 
-/*
-
-user searches on unfiltered data
-  search entire dataset and display result
-  if (no filters) {
-    search entire dataset
-    store searched dataset in searchedAccessLocations
-  }
-
-user searches on filtered data
-  search filtered dataset and display it
-  if (filters) {
-    search filteredAccessLocations
-    store in searchedAccessLocations
-  }
-
-user filters unsearched data
-  apply filters to whole dataset
-
-user filters searched data
-  if (searched data) {
-    apply all filters to main dataset then search filtered
-  }
-
-*/
-
 
 const BeachAccessLocations = (props) => {
   // store initial fetched data 
@@ -180,7 +157,7 @@ const BeachAccessLocations = (props) => {
   const [searchedAccessLocations, setSearchedAccessLocations] = useState(null);
   const [displayPage, setDisplayPage] = useState(1);
   const [displayFilters, setDisplayFilters] = useState({
-    itemsPerPage: 5, 
+    itemsPerPage: 10, 
     sortDropdownValue: 'Name A-Z', 
     hasCampground: false,
     hasBoating: false,
@@ -188,47 +165,43 @@ const BeachAccessLocations = (props) => {
     isRocky: false,
     show: false,
     searchInName: '',
-    county: 'All counties'
+    county: 'All counties',
+    applied: false
   });
 
   // useRef for our displayFilters so we can determine when we need to refetch 
   const [fetchStatus, setFetchStatus] = useState({error: false, loading: true})
   const [loadingSearchInName, setLoadingSearchInName] = useState(false);
+  
+  // hook for google map refs and loader
+  const { mapMarkers, loadMap, center, mapContainerRef, markersRef, mapRef, apiStatus, basicControls } = useGoogleMap();
 
-  // function to filter by county
-  const filterByCounty = locationsToFilter => {
-    return locationsToFilter.filter(loc => loc.COUNTY === displayFilters.county);
-  };
 
-  // function filter access location data
-  const applyFilterOptions = locationsToFilter => {
-    console.log('Applying filter options')
-    console.log(`Pre filtered locations: ${locationsToFilter.length}`);
-    // use this to prevent duplicating the array in case we don't need to sort
-    if (displayFilters.county !== 'All counties') {
-      console.log('filtering by county')
-      locationsToFilter = filterByCounty(locationsToFilter);
+  // useEffect to load map
+  useEffect(() => {
+    if (apiStatus.loading && !apiStatus.errors) {
+      console.log('map loder useEffect triggered in beachaccesslocations')
+      loadMap();
     }
-    if (displayFilters.hasBoating) {
-      console.log('filtering for boating options')
-      locationsToFilter = locationsToFilter.filter(loc => loc.BOATING.toLowerCase() === "yes");
+  }, [apiStatus]);
+
+  // useEffect to initialize markers
+  useEffect(() => {
+    // initialize markers if map is loaded and markersRef array is empty
+    if (markersRef.current.length === 0 && mapRef.current && filteredAccessLocations.length > 0) {
+      console.log('initilize marker set')
+      const markersArray = [];
+      filteredAccessLocations.forEach(location => {
+        if (location.LATITUDE && location.LONGITUDE) {
+          const marker = { position: { lat: location.LATITUDE, lng: location.LONGITUDE }, id: location.ID };
+          markersArray.push(marker);
+        }
+      });
+      mapMarkers(markersArray, mapRef, true, { fitBounds: 50 });  
     }
-    if (displayFilters.isRocky) {
-      console.log('filtering for rocky shore')
-      locationsToFilter = locationsToFilter.filter(loc => loc.RKY_SHORE.toLowerCase() === "yes");
-    }
-    if (displayFilters.isSandy) {
-      console.log('filtering for sandy beach')
-      locationsToFilter = locationsToFilter.filter(loc => loc.SNDY_BEACH.toLowerCase() === "yes");
-    }
-    if (displayFilters.hasCampground) {
-      console.log('filtering for campground')
-      locationsToFilter = locationsToFilter.filter(loc => loc.CAMPGROUND.toLowerCase() === "yes");
-    }
-    console.log(`Post filtered locations: ${locationsToFilter.length}`);
-    locationsToFilter = sortAccessLocations(locationsToFilter);
-    return locationsToFilter;
-  }
+  }, [filteredAccessLocations, mapMarkers, mapRef, markersRef]);
+
+
 
   // function to fetch data and sort ascending for initial fetch
   const fetchData = async () => {
@@ -259,54 +232,123 @@ const BeachAccessLocations = (props) => {
     fetchData();
   }, []);
 
-  // handle filter toggles
-  useEffect(() => {
-    console.log('deciding which data to filter');
-    // if locations have been searched, filter the searched values, if not, filter all locations
-    if (searchedAccessLocations){
-      console.log('filtering searched data')
-      setFilteredAccessLocations(applyFilterOptions([...searchedAccessLocations]));
-    } else if (accessLocations) {
-      console.log('filtering unsearched data')
-      setFilteredAccessLocations(applyFilterOptions([...accessLocations]));
-    }
-  }, [displayFilters.hasCampground, displayFilters.hasBoating, displayFilters.isSandy, displayFilters.isRocky, searchedAccessLocations, displayFilters.county]);
-
-  const sortAccessLocations = locations => {
-    console.log('sorting');
-    setDisplayPage(1);
-    switch (displayFilters.sortDropdownValue) {
-      case 'Name A-Z':
-        const ascendingName = [...locations].sort((a, b) => {
-          return a.NameMobileWeb > b.NameMobileWeb ? 1 
-          : a.NameMobileWeb < b.NameMobileWeb ? -1 : 0;
-        });
-        return ascendingName;
-      
-      case 'Name Z-A':
-        const descendingName = [...locations].sort((a, b) => {
-          return a.NameMobileWeb < b.NameMobileWeb ? 1 
-          : a.NameMobileWeb > b.NameMobileWeb ? -1 : 0;
-        });;
-        return descendingName;
-
-      default:
-      break; 
-    }
+  // update state for filter toggles
+  const handleFilterToggle = (e, checked, name) => {
+    setDisplayFilters(prevFilters => ({ ...prevFilters, [name]: checked, applied: false }));
+  };
+  const handleCountyChange = (e, value) => {
+    setDisplayFilters(prevFilters => ({ ...prevFilters, county: value, applied: false }));
   };
 
-  // sort accessLocations when dropdown changes
+  // handle changes to state for filter options
   useEffect(() => {
-    console.log('displayFilters.sortDropdownValue changed')
-    if (filteredAccessLocations) {
-      setFilteredAccessLocations(prevLocations => sortAccessLocations(prevLocations));
+    // function to sort access locations
+    const sortAccessLocations = locations => {
+      console.log('sorting');
+      setDisplayPage(1);
+      switch (displayFilters.sortDropdownValue) {
+        case 'Name A-Z':
+          const ascendingName = [...locations].sort((a, b) => {
+            return a.NameMobileWeb > b.NameMobileWeb ? 1 
+            : a.NameMobileWeb < b.NameMobileWeb ? -1 : 0;
+          });
+          return ascendingName;
+        
+        case 'Name Z-A':
+          const descendingName = [...locations].sort((a, b) => {
+            return a.NameMobileWeb < b.NameMobileWeb ? 1 
+            : a.NameMobileWeb > b.NameMobileWeb ? -1 : 0;
+          });;
+          return descendingName;
+  
+        default:
+        break; 
+      }
+    };
+
+    // function to filter by county
+    const filterByCounty = locationsToFilter => {
+      return locationsToFilter.filter(loc => loc.COUNTY === displayFilters.county);
+    };
+
+    // function filter access location data
+    const applyFilterOptions = locationsToFilter => {
+      // applied property allows us to filter on a useState trigger with all dependencies without triggering infinite loop
+      if (!displayFilters.applied) {
+        setDisplayFilters(prevFilters => ({ ...prevFilters, applied: true }));
+        console.log('Applying filter options')
+        console.log(`Pre filtered locations: ${locationsToFilter.length}`);
+        // use this to prevent duplicating the array in case we don't need to sort
+        if (displayFilters.county !== 'All counties') {
+          console.log('filtering by county')
+          locationsToFilter = filterByCounty(locationsToFilter);
+        }
+        if (displayFilters.hasBoating) {
+          console.log('filtering for boating options')
+          locationsToFilter = locationsToFilter.filter(loc => loc.BOATING.toLowerCase() === "yes");
+        }
+        if (displayFilters.isRocky) {
+          console.log('filtering for rocky shore')
+          locationsToFilter = locationsToFilter.filter(loc => loc.RKY_SHORE.toLowerCase() === "yes");
+        }
+        if (displayFilters.isSandy) {
+          console.log('filtering for sandy beach')
+          locationsToFilter = locationsToFilter.filter(loc => loc.SNDY_BEACH.toLowerCase() === "yes");
+        }
+        if (displayFilters.hasCampground) {
+          console.log('filtering for campground')
+          locationsToFilter = locationsToFilter.filter(loc => loc.CAMPGROUND.toLowerCase() === "yes");
+        }
+        console.log(`Post filtered locations: ${locationsToFilter.length}`);
+        locationsToFilter = sortAccessLocations(locationsToFilter);
+        // set generate map markers for filtered locations
+        const markersArray = [];
+        locationsToFilter.forEach(location => {
+          if (location.LATITUDE && location.LONGITUDE) {
+            const marker = { position: { lat: location.LATITUDE, lng: location.LONGITUDE }, id: location.ID };
+            markersArray.push(marker);
+          }
+        });
+        if (mapRef.current) {
+          mapMarkers(markersArray, mapRef, true, { fitBounds: 50 });
+        }
+        return locationsToFilter;  
+      }
     }
-  }, [displayFilters.sortDropdownValue])
+
+    if (!displayFilters.applied) {
+      // if locations have been searched, filter the searched values, if not, filter all locations
+      if (searchedAccessLocations){
+        console.log('filtering searched data')
+        setFilteredAccessLocations(applyFilterOptions([...searchedAccessLocations]));
+      } else if (accessLocations) {
+        console.log('filtering unsearched data')
+        setFilteredAccessLocations(applyFilterOptions([...accessLocations]));
+      }
+    }
+  }, [displayFilters, searchedAccessLocations, accessLocations, setFilteredAccessLocations, mapRef, mapMarkers]);
+// last 4 added
+
+
+
+  // // sort accessLocations when dropdown changes
+  // useEffect(() => {
+  //   console.log('displayFilters.sortDropdownValue changed')
+  //   if (filteredAccessLocations) {
+  //     setFilteredAccessLocations(prevLocations => sortAccessLocations(prevLocations));
+  //   }
+  // }, [displayFilters.sortDropdownValue])
+
+    // effect called when search by named value changes
+    useEffect(() => {
+        // call our debounced search on the entire dataset
+      debouncedFilterByName.current(accessLocations, displayFilters.searchInName);
+  
+    }, [displayFilters.searchInName, accessLocations])
 
 
   // handle setting pages to display filter
   const handlePagesToDisplayInputChange = event => {
-
     let inputValue = event.target.value;
     if (inputValue < 1) inputValue = 1;
     if (inputValue > 50) inputValue = 50;
@@ -337,7 +379,6 @@ const BeachAccessLocations = (props) => {
         return setDisplayPage(Math.ceil(filteredAccessLocations.length / displayFilters.itemsPerPage));
       }
     }
-
     // numeric page input changed directly
     if (e.type === 'change') {
       const totalPages = Math.ceil(filteredAccessLocations.length / displayFilters.itemsPerPage);
@@ -350,29 +391,19 @@ const BeachAccessLocations = (props) => {
         setDisplayPage(e.target.value);
       }
     }
-
   };
-
-  // effect called when search by named value changes
-  useEffect(() => {
-    // if search bar is empty, set the searchedLocations to null
-      // call our debounced search on the entire dataset
-    debouncedFilterByName.current(accessLocations, displayFilters.searchInName);
-
-  }, [displayFilters.searchInName])
 
   // handle change for sort dropdown
   const handleSortDropdownChange = (event, { value }) => {
-    setDisplayFilters({...displayFilters, sortDropdownValue: value});
+    setDisplayFilters({...displayFilters, sortDropdownValue: value, applied: false});
   }
-
 
   // function to filter locations that contain the search term in their name
   function filterByName(currentLocations, currentSearchTerm){
     console.log('searching by name');
     // if user empties search bar, reset searched locations to null so we know to apply filters off entire dataset instead of searched dataset
     if (currentSearchTerm === '') {
-      console.log('Empty search, filter whole dataset instead');
+      console.log('Empty search, setting searched locations to null');
       setSearchedAccessLocations(null);
     } else {
       console.log(`Pre filtered locations: ${currentLocations.length}`);
@@ -384,6 +415,8 @@ const BeachAccessLocations = (props) => {
       setSearchedAccessLocations(filteredByName);
     }
     setLoadingSearchInName(false);
+    // trigger a refilter of the data
+    setDisplayFilters(prevFilters => ({ ...prevFilters, applied: false }))
   }
   // function to debounce search by name so we don't search until after the user pauses typing
   // need useRef to use debounce in a functional component
@@ -401,9 +434,8 @@ const BeachAccessLocations = (props) => {
       return locations
         .slice(displayPage * displayFilters.itemsPerPage - displayFilters.itemsPerPage , displayPage * displayFilters.itemsPerPage)
         .map(loc => (
-            <Card 
-              style={{margin: '0px 0px 10px 0px'}}
-              key={loc.ID}
+          <div key={loc.ID} style={{padding: '5px 5px'}}>
+            <Card
               fluid
             >
               <Card.Content>
@@ -421,169 +453,226 @@ const BeachAccessLocations = (props) => {
               </Card.Content>
               {/* <div>{loc.LATITUDE}, {loc.LONGITUDE}</div> */}
             </Card>
-
+          </div>
         ));
   }
 
+  // function to render the catch cards
+  const renderCards = () => {
+    return (
+      /* ACCESS LOCATION CARDS CONTAINER */
+      <div style={{width: '100%', display: 'flex', flexDirection: 'column', height: '100%', overflowY: 'auto'}}>
+        {mapAccessLocations(filteredAccessLocations)} 
+      </div> 
+    );
+  };
+
+  const renderPagination = () => {
+    return (
+    /* CONTAINER FOR PAGINATION and PAGE COUNT*/
+    <div style={{width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+      {/* PAGINATION BUTTONS CONTAINER*/}
+      <div style={{border: '1px solid lightgrey', borderRadius: 5, display: 'flex', width: '100%', flexGrow: 1,  maxWidth: 500}}>
+        <button 
+          className='pagination-button'
+          type='button' 
+          name='first'
+          onClick={handlePageChange}
+          disabled={displayPage === 1} 
+        >
+          <Icon name='fast backward' />
+        </button>
+        <button 
+          onClick={handlePageChange}
+          className='pagination-button'
+          type='button' name='minusFive'
+          disabled={displayPage < 5}
+        >
+          <Icon name='backward' />
+        </button>
+        <button 
+          onClick={handlePageChange}
+          className='pagination-button'
+          type='button' name='previous'
+          disabled={displayPage === 1}
+        >
+          <Icon name='step backward' />
+        </button>    
+          <input type='number' className='pagination-input' value={displayPage} onChange={handlePageChange} onClick={e => e.target.select()} />
+        <button 
+          onClick={handlePageChange}
+          className='pagination-button'
+          type='button' name='next'
+          disabled={displayPage === Math.ceil(filteredAccessLocations.length / displayFilters.itemsPerPage)} 
+        >
+          <Icon name='step forward' />
+        </button>
+        <button 
+          onClick={handlePageChange}
+          className='pagination-button'
+          type='button' name='plusFive'
+          disabled={Math.ceil(filteredAccessLocations.length / displayFilters.itemsPerPage) - displayPage < 5} 
+        >
+          <Icon name='forward' />
+        </button>
+        <button 
+          onClick={handlePageChange}
+          className='pagination-button'
+          type='button' name='last'
+          disabled={displayPage === Math.ceil(filteredAccessLocations.length / displayFilters.itemsPerPage)} 
+        >
+          <Icon name='fast forward' />
+        </button>
+      </div>
+      <span style={{color: 'grey'}}>
+        Total pages: {Math.ceil(filteredAccessLocations.length / displayFilters.itemsPerPage)}
+      </span>
+
+    </div>
+    );
+  }
+
+  const renderMap = () => {
+    return !apiStatus.loading && !apiStatus.errors
+      ? ( 
+          <div id='map' ref={mapContainerRef} style={{height: '100%', width: '100%'}}>
+            <GoogleMap 
+              center={center}             
+              mapRef={mapRef} 
+              mapContainer={mapContainerRef} 
+              zoom={8} 
+              controls={basicControls}
+              options={{
+                scaleControl: true,
+                mapTypeControl: true,
+                // scaleControlOptions: {
+                //   position: window.google.maps.ControlPosition.TOP_LEFT
+                // }
+              }}
+            />
+          </div>
+      )
+      : null;
+  };
+
+  const renderFilterMenu = () => {
+    return (
+      <div style={{width: '100%', padding: '0px 5px'}}> 
+      <div style={{display: 'flex', flexDirection: 'column', width: '100%', alignItems: 'center', border: '1px solid #CCC', borderRadius: 5}}>
+        {/* SORT DROPDOWN */}
+        <span style={{marginTop: 10, fontSize: 20, fontWeight: 'bold'}}>Filter Access Locations</span>
+        <div style={{margin: '10px 0px'}}>
+          <span style={{marginRight: 10, fontSize: 16}}>Sort by</span>
+          <Dropdown 
+            inline 
+            style={{fontSize: 16}} 
+            options={sortOptions}
+            onChange={handleSortDropdownChange} 
+            value={displayFilters.sortDropdownValue}
+          />
+        </div>
+      
+          <div style={{position: 'relative', display: 'flex', width: 250}}>
+            {/* TEXT INPUT TO FILTER NAMES */}
+            <input
+              style={{zIndex: 1, flexGrow: 1, width: 100, border: '1px solid gray', borderRadius: 5, height: 30, fontSize: 16, padding: '5px 30px 5px 5px'}}
+              disabled={!filteredAccessLocations ? true : false }
+              placeholder='Name contains' 
+              type='text' 
+              name='searchInName' 
+              value={displayFilters.searchInName} 
+              onChange={handleSearchInNameChange} 
+            /> 
+            <div 
+              className='animate-spinner'
+              style={{
+                display: loadingSearchInName ? '' : 'none',
+                position: 'absolute',
+                borderRadius: '50%', border: '6px solid #898A8A', borderTop: '6px solid lightblue',
+                right: 2, bottom: 2, 
+                height: 26, width: 26,
+                zIndex: 100
+              }} 
+            />
+          </div>
+
+
+         {/* DIV FOR LOADING ANIMATION */}            
+
+          <div style={{display: 'flex', width: '60%', maxWidth: 150, alignItems: 'center', justifyContent: 'center', height: 30, borderRadius: 5, border: '1px solid grey', marginTop: 10}}>
+            <Dropdown
+              style={{flexGrow: 1, textAlign: 'center'}}               
+              inline
+              options={countyDropdownOptions}
+              name='county'
+              onChange={(e, { value }) => handleCountyChange(e, value)}
+              value={displayFilters.county}
+            />
+          </div>
+
+        {/* FILTER ATTRIBUTE CHECKBOXES */}
+        <div style={{marginTop: 10, display: 'flex',flexDirection: 'column'}}> 
+          <div style={{display: 'flex', flexWrap: 'wrap', padding: '5px 10px'}}>
+            <Checkbox style={{marginBottom: 5, marginLeft: 10}} toggle name='hasBoating' label='Boating' checked={displayFilters.hasBoating} onChange={(e, { checked, name }) => handleFilterToggle(e, checked, name)}/>
+            <Checkbox style={{marginBottom: 5, marginLeft: 10}} toggle name='hasCampground' label='Campground' checked={displayFilters.hasCampground} onChange={(e, { checked, name }) =>  handleFilterToggle(e, checked, name)}/>
+          </div>
+          <div style={{display: 'flex', flexWrap: 'wrap', padding: '5px 10px'}}>
+            <Checkbox style={{marginBottom: 5, marginLeft: 10}} toggle name='isSandy' label='Sandy shore' checked={displayFilters.isSandy} onChange={(e, { checked, name }) =>  handleFilterToggle(e, checked, name)}/>
+            <Checkbox style={{marginBottom: 5, marginLeft: 10}} toggle name='isRocky' label='Rocky shore' checked={displayFilters.isRocky} onChange={(e, { checked, name }) =>  handleFilterToggle(e, checked, name)}/>
+          </div>
+        </div>
+
+        <div style={{ marginBottom: 10}}>
+          <span style={{marginRight: 10, fontSize: 16}}>Items per page</span>
+          <input 
+            style={{maxWidth: 40, padding: 2, fontSize: 16,textAlign: 'center'}} 
+            type='number' value={displayFilters.itemsPerPage} 
+            onChange={handlePagesToDisplayInputChange} 
+            onClick={e => e.target.select()}
+          />
+        </div>
+        <div style={{ marginBottom: 10}}>
+          <span style={{fontSize: 16}}>Total results: {filteredAccessLocations.length}</span>
+        </div>
+        {/* <button type='button' onClick={testLog}>Test log</button> */}
+      </div>
+      </div> 
+    );
+  };
+
+  const testLog = () => {
+    // generate array of initial markers to load on the map
+    const markersArray = [];
+    filteredAccessLocations.forEach(location => {
+      if (location.LATITUDE && location.LONGITUDE) {
+        const marker = { position: { lat: location.LATITUDE, lng: location.LONGITUDE }, id: location.ID };
+        markersArray.push(marker);
+      }
+    })
+    mapMarkers(markersArray, mapRef);
+  }
+
   return (
-      <div >
-       {/* SORT AND FILTER OPTIONS -- ONLY DISPLAY WHEN THERE IS DATA TO SORT OR FILTER */} 
-        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', border: '1px solid #CCC', borderRadius: 5, marginBottom: 10}}>
-          {/* SORT DROPDOWN */}
-          <span style={{marginTop: 10, fontSize: 20, fontWeight: 'bold'}}>Filter Access Locations</span>
-          <div style={{margin: '10px 0px'}}>
-            <span style={{marginRight: 10, fontSize: 16}}>Sort by</span>
-            <Dropdown 
-              inline 
-              style={{fontSize: 16}} 
-              options={sortOptions}
-              onChange={handleSortDropdownChange} 
-              value={displayFilters.sortDropdownValue}
-            />
+        /* CONTAINER FOR FILTERS AND POSTS */
+        <div style={{display: 'flex', width: '100%', alignItems: 'center', flexDirection: 'column', height: '100%', padding: '0px 10px 0px 0px'}}>
+
+          {/* SORT AND FILTER OPTIONS */} 
+          {filteredAccessLocations && renderFilterMenu()} 
+        {/* CONTAINER FOR MAP AND CARD CONTAINERS */}
+        <div style={{display: 'flex', height: 1, flexGrow: 1, width: '100%', paddingTop: 10}}>
+          {/* CONTAINER FOR CARDS */}
+          <div style={{height: '100%', width: 400, display: 'flex', flexDirection: 'column'}}>
+            {fetchStatus.loading && (<h1 className='page-title' style={{}}>Retreiving beach data from server...</h1>)}
+            {fetchStatus.error && (<h1 className='page-title' style={{}}>Could not retreive beach data from server, please try again later...</h1>)}
+            {!fetchStatus.loading && !fetchStatus.error && filteredAccessLocations && renderCards()}  
+            {!fetchStatus.loading && !fetchStatus.error && filteredAccessLocations && renderPagination()}  
           </div>
-          {/* ITEMS PER PAGE */}
-
-          {/* <div style={{display: 'flex', position: 'relative', alignItems: 'center', maxWidth: 400, marginBottom: 10, border: '2px solid purple'}}> */}
-
-            <div style={{position: 'relative', display: 'flex', width: '80%', boxSizing: 'border-box'}}>
-              {/* TEXT INPUT TO FILTER NAMES */}
-              <input
-                style={{zIndex: 1, flexGrow: 1, width: 100, border: '1px solid gray', borderRadius: 5, height: 30, fontSize: 16, padding: '5px 30px 5px 5px'}}
-                disabled={!filteredAccessLocations ? true : false }
-                placeholder='Name contains' 
-                type='text' 
-                name='searchInName' 
-                value={displayFilters.searchInName} 
-                onChange={handleSearchInNameChange} 
-              /> 
-              <div 
-                className='animate-spinner'
-                style={{
-                  display: loadingSearchInName ? '' : 'none',
-                  position: 'absolute',
-                  borderRadius: '50%', border: '6px solid #898A8A', borderTop: '6px solid lightblue',
-                  right: 2, bottom: 2, 
-                  height: 26, width: 26,
-                  zIndex: 100
-                }} 
-              />
-            </div>
-
-
-           {/* DIV FOR LOADING ANIMATION */}            
-
-            <div style={{display: 'flex', width: '60%', maxWidth: 150, alignItems: 'center', justifyContent: 'center', height: 30, borderRadius: 5, border: '1px solid grey', marginTop: 10}}>
-              <Dropdown
-                style={{flexGrow: 1, textAlign: 'center'}}               
-                inline
-                options={countyDropdownOptions}
-                onChange={(e, {value}) => setDisplayFilters({...displayFilters, county: value})} 
-                value={displayFilters.county}
-              />
-            </div>
-
-          {/* FILTER ATTRIBUTE CHECKBOXES */}
-          <div style={{marginTop: 10, display: 'flex', width: '100%', flexDirection: 'column'}}> 
-            <div style={{display: 'flex', flexWrap: 'wrap', padding: '5px 10px'}}>
-              <Checkbox style={{marginBottom: 5, marginLeft: 10}} toggle label='Boating' checked={displayFilters.hasBoating} onChange={(e, { checked }) => setDisplayFilters({...displayFilters, hasBoating: checked})}/>
-              <Checkbox style={{marginBottom: 5, marginLeft: 10}} toggle label='Campground' checked={displayFilters.hasCampground} onChange={(e, { checked }) => setDisplayFilters({...displayFilters, hasCampground: checked})}/>
-            </div>
-            <div style={{display: 'flex', flexWrap: 'wrap', padding: '5px 10px'}}>
-              <Checkbox style={{marginBottom: 5, marginLeft: 10}} toggle label='Sandy shore' checked={displayFilters.isSandy} onChange={(e, { checked }) => setDisplayFilters({...displayFilters, isSandy: checked, isRocky: false })}/>
-              <Checkbox style={{marginBottom: 5, marginLeft: 10}} toggle label='Rocky shore' checked={displayFilters.isRocky} onChange={(e, { checked }) => setDisplayFilters({...displayFilters, isRocky: checked, isSandy: false })}/>
-            </div>
-         
-          </div>
-
-            <div>
-            <span style={{marginRight: 10, fontSize: 16}}>Items per page</span>
-            <input 
-              style={{maxWidth: 40, padding: 2, fontSize: 16, marginBottom: 10, textAlign: 'center'}} 
-              type='number' value={displayFilters.itemsPerPage} 
-              onChange={handlePagesToDisplayInputChange} 
-              onClick={e => e.target.select()}
-            />
-          </div>
-          </div>
-          {/* END SORT AND FILER OPTIONS */} 
           
-          {/* FETCH STATUS MESSAGES */} 
-          {fetchStatus.loading && (<h1 className='page-title' style={{}}>Retreiving beach data from server...</h1>)}
-          {fetchStatus.error && (<h1 className='page-title' style={{}}>Could not retreive beach data from server, please try again later...</h1>)}
-           
-          {/* BEACH DATA CARDS AND PAGINATION */}               
-          {
-            (!fetchStatus.loading && !fetchStatus.error && filteredAccessLocations) && (
-              <>
-              <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                {/* map our access locations, searched ones if they exist, otherwise just the filtered ones */}
-                {mapAccessLocations(filteredAccessLocations) } 
-                </div>   
 
-              <div style={{border: '1px solid lightgrey', borderRadius: 5, height: 50,  display: 'flex', alignItems: 'stretch'}}>
-              <button 
-                  className='pagination-button'
-                  type='button' 
-                  name='first'
-                  onClick={handlePageChange}
-                  disabled={displayPage === 1} 
-                >
-                  <Icon name='fast backward' />
-                </button>
-
-                <button 
-                  onClick={handlePageChange}
-                  className='pagination-button'
-                  type='button' name='minusFive'
-                  disabled={displayPage < 5}
-                >
-                  <Icon name='backward' />
-                </button>
-
-                <button 
-                  onClick={handlePageChange}
-                  className='pagination-button'
-                  type='button' name='previous'
-                  disabled={displayPage === 1}
-                >
-                  <Icon name='step backward' />
-                </button>    
-                  <input type='number' className='pagination-input' value={displayPage} onChange={handlePageChange} onClick={e => e.target.select()} />
-                <button 
-                  onClick={handlePageChange}
-                  className='pagination-button'
-                  type='button' name='next'
-                  disabled={displayPage === Math.ceil(filteredAccessLocations.length / displayFilters.itemsPerPage)} 
-                >
-                  <Icon name='step forward' />
-                </button>
-
-                <button 
-                  onClick={handlePageChange}
-                  className='pagination-button'
-                  type='button' name='plusFive'
-                  disabled={Math.ceil(filteredAccessLocations.length / displayFilters.itemsPerPage) - displayPage < 5} 
-                >
-                  <Icon name='forward' />
-                </button>
-
-                <button 
-                  onClick={handlePageChange}
-                  className='pagination-button'
-                  type='button' name='last'
-                  disabled={displayPage === Math.ceil(filteredAccessLocations.length / displayFilters.itemsPerPage)} 
-                >
-                  <Icon name='fast forward' />
-                </button>
-
-              </div>
-              <div style={{display: 'flex', justifyContent: 'center', color: 'grey'}}>
-                Total pages: {Math.ceil(filteredAccessLocations.length / displayFilters.itemsPerPage)}
-              </div>
-              
-              </>
-            )
-          }
+          <div style={{flexGrow:1}}>
+            {!fetchStatus.loading && !fetchStatus.error && !apiStatus.loading && !apiStatus.errors && filteredAccessLocations && renderMap() }  
+          </div>
+        </div>
       </div>
   );
 
@@ -597,6 +686,190 @@ export default BeachAccessLocations;
 
 
 /*
+
+
+  // function to render the catch cards
+  const renderCards = () => {
+    return (
+                <div style={{width: '100%', height: 1, flexGrow:1, display: 'flex', flexDirection: 'column'}}>
+
+                <div style={{width: '100%', display: 'flex', flexDirection: 'column', minHeight: 300, marginTop: 10, marginBottom: 10, overflowY: 'auto'}}>
+                    {mapAccessLocations(filteredAccessLocations)} 
+                  </div>   
+
+                  <div style={{width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+
+                  <div style={{border: '1px solid lightgrey', borderRadius: 5, display: 'flex', width: '100%', flexGrow: 1,  maxWidth: 500}}>
+                      <button 
+                        className='pagination-button'
+                        type='button' 
+                        name='first'
+                        onClick={handlePageChange}
+                        disabled={displayPage === 1} 
+                      >
+                        <Icon name='fast backward' />
+                      </button>
+                      <button 
+                        onClick={handlePageChange}
+                        className='pagination-button'
+                        type='button' name='minusFive'
+                        disabled={displayPage < 5}
+                      >
+                        <Icon name='backward' />
+                      </button>
+                      <button 
+                        onClick={handlePageChange}
+                        className='pagination-button'
+                        type='button' name='previous'
+                        disabled={displayPage === 1}
+                      >
+                        <Icon name='step backward' />
+                      </button>    
+                        <input type='number' className='pagination-input' value={displayPage} onChange={handlePageChange} onClick={e => e.target.select()} />
+                      <button 
+                        onClick={handlePageChange}
+                        className='pagination-button'
+                        type='button' name='next'
+                        disabled={displayPage === Math.ceil(filteredAccessLocations.length / displayFilters.itemsPerPage)} 
+                      >
+                        <Icon name='step forward' />
+                      </button>
+                      <button 
+                        onClick={handlePageChange}
+                        className='pagination-button'
+                        type='button' name='plusFive'
+                        disabled={Math.ceil(filteredAccessLocations.length / displayFilters.itemsPerPage) - displayPage < 5} 
+                      >
+                        <Icon name='forward' />
+                      </button>
+                      <button 
+                        onClick={handlePageChange}
+                        className='pagination-button'
+                        type='button' name='last'
+                        disabled={displayPage === Math.ceil(filteredAccessLocations.length / displayFilters.itemsPerPage)} 
+                      >
+                        <Icon name='fast forward' />
+                      </button>
+                    </div>
+                    <span style={{color: 'grey'}}>
+                      Total pages: {Math.ceil(filteredAccessLocations.length / displayFilters.itemsPerPage)}
+                    </span>
+                  </div>
+                </div>     
+    );
+  };
+
+  const renderMap = () => {
+    return !apiStatus.loading && !apiStatus.error 
+      ? ( 
+        <div style={{width: '100%', height: 1, flexGrow:1, display: 'flex', flexDirection: 'column'}}>
+          <div id='map' ref={mapContainerRef} style={{height: '100%', width: '100%'}}>
+            <GoogleMap center={center}             
+              mapRef={mapRef} 
+              mapContainer={mapContainerRef} 
+              center={center}
+              zoom={8} 
+              controls={basicControls}
+              options={{
+                scaleControl: true,
+                mapTypeControl: true,
+                // scaleControlOptions: {
+                //   position: window.google.maps.ControlPosition.TOP_LEFT
+                // }
+              }}
+            />
+          </div>
+        </div>     
+      )
+      : null;
+  };
+
+  const renderFilterMenu = () => {
+    return (
+      <div style={{width: '100%', padding: '0px 5px'}}> 
+      <div style={{display: 'flex', flexDirection: 'column', width: '100%', alignItems: 'center', border: '1px solid #CCC', borderRadius: 5}}>
+
+      <span style={{marginTop: 10, fontSize: 20, fontWeight: 'bold'}}>Filter Access Locations</span>
+        <div style={{margin: '10px 0px'}}>
+          <span style={{marginRight: 10, fontSize: 16}}>Sort by</span>
+          <Dropdown 
+            inline 
+            style={{fontSize: 16}} 
+            options={sortOptions}
+            onChange={handleSortDropdownChange} 
+            value={displayFilters.sortDropdownValue}
+          />
+        </div>
+      
+          <div style={{position: 'relative', display: 'flex', width: 250}}>
+
+          <input
+              style={{zIndex: 1, flexGrow: 1, width: 100, border: '1px solid gray', borderRadius: 5, height: 30, fontSize: 16, padding: '5px 30px 5px 5px'}}
+              disabled={!filteredAccessLocations ? true : false }
+              placeholder='Name contains' 
+              type='text' 
+              name='searchInName' 
+              value={displayFilters.searchInName} 
+              onChange={handleSearchInNameChange} 
+            /> 
+            <div 
+              className='animate-spinner'
+              style={{
+                display: loadingSearchInName ? '' : 'none',
+                position: 'absolute',
+                borderRadius: '50%', border: '6px solid #898A8A', borderTop: '6px solid lightblue',
+                right: 2, bottom: 2, 
+                height: 26, width: 26,
+                zIndex: 100
+              }} 
+            />
+          </div>
+
+
+
+          
+          <div style={{display: 'flex', width: '60%', maxWidth: 150, alignItems: 'center', justifyContent: 'center', height: 30, borderRadius: 5, border: '1px solid grey', marginTop: 10}}>
+            <Dropdown
+              style={{flexGrow: 1, textAlign: 'center'}}               
+              inline
+              options={countyDropdownOptions}
+              onChange={(e, {value}) => setDisplayFilters({...displayFilters, county: value})} 
+              value={displayFilters.county}
+            />
+          </div>
+
+
+          <div style={{marginTop: 10, display: 'flex',flexDirection: 'column'}}> 
+          <div style={{display: 'flex', flexWrap: 'wrap', padding: '5px 10px'}}>
+            <Checkbox style={{marginBottom: 5, marginLeft: 10}} toggle label='Boating' checked={displayFilters.hasBoating} onChange={(e, { checked }) => setDisplayFilters({...displayFilters, hasBoating: checked})}/>
+            <Checkbox style={{marginBottom: 5, marginLeft: 10}} toggle label='Campground' checked={displayFilters.hasCampground} onChange={(e, { checked }) => setDisplayFilters({...displayFilters, hasCampground: checked})}/>
+          </div>
+          <div style={{display: 'flex', flexWrap: 'wrap', padding: '5px 10px'}}>
+            <Checkbox style={{marginBottom: 5, marginLeft: 10}} toggle label='Sandy shore' checked={displayFilters.isSandy} onChange={(e, { checked }) => setDisplayFilters({...displayFilters, isSandy: checked, isRocky: false })}/>
+            <Checkbox style={{marginBottom: 5, marginLeft: 10}} toggle label='Rocky shore' checked={displayFilters.isRocky} onChange={(e, { checked }) => setDisplayFilters({...displayFilters, isRocky: checked, isSandy: false })}/>
+          </div>
+        </div>
+
+        <div style={{ marginBottom: 10}}>
+          <span style={{marginRight: 10, fontSize: 16}}>Items per page</span>
+          <input 
+            style={{maxWidth: 40, padding: 2, fontSize: 16,textAlign: 'center'}} 
+            type='number' value={displayFilters.itemsPerPage} 
+            onChange={handlePagesToDisplayInputChange} 
+            onClick={e => e.target.select()}
+          />
+        </div>
+        <div style={{ marginBottom: 10}}>
+          <span style={{fontSize: 16}}>Total results: {filteredAccessLocations.length}</span>
+        </div>
+        <button type='button' onClick={() => setShowMap(prevVal => !prevVal)}>Toggle map</button>
+        <button type='button' onClick={testLog}>Test log</button>
+      </div>
+      </div> 
+    );
+  };
+
+
 
 
    {

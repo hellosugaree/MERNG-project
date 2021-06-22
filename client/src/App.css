@@ -114,6 +114,7 @@ input[type=number]::-webkit-outer-spin-button {
   background-color: rgb(221, 244, 252);
   border: 1px solid lightgrey;
   padding: 0px;
+  height: 30px;
 }
 
 .pagination-input {

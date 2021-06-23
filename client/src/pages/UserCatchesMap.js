@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState, useRef, createRef } from 'react';
 import { DateTime, Interval } from 'luxon';
 import { AuthContext } from '../context/auth';
+import MarkerClusterer from '@googlemaps/markerclustererplus';
 import { useQuery } from '@apollo/client';
 import { useGoogleMap } from '../utilities/hooks';
 import { GET_CATCHES } from '../gql/gql';
@@ -19,6 +20,10 @@ import '../App.css';
   getCurrentLocationButton.innerHTML='<i class="blue location arrow icon"></i>';
   
 
+  const toggleMarkerClustersButton = document.createElement('button');
+  toggleMarkerClustersButton.classList.add("custom-map-control-button");
+  toggleMarkerClustersButton.innerHTML=``;
+
 const UserCatchesMap = props => {
   
   const { user } = useContext(AuthContext);
@@ -31,22 +36,17 @@ const UserCatchesMap = props => {
 
   const { loadMap, mapContainerRef, mapRef, infoWindowRef, center, basicControls, apiStatus } = useGoogleMap();
 
-
-  // // refs for map elements
-  // const mapContainerRef = useRef(null);
-  // const mapRef = useRef(null);
-  // const infoWindowRef = useRef(null);
+  
   // array to store our catch markers as references so we can bind events to them and access them later
   // format: { id: <id of the catch>, marker: <the marker for that catch>}
   const catchMarkersRef = useRef([]);
-
   // ref for our catch cards so we can select and focus them
   // format: { id: <id of the catch>, ref: <ref for that card>}
   const catchCardRefs = useRef({});
-  
+  const markerClusterRef = useRef(null);
+  const [clusterMarkers, setClusterMarkers] = useState(true);
   // state to show and hide our filter dropdown menu
   const [showFilterMenu, setShowFilterMenu] = useState(false);
-
   // an array for our species list, this will get populated from the useEffect when the catch data loads from server
   const [speciesList, setSpeciesList] = useState([]);
 
@@ -126,7 +126,7 @@ const UserCatchesMap = props => {
         mapRef.current.fitBounds(bounds, 50);
       }
     }
-  }, [showCreateCatch, apiStatus, mapRef, filteredCatches, catchMarkersRef, generateMarkers])
+  }, [showCreateCatch, apiStatus, mapRef, filteredCatches, catchMarkersRef])
 
 
 
@@ -136,7 +136,13 @@ const UserCatchesMap = props => {
         console.log('adding map click listener for window close')
         // window.google.maps.event.clearListeners(mapRef.current, 'click');
         mapRef.current.addListener('click', e => {
-          console.log('map click event listener')
+          if (infoWindowRef.current) {
+            infoWindowRef.current.close();
+          }
+          // unhighlight catch
+          setHighlightedCatch(null);
+        });
+        mapRef.current.addListener('zoom_changed', e => {
           if (infoWindowRef.current) {
             infoWindowRef.current.close();
           }
@@ -169,6 +175,7 @@ const UserCatchesMap = props => {
     setHighlightedCatch(catchId)
     const { marker } = catchMarkersRef.current.find(ref => ref.id === catchId);
     if (marker) {
+      mapRef.current.setZoom(10);
       window.google.maps.event.trigger( marker, 'click' );
     }
   };
@@ -214,57 +221,49 @@ const UserCatchesMap = props => {
     }
     // clear info window refs
     infoWindowRef.current = null;
-    
-    const calicoURL = 'http://localhost:3000/img/icons/Calico-Bass-3840-1920.svg'
-    const calicoURL2='http://localhost:3000/img/icons/Calico-Bass-3840-1920-test.png'
-    // const URLSVG = 'http://localhost:3000/img/icons/svg-icon.svg';
-
-    // const calicoMarker = {
-    //   url: calicoURL,
-    //   scaledSize: new window.google.maps.Size(30*1.97642436149, 30),
-    //   // scaledSize: new window.google.maps.Size(40, 20)
-    // }
-
     // create markers for all our catches
     if (catches && catches.length > 0) {
       catches.forEach((catchObj, index) => {
         let markerUrl;
+        let scaleFactor = [35 * 2, 35];
         // backwards compatibility before locations were required objects
         if (catchObj.catchLocation && typeof catchObj.catchLocation === 'object' ) {
           // select marker based on species
           
           if (catchObj.species.match(/calico|sand bass|spotted bass|sculpin/gi)) {
             // console.log('calico');
-            markerUrl='http://localhost:3000/img/icons/Calico-Bass-3840-1920.svg';
+            markerUrl='http://localhost:3000/img/small/Calico-Bass-Small.png';
           }
           else if (catchObj.species.match(/rockfish/gi)) {
             // console.log('rockfish');
-            markerUrl='http://localhost:3000/img/icons/Rockfish-3840-1920.svg';
+            markerUrl='http://localhost:3000/img/icons/small/Rockfish-Small.png';
           }          
           else if (catchObj.species.match(/tuna|bonito|yellowfin|yellowtail/gi)) {
             // console.log('tuna|bonito|yellowfin|yellowtail');
-            markerUrl='http://localhost:3000/img/icons/Yellowfin-3840-1920.svg'
+            markerUrl='http://localhost:3000/img/icons/small/Yellowfin-Small.png'
           }
           else if (catchObj.species.match(/striper|striped bass|stripper/gi)) {
             // console.log('striper|striped bass|stripper');
-            markerUrl='http://localhost:3000/img/icons/Striped-Bass-3840-1920.svg'
+            markerUrl = 'http://localhost:3000/img/icons/small/Stiped-Bass-Small.png';
           }
           else if (catchObj.species.match(/shark|leopard|mako|thresher/gi)) {
             // console.log('shark|leopard');
-            markerUrl='http://localhost:3000/img/icons/Leopard-Shark-3840-1920.svg'
+            // markerUrl='http://localhost:3000/img/icons/Leopard-Shark-3840-1920.svg'
+            markerUrl = 'http://localhost:3000/img/icons/small/Leopard-Shark-Cropped-Small.png';
+            scaleFactor = [30 * 3.4143151476, 30];
           } 
           else if (catchObj.species.match(/halibut|flounder|butt/gi)) {
             // console.log('halibut|flounder|butt');
-            markerUrl='http://localhost:3000/img/icons/Halibut-3840-1920.svg'
+            markerUrl='http://localhost:3000/img/icons/small/Halibut-Small.png'
           }                        
           else {
             // console.log('default');
-            markerUrl='http://localhost:3000/img/icons/Calico-Bass-3840-1920.svg';
+            markerUrl='http://localhost:3000/img/icons/small/Calico-Bass-Small.png';
           }
           // create the icon object
           const catchIcon = {
             url: markerUrl,
-            scaledSize: new window.google.maps.Size(35*1.97642436149, 35),
+            // scaledSize: new window.google.maps.Size(...scaleFactor),
             // scaledSize: new window.google.maps.Size(30*1.97642436149, 30),
             // scaledSize: new window.google.maps.Size(40, 20)
           }
@@ -274,8 +273,9 @@ const UserCatchesMap = props => {
             map: mapRef.current,
             icon: catchIcon,
             collisionBehavior: window.google.maps.CollisionBehavior.REQUIRED,
+            catchId: catchObj.id,
+            species: catchObj.species
           });
-
           // create an info window for the marker
           const infoDivStyle = 'padding-bottom: 5px; font-size: 16px;'
           const infoJSX = `
@@ -307,13 +307,131 @@ const UserCatchesMap = props => {
           // store the info window as a ref
           catchMarkersRef.current.push({id: catchObj.id, marker: catchMarker});  
         }
-        // const markers = catchMarkersRef.current.map(obj => obj.marker);
-        // new MarkerClusterer(mapRef.current, markers, {
-        //   imagePath:
-        //     "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
-        // });
+        if (clusterMarkers) {
+          const markers = catchMarkersRef.current.map(obj => obj.marker);
+          generateMarkerClusters(markers);
+        }
       });
     }
+  }
+
+  function generateMarkerClusters(markers) {
+    if (markerClusterRef.current) {
+      markerClusterRef.current.clearMarkers();
+    }
+    // const markerStyles = [MarkerClusterer.withDefaultStyle({
+    //   // url: "../img/icons/Calico-Bass-3840-1920.png",
+    //   url: "../img/markerclusterer/cluster-test-1.png",
+    //   // height: 80,
+    //   // width: 177,
+    //   height: 100,
+    //   width: 100,
+    //   anchorIcon: [50, 50],
+    //   textColor: "#FFFFFF",
+    //   textSize: 20,
+    //   maxZoom: 10,
+    // })];
+    const markerStyles = [
+      MarkerClusterer.withDefaultStyle({
+        // url: "../img/icons/Calico-Bass-3840-1920.png",
+        url: "../img/markerclusterer/m1.png",
+        // height: 80,
+        // width: 177,
+        height: 53,
+        width: 53,
+        // anchorIcon: [37.5, 37.5],
+        textColor: "#000000",
+        textSize: 15,
+        maxZoom: 10,
+      }),  
+      MarkerClusterer.withDefaultStyle({
+        // url: "../img/icons/Calico-Bass-3840-1920.png",
+        url: "../img/markerclusterer/m2.png",
+        // height: 80,
+        // width: 177,
+        height: 56,
+        width: 56,
+        // anchorIcon: [37.5, 37.5],
+        textColor: "#000000",
+        textSize: 15,
+        maxZoom: 10,
+      }),  
+      MarkerClusterer.withDefaultStyle({
+        // url: "../img/icons/Calico-Bass-3840-1920.png",
+        url: "../img/markerclusterer/m3.png",
+        // height: 80,
+        // width: 177,
+        height: 66,
+        width: 66,
+        // anchorIcon: [37.5, 37.5],
+        textColor: "#FFFFFF",
+        textSize: 15,
+        maxZoom: 10,
+      }),  
+      MarkerClusterer.withDefaultStyle({
+        // url: "../img/icons/Calico-Bass-3840-1920.png",
+        url: "../img/markerclusterer/m4.png",
+        // height: 80,
+        // width: 177,
+        height: 78,
+        width: 78,
+        // anchorIcon: [37.5, 37.5],
+        textColor: "#FFFFFF",
+        textSize: 15,
+        maxZoom: 10,
+      }),
+      MarkerClusterer.withDefaultStyle({
+        // url: "../img/icons/Calico-Bass-3840-1920.png",
+        url: "../img/markerclusterer/m5.png",
+        // height: 80,
+        // width: 177,
+        height: 90,
+        width: 90,
+        // anchorIcon: [37.5, 37.5],
+        textColor: "#FFFFFF",
+        textSize: 15,
+        maxZoom: 10,
+      }),      
+    ];
+    markerClusterRef.current = new MarkerClusterer(mapRef.current, markers, {
+      styles: markerStyles,
+        // imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+      maxZoom: 10,
+      averageCenter: true,
+      gridSize: 60,
+    });
+
+    // calculator for clusterer 
+    markerClusterRef.current.setCalculator(function (m) {
+      // build a species list to display in the tooltip
+      const speciesList = { };
+      m.forEach(marker => {
+        if (marker.species in speciesList) {
+          speciesList[marker.species] += 1;
+        } else {
+          speciesList[marker.species] = 1;
+        }
+      });
+      let speciesText ='';
+      for (const species in speciesList) {
+        if (speciesList[species] > 1) {
+          speciesText += `${speciesList[species]} ${species}, `;
+        } else {
+          speciesText += `${species}, `;
+        }
+      }
+      // console.log(speciesText);
+      speciesText = speciesText.substring(0, speciesText.length - 2);
+      // for (let marker in m) console.log(typeof marker);
+      const clusterSize = m.length; 
+      let index;
+      if (clusterSize <= 5) index = 1;
+      if (clusterSize > 5 && clusterSize <= 10) index = 2;
+      if (clusterSize > 10 && clusterSize <= 20) index = 3;
+      if (clusterSize > 20 && clusterSize <= 30) index = 4;
+      if (clusterSize > 30) index = 5;
+      return { index, text: clusterSize, title: speciesText };
+    });
   }
 
 
@@ -453,7 +571,11 @@ const UserCatchesMap = props => {
         catchMarkersRef.current.forEach(markerRef => markerRef.marker.setMap(null));
         catchMarkersRef.current = [];
       }
-    } else {
+      // toggle off clusters
+      if (markerClusterRef.current) {
+        markerClusterRef.current.clearMarkers();
+      }
+      } else {
       // events to run when form toggles off
       catchCardRefs.current = {};
     }
@@ -622,7 +744,7 @@ const UserCatchesMap = props => {
 
   return (
       <div style={{display: 'flex', height: '100%', paddingRight: 80}}>
-            <div className='map-container'>
+            <div className='map-container' style={{position: 'relative'}} >
               <div id='map' ref={mapContainerRef} style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                 {(apiStatus.loading || loadingUserCatches) && (
                   <div>
@@ -647,6 +769,11 @@ const UserCatchesMap = props => {
                   />
                 </div>
               }
+              {(!apiStatus.loading && !apiStatus.errors && filteredCatches) && 
+                <button onClick={handleFormToggle} style={{position: 'absolute', height: 40, width: 200, backgroundColor: '#EBEBEB', borderRadius: 5, zIndex: 99999999999999, bottom: 20, left: '40%'}}>
+                  Log Catch
+                </button>
+              }
             </div>
         
         {/* RIGHT SIDE WITH CATCH CARDS AND FILTER OPTIONS */}
@@ -657,8 +784,8 @@ const UserCatchesMap = props => {
           </div>
           {/* CONTAINER FOR CATCH CARDS*/}
           <div style={{padding: '0px 10px', marginTop: 20, width: 400, overflowY: 'scroll'}}>
-            <button onClick={handleTestLog}>test log</button>
-            <button onClick={handleFormToggle}>toggle form</button>
+            {/* <button onClick={handleTestLog}>test log</button> */}
+            {/* <button onClick={handleFormToggle}>toggle form</button> */}
             {
               showCreateCatch 
                 ? <CreateCatchForm onSuccessCallback={successfulCatchLogCallback} catchLocation={currentMapCenter} />

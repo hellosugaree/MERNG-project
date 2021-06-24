@@ -1,7 +1,8 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { AuthContext } from '../context/auth';
 import { Card, Form } from 'semantic-ui-react';
 import { useMutation } from '@apollo/client';
+import { useGoogleMap } from '../utilities/hooks';
 import { CREATE_CATCH } from '../gql/gql'
 import { useForm } from '../utilities/hooks';
 import DatePicker from 'react-datepicker';
@@ -9,6 +10,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { GET_CATCHES, GET_USER_BASIC_DATA } from '../gql/gql';
 import AutoSearchInputClass from './AutoSearchInputClass';
 import FormError from './FormError';
+import GoogleMap from './GoogleMap';
+import GoogleAutocomplete from './GoogleAutocomplete';
 
 import '../App.css';
 
@@ -17,6 +20,8 @@ import '../App.css';
 const selectLocationButton = document.createElement('button');
 selectLocationButton.classList.add('custom-map-control-button');
 selectLocationButton.innerHTML='Accept catch location';
+
+
 
 /*
   This form has 2 different ways of handling catch location
@@ -32,6 +37,76 @@ selectLocationButton.innerHTML='Accept catch location';
 const CreateCatchForm = props => {
   const { user } = useContext(AuthContext);
   // array to hold controls that will be added on mount
+  // create a controls array to pass to the GoogleMap component
+
+  // hook for google map refs and loader
+  const { loadMap, center, mapContainerRef, mapRef, apiStatus, basicControls } = useGoogleMap();
+  const controls = basicControls;
+  controls.push({ position: 'BOTTOM_CENTER', element: selectLocationButton, listeners: [{event: 'click', callback: handleSelectLocationButtonClick}] });
+
+  // state for whether or not to display map
+  const [showMap, setShowMap] = useState(false);
+  // this prevents us from getting charged for an api call by not rendering the map for the first time until the user tries to select catch location for first time
+  const [mapHasBeenShown, setMapHasBeenShown] = useState(false);
+  
+  const autocompleteInputRef = useRef();
+  const autocompleteRef = useRef();
+  
+  // load map script
+  useEffect(() => {
+    loadMap();
+  }, []);
+
+  // this prevents us from getting charged for an api call by not rendering the map for the first time until the user tries to select catch location for first time
+  useEffect(() => {
+    if (showMap && !mapHasBeenShown) {
+      setMapHasBeenShown(true);
+    }
+  }, [showMap, mapHasBeenShown, setMapHasBeenShown])
+
+
+
+    // // add listener to close info windows on map click
+    // useEffect(() => {
+    //   if(mapRef.current) {
+    //     console.log('adding listener')
+    //     mapRef.current.addListener('click', () => {
+    //       if (infoWindowRef.current) {
+    //         infoWindowRef.current.close();
+    //       }
+    //     });
+    //   }
+    // }, [mapRef.current, infoWindowRef]);
+  
+  // handler for accept catch location button on the map
+  function handleSelectLocationButtonClick() {
+    console.log(mapRef.current.getCenter().toJSON());
+    // set catch location in our form control values
+    setValues(prevValues => ({ ...prevValues, catchLocation: mapRef.current.getCenter().toJSON() }));
+    setShowMap(false);
+  }
+
+  
+  // handler for selecting place from autocomplete input
+  function handlePlaceSelect() {
+    console.log('place select callback')
+    // get the place the user selected
+    const place = autocompleteRef.current.getPlace();
+    if (place.geometry) {
+      const { lat, lng } = place.geometry.location;
+      // center our map on selected place
+      mapRef.current.setCenter(place.geometry.location);
+    }
+  }
+
+  // function we pass to our child catch card to be executed when the catch location div is clicked to show/hide the map
+  const handleCatchLocationClick = () => {
+    // show the map, which will also hide the form
+    if (!props.catchLocation) {
+      setShowMap(true);
+    }
+  }
+
 
   // FORM RELATED STUFF DOWN HERE
   const initialValues = {
@@ -41,7 +116,7 @@ const CreateCatchForm = props => {
     catchLength: '',
     notes: '',
     // if form is on the create catch page which already has a map, we'll take the map center from that, otherwise set as null
-    catchLocation: props.catchLocation
+    catchLocation: props.catchLocation ? props.catchLocation: null
   };
 
   const { errors, values, onSubmit, handleChange, handleDateChange, handleFormErrors, setValues } 
@@ -49,13 +124,18 @@ const CreateCatchForm = props => {
 
   // if catch location is controlled via props, update values when location changes
   useEffect(() => {
+    if (props.catchLocation) {
       setValues(prevValues => ({ ...prevValues, catchLocation: props.catchLocation }));
+    }
   }, [props.catchLocation, setValues])
 
 
   const [createCatch, { loading }] = useMutation(CREATE_CATCH, {
     options: () => ({ errorPolicy: 'all' }),
     update(cache, data) {
+      console.log(data);
+      console.log(cache);
+
       // read the cached catches query
       const { getCatches : cachedCatchData } = cache.readQuery({
         query: GET_CATCHES    // our gql file used to make the query initially
@@ -132,6 +212,7 @@ const CreateCatchForm = props => {
       }
     }
 
+
   // process values sent back from our search input and update them into the form state values
   const getChildValue = (value) => {
     setValues({...values, species: value})
@@ -176,8 +257,33 @@ const CreateCatchForm = props => {
   return (
         // outer form container
         <div style={{maxWidth: 400, justifyContent: 'center',  alignItems: 'center', display: 'flex', flexGrow: 1, ...props.style}}>
+          {mapHasBeenShown && (
+          /* CONTAINER FOR OUR MAP AND AUTOCOMPLETE */
+          <div style={{display: showMap ? 'flex' : 'none', flexDirection: 'column', height: 400, width: 200, flexGrow: 2}}>
+            {/* TARGET FOR OUR AUTOCOMPLETE RENDER */}
+            <input ref={autocompleteInputRef} type='text' placeholder='Enter a location to center the map' style={{height: 40}} />
+            {/* TARGET FOR OUR MAP RENDER RENDER */}
+            <div id='map' style={{display: 'flex', height: '100%', width: '100%'}}  ref={mapContainerRef}>
+              {apiStatus.loading && <h1>Loading map</h1>}
+            </div>
+            { // display our google API components only if the script has loaded without errors
+              (!apiStatus.loading && !apiStatus.errors) && 
+              <>
+                <GoogleMap 
+                  showCenterMarker={true}
+                  mapRef={mapRef} 
+                  mapContainer={mapContainerRef} 
+                  center={center} 
+                  controls={controls}
+                />
+                <GoogleAutocomplete autocomplete={autocompleteRef} autocompleteInput={autocompleteInputRef} onPlaceSelect={handlePlaceSelect} />
+              </>
+            }
+          </div>
+          )}
+
           {/* THE ACTUAL FORM CARD */}
-          <div style={{display: 'flex', width: 300, flexGrow: 1}}>
+          <div style={{display: showMap ? 'none' : 'flex', width: 300, flexGrow: 1}}>
               <Card fluid style={{padding: 10}}>
                 <Card.Header content='Log a catch' style={{fontSize: 20, fontWeight: 'bold', padding: '10px 0px 10px 0px'}} textAlign='center' /> 
                 <Form unstackable style={{ margin: '0px 5px 0px 5px' }} 
@@ -233,9 +339,15 @@ const CreateCatchForm = props => {
                   {/* CATCH LOCATION */}
                   <Form.Group style={{marginBottom: 10}} >
                     <Form.Field required width={16}>
-                      <label>Catch location (select on map)</label>
-                      <div style={{height: 40, padding: 10, margin: '0px 5px 0px 0px', display: 'flex', alignItems: 'center', border: '1px solid #DEDEDF', borderRadius: 5}}>
-                        {props.catchLocation.lat.toFixed(5)}, {props.catchLocation.lng.toFixed(5)}
+                      <label>Catch location</label>
+                      <div onClick={handleCatchLocationClick} style={{height: 40, padding: 10, margin: '0px 5px 0px 0px', display: 'flex', alignItems: 'center', border: '1px solid #DEDEDF', borderRadius: 5}}>
+                        {
+                          props.catchLocation 
+                            ? `${props.catchLocation.lat.toFixed(5)}, ${props.catchLocation.lng.toFixed(5)}`
+                            : values.catchLocation 
+                              ? `${values.catchLocation.lat.toFixed(5)}, ${values.catchLocation.lng.toFixed(5)}` 
+                              : 'Click to select location on map'
+                        }
                       </div>
                     </Form.Field>
                   </Form.Group>     

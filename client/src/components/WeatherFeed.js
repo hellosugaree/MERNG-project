@@ -228,7 +228,7 @@ const WeatherFeed = (props) => {
             const dayIndex = days.findIndex(item => item.date.year === startTime.year && item.date.day === startTime.day && item.date.month === startTime.month );
             if (dayIndex > -1) {
               // add the data to the appropriate day
-              days[dayIndex].[key].push({ startTime: currentInterval, value: dataPoint.value });
+              days[dayIndex][key].push({ startTime: currentInterval, value: dataPoint.value });
             }  
 
           }

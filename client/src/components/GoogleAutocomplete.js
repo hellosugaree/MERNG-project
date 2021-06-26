@@ -9,8 +9,6 @@ import React, { useEffect } from 'react';
  * 2) autocompleteRef: this is a blank ref in the parent component
  * 3) onPlaceSelect: a callback to be called when the user selects a place. 
  *    This is where the autocompleteRef is important, because you will need to reference it in your callback in the parent component to access the data of the selected place
- * 
- * 
  */
 const GoogleAutocomplete = props => {
 

@@ -274,6 +274,10 @@ input[type=number]::-webkit-outer-spin-button {
   animation-iteration-count: infinite;
   animation-duration: 1s;
   animation-timing-function: ease-out;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  /* transform: translateX(-50%); */
 }
 
 .top-bar-button {

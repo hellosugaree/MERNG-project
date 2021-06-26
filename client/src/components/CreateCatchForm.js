@@ -88,7 +88,6 @@ const CreateCatchForm = props => {
         }); 
       }
 
-
       // now update our user data query so our stats are updated
       const { getUser: cachedUser } = cache.readQuery({
         query: GET_USER_BASIC_DATA,

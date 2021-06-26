@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { useDropdown } from '../utilities/hooks';
 import { Icon } from 'semantic-ui-react';
 import { AuthContext } from '../context/auth';
@@ -12,9 +12,9 @@ export default function TopBar() {
   const { logout, user } = useContext(AuthContext);
 
   // gets 'login' from '/login' etc
-  const currentPath = window.location.pathname === '/' ? 'home' : window.location.pathname.substring(1,window.location.pathname.length); // get current path from window so we can set the state for active item based on current path
+  // const currentPath = window.location.pathname === '/' ? 'home' : window.location.pathname.substring(1,window.location.pathname.length); // get current path from window so we can set the state for active item based on current path
   // sets activeItem based on current path
-  const [activeItem, setActiveItem] = useState(currentPath); 
+  // const [activeItem, setActiveItem] = useState(currentPath); 
   
   const { showDropdown, toggleDropdown } = useDropdown();
 
@@ -59,7 +59,7 @@ export default function TopBar() {
         </div>
 
         <div style={{height: '100%', width: 50, display: 'flex', alignItems: 'center', position: 'relative'}}>
-          <button className='top-bar-button' onClick={e => toggleDropdown(e)} style={{display: user ? 'flex' : 'none' , alignItems: 'center', justifyContent: 'center', width: 40, height: 40, border: 'none', marginRight: 10, border: '1px solid lightgray', borderRadius: '50%'}}><Icon size='large' style={{margin: 0}} name='ellipsis vertical' /></button>
+          <button className='top-bar-button' onClick={e => toggleDropdown(e)} style={{display: user ? 'flex' : 'none' , alignItems: 'center', justifyContent: 'center', width: 40, height: 40, marginRight: 10, border: '1px solid lightgray', borderRadius: '50%'}}><Icon size='large' style={{margin: 0}} name='ellipsis vertical' /></button>
           {/* DROPDOWN CONTENT */}
           {user && loggedInMenu()}
         </div>

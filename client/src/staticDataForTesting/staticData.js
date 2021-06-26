@@ -1,3 +1,23563 @@
+const statticDayData = [
+    {
+      "date": {
+        "year": 2021,
+        "month": 6,
+        "day": 25,
+        "hour": 15,
+        "minute": 27,
+        "second": 25,
+        "millisecond": 69
+      },
+      "primarySwellHeight": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        }
+      ],
+      "temperature": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.444444444444445
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15.555555555555555
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.11111111111111
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.666666666666668
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.77777777777778
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.77777777777778
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.22222222222222
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.22222222222222
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        }
+      ],
+      "primarySwellDirection": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        }
+      ],
+      "windWaveHeight": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        }
+      ],
+      "wavePeriod2": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15
+        }
+      ],
+      "secondarySwellDirection": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        }
+      ],
+      "secondarySwellHeight": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        }
+      ],
+      "wavePeriod": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 6
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 6
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 6
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 6
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 6
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 6
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 6
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 6
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 6
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 6
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 6
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 6
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 6
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 6
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 6
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7
+        }
+      ],
+      "waveHeight": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 1.2192
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 1.2192
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 1.2192
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 1.2192
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 1.2192
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 1.2192
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 1.2192
+        }
+      ],
+      "weather": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        }
+      ],
+      "windGust": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7.408
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7.408
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7.408
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 24.076
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 24.076
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 24.076
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 24.076
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 24.076
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 24.076
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 20.372
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 20.372
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 20.372
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        }
+      ],
+      "windSpeed": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 5.556
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 5.556
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 5.556
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.668
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.668
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.668
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        }
+      ],
+      "windDirection": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 250
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 250
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 250
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 260
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 260
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 260
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 280
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 280
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 280
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 290
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 290
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 290
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 290
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 290
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 290
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 250
+        }
+      ],
+      "skyCover": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 100
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 100
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 100
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 41
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 41
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 41
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 41
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 41
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 41
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 41
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 41
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 41
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 41
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 41
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 41
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 25,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 100
+        }
+      ],
+      "tempHigh": 18.333333333333332,
+      "tempLow": 14.444444444444445
+    },
+    {
+      "date": {
+        "year": 2021,
+        "month": 6,
+        "day": 26,
+        "hour": 15,
+        "minute": 27,
+        "second": 25,
+        "millisecond": 69
+      },
+      "primarySwellHeight": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        }
+      ],
+      "temperature": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.22222222222222
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.666666666666668
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.11111111111111
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15.555555555555555
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.11111111111111
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15.555555555555555
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.11111111111111
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15.555555555555555
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.444444444444445
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15.555555555555555
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.11111111111111
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.666666666666668
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.77777777777778
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.77777777777778
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.22222222222222
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.22222222222222
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        }
+      ],
+      "primarySwellDirection": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        }
+      ],
+      "windWaveHeight": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        }
+      ],
+      "wavePeriod2": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        }
+      ],
+      "secondarySwellDirection": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        }
+      ],
+      "secondarySwellHeight": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        }
+      ],
+      "wavePeriod": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        }
+      ],
+      "waveHeight": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 1.2192
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 1.2192
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 1.2192
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 1.2192
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 1.2192
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 1.2192
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 1.2192
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 1.2192
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 1.2192
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 1.2192
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 1.2192
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        }
+      ],
+      "weather": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        }
+      ],
+      "windGust": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 3.704
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 3.704
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 3.704
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7.408
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7.408
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7.408
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7.408
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7.408
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7.408
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        }
+      ],
+      "windSpeed": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 3.704
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 3.704
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 3.704
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 5.556
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 5.556
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 5.556
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 5.556
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 5.556
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 5.556
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        }
+      ],
+      "windDirection": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 250
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 250
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 160
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 160
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 160
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 160
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 160
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 160
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 210
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 210
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 210
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 230
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 230
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 230
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 250
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 250
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 250
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 220
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 220
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 220
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 170
+        }
+      ],
+      "skyCover": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 100
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 100
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 100
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 100
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 100
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 100
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 100
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 100
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 100
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 100
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 100
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 61
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 61
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 61
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 61
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 61
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 61
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 57
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 57
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 57
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 57
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 57
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 57
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 26,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 100
+        }
+      ],
+      "tempHigh": 18.333333333333332,
+      "tempLow": 14.444444444444445
+    },
+    {
+      "date": {
+        "year": 2021,
+        "month": 6,
+        "day": 27,
+        "hour": 15,
+        "minute": 27,
+        "second": 25,
+        "millisecond": 69
+      },
+      "primarySwellHeight": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        }
+      ],
+      "temperature": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.22222222222222
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.22222222222222
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.666666666666668
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.666666666666668
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.666666666666668
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.11111111111111
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.666666666666668
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.666666666666668
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.11111111111111
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 15.555555555555555
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.666666666666668
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.666666666666668
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.22222222222222
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.88888888888889
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.88888888888889
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.77777777777778
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.88888888888889
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.88888888888889
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.88888888888889
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.88888888888889
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.88888888888889
+        }
+      ],
+      "primarySwellDirection": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        }
+      ],
+      "windWaveHeight": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        }
+      ],
+      "wavePeriod2": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        }
+      ],
+      "secondarySwellDirection": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        }
+      ],
+      "secondarySwellHeight": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        }
+      ],
+      "wavePeriod": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 8
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7
+        }
+      ],
+      "waveHeight": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        }
+      ],
+      "weather": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        }
+      ],
+      "windGust": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        }
+      ],
+      "windSpeed": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7.408
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7.408
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7.408
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7.408
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7.408
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7.408
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        }
+      ],
+      "windDirection": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 170
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 170
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 140
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 140
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 140
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 150
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 150
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 150
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 210
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 210
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 210
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 230
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 230
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 230
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 170
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 170
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 170
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 180
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 180
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 180
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 180
+        }
+      ],
+      "skyCover": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 100
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 100
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 100
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 100
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 100
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 100
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 100
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 100
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 100
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 100
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 100
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 47
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 47
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 47
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 47
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 47
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 47
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 27,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        }
+      ],
+      "tempHigh": 18.88888888888889,
+      "tempLow": 15.555555555555555
+    },
+    {
+      "date": {
+        "year": 2021,
+        "month": 6,
+        "day": 28,
+        "hour": 15,
+        "minute": 27,
+        "second": 25,
+        "millisecond": 69
+      },
+      "primarySwellHeight": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        }
+      ],
+      "temperature": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.77777777777778
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.77777777777778
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.22222222222222
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.77777777777778
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.22222222222222
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.77777777777778
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.22222222222222
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.22222222222222
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.666666666666668
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.22222222222222
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.77777777777778
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.77777777777778
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.88888888888889
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.88888888888889
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.88888888888889
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.88888888888889
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.88888888888889
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.88888888888889
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.88888888888889
+        }
+      ],
+      "primarySwellDirection": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 300
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 300
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 300
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 300
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 300
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 300
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 300
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 300
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 300
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 300
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 300
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 300
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 300
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 300
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 300
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 300
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 300
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 300
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 300
+        }
+      ],
+      "windWaveHeight": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        }
+      ],
+      "wavePeriod2": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        }
+      ],
+      "secondarySwellDirection": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        }
+      ],
+      "secondarySwellHeight": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        }
+      ],
+      "wavePeriod": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9
+        }
+      ],
+      "waveHeight": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        }
+      ],
+      "weather": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        }
+      ],
+      "windGust": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 22.224
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 22.224
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 22.224
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        }
+      ],
+      "windSpeed": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.668
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.668
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.668
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        }
+      ],
+      "windDirection": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 180
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 180
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 160
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 160
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 160
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 140
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 140
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 140
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 150
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 150
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 150
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 180
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 180
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 180
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 200
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 200
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 200
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 200
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 200
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 200
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 160
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 160
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 160
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 150
+        }
+      ],
+      "skyCover": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 43
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 43
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 43
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 43
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 43
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 43
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 40
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 40
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 40
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 40
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 40
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 40
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 28,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        }
+      ],
+      "tempHigh": 18.88888888888889,
+      "tempLow": 16.666666666666668
+    },
+    {
+      "date": {
+        "year": 2021,
+        "month": 6,
+        "day": 29,
+        "hour": 15,
+        "minute": 27,
+        "second": 25,
+        "millisecond": 69
+      },
+      "primarySwellHeight": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        }
+      ],
+      "temperature": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.77777777777778
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.77777777777778
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.77777777777778
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.88888888888889
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.88888888888889
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.88888888888889
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.88888888888889
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.88888888888889
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.88888888888889
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.88888888888889
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.88888888888889
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.88888888888889
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.88888888888889
+        }
+      ],
+      "primarySwellDirection": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 300
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 300
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 300
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 300
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 300
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        }
+      ],
+      "windWaveHeight": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        }
+      ],
+      "wavePeriod2": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16
+        }
+      ],
+      "secondarySwellDirection": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        }
+      ],
+      "secondarySwellHeight": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        }
+      ],
+      "wavePeriod": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9
+        }
+      ],
+      "waveHeight": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        }
+      ],
+      "weather": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        }
+      ],
+      "windGust": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.668
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.668
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.668
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 22.224
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 22.224
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 22.224
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.668
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.668
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.668
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        }
+      ],
+      "windSpeed": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.668
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.668
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.668
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        }
+      ],
+      "windDirection": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 150
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 150
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 140
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 140
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 140
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 140
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 140
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 140
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 150
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 150
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 150
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 170
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 170
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 170
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 200
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 200
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 200
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 170
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 170
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 170
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 150
+        }
+      ],
+      "skyCover": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 70
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 70
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 70
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 70
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 70
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 70
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 66
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 66
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 66
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 66
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 66
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 66
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 29,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        }
+      ],
+      "tempHigh": 18.88888888888889,
+      "tempLow": 17.77777777777778
+    },
+    {
+      "date": {
+        "year": 2021,
+        "month": 6,
+        "day": 30,
+        "hour": 15,
+        "minute": 27,
+        "second": 25,
+        "millisecond": 69
+      },
+      "primarySwellHeight": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        }
+      ],
+      "temperature": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.77777777777778
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.77777777777778
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.77777777777778
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.77777777777778
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.77777777777778
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.77777777777778
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.77777777777778
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.22222222222222
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 17.77777777777778
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.333333333333332
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 19.444444444444443
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.88888888888889
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.88888888888889
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 19.444444444444443
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.88888888888889
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.88888888888889
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 19.444444444444443
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 19.444444444444443
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 19.444444444444443
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 19.444444444444443
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 19.444444444444443
+        }
+      ],
+      "primarySwellDirection": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 270
+        }
+      ],
+      "windWaveHeight": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.3048
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0
+        }
+      ],
+      "wavePeriod2": [],
+      "secondarySwellDirection": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        }
+      ],
+      "secondarySwellHeight": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.6096
+        }
+      ],
+      "wavePeriod": [],
+      "waveHeight": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 0.9144
+        }
+      ],
+      "weather": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": null,
+              "weather": null,
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": [
+            {
+              "coverage": "patchy",
+              "weather": "fog",
+              "intensity": null,
+              "visibility": {
+                "unitCode": "wmoUnit:km",
+                "value": null
+              },
+              "attributes": []
+            }
+          ]
+        }
+      ],
+      "windGust": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 18.52
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.668
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.668
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 16.668
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        }
+      ],
+      "windSpeed": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7.408
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7.408
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 7.408
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 11.112
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 14.816
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 12.964
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 9.26
+        }
+      ],
+      "windDirection": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 150
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 150
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 150
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 150
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 150
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 150
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 150
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 150
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 160
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 160
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 160
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 190
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 220
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 220
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 220
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 230
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 230
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 230
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 210
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 210
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 210
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 210
+        }
+      ],
+      "skyCover": [
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 0,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 1,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 2,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 3,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 4,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 5,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 6,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 7,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 8,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 9,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 10,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 11,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 60
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 12,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 60
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 13,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 60
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 14,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 60
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 15,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 60
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 16,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 60
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 17,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 55
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 18,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 55
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 55
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 20,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 55
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 21,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 55
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 22,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 55
+        },
+        {
+          "startTime": {
+            "year": 2021,
+            "month": 6,
+            "day": 30,
+            "hour": 23,
+            "minute": 0,
+            "second": 0,
+            "millisecond": 0
+          },
+          "value": 90
+        }
+      ],
+      "tempHigh": 19.444444444444443,
+      "tempLow": 17.22222222222222
+    }
+  ]
+
+
 export const staticGridData = {
   "@id": "https://api.weather.gov/gridpoints/SGX/18,33",
   "@type": "wx:Gridpoint",

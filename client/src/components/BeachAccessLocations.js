@@ -470,7 +470,7 @@ const BeachAccessLocations = (props) => {
   const renderPagination = () => {
     return (
     /* CONTAINER FOR PAGINATION and PAGE COUNT*/
-    <div style={{width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+    <div style={{width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 10}}>
       {/* PAGINATION BUTTONS CONTAINER*/}
       <div style={{border: '1px solid lightgrey', borderRadius: 5, display: 'flex', width: '100%', flexGrow: 1,  maxWidth: 500}}>
         <button 
@@ -669,7 +669,7 @@ const BeachAccessLocations = (props) => {
           </div>
           
 
-          <div style={{flexGrow:1}}>
+          <div style={{flexGrow:1, padding: '0px 10px 20px 10px'}}>
             {!fetchStatus.loading && !fetchStatus.error && !apiStatus.loading && !apiStatus.errors && filteredAccessLocations && renderMap() }  
           </div>
         </div>

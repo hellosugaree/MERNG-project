@@ -1,8 +1,6 @@
 import { createContext, useState } from 'react';
 import '../App.css';
 
-
-
 const ModalContext = createContext({
   showModal: false,
   modalContent: null,
@@ -22,9 +20,13 @@ const ModalProvider = props => {
 
   const [state, setState] = useState(initialState);
 
-
+  // login modal predefined type
   const showLoginModal = () => {
     setState({ ...state, modalContent: 'LOGIN_MODAL', showModal: true });
+  };
+
+  const showCustomModal = content => {
+    setState({ ...state, modalContent: content, showModal: true })
   };
 
   const closeModal = () => {
@@ -32,7 +34,7 @@ const ModalProvider = props => {
   };
 
 
-  return (<ModalContext.Provider value={{ showModal: state.showModal, modalContent: state.modalContent, closeModal, showLoginModal }} { ...props } />)
+  return (<ModalContext.Provider value={{ showModal: state.showModal, modalContent: state.modalContent, closeModal, showCustomModal, showLoginModal }} { ...props } />)
 };
 
 export { ModalProvider, ModalContext };

@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { ModalContext } from '../context/modal';
-import { AuthContext } from '../context/auth';
 import ReactDom from 'react-dom';
 import LoginModal from './LoginModal';
 
@@ -16,8 +15,8 @@ borderRadius: specify a border radius for outer edges of modal window
 */
 const ModalPortal = props => {
   // user context for closing login modal when user logs in
-  const { user } = useContext(AuthContext);
-  const { showModal, closeModal, modalContent } = useContext(ModalContext);
+  // const { user } = useContext(AuthContext);
+  const { showModal, modalContent } = useContext(ModalContext);
 
   // const closeModal = () => console.log('close modal');
   // const modalContent = 'LOGIN_MODAL';

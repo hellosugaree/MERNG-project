@@ -9,7 +9,6 @@ import PostFeed from '../components/PostFeed';
 import CatchFeed from '../components/CatchFeed';
 import WeatherFeed from '../components/WeatherFeed';
 import LoaderFish from '../components/LoaderFish';
-import DoubleFeed from '../components/DoubleFeed';
 import UserCatchesMap from '../pages/UserCatchesMap';
 import BeachAccessLocations from '../components/BeachAccessLocations';
 
@@ -148,7 +147,7 @@ function Home(props) {
                     <button type='button' name='userCatchMap' 
                     className='side-bar-menu-button' 
                     onClick={handleSidebarClick}
-                    style={ path === '/user/catchmap' ? {... activeSideBarButtonStyle} : {} }
+                    style={ path === '/user/catchmap' ? {...activeSideBarButtonStyle} : {} }
                     >
                       <Icon name='map marker alternate' style={{marginRight: 10}} />                    
                       My Catches

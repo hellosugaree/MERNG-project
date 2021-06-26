@@ -42,6 +42,10 @@ export const useGoogleAutocomplete = placeSelectCallback => {
 };
 
 
+
+
+
+export const useGoogleMap2 = (showBasicControls = true, additionalControls, onCenterChangeCallback, showCenterMarker, mapOptions, defaultZoom = 13) => {
 /**
  * @callback onCenterChangeCallback - (optional) callback function executed when map center changed
  * @param {boolean} showBasicControls - include basic controls (default true)
@@ -50,10 +54,6 @@ export const useGoogleAutocomplete = placeSelectCallback => {
  * @param {Object} mapOptions - object of map options to pass to the google.maps.Map constructor
  * @param {number} defaultZoom - specify initial zoom of map in google.maps.Map constructor
  */
-
-
-export const useGoogleMap2 = (showBasicControls = true, additionalControls, onCenterChangeCallback, showCenterMarker, mapOptions, defaultZoom = 13) => {
-
   const getCurrentLocationButton = document.createElement('button');
   getCurrentLocationButton.classList.add("custom-map-control-button");
   getCurrentLocationButton.innerHTML='<i class="blue location arrow icon"></i>';
@@ -82,14 +82,12 @@ export const useGoogleMap2 = (showBasicControls = true, additionalControls, onCe
   const centerMarkerRef = useRef(null);
   
   // center to control map center via props
-  const [center, setCenter] = useState({ lat: 33.4672, lng: -117.6981 });
+  const center = { lat: 33.4672, lng: -117.6981 };
 
   const { getPosition, geolocationStatus } = useGeolocation();
 
   // map options
   const additionalOptions = { center_changed: handleCenterChange, streetViewControl: false  };
-
-
 
   // function to create a center marker on the map that stays centered
   // useCallback so we can pass it to a useEffect for when the showCenterMarker argument changes dynamically, as well as if it's set to true statically (via the loadMap function)
@@ -103,11 +101,19 @@ export const useGoogleMap2 = (showBasicControls = true, additionalControls, onCe
     //   path: window.google.maps.SymbolPath.CIRCLE 
     // };
 
+    const fishTargetIcon = {
+      url: 'http://localhost:3000/img/icons/yellowfin-crosshair.png',
+      scaledSize: new window.google.maps.Size(75, 75),
+      anchor: new window.google.maps.Point(37.5, 37.5),
+    };
+
     // initialize center marker
     centerMarkerRef.current = new window.google.maps.Marker({
       position: mapRef.current.getCenter().toJSON(),
       map: mapRef.current,
-      icon: 'http://localhost:3000/img/icons/yellowfin-crosshair.png'
+      // icon: 'http://localhost:3000/img/icons/yellowfin-crosshair.png',
+      icon: fishTargetIcon,
+      opacity: 0.5,
     });
   },[]);
 
@@ -146,7 +152,8 @@ export const useGoogleMap2 = (showBasicControls = true, additionalControls, onCe
       center: center,
       zoom: defaultZoom,
       ...mapOptions,
-      ...additionalOptions
+      ...additionalOptions,
+      // gestureHandling: 'cooperative'
     });
     
     // push custom controls onto the form
@@ -180,8 +187,6 @@ export const useGoogleMap2 = (showBasicControls = true, additionalControls, onCe
   }, [showCenterMarker, centerMarkerRef, mapRef, createCenterMarker]);
 
 
-
-
   // handler for the location button click on map
   function handleGetLocationButtonClick() {
     getPosition();
@@ -207,7 +212,7 @@ export const useGoogleMap2 = (showBasicControls = true, additionalControls, onCe
           });
           // center the map on current position
         } 
-        setCenter(geolocationStatus.position);      
+        mapRef.current.setCenter(geolocationStatus.position)      
       }
       if (geolocationStatus.errorMessage) {
         console.log('processing geolocation errors')
@@ -224,7 +229,7 @@ export const useGoogleMap2 = (showBasicControls = true, additionalControls, onCe
         infoWindowRef.current.open(mapRef.current);
       }
   }
-  }, [geolocationStatus.position, geolocationStatus.errorMessage, mapRef, infoWindowRef, setCenter])
+  }, [geolocationStatus.position, geolocationStatus.errorMessage, mapRef, infoWindowRef])
 
 
   // fit the map bounds to contain an array of position objects {lat: <float>, lng: <float>}
@@ -301,10 +306,25 @@ export const useGoogleMap2 = (showBasicControls = true, additionalControls, onCe
     }
   }
 
+    // function to display an info window on the map
+    function showInfoWindowInCenter (content, mapRef, infoWindowRef) {
+      if (infoWindowRef.current) {
+        infoWindowRef.current.close();
+      }   
+      const infoWindow = new window.google.maps.InfoWindow({
+        content: content,
+      });
+  
+      infoWindow.setPosition(mapRef.current.getCenter());
+      infoWindow.open(mapRef.current);
+      infoWindowRef.current = infoWindow;
+    }
+
   return {
     loadMap,
     mapMarkers,
-    setCenter,
+    getPosition, 
+    showInfoWindowInCenter,
     geolocationStatus,
     mapContainerRef,
     currentPositionMarkerRef,
@@ -313,7 +333,7 @@ export const useGoogleMap2 = (showBasicControls = true, additionalControls, onCe
     apiStatus,
     mapLoaded,
     center,
-    markersRef
+    markersRef,
   };
 
 };

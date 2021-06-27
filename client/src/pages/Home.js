@@ -209,8 +209,6 @@ function Home(props) {
           <Route exact path='/weather' component={WeatherFeed} />
           <Route exact path='/beaches' component={BeachAccessLocations} />
           <Route exact path='/posts' ><PostFeed user={user} loading={loading} error={error} data={data} /></Route>
-          
-
         </div>
 
       

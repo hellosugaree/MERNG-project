@@ -557,7 +557,7 @@ const BeachAccessLocations = (props) => {
 
   const renderFilterMenu = () => {
     return (
-      <div style={{width: '100%', padding: '0px 5px'}}> 
+      <div style={{width: '100%'}}> 
       <div style={{display: 'flex', flexDirection: 'column', width: '100%', alignItems: 'center', border: '1px solid #CCC', borderRadius: 5}}>
         {/* SORT DROPDOWN */}
         <span style={{marginTop: 10, fontSize: 20, fontWeight: 'bold'}}>Filter Access Locations</span>
@@ -654,25 +654,24 @@ const BeachAccessLocations = (props) => {
 
   return (
         /* CONTAINER FOR FILTERS AND POSTS */
-        <div style={{display: 'flex', width: '100%', alignItems: 'center', flexDirection: 'column', height: '100%', padding: '0px 10px 0px 0px'}}>
+        <div style={{display: 'flex', width: '100%', height: '100%', padding: '0px 10px 0px 0px'}}>
 
-          {/* SORT AND FILTER OPTIONS */} 
-          {filteredAccessLocations && renderFilterMenu()} 
-        {/* CONTAINER FOR MAP AND CARD CONTAINERS */}
-        <div style={{display: 'flex', height: 1, flexGrow: 1, width: '100%', paddingTop: 10}}>
           {/* CONTAINER FOR CARDS */}
-          <div style={{height: '100%', width: 400, display: 'flex', flexDirection: 'column'}}>
+          <div style={{height: '100%', width: 600, display: 'flex', flexDirection: 'column'}}>
             {fetchStatus.loading && (<h1 className='page-title' style={{}}>Retreiving beach data from server...</h1>)}
             {fetchStatus.error && (<h1 className='page-title' style={{}}>Could not retreive beach data from server, please try again later...</h1>)}
             {!fetchStatus.loading && !fetchStatus.error && filteredAccessLocations && renderCards()}  
             {!fetchStatus.loading && !fetchStatus.error && filteredAccessLocations && renderPagination()}  
           </div>
           
-
-          <div style={{flexGrow:1, padding: '0px 10px 20px 10px'}}>
-            {!fetchStatus.loading && !fetchStatus.error && !apiStatus.loading && !apiStatus.errors && filteredAccessLocations && renderMap() }  
+          <div style={{display: 'flex', flexDirection: 'column', width: '100%', padding: '0px 10px 20px 10px'}}>
+            {/* SORT AND FILTER OPTIONS */} 
+            {filteredAccessLocations && renderFilterMenu()} 
+            <div style={{height: '100%', width: '100%', paddingTop: 10}}>
+              {!fetchStatus.loading && !fetchStatus.error && !apiStatus.loading && !apiStatus.errors && filteredAccessLocations && renderMap() }  
+            </div>
           </div>
-        </div>
+
       </div>
   );
 

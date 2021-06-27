@@ -294,7 +294,7 @@ const CreateCatchForm = props => {
                   <Form.Button style={{display: 'block', margin: '0px auto 0px auto'}} color='blue' type="submit">Submit</Form.Button>
                 </Form.Group> 
               </Form>
-              <button type='button' onClick={() => console.log(values)} > test log</button>
+              {/* <button type='button' onClick={() => console.log(values)} > test log</button> */}
             </Card>
           </div>
         </div>

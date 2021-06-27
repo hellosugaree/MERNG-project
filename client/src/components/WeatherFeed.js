@@ -563,9 +563,11 @@ const WeatherFeed = (props) => {
   };
 
   return (
-    <div style={{display: 'flex',  height: '100%', paddingRight: 75}}>
-
-    <div className='map-container' style={{width: 300, height: 800, position: 'relative'}}>
+    // outer container
+    <div style={{display: 'flex', flexDirection: 'column', height: '100%'}}>
+      {/* container for map container, min 400, grow to page height up to 900 max */}
+    <div style={{display: 'flex',  height: 400, flexGrow: 1, maxHeight: 900, paddingRight: 75}}>
+    <div className='map-container' style={{width: 300, height: '100%', position: 'relative'}}>
       <div id='map' ref={mapContainerRef} />
 
       <input 
@@ -594,7 +596,7 @@ const WeatherFeed = (props) => {
     </div>
 
 
-    <div style={{ width: 600, padding: '0px 10px', height: 800, display: 'flex', flexDirection: 'column'}}>
+    <div style={{ width: 600, padding: '0px 10px', height: '100%', display: 'flex', flexDirection: 'column'}}>
       <div style={{padding: 10}}>
         {!fetchStatus.loading && !fetchStatus.error &&  
           <div style={{fontSize: 20}}>
@@ -668,6 +670,8 @@ const WeatherFeed = (props) => {
       )}
 
       </div>
+
+    </div>
 
     </div>
 

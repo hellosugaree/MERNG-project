@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { staticGridData, staticDayData } from '../staticDataForTesting/staticData';
-import { VictoryLine, VictoryChart, VictoryAxis, VictoryScatter, VictoryLegend, VictoryLabel } from 'victory';
+import { VictoryLine, VictoryChart, VictoryAxis, VictoryScatter, VictoryLabel } from 'victory';
 import { Card, Icon, Checkbox } from 'semantic-ui-react';
 import WeatherCard from './WeatherCard';
 import LoaderFish from './LoaderFish';
 import ArrowPoint from './chart/ArrowPoint';
-import { ArrowLegendComponent } from './chart/LegendComponents';
-
 import { useGoogleMap2, useGoogleAutocomplete } from '../utilities/hooks';
 import { DateTime, Duration } from 'luxon';
 
@@ -320,290 +318,10 @@ const WeatherFeed = (props) => {
   };
 
 
-  const processDataForChart = (data, options) => {
-    // data argument given as an object; key indicates data type (windSpeed, swellHeight, etc), and value is an array of data objects with startTime and value keys
-    // e.g. { period: [ { startTime, value } ], direction: [ { startTime, value } ] } or { gust: [ { startTime, value } ], direction: [ { startTime, value } ] }
-    // this function will merge the data so there is a single array of objects at the end
-    // output example: { x: <hour> (0-23 representing 12AM to 11PM), swellHeight: <number>, direction: <number>, period: <number> }
-
-    // multiplier and addend for our primary Y and secondary axis if supplied in options object, otherwise default to 1 and 0 respectively
-    const { primaryYKey, secondaryYKey, primaryYMultiplier, primaryYAddend, secondaryYMultiplier, secondaryYAddend } = options;
-
-    const processedData = [];
-    // go through data key and build the processed data array
-    for (const dataKey in data ) {
-      // multipliers and addends to convert values to different units can be supplied in the options object (primaryYMultiplier, primaryYAddend, secondaryYMultiplier, secondaryYAddend)
-      let multiplier = null;
-      let addend = null;
-      let applyValueAdjustment = false;
-      // see if we need to apply the multipler and addend to this data set
-      if (dataKey === primaryYKey) {
-        multiplier = primaryYMultiplier ? primaryYMultiplier : 1;
-        addend = primaryYAddend ? primaryYAddend : 0;
-        applyValueAdjustment = true;
-      }
-      if (dataKey === secondaryYKey) {
-        multiplier = secondaryYMultiplier ? secondaryYMultiplier : 1;
-        addend = secondaryYAddend ? secondaryYAddend : 0;
-        applyValueAdjustment = true;
-      }
-      data[dataKey].forEach(dataObject => {
-        const hour = dataObject.startTime.hour;
-        const value = applyValueAdjustment ? dataObject.value * multiplier + addend : dataObject.value;
-        // if data keys for this x value (start hour) already exists in the processed data object, add new values to that object, otherwise push a new dataObject
-        const processedDataIndexToAppendTo = processedData.findIndex(processedDataObject => processedDataObject.x === hour);
-        if (processedDataIndexToAppendTo > -1) {
-          // data for this x value (hour) in the processed data array exists, so just add a new key/value pair to that object
-          processedData[processedDataIndexToAppendTo][dataKey] = value;
-        } else {
-          // no data for this x value (hour) in the processed data array yet, so push a new object
-          processedData.push({ startTime: dataObject.startTime, x: hour, [dataKey]: value });
-        }
-      });
-    }
-
-    // // if we have supplementary data like wind direction, let's add that to the processedData so we can render it on the chart
-    // if (supplementaryData) {
-    //   // supplementary data is an object with keys that contain arrays of hourly data objects
-
-    //   // we want to merge these supplementary data keys and values into their matching processedData hourly objects
-    //   // example of final processed data [{x: <hour (0-23)>, y: <main y value>, period: <period value>, direction: <direction value>  }]
-    //   // there may be multiple keys for different datasets in supplementary data object (period, direction, etc)
-    //   for (const supplementaryDataKey in supplementaryData) {
-    //     let secondaryYMultiplier = null;
-    //     let secondaryYAddend = null; 
-    //     // only apply if a secondary Y key was provided
-    //     let applySecondaryYScale = false;
-    //     // We can only apply a multiplier and/or addend the secondary Y axis if a key was provided
-    //     if('secondaryYKey' in options) {
-    //       secondaryYMultiplier = options.secondaryYMultiplier ? options.secondaryYMultiplier : 1;
-    //       secondaryYAddend = options.secondaryYAddend ? options.secondaryYAddend : 0;
-    //       applySecondaryYScale = true;
-    //     }
-    //     supplementaryData[supplementaryDataKey].forEach(supplementaryDataObject => {
-    //       // find the x point with the same hour as our supplementary point
-    //       const processedDataIndexToAppendTo = processedData.findIndex(processedDataObject => processedDataObject.x === supplementaryDataObject.startTime.hour);
-    //       if (processedDataIndexToAppendTo > -1) {
-    //         // apply multiplier and addend to secondary y if present
-    //         // add our supplementary data key and value to the appropriate hour on the main data object
-    //         let supplementaryDataValue = supplementaryDataObject.value;
-    //         // if a secondary Y key is supplied in options, apply the data transformations
-    //         if (applySecondaryYScale) {
-    //           supplementaryDataValue = supplementaryDataValue * secondaryYMultiplier + secondaryYAddend;
-    //         }
-    //         processedData[processedDataIndexToAppendTo][supplementaryDataKey] = supplementaryDataValue;
-    //       }
-    //     });
-    //   }
-    // }
-    return processedData;
-    console.log(processedData)
-  };
   
-  function generateArrowChart(data, options) {
-    // data is an array, first element is array of data objects for primary y axis, element 1 to n are supplementary data arrays
-    // takes options object:
-    /*
-    {
-      chartTitle: <String>             Title for the chart
-      primaryYKey: <String>            indicates key that holds primary Y axis 
-      primaryYLabel: <String>          label for the primary y axis
-      primaryYMultiplier: <Number>     factor to scale primary y axis values (for unit conversions like mph to km/h, etc)
-      primaryYAddend: <Number>         fixed value to add to the primary y axis values after applying the scale factor
-      primaryYUnit: <String>           unit for primary Y axis to display with label 
-      secondaryYLabel: <String>         
-      secondaryYMultiplier: <Number>     
-      secondaryYAddend: <Number>         
-      secondaryYUnit: <String>
-      secondaryYKey:  <String>        identifies which key in the supplementary data is for secondary Y axis (ex: 'windGust')
-    }
-    
-    */
-
-    const { label, primaryYKey, primaryYLabel, primaryYUnit, secondaryYKey, secondaryYLabel, secondaryYUnit, chartTitle } = options;
-    const processedData = processDataForChart(data, options);
-
-    // wind speeds contained in processedData
-    // wind direction contained in supplementaryData
-    const chartWidth = 300;
-    const chartHeight = 110;
-    // get max y value for main data component (swell height, wind speed, etc) to normalize data 
-    const maxYPrimary = Math.round(Math.max(...processedData.filter(dataObj => typeof dataObj[primaryYKey] === 'number').map(dataObj => dataObj[primaryYKey]))) + 1;
-    // swell period data is not always present, so we filter out numbers only then get max for secondary axis
-    const filteredSecondaryYValues = processedData.filter(dataObj => typeof dataObj[secondaryYKey] === 'number');
-    // if there are no period values, make maxYSecondary null
-    const maxYSecondary = filteredSecondaryYValues.length > 0 ? Math.round(Math.max(...filteredSecondaryYValues.map(dataObj => dataObj[secondaryYKey]))) + 1 : null;
-    // we need to manually calculate normalized tick values for integer points so we don't get decimal ticks 
-    const primaryYTicks = [];
-    for (let i=maxYPrimary; i > 0; i-- ) {
-      primaryYTicks.push(i/maxYPrimary);
-    }
-    const secondaryYTicks = [];
-    if (maxYSecondary) {
-        for (let i=maxYSecondary; i > 0; i--) {
-          secondaryYTicks.push(i/maxYSecondary);
-        }
-    }
-
-    // process our y axis labels into a single string with label and unit
-    let processedPrimaryYLabel = ''.concat(primaryYLabel !== undefined ? primaryYLabel : '').concat(primaryYUnit !== undefined ? ` (${primaryYUnit})` : '');
-    let processedSecondaryYLabel = ''.concat(secondaryYLabel !== undefined ? secondaryYLabel : '').concat(secondaryYUnit !== undefined ? ` (${secondaryYUnit})` : '');
-
-    // process our legend symbols since we don't always have data for our secondary y axis
-    const legendData = [{ name: primaryYLabel, symbolToRender: 'arrow', }];
-    if (maxYSecondary) {
-      legendData.push({ name: secondaryYLabel, symbolToRender: 'line',});
-    }
-
-    return (
-      <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-        {/* <div style={{fontSize: 20, paddingTop: 5, height: 30}}><b>{chartTitle}</b></div> */}
-        <VictoryChart 
-          events={[{target: 'data', eventHandlers: {onMouseOver: () => console.log(props)}}]}
-          domain={{ y: [0, 1.35] }} // normalize our y values so we can have axes on independent scales
-          height={chartHeight} 
-          width={chartWidth}
-          padding={{top: 10, left: 30, right: 30, bottom: 20}}
-          // minDomain={{ y: Math.min(...processedData.map(object => object.y)) * 0.5 }}
-          // maxDomain={{ y: Math.max(...processedData.map(object => object.y)) * 1.2 }}
-        >
-          <VictoryLegend 
-            // title={chartTitle}
-            // titleOrientation='left'
-            
-            gutter={18}
-            orientation="horizontal"
-            x={chartWidth/1.7}
-            y={8}
-            // titleOrientation="left"
-            style={{ border: { stroke: "none", }, title: { fontSize: 10, padding: 0, }, labels: { fontSize: 8 }, }}
-            data={legendData}
-            dataComponent={<ArrowLegendComponent />}
-          />
-          <VictoryLabel
-            text={chartTitle}
-            x={chartWidth/2.5}
-            y={15}
-            style={{fill: '#555', fontSize: 14}}
-          />
-          {/* <ArrowGraphLegend x={chartWidth/2} y={10} /> */}
-
-          <VictoryAxis 
-            tickValues={[0, 6, 12, 18, 23]} 
-            tickFormat={t => {
-              switch (t) {
-                case 0:
-                  return '12AM';
-                case 6:
-                  return '6AM';
-                case 12:
-                  return '12PM';
-                case 18:
-                  return '6PM';
-                case 23:
-                  return '11PM';
-                default: 
-                  return null;
-              }
-            }}
-            style={{
-              axis: {stroke: "#756f6a"},
-              ticks: {stroke: "grey", size: 5},
-              tickLabels: {fontSize: 9, padding: 1}
-            }} 
-          />
-
-          {/* PLOT LINE FOR SWELL PERIOD ON SAME CHART AS HEIGHT AND DIRECTION */}
-          {maxYSecondary && // make sure we have values for the secondary axis, otherwise we just plot a single axis
-              <VictoryAxis 
-                dependentAxis
-                offsetX={chartWidth - 30}
-                label={processedSecondaryYLabel}
-                tickValues={secondaryYTicks}
-                tickFormat={t => (t*maxYSecondary).toFixed(0)}
-                tickCount={4}
-                style={{
-                  padding: {top: 20, bottom: 50},
-                  axis: {stroke: "#756f6a"},
-                  ticks: {stroke: "grey", size: -5, padding: -11 },
-                  tickLabels: {fontSize: 8, textAnchor: 'start'},
-                  axisLabel: {fontSize: 9, padding: -22},
-                }} 
-              />
-          }
-
-          {maxYSecondary &&
-            <VictoryLine interpolation='monotoneX' x='x' 
-            y={datum => datum[secondaryYKey]/maxYSecondary}
-            domain={{x: [0, 23]}} data={processedData}  
-            style={{ 
-              data: {
-                stroke: 'lightgrey',
-                strokeWidth: 0.5,
-              }
-            }}
-          />
-          } 
-
-          <VictoryAxis 
-            dependentAxis
-            label={processedPrimaryYLabel}
-            tickValues={primaryYTicks}
-            tickFormat={t => (t*maxYPrimary).toFixed(0)}
-            tickCount={4}
-            style={{
-              padding: {top: 20, bottom: 50},
-              axis: {stroke: "#756f6a"},
-              ticks: {stroke: "grey", size: 5},
-              tickLabels: {fontSize: 9, padding: 1},
-              axisLabel: {fontSize: 9, padding: 15},
-            }} 
-          />
-
-          <VictoryScatter x='x' y={datum => datum[primaryYKey]/maxYPrimary} domain={{ x: [0, 23] }} 
-            data={processedData} 
-            dataComponent={
-              <ArrowPoint
-                dataKey={primaryYKey}
-              />
-            }
-          />
-
-            
-        </VictoryChart>
-      </div>
-    );
-  }
-
-
-
-
   // generate a chart from processed grid data
   function generateLineChart(data, label, unit, valueMultiplier = 1, valueAdded = 0) {
-    // data is an array, first element is array of data objects for primary y axis, second element is an object of supplementary data
-    // example: [ windSpeed, { direction, windGust } ]
-    // takes options object:
-    /*
-    {
-      old arguments       label, unit, valueMultiplier = 1, valueAdded = 0
-      primaryYLabel: <String>          label for the primary y axis
-      primaryYMultiplier: <Number>     factor to scale primary y axis values (for unit conversions like mph to km/h, etc)
-      primaryYAddend: <Number>         fixed value to add to the primary y axis values after applying the scale factor
-      primaryYUnit: <String>           unit for primary Y axis to display with label 
-      secondaryYLabel: <String>         
-      secondaryYMultiplier: <Number>     
-      secondaryYAddend: <Number>         
-      secondaryYUnit: <String>
-      secondaryYKey:  <String>        identifies which key in the supplementary data is for secondary Y axis (ex: 'windGust')
-    }
-    
-    */
-
-
-
-
-
-        // data argument given as an array with one or two values
+    // data argument given as an array with one or two values
     // for charts that only need a single data set, like temperature, the array has 1 item
     // for charts like wind speed that have both a speed and direction component, there will be two datasets
 
@@ -618,12 +336,13 @@ const WeatherFeed = (props) => {
     }
     // assign our main data component to data (first array value)
     data = data[0];
+
     // process the data into an array of hourly objects we can feed to our graph component
     // each item will be an object { x: <hour> (0-23 representing 12AM to 11PM), y: <value> }
     const processedData = [];
     data.forEach(dataObject => {
       const hour = dataObject.startTime.hour;
-      processedData.push({ day: dataObject.startTime.day, x: hour, y: dataObject.value * valueMultiplier + valueAdded });
+      processedData.push({ x: hour, y: dataObject.value * valueMultiplier + valueAdded });
       // if (label==='swell height') {
       //   console.log(`Swell height for ${dataObject.startTime.month}-${dataObject.startTime.day}: ${dataObject.value}`);
       // }
@@ -631,9 +350,10 @@ const WeatherFeed = (props) => {
 
     // if we have supplementary data like wind direction, let's add that to the processedData so we can render it on the chart
     if (supplementaryData) {
+      // console.log(supplementaryData);
       // supplementary data is an object with keys that contain arrays of hourly data objects
       // we want to merge these supplementary data keys and values into their matching processedData hourly objects
-      // final processedData should be [{x: <hour (0-23)>, y: <main y value>, period: <period value>, direction: <direction value>  }]
+      // final processedData should be [{x: <hour (0-23)>, y: <main y value>, supplementaryData: { period: <period value>, direction: <direction value> }  }]
       for (let supplementaryDataType in supplementaryData) {
         // console.log(supplementaryDataType);
         if (supplementaryData[supplementaryDataType]) {
@@ -648,65 +368,25 @@ const WeatherFeed = (props) => {
         }
       }
     }
-
-
-
-
-
-
-
+    console.log(label);
+    console.log(processedData);
     
-
-
-
     // generate graphs that have more than one data component (e.g. swell height, swell period, and direction)
     if (label === 'wind speed' || label === 'swell height') {
-      // key to dynamically process secondary axis data
-      const secondaryYAxisDataKey = 
-        label === 'wind speed' ? 'windGust'
-        : label === 'swell height' ? 'period' : null;
       // wind speeds contained in processedData
       // wind direction contained in supplementaryData
       const chartWidth = 300;
       // get max y value for main data component (swell height, wind speed, etc) to normalize data 
-      const maxYPrimary = Math.round(Math.max(...processedData.filter(dataObj => typeof dataObj.y === 'number').map(dataObj => dataObj.y))) + 1;
-      // swell period data is not always present, so we filter out numbers only then get max for secondary axis
-      const filteredSecondaryYValues = processedData.filter(dataObj => typeof dataObj[secondaryYAxisDataKey] === 'number');
-      // if there are no period values, make maxYSecondary null
-      const maxYSecondary = filteredSecondaryYValues.length > 0 ? Math.round(Math.max(...filteredSecondaryYValues.map(dataObj => dataObj[secondaryYAxisDataKey]))) + 1 : null;
-      // we need to manually calculate normalized tick values for integer points so we don't get decimal ticks 
-      const primaryYTicks = [];
-      for (let i=maxYPrimary; i > 0; i-- ) {
-        primaryYTicks.push(i/maxYPrimary);
-      }
-      const secondaryYTicks = [];
-      if (maxYSecondary) {
-          for (let i=maxYSecondary; i > 0; i--) {
-            secondaryYTicks.push(i/maxYSecondary);
-          }
-      }
-
-      // label for our secondary Y axis
-      let secondaryYAxisLabel;
-      switch (label) {
-        case 'wind speed':
-          secondaryYAxisLabel = `Gust ${unit}`;
-        break;
-        case 'swell height':
-          secondaryYAxisLabel = 'Period (s)'
-        break;
-        default: 
-          secondaryYAxisLabel = null;
-      }
+      
 
       return (
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
         <span style={{fontSize: 20, paddingTop: 5}}><b>{`${label.split(' ')[0]}`}</b></span>
         <VictoryChart 
-          domain={{ y: [0, 1.05] }} // normalize our y values so we can have axes on independent scales
-          height={100} 
+          domain={{ y: [0, 1] }} // normalize our y values so we can have axes on independent scales
+          height={150} 
           width={chartWidth}
-          padding={{top: 10, left: 30, right: 30, bottom: 20}}
+          padding={{top: 10, left: 30, right: 30, bottom: 30}}
           // minDomain={{ y: Math.min(...processedData.map(object => object.y)) * 0.5 }}
           // maxDomain={{ y: Math.max(...processedData.map(object => object.y)) * 1.2 }}
         >
@@ -734,18 +414,11 @@ const WeatherFeed = (props) => {
               tickLabels: {fontSize: 9, padding: 1}
             }} 
           />
-          
-          <VictoryLegend 
-          
-          />
-
-
           <VictoryAxis 
             dependentAxis
+            domain={{ y: [0, 3] }}
             label={`${label.split(' ')[1]} (${unit})`}
-            tickValues={primaryYTicks}
-            tickFormat={t => (t*maxYPrimary).toFixed(0)}
-            tickCount={4}
+            tickFormat={t => `${Math.round(t)}`}
             style={{
               padding: {top: 20, bottom: 50},
               axis: {stroke: "#756f6a"},
@@ -755,13 +428,9 @@ const WeatherFeed = (props) => {
             }} 
           />
 
-          <VictoryScatter x='x' y={datum => datum.y/maxYPrimary} domain={{ x: [0, 23] }} 
+          <VictoryScatter x='x' y='y' domain={{ x: [0, 23] }} 
             data={processedData} 
-            dataComponent={
-              <ArrowPoint 
-                dataType={label} 
-              />
-            }
+            dataComponent={<ArrowPoint dataType={label} />}
             // labels={processedData.map(object => object.period ? object.period : object.windGust ? object.windGust : null)}
             style={{ 
               data: {
@@ -774,14 +443,13 @@ const WeatherFeed = (props) => {
           />
 
           {/* PLOT LINE FOR SWELL PERIOD ON SAME CHART AS HEIGHT AND DIRECTION */}
-          {(label === 'swell height' || label === 'wind speed') && maxYSecondary && // make sure we have values for the secondary axis, otherwise we just plot a single axis
+          {label=== 'swell height' &&
               <VictoryAxis 
                 dependentAxis
+                domain={{ y: [0, Math.max(...processedData.map(dataObject => dataObject.period))] }}
                 offsetX={chartWidth - 30}
-                label={secondaryYAxisLabel}
-                tickValues={secondaryYTicks}
-                tickFormat={t => (t*maxYSecondary).toFixed(0)}
-                tickCount={4}
+                label='period (s)'
+                tickFormat={t => `${Math.round(t)}`}
                 style={{
                   padding: {top: 20, bottom: 50},
                   axis: {stroke: "#756f6a"},
@@ -792,14 +460,36 @@ const WeatherFeed = (props) => {
               />
           }
 
-          {(label === 'swell height' || label === 'wind speed') && maxYSecondary &&
-            <VictoryLine interpolation='monotoneX' x='x' 
-            y={datum => datum[secondaryYAxisDataKey]/maxYSecondary}
-            domain={{x: [0, 23]}} data={processedData}  
+          {label === 'swell height' && 
+            // <>
+            //   {/* <VictoryAxis 
+                
+            //     offsetX={2}
+            //     style={{
+            //       padding: {top: 20, bottom: 50},
+            //       axis: {stroke: "#756f6a"},
+            //       ticks: {stroke: "red", size: 5},
+            //     }} 
+            //   /> */}
+            //   <VictoryLine x='x' y='y' domain={{ x: [0, 23], y: [0, 20]}} data={processedData} 
+            //     // labels={ ({datum}) => `${datum.period}` }
+            //   />
+            // </>
+
+            
+
+            <VictoryLine interpolation='monotoneX' x='x' y='period' domain={{x: [0, 23]}} data={processedData}  
             style={{ 
               data: {
-                stroke: 'lightgrey',
+                stroke: 'grey',
                 strokeWidth: 1,
+                // stroke: "url(#myGradient)",
+            //   // fill: ({ index }) => +index % 2 === 0 ? "blue" : "grey",
+            //   // stroke: ({ data }) => console.log(a)
+            //   //   stroke: ({ datum }) => {
+            //   //     console.log(datum);
+            //   //     return datum.y < 6 ? "red" : "black"
+            //   //   }
               }
             }}
           />
@@ -1012,19 +702,7 @@ const WeatherFeed = (props) => {
       <div style={{overflowY: 'auto', padding: 10}}>
       {/* <button type='button' onClick={}>test log</button> */}
       <div style={{border: '1px solid lightgray', borderRadius: '5px'}}>
-        {generateArrowChart({ windSpeed: staticDayData[2].windSpeed, direction: staticDayData[2].windDirection, windGust: staticDayData[2].windGust }, 
-          { 
-            chartTitle: 'Wind',
-            primaryYKey: 'windSpeed',
-            primaryYLabel: 'speed', 
-            primaryYUnit: 'kn', 
-            primaryYMultiplier:  1/1.852,
-            secondaryYLabel: 'gust', 
-            secondaryYUnit: 'kn', 
-            secondaryYMultiplier:  1/1.852, 
-            secondaryYKey: 'windGust'
-          }
-        )}
+        {generateLineChart([staticDayData[1].primarySwellHeight, { direction: staticDayData[1].primarySwellDirection, period: staticDayData[1].wavePeriod }], 'swell height', 'ft', 3.28084)}
       </div>
 
       {fetchStatus.loading && !fetchStatus.error && <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}><LoaderFish/><h1>Loading forecast...</h1></div>}
@@ -1049,48 +727,22 @@ const WeatherFeed = (props) => {
             {date.tempHigh && <div><Icon name='thermometer' /> {date.tempHigh*9/5+32}</div>}
             {date.tempLow && <div><Icon name='thermometer empty' /> {date.tempLow*9/5+32}</div>}
             <div style={{display: 'flex', flexDirection: 'column'}}>
-              {/* {date.temperature.length > 0 && weatherFilters.temperature &&
+              {date.temperature.length > 0 && weatherFilters.temperature &&
                 <div style={{border: '1px solid lightgray', borderRadius: '5px', margin: '5px 0px 5px 0px'}}>
-                  {generateLineChart([date.temperature, { skyCover: date.skyCover } ], 'temperature', 'deg F', 1.8, 32 )}
+                  {generateLineChart([date.temperature], 'temperature', 'deg F', 1.8, 32 )}
                 </div>
-              } */}
-              {/* {date.skyCover.length > 0 && weatherFilters.skyCover &&
+              }
+              {date.skyCover.length > 0 && weatherFilters.skyCover &&
                 <div style={{border: '1px solid lightgray', borderRadius: '5px'}}>
                   {generateLineChart([date.skyCover], 'sky cover', '%')}
                 </div>
-              }               */}
-
-              {/* primaryYLabel: <String>          label for the primary y axis
-              primaryYMultiplier: <Number>     factor to scale primary y axis values (for unit conversions like mph to km/h, etc)
-              primaryYAddend: <Number>         fixed value to add to the primary y axis values after applying the scale factor
-              primaryYUnit: <String>           unit for primary Y axis to display with label 
-              secondaryYLabel: <String>         
-              secondaryYMultiplier: <Number>     
-              secondaryYAddend: <Number>         
-              secondaryYUnit: <String> */}
-
-
-
-
+              }              
               {date.windSpeed.length > 0 && weatherFilters.windSpeed &&
-                <div style={{border: '1px solid lightgray', borderRadius: '5px', marginTop: 5}}>
-                  {generateArrowChart({windSpeed: date.windSpeed, direction: date.windDirection, windGust: date.windGust }, 
-                    { chartTitle: 'Wind', primaryYKey: 'windSpeed', primaryYLabel: 'speed', primaryYUnit: 'kn', primaryYMultiplier:  1/1.852,
-                      secondaryYLabel: 'gust', secondaryYUnit: 'kn', secondaryYMultiplier:  1/1.852, secondaryYKey: 'windGust'
-                    }
-                  )}
+                <div style={{border: '1px solid lightgray', borderRadius: '5px'}}>
+                 {generateLineChart([date.windSpeed, { direction: date.windDirection, windGust: date.windGust }], 'wind speed', 'kn', 1/1.852 )}
                 </div>
               }
               {date.primarySwellHeight.length > 0 && weatherFilters.swellHeight &&
-                <div style={{border: '1px solid lightgray', borderRadius: '5px', marginTop: 5}}>
-                  {generateArrowChart({primarySwellHeight: date.primarySwellHeight, direction: date.primarySwellDirection, period: date.wavePeriod }, 
-                    { chartTitle: 'Swell', primaryYKey: 'primarySwellHeight', primaryYLabel: 'height', primaryYUnit: 'ft', primaryYMultiplier:  3.28084,
-                      secondaryYLabel: 'period', secondaryYUnit: 's', secondaryYKey: 'period'
-                    }
-                  )}
-                </div>
-              }
-              {/* {date.primarySwellHeight.length > 0 && weatherFilters.swellHeight &&
                 <div style={{border: '1px solid lightgray', borderRadius: '5px'}}>
                   {generateLineChart([date.primarySwellHeight, { direction: date.primarySwellDirection, period: date.wavePeriod }], 'swell height', 'ft', 3.28084)}
                 </div>
@@ -1098,8 +750,8 @@ const WeatherFeed = (props) => {
               {date.windWaveHeight.length > 0 && weatherFilters.windWaveHeight &&
                 <div style={{border: '1px solid lightgray', borderRadius: '5px'}}>
                  {generateLineChart([date.windWaveHeight], 'wind wave height', 'ft', 3.28084)}
-                </div> */}
-              
+                </div>
+              }
             </div>
           </Card.Content>
         </Card>  

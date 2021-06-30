@@ -70,7 +70,7 @@ const LoginForm = props => {
 
         {Object.keys(errors).length > 0 && (<FormError errors={errors.errorMessages} />)}
           <Form.Button fluid color='teal' type="submit" style={{fontSize: 20, padding: 10}}>Log in</Form.Button>
-          <div style={{display: loginSuccess ? '' : 'none', border: '1px solid lightgrey', padding: 10, fontSize: '16px'}}>
+          <div style={{display: loginSuccess ? '' : 'none', border: '1px solid lightgrey', padding: 10, fontSize: '16px', marginBottom: 20}}>
             You have successfully logged in
           </div>
       </Form>

@@ -22,16 +22,16 @@ const PostFeed = (props) => {
   ];
 
   return (
-    <div>
-      { props.error && (
+    <div style={{width: '100%', height: '100%', overflowY: 'auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              { props.error && (
                 <div className='grid-row'>
                   <h1 className='page-title'>Couldn't connect to database.<br/>Failed to load posts</h1>
                 </div>   
               )}
               
              {(props.user && !props.loading && !props.error) && (
-                <div className='grid-row'>
-                    <CreatePost />
+                <div style={{width: 450, margin: '10px 0px'}}>
+                  <CreatePost />
                 </div>
               )}
 
@@ -43,7 +43,7 @@ const PostFeed = (props) => {
               )}
 
             {!props.loading && (
-              <span >
+              <>
                 <div className='grid-row'>
                   <div style={{display: 'flex', justifyContent: 'center'}}>
                     <Dropdown
@@ -56,13 +56,13 @@ const PostFeed = (props) => {
 
                 <Transition.Group animation='fly right' duration={600}>
                   {props.data && props.data.getPosts.map(post => (
-                    <div className='grid-row' key={post.id}>
+                    <div className='grid-row' key={post.id} style={{width: 450}}>
                       <PostCard post={post} />
                     </div>
                   ))
                   }
                 </Transition.Group>
-                </span>
+                </>
               )}
     </div>
   )

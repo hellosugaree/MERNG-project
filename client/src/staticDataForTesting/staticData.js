@@ -1,4 +1,4 @@
-const statticDayData = [
+export const staticDayData = [
     {
       "date": {
         "year": 2021,

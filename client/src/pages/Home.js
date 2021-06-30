@@ -5,7 +5,7 @@ import { Icon, Card } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUmbrellaBeach, faComments, faFish } from '@fortawesome/free-solid-svg-icons'
 
-import PostFeed from '../components/PostFeed';
+import MixedFeed from '../components/MixedFeed';
 import CatchFeed from '../components/CatchFeed';
 import WeatherFeed from '../components/WeatherFeed';
 import LoaderFish from '../components/LoaderFish';
@@ -33,7 +33,7 @@ function Home(props) {
  
 
 
-  const { loading, error, data } = useQuery(FETCH_POSTS_QUERY);
+  const { loading: postsLoading, error: postsError, data: postsData } = useQuery(FETCH_POSTS_QUERY);
 
   const { loading: feedCatchesLoading, error: feedCatchesError, data: feedCatchesData } = useQuery(GET_CATCHES);
 
@@ -208,7 +208,7 @@ function Home(props) {
           <Route exact path='/catchfeed'><CatchFeed user={user} feedCatchesLoading={feedCatchesLoading} feedCatchesError={feedCatchesError} feedCatchesData={feedCatchesData} displayOptions={displayOptions} /></Route>
           <Route exact path='/weather' component={WeatherFeed} />
           <Route exact path='/beaches' component={BeachAccessLocations} />
-          <Route exact path='/posts' ><PostFeed user={user} loading={loading} error={error} data={data} /></Route>
+          <Route exact path='/posts' ><MixedFeed user={user} /></Route>
         </div>
 
       

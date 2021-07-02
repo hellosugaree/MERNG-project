@@ -11,7 +11,7 @@ export const ArrowLegendComponent = props => {
     const hues = [135, 100, 65, 30, 355, 320, 285, 270];
     const arrowLength = props.length ? props.length : 20;
     return (
-      <svg  xmlns="http://www.w3.org/2000/svg" width={`${arrowLength}`} height={`${arrowLength}`}  viewBox={`0 0 ${arrowLength} ${arrowLength}`} x={x-arrowLength/2 -5} y={y-arrowLength/2} fill="url(#gradient)" stroke="url(#gradient)">
+      <svg  xmlns="http://www.w3.org/2000/svg" width={`${arrowLength}`} height={`${arrowLength}`}  viewBox={`0 0 ${arrowLength} ${arrowLength}`} x={x-arrowLength/2 - 2} y={y-arrowLength/2} fill="url(#gradient)" stroke="url(#gradient)">
         <defs>
           <linearGradient gradientUnits="userSpaceOnUse" id="gradient" x1='0' x2={`${arrowLength}`} y1={`${arrowLength/2}`} y2={`${arrowLength/2}`} >
             {hues.map((hue, index) => <stop key={index} offset={`${100 / (hues.length - 1) * index}%`} stopColor={`hsl(${hue}, 80%, 40%)`} />)}
@@ -33,8 +33,8 @@ export const ArrowLegendComponent = props => {
     const length = props.length ? props.length : 20;
   
     return (
-      <svg  xmlns="http://www.w3.org/2000/svg" width={`${length}`} height={`${length}`}  viewBox={`0 0 ${length} ${length}`} x={x-length/2 - 5} y={y-length/2} fill="url(#gradient)" stroke="url(#gradient)">
-        <line strokeWidth='1' x1='0' x2={`${length}`} y1={`${length/2}`} y2={`${length/2}`} stroke={color} />
+      <svg  xmlns="http://www.w3.org/2000/svg" width={`${length}`} height={`${length}`}  viewBox={`0 0 ${length} ${length}`} x={x-length/2 -2} y={y-length/2} fill="url(#gradient)" stroke="url(#gradient)">
+        <line strokeWidth='1' x1='5' x2={`${length}`} y1={`${length/2}`} y2={`${length/2}`} stroke={color} />
       </svg>
     );
   }

@@ -13,7 +13,7 @@ import { DateTime, Duration } from 'luxon';
 import '../App.css';
 import { isNonEmptyArray } from '@apollo/client/utilities';
 
-console.log(staticDayData[1])
+// console.log(staticDayData[1])
 // 33.4672,-117.6981
 // water 33.408922,-117.838593monotoneX
 
@@ -450,7 +450,7 @@ const WeatherFeed = (props) => {
     let processedSecondaryYLabel = ''.concat(secondaryYLabel !== undefined ? secondaryYLabel : '').concat(secondaryYUnit !== undefined ? ` (${secondaryYUnit})` : '');
 
     // process our legend symbols since we don't always have data for our secondary y axis
-    const legendData = [{ name: primaryYLabel, symbolToRender: 'arrow', }];
+    const legendData = [{ name: [primaryYLabel, 'direction'], symbolToRender: 'arrow', }];
     if (maxYSecondary) {
       legendData.push({ name: secondaryYLabel, symbolToRender: 'line',});
     }
@@ -468,15 +468,13 @@ const WeatherFeed = (props) => {
           // maxDomain={{ y: Math.max(...processedData.map(object => object.y)) * 1.2 }}
         >
           <VictoryLegend 
-            // title={chartTitle}
-            // titleOrientation='left'
-            
-            gutter={18}
+            // gutter={12}
+            symbolSpacer={10}
             orientation="horizontal"
-            x={chartWidth/1.7}
-            y={8}
+            x={chartWidth/1.8}
+            y={4}
             // titleOrientation="left"
-            style={{ border: { stroke: "none", }, title: { fontSize: 10, padding: 0, }, labels: { fontSize: 8 }, }}
+            style={{ border: { stroke: "none", }, labels: { fontSize: 8 }}}
             data={legendData}
             dataComponent={<ArrowLegendComponent />}
           />
@@ -484,7 +482,7 @@ const WeatherFeed = (props) => {
             text={chartTitle}
             x={chartWidth/2.5}
             y={15}
-            style={{fill: '#555', fontSize: 14}}
+            style={{fill: '#555', fontSize: 14, padding: 0}}
           />
           {/* <ArrowGraphLegend x={chartWidth/2} y={10} /> */}
 

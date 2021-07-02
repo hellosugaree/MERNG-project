@@ -38,6 +38,7 @@ const typeDefs = gql`
     createdAt: String!
     catches: [ID]!
     catchCount: Int!
+    # biggestCatch: Int
   }
   
   

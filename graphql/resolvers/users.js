@@ -28,9 +28,11 @@ module.exports = {
   Query: {
     async getUser(_, { userId }) {
       try {
-        console.log(userId)
-        const userPublicData = await User.findById(userId);
-        return userPublicData;
+        const privateUserData = await User.findById(userId);
+        const { _id, email, catches, username, createdAt } = privateUserData;
+        const publicUserData = { _id, email, username, catches, createdAt};
+        console.log(publicUserData);
+        return publicUserData;
       } catch (err) {
         throw new Error (err);
       }

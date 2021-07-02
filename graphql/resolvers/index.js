@@ -3,6 +3,14 @@ const usersResolvers = require('./users');
 const catchesResolvers = require('./catches');
 const locationScalarResolver = require('./locationScalar');
 
+// const calculateBiggestCatch = catches => {
+//   if (catches.length > 0) {
+//     const biggestCatch = Math.max(...catches.filter(thisCatch => typeof thisCatch.catchLength === 'number').map(thisCatch => thisCatch.catchLength));
+//     console.log(biggestCatch);
+//     return biggestCatch > 0 ? biggestCatch: null;
+//   } 
+// }
+
 module.exports = {
   Post: {
     // this will get run every time a post is returned from a query or mutation
@@ -11,7 +19,8 @@ module.exports = {
     commentCount: (parent) => parent.comments.length
   },
   User : {
-    catchCount: (parent) => parent.catches.length
+    catchCount: (parent) => parent.catches.length,
+    // biggestCatch: parent => calculateBiggestCatch(parent.catches)
   },
 
   Query: {

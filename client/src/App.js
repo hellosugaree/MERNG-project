@@ -17,7 +17,6 @@ import UserCatchesMap from './pages/UserCatchesMap';
 import BeachAccessLocations from './components/BeachAccessLocations';
 import { RedirectAuthenticatedUsers, ProtectedRoute } from './utilities/AuthRoutes';
 
-
 /* wrap entire App in auth provider to give access to context across components for managing auth, etc */
 
 /*

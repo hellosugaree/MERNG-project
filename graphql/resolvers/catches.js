@@ -36,13 +36,13 @@ fields: {
 module.exports = {
 
   Query: {
-    async getCatches(_, { catchesToReturn = 200, userId = null }) {
+    async getCatches(_, { catchesToReturn = 10000, userId = null }) {
       try {
         // different handling depending on whether or not a userId is supplied
         const catches = userId 
           ? await Catch.find({user: userId}).limit(catchesToReturn).sort({createdAt: -1})
           : await Catch.find().limit(catchesToReturn).sort({createdAt: -1});
-          console.log(catches);
+          // console.log(catches);
           return catches;
       } catch (err) {
         throw new Error(err);
@@ -95,13 +95,13 @@ module.exports = {
         }
         // add the new catch to this user's catches
         userToUpdate.catches.unshift(newCatch.id);
-        console.log(userToUpdate);
-        console.log(newCatch);
+        // console.log(userToUpdate);
+        // console.log(newCatch);
         // save the newly created catch
         const catchSaved = await newCatch.save();
         // save the updated user
         await userToUpdate.save();
-        console.log(catchSaved);
+        // console.log(catchSaved);
         return catchSaved;
     },
 
@@ -135,7 +135,7 @@ module.exports = {
         
         // outside of callback
         console.log('outside callback')
-        console.log(catchDeleted);
+        // console.log(catchDeleted);
         return catchDeleted;
       } else {
         // trying to delete someone else's catch

@@ -5,6 +5,7 @@ import { Icon, Card } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUmbrellaBeach, faComments, faFish } from '@fortawesome/free-solid-svg-icons'
 
+import UserStatsPage from './UserStatsPage';
 import MixedFeed from '../components/MixedFeed';
 import CatchFeed from '../components/CatchFeed';
 import WeatherFeed from '../components/WeatherFeed';
@@ -12,7 +13,7 @@ import LoaderFish from '../components/LoaderFish';
 import UserCatchesMap from '../pages/UserCatchesMap';
 import BeachAccessLocations from '../components/BeachAccessLocations';
 
-import { FETCH_POSTS_QUERY, GET_CATCHES, GET_USER_BASIC_DATA } from '../gql/gql';
+import { GET_CATCHES, GET_USER_BASIC_DATA } from '../gql/gql';
 import { AuthContext } from '../context/auth';
 import { DateTime } from 'luxon';
 import '../App.css';
@@ -33,7 +34,7 @@ function Home(props) {
  
 
 
-  const { loading: postsLoading, error: postsError, data: postsData } = useQuery(FETCH_POSTS_QUERY);
+  // const { loading: postsLoading, error: postsError, data: postsData } = useQuery(FETCH_POSTS_QUERY);
 
   const { loading: feedCatchesLoading, error: feedCatchesError, data: feedCatchesData } = useQuery(GET_CATCHES);
 
@@ -189,7 +190,7 @@ function Home(props) {
                     Beaches
                   </button>
 
-                  <button type='button' name='logCatch' 
+                  {/* <button type='button' name='logCatch' 
                     className='side-bar-menu-button' 
                     onClick={handleSidebarClick}>
                     Log catch
@@ -198,7 +199,7 @@ function Home(props) {
                     className='side-bar-menu-button' 
                     onClick={() => console.log(user)}>
                     test log
-                  </button>
+                  </button> */}
          </div>
 
         {/* MAIN CONTENT PANEL */}
@@ -209,6 +210,7 @@ function Home(props) {
           <Route exact path='/weather' component={WeatherFeed} />
           <Route exact path='/beaches' component={BeachAccessLocations} />
           <Route exact path='/posts' ><MixedFeed user={user} /></Route>
+          <Route exact path='/' ><UserStatsPage /></Route>
         </div>
 
       

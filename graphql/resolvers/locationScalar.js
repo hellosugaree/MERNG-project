@@ -6,11 +6,11 @@ const locationScalar = new GraphQLScalarType({
     description: 'Location in format of {lat: FLOAT, lng: FLOAT}',
     // process outgoing data
     serialize(value) {
-      console.log('serialize')
+      // console.log('serialize')
       // console.log(JSON.parse(value));
       try {
         const jsonValue = JSON.parse(value);
-        console.log(jsonValue);
+        // console.log(jsonValue);
         return jsonValue;
       } catch {
         return value;
@@ -19,7 +19,7 @@ const locationScalar = new GraphQLScalarType({
     },
       // process incoming data from variable
     parseValue(value) {
-      console.log('parse')
+      // console.log('parse')
       // return new UserInputError('test')
       // return value
       // throw new UserInputError('Input error');
@@ -31,14 +31,12 @@ const locationScalar = new GraphQLScalarType({
     },
     // when incoming value is a hard-coded argument rather than a variable argument
     parseLiteral(ast) {
-      console.log('literal')
-
+      // console.log('literal')
       // console.log(ast.fields)
       // console.log(Object.keys(ast));
       // console.log(Object.keys(ast.fields))
       //   // console.log(JSON.stringify(ast));
         throw new UserInputError('Literal')
-        return null;
     }
   });
 

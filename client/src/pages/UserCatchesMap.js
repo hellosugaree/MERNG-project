@@ -338,9 +338,9 @@ const UserCatchesMap = () => {
   
   // our query
   const { loading: loadingUserCatches, error: userCatchesError, data: userCatchesData } = useQuery(GET_CATCHES, {
-    variables: { catchesToReturn: 100, userId: user.id },
+    variables: { userId: user.id },
     //  fetchPolicy: 'cache-and-network'
-    fetchPolicy: 'cache-only'
+    // fetchPolicy: 'cache-only'
     // onCompleted: ({ getCatches }) => {
     //   setFilteredCatches(getCatches);
     // }
@@ -729,7 +729,7 @@ const UserCatchesMap = () => {
   };
 
   const renderCards = () => {
-    if (loadingUserCatches || !userCatchesData || Object.keys(catchCardRefs.current).length < 1) {
+    if (loadingUserCatches || !userCatchesData) {
       return (
         <div>
           <LoaderFish />

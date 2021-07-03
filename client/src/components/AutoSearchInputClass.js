@@ -50,6 +50,7 @@ const source = [
   {"title":"Bonito shark","species":"Bonito shark","aliases":[]},
   {"title":"Brown smoothhound","species":"Brown smoothhound","aliases":[]},
   {"title":"Cabezon","species":"Cabezon","aliases":[]},
+  {"title":"Calico Bass","species":"Calico Bass","aliases":[]},
   {"title":"California barracuda","species":"California barracuda","aliases":[]},
   {"title":"California corbina","species":"California corbina","aliases":[]},
   {"title":"California grunion","species":"California grunion","aliases":[]},

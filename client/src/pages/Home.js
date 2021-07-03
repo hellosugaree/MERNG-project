@@ -29,7 +29,7 @@ function Home(props) {
   } );
 
   const { loading: loadingUserCatches, error: userCatchesError, data: userCatchesData } = useQuery(GET_CATCHES, {
-    variables: { catchesToReturn: 100, userId: user.id }
+    variables: { userId: user.id }
   });
  
 
@@ -112,7 +112,7 @@ function Home(props) {
         {/* SIDEBAR PANEL */}
 
         <div className='home-page-side-bar'>
-                  {/* USER STATS CARD */}
+                  {/* USER STATS CARD
                   <Card fluid style={{marginBottom: 15}}>
                   <Card.Content>
                   {(!(userStatsData && userCatchesData ) && !(userCatchesError || userStatsError)) && <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}><LoaderFish/></div>}
@@ -134,7 +134,11 @@ function Home(props) {
                     </>
                   )}
                   </Card.Content>
-                  </Card>
+                  </Card> */}
+
+                  <div style={{width: '100%', padding: '0px 40px 0px 0px', marginLeft: 5}}>
+                    <img src='/img/logos/radar-icon-white-teal-sweep-teal-circle-border.svg' alt='logo of radar displaying fish location' style={{width: '60%', height: 'auto'}} />
+                  </div>
 
                   <button type='button' name='home' 
                     className='side-bar-menu-button' 
@@ -144,7 +148,7 @@ function Home(props) {
                     <Icon name='home' style={{marginRight: 10}} />
                     Home
                   </button>
-                  {userStatsData && userStatsData.getUser.catches.length > 0 &&
+                  
                     <button type='button' name='userCatchMap' 
                     className='side-bar-menu-button' 
                     onClick={handleSidebarClick}
@@ -153,7 +157,7 @@ function Home(props) {
                       <Icon name='map marker alternate' style={{marginRight: 10}} />                    
                       My Catches
                     </button>
-                  }
+                  
 
                   <button type='button' name='posts' 
                     className='side-bar-menu-button' 
@@ -204,8 +208,8 @@ function Home(props) {
 
         {/* MAIN CONTENT PANEL */}
         <div className='home-page-main-content'>
-          
-          {(userStatsData && userStatsData.getUser.catches.length > 0) && <Route exact path='/user/catchmap' component={UserCatchesMap} />}
+          {/* {(userStatsData && userStatsData.getUser.catches.length > 0) &&  */}
+          <Route exact path='/user/catchmap' component={UserCatchesMap} />
           <Route exact path='/catchfeed'><CatchFeed user={user} feedCatchesLoading={feedCatchesLoading} feedCatchesError={feedCatchesError} feedCatchesData={feedCatchesData} displayOptions={displayOptions} /></Route>
           <Route exact path='/weather' component={WeatherFeed} />
           <Route exact path='/beaches' component={BeachAccessLocations} />

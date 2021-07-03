@@ -52,6 +52,12 @@ export default function TopBar() {
   const menuBar = () => {
     return (
       <div style={{backgroundColor: '#f2fdff', height: 45, borderBottom: '1px solid lightgrey', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+          
+          {/* <div style={{height: '100%', padding: '2px 0px 2px 2px'}}>
+            <img src='/img/logos/radar-icon-white-teal-sweep-teal-circle-border.svg' alt='logo of radar displaying fish location' style={{width: 'auto', height: '100%'}} />
+          </div> */}
+          {/* radar-teal-square.svg */}
+
           <div style={{height: '100%', flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
           <div style={{color: 'black', fontSize: 30, fontFamily: 'Brush Script MT, cursive', paddingRight: 10}}>Fish</div>
             <img style={logoStyle} src='/img/Leopard-Shark-Cropped-3840-1920.svg' alt='Leopard Shark'/>

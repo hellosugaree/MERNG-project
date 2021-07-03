@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/client';
 import { groupBy } from 'lodash';
 import { VictoryChart, VictoryLabel, VictoryPie, VictoryVoronoiContainer, VictoryStack, VictoryHistogram, VictoryAxis, createContainer } from 'victory';
 import { DateTime, Interval } from 'luxon';
+import * as d3 from 'd3';
 import { GET_CATCHES, GET_USER_BASIC_DATA } from '../gql/gql';
 import { AuthContext } from '../context/auth';
 import { Card } from 'semantic-ui-react';
@@ -67,6 +68,7 @@ const renderBasicStatsCard = (basicCatchStats) => {
                 </div>
               </div>
               {/* most caught species */}
+              {basicCatchStats.catchCount > 0 &&
               <div className='catch-stats-grid-row' style={{display: 'flex'}}>
                 <div className='catch-stats-grid-column' style={{width: 150}}>
                   <Card.Description style={{padding: '3px 0px'}}><b>Most caught: </b></Card.Description>
@@ -79,43 +81,72 @@ const renderBasicStatsCard = (basicCatchStats) => {
                   </Card.Description>
                 </div>
               </div>
+              }
               {/* longest catch */}
-              <div className='catch-stats-grid-row' style={{display: 'flex'}}>
-                <div className='catch-stats-grid-column' style={{width: 150}}>
-                  <Card.Description style={{padding: '3px 0px'}}><b>Longest Catch: </b></Card.Description>
+              {basicCatchStats.biggestCatch &&
+                <div className='catch-stats-grid-row' style={{display: 'flex'}}>
+                  <div className='catch-stats-grid-column' style={{width: 150}}>
+                    <Card.Description style={{padding: '3px 0px'}}><b>Longest Catch: </b></Card.Description>
+                  </div>
+                  <div className='catch-stats-grid-column'>
+                    <Card.Description style={{padding: '3px 0px'}}>{basicCatchStats.biggestCatch} in</Card.Description>
+                  </div>
                 </div>
-                <div className='catch-stats-grid-column'>
-                  <Card.Description style={{padding: '3px 0px'}}>{basicCatchStats.biggestCatch} in</Card.Description>
-                </div>
-              </div>
+              }
             </div>
-            
-              <div style={{height: 300}}>
-                <VictoryPie 
-                  style={{labels: { padding: 20 }}}
-                  colorScale={['navy', 'teal', 'tomato']}
-                  x='type'
-                  y='count'
-                  labelPlacement='vertical'
-                  labels={ ({ datum }) => [datum.type, `${Math.round(datum.count/basicCatchStats.catchCount*100)}%`]}
-                  // labelRadius={90}
-                  data={basicCatchStats.fishingTypeFrequency}
-                  // style={{labels: { fontSize: 20, fontWeight: 'bold', fill: 'white', align: 'center' }}}
-                  labelComponent={
-                    <VictoryLabel
-                      // textAnchor="middle"
-                      style={[
-                        { fontSize: 25, },
-                        { fontSize: 20, textAlign: 'middle' } ,
-                      ]}
+              {basicCatchStats.catchCount > 0 ? 
+                ( //basicCatchStats.fishingTypeFrequency
+                  <div style={{height: 275}}>
+                    <VictoryPie 
+                      style={{labels: { padding: 15 }}}
+                      colorScale={['navy', 'teal', 'tomato']}
+                      // x={ (datum) => datum.type ? datum.type: null }
+                      // y={(datum) => datum.count ? datum.count: null}
+                      // x='type'
+                      // y='count'
+                      radius={125}
+                      labelPlacement='vertical'
+                      labels={({datum}) => [`${datum.x}`, `${Math.round(datum.y/basicCatchStats.catchCount*100)}%`]}
+                      // labels={ ({datum}) => {
+                      //   console.log(datum);
+                      //   console.log(Math.round(datum.count/basicCatchStats.catchCount*100));
+                      //   return Math.round(datum.count/basicCatchStats.catchCount*100) > 0 ? [`${datum.type}`, `${Math.round(datum.count/basicCatchStats.catchCount*100)}%`] : ' '
+                      // }}
+                      // labels={ ({ datum }) => {
+                      //   console.log(datum.y)
+                      //   return datum.type ? [`${datum.type}`, `${Math.round(datum.count/basicCatchStats.catchCount*100)}%`] : ''
+                      // }
+                      // }
+
+                      // labelRadius={90}
+                      data={basicCatchStats.fishingTypeFrequency.map(datum => {
+                        console.log ({ x: datum.type, y: datum.count })
+                        return { x: datum.type, y: datum.count }
+                      }).filter(datum => datum.y > 0)}
+                      // style={{labels: { fontSize: 20, fontWeight: 'bold', fill: 'white', align: 'center' }}}
+                      labelComponent={
+                        <VictoryLabel
+                          // textAnchor="middle"
+                          style={[
+                            { fontSize: 25, },
+                            { fontSize: 20, textAlign: 'middle' } ,
+                          ]}
+                        />
+                      }
                     />
-                  }
-                />
-              </div>
-
-
+                  </div>
+                )
+                :
+                (
+                  <div style={{padding: 20}}>
+                    <div style={{width: '100%', display: 'flex', justifyContent: 'center', color: 'rgb(80, 80, 100);'}}>
+                      <h2>No catch data to display</h2> 
+                    </div>
+                    <h3 style={{margin: 0, marginTop: 8}}>The Home Page gives you a detailed analysis of your fishing record.<br/>Go to the Catch Map to start logging catches</h3>
+                  </div>
+                )
+              }
           </div>
-
         </Card.Content>
       </Card>
     </div>
@@ -157,10 +188,10 @@ const createFishingTypeFrequencyObject = catches => {
   // [ { fishingType: 'offshore', count: <number> }, { fishingType: 'inshore', count: <number> }, { fishingType: 'onshore', count: <number> },  ]
   const fishingTypeFrequencyArr = [];
   for (const key in fishingTypeFrequencyObj) {
-    if (fishingTypeFrequencyObj[key] > 0) {
+    // if (fishingTypeFrequencyObj[key] > 0) {
       // only add types for catches we have so we don't create unnecessary labels on the pie graph
       fishingTypeFrequencyArr.push({ type: key, count: fishingTypeFrequencyObj[key] });
-    }
+    // }
   }
   console.log(fishingTypeFrequencyArr)
   return fishingTypeFrequencyArr;
@@ -174,6 +205,7 @@ const createBasicStatsObject = (catches, userBasicData) => {
       return biggestCatch > 0 ? biggestCatch: null;
     } 
   };
+  console.log(createFishingTypeFrequencyObject(catches));
   return { createdAt: userBasicData.createdAt, username: userBasicData.username, catchCount: catches.length, biggestCatch: calculateBiggestCatch(catches), speciesList: createSpeciesList(catches), fishingTypeFrequency: createFishingTypeFrequencyObject(catches) };
 };
 
@@ -201,24 +233,67 @@ const calculateDateRange = dates => {
   // if only one date is provided, it will serve both start and end
   const sortedDates = dates.map(date => date.getTime()).sort((a,b) => a-b);
   return [new Date(sortedDates[0]), new Date(sortedDates[sortedDates.length - 1])];
-}
+};
 
 const applyCatchFilters = (catches, filters) => {
   let newFilteredCatches = catches;
   if (filters.year) {
+    console.log('filtering year');
     newFilteredCatches = newFilteredCatches.filter(thisCatch => new Date(thisCatch.catchDate).getFullYear() === filters.year);
   }
-  console.log(newFilteredCatches);
+  if (filters.month) {
+    console.log('filtering month')
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const month = months.indexOf(filters.month);
+    newFilteredCatches = newFilteredCatches.filter(thisCatch => new Date(thisCatch.catchDate).getMonth() === month);
+  }
   return newFilteredCatches;
 };
 
 const calculateFilteredCatchesXDomain = filters => {
   // takes our filters object and returns an array with two date objects to set the x axis domain for our catches histogram
+  if (filters.month) {
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const month = months.indexOf(filters.month);
+    return [new Date(filters.year, month , 1), new Date(filters.year, month + 1, 0)]
+  }
   if (filters.year) {
     return [new Date(filters.year, 0, 1), new Date(filters.year, 11, 31)]
   }
   return null;
 };
+
+
+
+
+const calculateTimeBins = (catchData, binType) => {
+  // takes catch data in format received from server and bin type and calculates x axis time bins
+  // bin types are 'month', 'week'
+
+  // set the bin type
+  const d3BinType = binType === 'week' ? 'utcWeek' : 'utcMonth';
+  // map catches into dates
+  const dates = catchData.map(thisCatch => ({ x: new Date(thisCatch.catchDate) })).sort((a, b) => a.x.getTime() - b.x.getTime());
+  console.log(dates);
+  // extent returns date range from array of dates: [<earliest Date>, <latest Date>];
+  const extent = d3.extent(dates, ({ x }) => x);
+  const niceTimeScale = d3
+    .scaleUtc() // scaletime()
+    .domain(extent)
+    .nice(d3[d3BinType]);
+  
+    // console.log(niceTimeScale);
+
+  // get thresholds to bin data by months
+  const bins = niceTimeScale.ticks(d3[d3BinType]); // utcDay
+  return bins;
+  // console.log(d3.extent(dates, ({ x }) => x));
+}
+
+
+
+
+
 
 
 const UserStatsPage = props => {
@@ -242,7 +317,8 @@ const UserStatsPage = props => {
   //{ x: [new Date(2021,1,1), new Date(2025,12,1)] }
   const [chartZoom, setChartZoom ] = useState( { x: [new Date(2020, 1, 1), new Date(2021, 12, 1)] })
   const [filteredCatchesXDomain, setFilteredCatchesXDomain] = useState(null);
-
+  // state for histogram display properties
+  const [histogramProperties, setHistogramProperties] = useState({ bins: null });
   const [dateRange, setDateRange] = useState(null);
 
   const [filters, setFilters] = useState({ apply: false, year: null, month: null });
@@ -262,17 +338,33 @@ const UserStatsPage = props => {
       console.log('setting filtered catches on server data receipt');
       setFilteredCatches(userCatchesData.getCatches);
       setAllCatches(userCatchesData.getCatches);
-      // date range to populate our filter menu
-      const dateRangeForAllCatches = calculateDateRange(userCatchesData.getCatches.map(thisCatch => new Date(thisCatch.catchDate)));
-      setDateRange(dateRangeForAllCatches);
+      // set our time bins to monthly
+      setHistogramProperties(prevProperties => ({ ...prevProperties, bins: calculateTimeBins(userCatchesData.getCatches, 'month') }));
+      if (userCatchesData.getCatches.length > 0) {
+        const dateRangeForAllCatches = calculateDateRange(userCatchesData.getCatches.map(thisCatch => new Date(thisCatch.catchDate)));
+        console.log(dateRangeForAllCatches);
+        // date range to populate our filter menu
+        setDateRange(dateRangeForAllCatches);
+        // date range to set x axis domain for histogram chart
+        // set the domain to 1 year if less than one year
+        // get the length of the interval of the date range and adjust if it's less than 1 year
+        const { values: { milliseconds } } = Interval.fromDateTimes(...dateRangeForAllCatches).toDuration();
+        // find the center of the date range and add 6 months to each side
+        console.log(dateRangeForAllCatches[0].getTime())
+        const middleOfDateRange = new Date((dateRangeForAllCatches[0].getTime() + dateRangeForAllCatches[1].getTime()) / 2);
+        console.log(middleOfDateRange)
+        console.log(middleOfDateRange.getYear())
+        const xDomain = milliseconds < 31556926000 
+          ? [new Date(middleOfDateRange.getFullYear(), middleOfDateRange.getMonth() - 6, middleOfDateRange.getDate()), new Date(middleOfDateRange.getFullYear(), middleOfDateRange.getMonth() + 6, middleOfDateRange.getDate())]
+          : dateRangeForAllCatches;
+          console.log(xDomain)
+        setFilteredCatchesXDomain(xDomain);
+      }
       // create set the basic catch stats object 
       setBasicCatchStats(createBasicStatsObject(userCatchesData.getCatches, userBasicData.getUser));
-      // separate date range of filtered data for our chart
-      setFilteredCatchesXDomain(dateRangeForAllCatches);
-      // need to pad if smaller than 1 year
     }
 
-  }, [loadingUserCatches, userCatchesError, userCatchesData, loadingUserBasicData, userBasicDataError, userBasicData, setAllCatches, setFilteredCatches, setBasicCatchStats, setGroupedData, setFilteredCatchesXDomain]);
+  }, [loadingUserCatches, userCatchesError, userCatchesData, loadingUserBasicData, userBasicDataError, userBasicData, setAllCatches, setFilteredCatches, setBasicCatchStats, setGroupedData, setFilteredCatchesXDomain, setHistogramProperties]);
   
 
   // useEffect for when filtered catches changes
@@ -289,18 +381,16 @@ const UserStatsPage = props => {
   useEffect(() => {
     if (filters.apply && allCatches) {
       const newFilteredCatches = applyCatchFilters(allCatches, filters);
+      console.log('filtered catches')
+      console.log(newFilteredCatches)
+      // set our histogram time bins as weekly if we're filtering a month, otherwise set bins monthly
+      const binInterval = filters.month ? 'week' : 'month';
+      setHistogramProperties(prevProperties => ({ ...prevProperties, bins: calculateTimeBins(newFilteredCatches, binInterval) }));
       setFilters(prevFilters => ({ ...prevFilters, apply: false }) )
       setFilteredCatches(newFilteredCatches);
-      // const newFilteredDateRange = calculateDateRange(newFilteredCatches.map(thisCatch => new Date(thisCatch.catchDate)));
-      // get the length of the interval of the date range and adjust if it's less than 1 month
-      // const { values: { milliseconds } } = Interval.fromDateTimes(...newFilteredDateRange).toDuration();
-      // console.log(milliseconds);
-      // calculate a new domain for the x axis if we have date filters applied
-      // setFilteredCatchesXDomain();
-      console.log(calculateFilteredCatchesXDomain(filters))
       setFilteredCatchesXDomain(calculateFilteredCatchesXDomain(filters))
     }
-  }, [filters, allCatches, setFilters, setFilteredCatches, setFilteredCatchesXDomain])
+  }, [filters, allCatches, setFilters, setFilteredCatches, setFilteredCatchesXDomain, setHistogramProperties])
 
 
 
@@ -310,15 +400,24 @@ const UserStatsPage = props => {
 
   const catchYearSelectCallback = e => {
     if (e.target.name === 'All Years') {
-      setFilters(prevFilters => ({ ...prevFilters, year: null, apply: true }));
+      setFilters(prevFilters => ({ ...prevFilters, month: null, year: null, apply: true }));
     } else {
       setFilters(prevFilters => ({ ...prevFilters, year: Number.parseInt(e.target.name), apply: true }));
     }
   };
 
   const catchMonthSelectCallback = e => {
-    console.log(e.target.name);
+    if (e.target.name === 'All Months') {
+      console.log('setting filers all months')
+      setFilters(prevFilters => ({ ...prevFilters, month: null, apply: true }));
+    } else {
+      setFilters(prevFilters => ({ ...prevFilters, month: e.target.name, apply: true }));
+    }
   };
+
+
+
+
 
 
   return (
@@ -333,9 +432,9 @@ const UserStatsPage = props => {
           }
         </div>
 
-        <div>
+        {/* <div>
           date range filters
-        </div>
+        </div> */}
 
         <div style={{margin: '10px 0px'}}>
           {/* show date range */}
@@ -352,18 +451,18 @@ const UserStatsPage = props => {
           individually filterable by species
         </div> */}
 
-        {groupedData &&
+        {(allCatches && allCatches.length > 0 && groupedData) &&
           <div style={{ width: 800, backgroundColor: 'white', padding: '0px 0px 0px 0px', border: '1px solid lightgrey', borderRadius: 5 }}>
           { dateRange &&
-            <div style={{width: '100%', padding: '5px 20px'}}>
+            <div style={{width: '100%', padding: '5px 20px 0px 0px', height: 50}}>
               <Dropdown style={{float: 'right'}} onItemSelect={catchYearSelectCallback} items={[ 'All Years', ...getYearsFromRange(dateRange)]} defaultIndex={getYearsFromRange(dateRange).length} />
-              <Dropdown style={{float: 'right'}} onItemSelect={catchYearSelectCallback} items={monthDropdownItems} defaultIndex={0} />
+              <Dropdown style={{float: 'right'}} onItemSelect={catchMonthSelectCallback} items={monthDropdownItems} defaultIndex={0} disabled={ !filters.year } />
             </div>
           }
+          {true &&
             <VictoryChart
               // domainPadding={{x: 10}}
-              // y: [0, allCatches.length ]
-              domain={{x: filteredCatchesXDomain}}
+              domain={{x: filteredCatchesXDomain, y: [0, allCatches.length > 5 ? allCatches.length : 5 ]}}
               height={350}
               width={800}
               scale={{ x: "time" }}
@@ -375,7 +474,12 @@ const UserStatsPage = props => {
                   allowZoom={false}
                   allowPan={false}
                   width={800}
-                  labels= { ({ datum }) => datum.y > 0 ? `${datum.y} ${datum.binnedData[0].species}` : null }
+                  // style={{border: '1px solid black'}}
+                  labels= { 
+                    Object.keys(groupedData).length > 0 
+                      ? ({ datum }) => datum.y > 0 ? `${datum.y} ${datum.binnedData[0].species}` : null 
+                      : null
+                    }
                   // return datum.y > 0 ? `${datum.y} ${datum.binnedData[0].species}` : null
                 />
               }
@@ -403,7 +507,7 @@ const UserStatsPage = props => {
                 {Object.entries(groupedData).sort((a,b) => a[1].length - b[1].length).map(([key, dataGroup]) => {
                   return (
                     <VictoryHistogram
-                      // bins={1}
+                      bins={ histogramProperties.bins ? histogramProperties.bins : null }
                       key={key}
                       data={dataGroup}
                       x={datum => new Date(datum.catchDate)}
@@ -416,8 +520,18 @@ const UserStatsPage = props => {
                 })}
               </VictoryStack>
 
+              {Object.keys(groupedData).length === 0 &&
+                <VictoryLabel
+                  x={400}
+                  y={150}
+                  style={{fontSize: 30}}
+                  textAnchor="middle"
+                  text="No Catches to Show with Selected Filters"
+                />
+              }
+
               <VictoryAxis
-                // tickCount={6}
+                tickCount={6}
                 // tickFormat={date => {
                 //   // console.log(date)
                 //   return [ date.toLocaleString("default", { month: "short" }), date.toLocaleString("default", { year: 'numeric' }).substring(2) ]
@@ -431,8 +545,11 @@ const UserStatsPage = props => {
                 label="Catch Count"
                 style={{axisLabel: { fontSize: 30 }}}
                 style={sharedAxisStyles}
+                tickFormat={datum => Number.parseInt(datum)}
               />
             </VictoryChart>
+          }
+
             {/* <button onClick={() => {
                 const testFilteredCatches = userCatchesData.getCatches.filter(thisCatch => (new Date(thisCatch.catchDate).getFullYear() === 2021 && new Date(thisCatch.catchDate).getMonth() === 5  ));
                 console.log(createGroupedDataForHistogram(testFilteredCatches))

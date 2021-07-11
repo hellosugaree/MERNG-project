@@ -2,6 +2,7 @@ const postsResolvers = require('./posts');
 const usersResolvers = require('./users');
 const catchesResolvers = require('./catches');
 const locationScalarResolver = require('./locationScalar');
+const cloudinaryImageScalarResolver = require('./cloudinaryImageScalar.js');
 
 // const calculateBiggestCatch = catches => {
 //   if (catches.length > 0) {
@@ -37,5 +38,6 @@ module.exports = {
     ...postsResolvers.Mutation,
     ...catchesResolvers.Mutation
   },
-  Location: locationScalarResolver
+  Location: locationScalarResolver,
+  CloudinaryImage: cloudinaryImageScalarResolver
 };

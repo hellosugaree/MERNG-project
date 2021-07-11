@@ -15,6 +15,7 @@ import HomeSplashPage from './pages/HomeSplashPage';
 import CreateCatchForm from './components/CreateCatchForm';
 import UserCatchesMap from './pages/UserCatchesMap';
 import BeachAccessLocations from './components/BeachAccessLocations';
+import UploadWidget from './components/UploadWidget';
 import { RedirectAuthenticatedUsers, ProtectedRoute } from './utilities/AuthRoutes';
 
 /* wrap entire App in auth provider to give access to context across components for managing auth, etc */
@@ -38,15 +39,16 @@ function App() {
             {/* <div className='menu-spacer' style={{height: 50, position: 'fixed'}}/> */}
             <div style={{ width: '100%', height: '100%', boxSizing: 'border-box', overflow: 'hidden'}}>
               <Switch>
-              <Route exact path='/splash' component={HomeSplashPage} />
-              <Route exact path='/googlemap' component={CreateCatchForm} />    
-              <Route exact path='/test' component={BeachAccessLocations} /> 
-              <ProtectedRoute exact path='/mapcatches' component={UserCatchesMap} /> 
-              <RedirectAuthenticatedUsers redirectTo='/' exact path='/register' component={Register} />
-              <RedirectAuthenticatedUsers redirectTo='/' exact path='/login' component={Login} />
-              <ProtectedRoute redirectTo='/login' exact path='/preferences' component={Preferences} />
-              <ProtectedRoute redirectTo='/login' exact path='/post' component={CreatePost} />
+              <Route exact path='/upload' component={UploadWidget} />
+              <RedirectAuthenticatedUsers redirectTo='/' exact path='/splash' component={HomeSplashPage}/>
               <ProtectedRoute redirectTo='/splash' path='/' component={Home}/>
+              {/* <Route exact path='/googlemap' component={CreateCatchForm} />    
+              <Route exact path='/test' component={BeachAccessLocations} />  */}
+              {/* <ProtectedRoute exact path='/mapcatches' component={UserCatchesMap} />  */}
+              {/* <RedirectAuthenticatedUsers redirectTo='/' exact path='/register' component={Register} />
+              <RedirectAuthenticatedUsers redirectTo='/' exact path='/login' component={Login} /> */}
+              {/* <ProtectedRoute redirectTo='/login' exact path='/preferences' component={Preferences} />
+              <ProtectedRoute redirectTo='/login' exact path='/post' component={CreatePost} /> */}
               </Switch>
             </div>
             {/* </div> */}

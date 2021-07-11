@@ -76,7 +76,7 @@ toggleMarkerClustersButton.innerHTML=``;
         // select marker based on species
         if (catchObj.species.match(/calico|sand bass|spotted bass|sculpin/gi)) {
           // console.log('calico');
-          markerUrl='http://localhost:3000/img/small/Calico-Bass-Small.png';
+          markerUrl='http://localhost:3000/img/icons/small/Calico-Bass-Small.png';
         }
         else if (catchObj.species.match(/rockfish/gi)) {
           // console.log('rockfish');
@@ -147,6 +147,7 @@ toggleMarkerClustersButton.innerHTML=``;
           //highlight the catch
           setHighlightedCatch(catchObj.id);
           console.log(catchObj.id);
+          console.log(JSON.stringify(catchObj))
           mapRef.current.setCenter(catchMarker.getPosition());
         }); 
         // store the info window as a ref
@@ -307,7 +308,9 @@ const UserCatchesMap = () => {
 
   const [highlightedCatch, setHighlightedCatch] = useState(null);
   const [showCreateCatch, setShowCreateCatch] = useState(false);
-   
+  // state to hold image data for 
+  const [displayImageData, setDisplayImageData] = useState([]);
+
   // callback executed when map center changed, update currentMapCenter state to pass location to create catch form
   const debouncedSetCurrentMapCenter = useCallback(debounce(() => setCurrentMapCenter(mapRef.current.getCenter().toJSON()), 100,))
 
@@ -327,7 +330,6 @@ const UserCatchesMap = () => {
   const [showFilterMenu, setShowFilterMenu] = useState(false);
   // an array for our species list, this will get populated from the useEffect when the catch data loads from server
   const [speciesList, setSpeciesList] = useState([]);
-
 
   const [filters, setFilters] = useState(defaultFilters);
   const [filteredCatches, setFilteredCatches] = useState([]);
@@ -407,7 +409,7 @@ const UserCatchesMap = () => {
   }, [mapLoaded, mapRef, infoWindowRef, setHighlightedCatch]);
 
 
-  // useEffect to scroll to the highlighted catch when it gets updated from marker click
+  // useEffect to scroll to the highlighted catch when it gets updated from marker click and display images in bottom bar if any
   useEffect(() => {
     console.log('highlightedcatch updates useEffect')
     if (highlightedCatch && Object.keys(catchCardRefs.current).length > 0) {
@@ -468,7 +470,7 @@ const UserCatchesMap = () => {
     // e.preventDefault(); 
     // update state for highlighted catch
     setHighlightedCatch(catchId)
-    console.log(catchId);
+    // console.log(catchId);
     const marker = catchMarkersRef.current.find(marker => marker.catchId === catchId);
     if (marker) {
       mapRef.current.setZoom(13);
@@ -606,7 +608,7 @@ const UserCatchesMap = () => {
       // show instructions info window
       const infoDivStyle = 'padding-bottom: 10px; font-size: 18px;'
       const infoJSX = `
-        <div style='width: 500px'>
+        <div style='width: 400px'>
           <div style='${infoDivStyle}'><b>How to use the map to log a catch</b></div>
           <div style='font-size: 16px;'>There are several ways to select your catch position:</div>
             <ul style='font-size: 16px; margin: 0px'>
@@ -620,6 +622,8 @@ const UserCatchesMap = () => {
       window.google.maps.event.addListenerOnce(mapRef.current, 'bounds_changed', () => infoWindowRef.current ? infoWindowRef.current.close() : null);
       } else {
         // events to run when form toggles off
+        // clear selected image data that gets passed back to our form for the controlled value
+        setDisplayImageData([]);
         // google autocomplete widget leaves a 1px tall div on top of map even when you hide the input, this will remove it
         const container = document.getElementsByClassName('pac-container');
         if (container) {
@@ -644,6 +648,39 @@ const UserCatchesMap = () => {
 
     showCustomModal(<ModalCreateCatchSuccess species={catchObj.species} />);
     setTimeout(() => closeModal(), 3000);
+  }
+
+  // callback passed to our form that gets file list for image upload selections
+  const handleFileSelect = async images => {
+    // function to take file list and return array of dataURLs to display as preview and send data to server
+    async function generateFileDataArray(fileList) {
+      const readFile = file => {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => {
+            resolve(reader.result);
+          };
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        })
+      };
+      const previewData = [];
+      fileList.forEach(file => {
+        try {
+          let fileData = readFile(file);
+          previewData.push(fileData);
+        } catch (err) {
+          console.log(err);
+        }
+      })
+      const data = await Promise.all(previewData).then(values => values);
+      console.log(data);
+      return data;
+    };
+
+    // convert to an array of image data and update the state used to display previews and pass back to our form for the controlled image data value
+    const fileData = await generateFileDataArray(images);    
+    setDisplayImageData(fileData);
   }
 
   const renderFilterMenu = () => {
@@ -754,75 +791,74 @@ const UserCatchesMap = () => {
 
 
   return (
-      <div style={{display: 'flex', height: '100%', paddingRight: 80}}>
-            <div className='map-container' style={{position: 'relative'}} >
-              <div id='map' ref={mapContainerRef} style={{display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1}}>
+    <div style={{height: '100%', width: '100%', overflowY: 'auto'}}>
+      <div style={{display: 'flex', width: '100%', minHeight: 620, height: 'calc(100% - 200px)', flexGrow: 1, paddingRight: 10}}>
+        {/* MAP */}
+        <div style={{position: 'relative', height: '100%', width: '100%' }} >
+          <div id='map' ref={mapContainerRef} style={{display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1}}>
+          </div>
+          {(apiStatus.loading || loadingUserCatches || userCatchesError) && (
+              <div style={{zIndex: 100, position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'}}>
+                {(apiStatus.loading || loadingUserCatches) && <LoaderFish />}
+                {apiStatus.loading && <div style={{fontSize: 16, fontWeight: 'bold', zIndex: 100}}>Loading Map...</div>}
+                {loadingUserCatches && <div style={{fontSize: 16, fontWeight: 'bold', zIndex: 100}}>Loading Catches...</div>}
+                {userCatchesError && <div style={{fontSize: 16, fontWeight: 'bold',  zIndex: 100}}>Sorry, failed to load catch data from server. Please try again later...</div>}
               </div>
-
-              {(apiStatus.loading || loadingUserCatches || userCatchesError) && (
-                  <div style={{zIndex: 100, position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'}}>
-                    {(apiStatus.loading || loadingUserCatches) && <LoaderFish />}
-                    {apiStatus.loading && <div style={{fontSize: 16, fontWeight: 'bold', zIndex: 100}}>Loading Map...</div>}
-                    {loadingUserCatches && <div style={{fontSize: 16, fontWeight: 'bold', zIndex: 100}}>Loading Catches...</div>}
-                    {userCatchesError && <div style={{fontSize: 16, fontWeight: 'bold',  zIndex: 100}}>Sorry, failed to load catch data from server. Please try again later...</div>}
-                  </div>
-                )}
-              
-              {mapLoaded && userCatchesData &&
-                <button 
-                  onClick={handleFormToggle} 
-                  className='custom-map-control-button'
-                  style={{
-                    padding: 0,
-                    margin: 0,
-                    position: 'absolute', 
-                    height: 40, 
-                    width: 150, 
-                    zIndex: 100, 
-                    bottom: 20, 
-                    left: '50%', 
-                    transform: 'translateX(-50%)'
-                    }}
-                >
-                  {showCreateCatch ? 'Cancel Log' : 'Log A Catch'}
-                </button>
-              }
-              {/*AUTOCOMPLETE INPUT (only show when create catch form is shown) */}
-                <input 
-                  ref={autocompleteInputRef} type='text' 
-                  placeholder='Search for a place to center map'
-                  style={{
-                    position: 'absolute',
-                    top: 80,
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    display: showCreateCatch ? '' : 'none',
-                    width: 300,
-                    height: 35, 
-                    margin: 0,
-                    borderRadius: 5,
-                    zIndex: 100
-                  }}
-                />
-            </div>
+            )}
+          
+          {mapLoaded && userCatchesData &&
+            <button 
+              onClick={handleFormToggle} 
+              className='custom-map-control-button log-catch-map-button'
+            >
+              {showCreateCatch ? 'Cancel Log' : 'Log A Catch'}
+            </button>
+          }
+          {/*AUTOCOMPLETE INPUT (only show when create catch form is shown) */}
+            <input 
+              ref={autocompleteInputRef} type='text' 
+              placeholder='Search for a place to center map'
+              style={{
+                position: 'absolute',
+                top: 80,
+                left: '50%',
+                transform: 'translateX(-50%)',
+                display: showCreateCatch ? '' : 'none',
+                width: 300,
+                height: 35, 
+                margin: 0,
+                borderRadius: 5,
+                zIndex: 100
+              }}
+            />
+        </div>
         
         {/* RIGHT SIDE WITH CATCH CARDS AND FILTER OPTIONS */}
-          <div style={{height: 800, display: 'flex', flexDirection: 'column'}}>
-            {/* CONTAINER FOR FILTER MENU*/}
+        <div style={{display: 'flex', flexDirection: 'column'}}>
+          {/* CONTAINER FOR FILTER MENU*/}
+          <div style={{paddingLeft: 10, display: 'flex'}}>
             {!showCreateCatch && filteredCatches && speciesList &&
-              <div style={{paddingLeft: 10, display: 'flex'}}>
-                {renderFilterMenu()}
-              </div>
+              renderFilterMenu()
             }
-            {/* CONTAINER FOR CATCH CARDS*/}
-            <div style={{padding: '0px 10px', marginTop: 20, width: 400, height: '100%', overflowY: 'auto'}}>
-              {
-                showCreateCatch 
-                  ? <CreateCatchForm onSuccessCallback={successfulCatchLogCallback} catchLocation={currentMapCenter} style={{ paddingTop: 10, paddingBottom: 10}} />
-                  : renderCards()
-              }
-            </div>
           </div>
+          {/* CONTAINER FOR CATCH CARDS*/}
+          <div style={{padding: '0px 10px', marginTop: 20, width: 400, height: '100%', overflowY: 'auto'}}>
+            {
+              showCreateCatch 
+                ? <CreateCatchForm imageData={displayImageData} handleFileSelect={handleFileSelect} onSuccessCallback={successfulCatchLogCallback} catchLocation={currentMapCenter} style={{ paddingTop: 10, paddingBottom: 10}} />
+                : renderCards()
+            }
+          </div>
+        </div>
+      </div>
+
+      <div style={{display: 'flex', width: '100%'}}>
+      <div style={{height: 200, width: 100, flexGrow: 1, overflowY: 'hidden', overflowX: 'scoll', whiteSpace: 'nowrap', }}>
+        {showCreateCatch && displayImageData.map((image, index) => <img key={index} src={image} style={{maxHeight: 200, width: 'auto', display: 'inline-block'}} /> )}
+      </div>
+      </div>
+
+
       </div>
   );
 };
@@ -830,3 +866,12 @@ const UserCatchesMap = () => {
 
 export default UserCatchesMap;
 
+
+
+/*
+
+            <div style={{height: 300, width: '100%', overflowY: 'hidden', overflowX: 'auto', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center'}}>
+              DFSFD
+            </div>
+
+*/

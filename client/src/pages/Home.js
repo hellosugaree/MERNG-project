@@ -1,21 +1,21 @@
 import React, { useContext, useState } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { Icon, Card } from 'semantic-ui-react';
+import { Icon } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUmbrellaBeach, faComments, faFish } from '@fortawesome/free-solid-svg-icons'
 
 import UserStatsPage from './UserStatsPage';
 import MixedFeed from '../components/MixedFeed';
-import CatchFeed from '../components/CatchFeed';
+// import CatchFeed from '../components/CatchFeed';
 import WeatherFeed from '../components/WeatherFeed';
-import LoaderFish from '../components/LoaderFish';
+// import LoaderFish from '../components/LoaderFish';
 import UserCatchesMap from '../pages/UserCatchesMap';
 import BeachAccessLocations from '../components/BeachAccessLocations';
 
-import { GET_CATCHES, GET_USER_BASIC_DATA } from '../gql/gql';
+import { GET_CATCHES } from '../gql/gql';
 import { AuthContext } from '../context/auth';
-import { DateTime } from 'luxon';
+// import { DateTime } from 'luxon';
 import '../App.css';
 
 
@@ -24,9 +24,9 @@ function Home(props) {
 
   const { user } = useContext(AuthContext);
 
-  const { loading: loadingUserStats, error: userStatsError, data: userStatsData } = useQuery(GET_USER_BASIC_DATA, {
-    variables: { userId: user.id }, onError: (err) => console.log(err)
-  } );
+  // const { loading: loadingUserStats, error: userStatsError, data: userStatsData } = useQuery(GET_USER_BASIC_DATA, {
+  //   variables: { userId: user.id }, onError: (err) => console.log(err)
+  // } );
 
   const { loading: loadingUserCatches, error: userCatchesError, data: userCatchesData } = useQuery(GET_CATCHES, {
     variables: { userId: user.id }
@@ -154,7 +154,8 @@ function Home(props) {
                     onClick={handleSidebarClick}
                     style={ path === '/user/catchmap' ? {...activeSideBarButtonStyle} : {} }
                     >
-                      <Icon name='map marker alternate' style={{marginRight: 10}} />                    
+                      {/* <Icon name='map marker alternate' style={{marginRight: 10}} /> */}
+                      <FontAwesomeIcon icon={faFish} style={{marginRight: 10}} />
                       My Catches
                     </button>
                   
@@ -167,14 +168,14 @@ function Home(props) {
                     <FontAwesomeIcon icon={faComments} style={{marginRight: 10}} />
                     Posts
                   </button>
-                  <button type='button' name='catchfeed' 
+                  {/* <button type='button' name='catchfeed' 
                     className='side-bar-menu-button' 
                     onClick={handleSidebarClick}
                     style={path === '/catchfeed' ? activeSideBarButtonStyle : {}}
                   >
                     <FontAwesomeIcon icon={faFish} style={{marginRight: 10}} />
                     Catch feed
-                  </button>
+                  </button> */}
 
                   <button type='button' name='weather' 
                     className='side-bar-menu-button' 
@@ -210,7 +211,7 @@ function Home(props) {
         <div className='home-page-main-content'>
           {/* {(userStatsData && userStatsData.getUser.catches.length > 0) &&  */}
           <Route exact path='/user/catchmap' component={UserCatchesMap} />
-          <Route exact path='/catchfeed'><CatchFeed user={user} feedCatchesLoading={feedCatchesLoading} feedCatchesError={feedCatchesError} feedCatchesData={feedCatchesData} displayOptions={displayOptions} /></Route>
+          {/* <Route exact path='/catchfeed'><CatchFeed user={user} feedCatchesLoading={feedCatchesLoading} feedCatchesError={feedCatchesError} feedCatchesData={feedCatchesData} displayOptions={displayOptions} /></Route> */}
           <Route exact path='/weather' component={WeatherFeed} />
           <Route exact path='/beaches' component={BeachAccessLocations} />
           <Route exact path='/posts' ><MixedFeed user={user} /></Route>

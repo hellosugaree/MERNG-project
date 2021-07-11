@@ -4,25 +4,24 @@ const { GraphQLScalarType, Kind } = require('graphql');
 const locationScalar = new GraphQLScalarType({
     name: 'Location',
     description: 'Location in format of {lat: FLOAT, lng: FLOAT}',
-    // process outgoing data
+    // process outgoing data returned from server
     serialize(value) {
-      // console.log('serialize')
-      // console.log(JSON.parse(value));
+      // console.log(value);
       try {
         const jsonValue = JSON.parse(value);
+        // console.log('returning parsed')
         // console.log(jsonValue);
         return jsonValue;
       } catch {
+        // catch block is for locations entered prior to making location an object, so parse will fail
+        // console.log('returning unparsed')
+        // cosole.log(value)
         return value;
       }
       // convert outgoing data back to object
     },
       // process incoming data from variable
     parseValue(value) {
-      // console.log('parse')
-      // return new UserInputError('test')
-      // return value
-      // throw new UserInputError('Input error');
       if (value === null) {
         throw new UserInputError('User input Error', { catchLocation: 'Please enter a valid catch location' } );
       }
@@ -30,12 +29,7 @@ const locationScalar = new GraphQLScalarType({
       return JSON.stringify(value);
     },
     // when incoming value is a hard-coded argument rather than a variable argument
-    parseLiteral(ast) {
-      // console.log('literal')
-      // console.log(ast.fields)
-      // console.log(Object.keys(ast));
-      // console.log(Object.keys(ast.fields))
-      //   // console.log(JSON.stringify(ast));
+    parseLiteral(_) {
         throw new UserInputError('Literal')
     }
   });

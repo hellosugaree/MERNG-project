@@ -297,10 +297,9 @@ export default class AutoSearchInputClass extends Component {
     const resultsRenderer = ({species, aliases}) => <div><span style={{fontWeight: 'bold', fontSize: 15}}>{species}</span><div>{aliases.map(alias => <span style={{fontSize: 14}} key={alias}>{alias} </span>)}</div></div>
 
     return (
-          <div>
           <Search
+            showNoResults={true}
             onKeyPress={this.handleKeyPress}
-            showNoResults={false}
             input={{ icon: 'search', iconPosition: 'left' }}
             loading={isLoading}
             onResultSelect={this.handleResultSelect}
@@ -311,7 +310,6 @@ export default class AutoSearchInputClass extends Component {
             results={results}
             value={this.props.controlledValue}
           />
-          </div>
     )
   }
 }

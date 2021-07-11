@@ -1,36 +1,17 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { ModalContext } from '../context/modal';
 import { Button } from 'semantic-ui-react';
 import LoginForm from '../components/LoginForm';
+import RegisterForm from '../components/RegisterForm';
 import ModalFeaturesDemo from '../components/ModalFeaturesDemo';
 import '../App.css';
 
 
 const HomeSplashPage = (props) => {
 
-  const { showCustomModal, closeModal } = useContext(ModalContext);
-
-  // const renderDefaultInfoWindow = () => {
-  //   return (
-  //     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
-  //       <h1>Learn more</h1>
-  //       <h2 style={{fontSize: 20}}>Click radar points to learn more</h2>
-  //     </div>
-  //   );
-  // };
-
-
-  // const renderInfoWindows = () => {
-  //   switch (activeInfoWindow) {
-  //     case 'default':
-  //       return renderDefaultInfoWindow();
-  //     default:
-  //       return renderDefaultInfoWindow();  
-  //   }
-  // };
-
-
-
+  const { showCustomModal } = useContext(ModalContext);
+  // state to toggle login and register form, default (true) shows login form and register button, false shows register form and login button
+  const [showLogin, setShowLogin] = useState(true);
 
   return (
     <div className='home-page' style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
@@ -51,9 +32,15 @@ const HomeSplashPage = (props) => {
           </div>
 
           <div style={{width: 300, borderRadius: 5, backgroundColor: 'white', padding: '15px 20px 15px 20px', border: '1px solid lightgray', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
-            <LoginForm style={{}} />
+            {showLogin 
+              ? <LoginForm style={{}} />
+              : <RegisterForm />
+            }
             <div style={{display: 'flex', justifyContent: 'center'}}>
-              <Button color='blue' style={{margin: 0}} onClick={() => props.history.push('/register')} >Register</Button>
+              {showLogin
+                ? <Button color='blue' style={{margin: 0}} onClick={() => setShowLogin(false)} >Register</Button>
+                : <Button color='blue' style={{margin: 0}} onClick={() => setShowLogin(true)} >Login</Button>
+              }
             </div>
           </div>
       </div>

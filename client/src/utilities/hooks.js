@@ -128,7 +128,7 @@ export const useGoogleMap2 = (showBasicControls = true, additionalControls, onCe
   // load the api script
   function loadApi() {
     const loader = new Loader({
-      apiKey: `${process.env.REACT_APP_GOOGLE_API_KEY}`,
+      // apiKey: `${process.env.REACT_APP_GOOGLE_API_KEY}`,
       version: "weekly",
       libraries: ["places"],
     });
@@ -589,7 +589,7 @@ export const useForm = (callback, initialValues) => { // initial values and obje
   // Error processing
   // takes and option callback for a setter to show an error modal window
   const handleFormErrors = (err) => {
-    console.log(Object.keys(err));
+    // console.log(Object.keys(err));
     // array to return messages as strings from our error object
     const errorMessages = [];
     // object to return names of inputs with errors so we can highlight wrong input fields on the form

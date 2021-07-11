@@ -60,11 +60,3 @@ export const LineLegendComponent = props => {
 };
 
 
-export const ArrowGraphLegend = props => {
-  // these correspond to x and y svg coordinates of the component you are supposed to render, they are passed to this component by Victory automatically
-  const { x, y } = props;
-  const color = props.color ? props.color : 'lightgrey';
-  const length = props.length ? props.length : 20;
-
-  return 'ddfddf';
-};

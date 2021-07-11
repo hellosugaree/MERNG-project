@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { useForm } from '../utilities/hooks';
 import { LOGIN_USER } from '../gql/gql';
@@ -33,7 +34,7 @@ const LoginForm = props => {
         return null;
       }
       // redirect if noRedirect prop not specified
-      window.location.pathname='/';
+      props.history.push('/');
     },
     onError(err) {
       handleFormErrors(err);
@@ -81,4 +82,4 @@ const LoginForm = props => {
 };
 
 
-export default LoginForm
+export default withRouter(LoginForm);

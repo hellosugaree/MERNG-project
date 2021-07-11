@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { AuthContext } from '../context/auth';
 import { Card, Form } from 'semantic-ui-react';
 import { useMutation } from '@apollo/client';
@@ -18,20 +18,10 @@ const selectLocationButton = document.createElement('button');
 selectLocationButton.classList.add('custom-map-control-button');
 selectLocationButton.innerHTML='Accept catch location';
 
-/*
-  This form has 2 different ways of handling catch location
-  1) default: 
-  Catch location is null on form load 
-  When the user clicks the catch location input field, a map will show up on the form and allow a user to select a location
-
-  2) if props.catchLocation is specified:
-  The catchLocation value will be controlled through props
-  This is used when the user is creating a catch from the catch map
-*/
 
 const CreateCatchForm = props => {
   const { user } = useContext(AuthContext);
-  // array to hold controls that will be added on mount
+
 
   // FORM RELATED STUFF DOWN HERE
   const initialValues = {
@@ -41,7 +31,8 @@ const CreateCatchForm = props => {
     catchLength: '',
     notes: '',
     // if form is on the create catch page which already has a map, we'll take the map center from that, otherwise set as null
-    catchLocation: props.catchLocation
+    catchLocation: props.catchLocation,
+    images: props.imageData ? props.imageData : null
   };
 
   const { errors, values, onSubmit, handleChange, handleDateChange, handleFormErrors, setValues } 
@@ -50,8 +41,15 @@ const CreateCatchForm = props => {
   // if catch location is controlled via props, update values when location changes
   useEffect(() => {
       setValues(prevValues => ({ ...prevValues, catchLocation: props.catchLocation }));
-  }, [props.catchLocation, setValues])
+  }, [props.catchLocation, setValues]);
 
+
+  // update values for image data from props
+  useEffect(() => {
+    if (props.imageData) {
+      setValues(prevValues => ({ ...prevValues, images: props.imageData }));
+    }
+  }, [props.imageData, setValues]);
 
   const [createCatch, { loading }] = useMutation(CREATE_CATCH, {
     options: () => ({ errorPolicy: 'all' }),
@@ -89,24 +87,30 @@ const CreateCatchForm = props => {
       }
 
       // now update our user data query so our stats are updated
-      const { getUser: cachedUser } = cache.readQuery({
+      //{ getUser: cachedUser }
+      const query = cache.readQuery({
         query: GET_USER_BASIC_DATA,
         variables: { userId: user.id },
       });
-      // now update our user data query so our stats are updated
-      if (cachedUser) {
-        cache.writeQuery({
-          query: GET_USER_BASIC_DATA,
-          variables: { userId: user.id },
-          data: {
-            getUser: {
-              ...cachedUser,
-              catches: [...cachedUser.catches, data.data.createCatch],
-              catchCount: cachedUser.catchCount + 1
+      // make sure the cached data exists
+      if (query) {
+        const { getUser: cachedUser } = query;
+        // now update our user data query so our stats are updated
+        if (cachedUser) {
+          cache.writeQuery({
+            query: GET_USER_BASIC_DATA,
+            variables: { userId: user.id },
+            data: {
+              getUser: {
+                ...cachedUser,
+                catches: [...cachedUser.catches, data.data.createCatch],
+                catchCount: cachedUser.catchCount + 1
+              }
             }
-          }
-        });
+          });
+        }
       }
+
       // clear the form
       setValues(initialValues);
       // run the callback from props if it exists
@@ -132,7 +136,7 @@ const CreateCatchForm = props => {
     }
 
   // process values sent back from our search input and update them into the form state values
-  const getChildValue = (value) => {
+  const getSpeciesInputValue = (value) => {
     setValues({...values, species: value})
   }
 
@@ -144,6 +148,7 @@ const CreateCatchForm = props => {
     }
     setValues(prevValues => ({...prevValues, species: 'Unknown'}));
   }
+
 
   // callback to use our mutation
   function createCatchCallback() {
@@ -168,8 +173,17 @@ const CreateCatchForm = props => {
     }
 
     // const testValues = {species: "trout", fishingType: "offshore", catchLength: 3, catchDate: "adss", notes: "", catchLocation: "" };
-    console.log(filteredInput);
+    // console.log(filteredInput);
     createCatch({ variables: filteredInput });
+  }
+
+  const renderFileSelect = () => {
+    return (
+      <label className='file-input-label'>
+        Select Pictures
+        <input onChange={e => props.handleFileSelect(e.target.files)} type='file' name='images' multiple accept='image/*' style={{display: 'none'}} />
+      </label>
+    )
   }
 
   return (
@@ -197,10 +211,10 @@ const CreateCatchForm = props => {
 
                   <Form.Group style={{marginBottom: 5}}>
                     {/* SPECIES */}
-                    <Form.Field required width={10} style={{marginTop: 5}}>
+                    <Form.Field required width={10} style={{marginTop: 5}} >
                       <label>Species</label>
                       <AutoSearchInputClass
-                        passInputValueToParent={(value) => getChildValue(value)}
+                        passInputValueToParent={(value) => getSpeciesInputValue(value)}
                         controlledValue={values.species}
                       />
                       </Form.Field>
@@ -273,6 +287,13 @@ const CreateCatchForm = props => {
                     />
                   </Form.Group>
                   </div>
+
+                  <Form.Group>
+                    {renderFileSelect()} 
+                    <div style={{paddingLeft: 10, fontSize: 16, display: 'flex', alignItems: 'center'}}>
+                      Selected pictures: {values.images.length}
+                    </div>
+                  </Form.Group>
           
                   {/* TEXT INPUT FOR NOTES */}
                   <Form.Group style={{marginBottom: 10}} >

@@ -9,6 +9,7 @@ const catchSchema = new mongoose.Schema({
   catchLocation: String,
   createdAt: String,
   notes: String,
+  images: [String],
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'

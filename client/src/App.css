@@ -322,3 +322,29 @@ input[type=number]::-webkit-outer-spin-button {
 .splash-page-link:hover > img {
   opacity: 0.5;
 }
+
+.file-input-label {
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border-color: Transparent;
+  background-color: teal;
+  color: white;
+  display: inline-block;
+}
+
+.file-input-label:hover {
+  background-color: gray;
+}
+
+.log-catch-map-button {
+  padding: 0px;
+  margin: 0px;
+  position: absolute;
+  height: 40px;
+  width: 150px; 
+  z-index: 100; 
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}

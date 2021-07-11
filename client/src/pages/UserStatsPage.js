@@ -33,7 +33,8 @@ for (let i = 0; i < 12; i++) {
 }
 
 const renderBasicStatsCard = (basicCatchStats) => {
-  // takes an array of catches and user stats fata from a GET_USER_BASIC_DATA query and renders a basic stats card
+  // takes an object of catch stats 
+  // { createdAt: userBasicData.createdAt, username: userBasicData.username, catchCount: catches.length, biggestCatch: calculateBiggestCatch(catches), speciesList: createSpeciesList(catches), fishingTypeFrequency: createFishingTypeFrequencyObject(catches) }
   const renderTopCatches = frequencyList => {
     return frequencyList.slice(0,3).map(frequencyObject => <Card.Description key={frequencyObject.species} style={{padding: '3px 0px'}}>{frequencyObject.count} {frequencyObject.species}</Card.Description>)
   };  
@@ -47,7 +48,7 @@ const renderBasicStatsCard = (basicCatchStats) => {
           <Card.Meta>Joined Fishsmart {DateTime.fromMillis(Date.parse(basicCatchStats.createdAt)).toRelative()}</Card.Meta>
 
           <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-            <div style={{display: 'flex', flexDirection: 'column', border: '1px solid lightgrey', borderRadius: 5, padding: 10}}>
+            <div style={{display: 'flex', flexDirection: 'column', border: '1px solid lightgrey', borderRadius: 5, padding: 15}}>
 
               {/* total caught */}
               <div className='catch-stats-grid-row' style={{display: 'flex',}}>
@@ -67,6 +68,27 @@ const renderBasicStatsCard = (basicCatchStats) => {
                   <Card.Description style={{padding: '3px 0px'}}>{basicCatchStats.speciesList.length}</Card.Description>
                 </div>
               </div>
+              {/* best month */}
+              <div className='catch-stats-grid-row' style={{display: 'flex'}}>
+                <div className='catch-stats-grid-column' style={{width: 150}}>
+                  <Card.Description style={{padding: '3px 0px'}}><b>Best month: </b></Card.Description>
+                </div>
+                <div className='catch-stats-grid-column' >
+                  {/* month is zero indexed */}
+                  <Card.Description style={{padding: '3px 0px'}}>{basicCatchStats.bestMonth.month + 1}/{basicCatchStats.bestMonth.year} - {basicCatchStats.bestMonth.count} fish</Card.Description>
+                </div>
+              </div>
+              {/* best day */}
+              <div className='catch-stats-grid-row' style={{display: 'flex'}}>
+                <div className='catch-stats-grid-column' style={{width: 150}}>
+                  <Card.Description style={{padding: '3px 0px'}}><b>Best day: </b></Card.Description>
+                </div>
+                <div className='catch-stats-grid-column' >
+                  {/* month is zero indexed */}
+                  <Card.Description style={{padding: '3px 0px'}}>{basicCatchStats.bestDay.month + 1}/{basicCatchStats.bestDay.day}/{basicCatchStats.bestDay.year} - {basicCatchStats.bestDay.count} fish</Card.Description>
+                </div>
+              </div>
+                            
               {/* most caught species */}
               {basicCatchStats.catchCount > 0 &&
               <div className='catch-stats-grid-row' style={{display: 'flex'}}>
@@ -198,6 +220,8 @@ const createFishingTypeFrequencyObject = catches => {
 };
 
 const createBasicStatsObject = (catches, userBasicData) => {
+  // creates a user stats object from raw server data
+  // the returned object will be passed to the function that renders the starts card
   const calculateBiggestCatch = catches => {
     if (catches.length > 0) {
       const biggestCatch = Math.max(...catches.filter(thisCatch => typeof thisCatch.catchLength === 'number').map(thisCatch => thisCatch.catchLength));
@@ -205,8 +229,54 @@ const createBasicStatsObject = (catches, userBasicData) => {
       return biggestCatch > 0 ? biggestCatch: null;
     } 
   };
-  console.log(createFishingTypeFrequencyObject(catches));
-  return { createdAt: userBasicData.createdAt, username: userBasicData.username, catchCount: catches.length, biggestCatch: calculateBiggestCatch(catches), speciesList: createSpeciesList(catches), fishingTypeFrequency: createFishingTypeFrequencyObject(catches) };
+
+  const calculateBestDayAndMonth = catches => {
+    // bin catches into months and days
+    // [{ month, year, count }, ...] months array
+    // [{ month, year, day, count }, ...] days array
+    const months = [];
+    const days = [];
+    // map catch dates into date objects
+    catches.map(thisCatch => new Date(thisCatch.catchDate))
+    // iterate through the dates array and build our months array
+    .forEach(catchDate => {
+      const catchDay = catchDate.getDate();
+      const catchMonth = catchDate.getMonth();
+      const catchYear = catchDate.getFullYear();
+      // find the month, increment if it exists, create it if it doesn't
+      const monthIndex = months.findIndex(monthObj => monthObj.month === catchMonth && monthObj.year === catchYear );
+      if (monthIndex > -1) {
+        months[monthIndex].count += 1;
+      } else {
+        months.push({ month: catchMonth, year: catchYear, count: 1})
+      }
+      // find the day, increment if it exists, create it if it doesn't
+      const dayIndex = days.findIndex(monthObj => monthObj.month === catchMonth && monthObj.year === catchYear && monthObj.day === catchDay );
+      if (dayIndex > -1) {
+        days[dayIndex].count += 1;
+      } else {
+        days.push({ month: catchMonth, year: catchYear, day: catchDay, count: 1})
+      }      
+    });
+    const bestMonth = months.sort((a, b) => b.count - a.count)[0];
+    const bestDay = days.sort((a, b) => b.count - a.count)[0];
+    console.log(days);
+    return { bestMonth, bestDay };
+  };
+  
+  const { bestMonth, bestDay } = calculateBestDayAndMonth(catches)
+  console.log(bestMonth)
+  console.log(bestDay)
+  return { 
+    createdAt: userBasicData.createdAt, 
+    username: userBasicData.username, 
+    catchCount: catches.length, 
+    biggestCatch: calculateBiggestCatch(catches), 
+    speciesList: createSpeciesList(catches), 
+    fishingTypeFrequency: createFishingTypeFrequencyObject(catches),
+    bestMonth: bestMonth,
+    bestDay: bestDay,
+  };
 };
 
 
@@ -255,6 +325,8 @@ const calculateFilteredCatchesXDomain = filters => {
   if (filters.month) {
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     const month = months.indexOf(filters.month);
+    // set range to [first day of month, last day of month]
+    console.log([new Date(filters.year, month , 1), new Date(filters.year, month + 1, 0)])
     return [new Date(filters.year, month , 1), new Date(filters.year, month + 1, 0)]
   }
   if (filters.year) {
@@ -290,6 +362,21 @@ const calculateTimeBins = (catchData, binType) => {
   // console.log(d3.extent(dates, ({ x }) => x));
 }
 
+const renderNoUserCatches = () => {
+  return (
+    <div style={{width: 800}}> 
+      <Card fluid>
+        <Card.Content style={{fontSize: 16, padding: '20px 10px'}}>
+          <Card.Header>Welcome to Fish Smart</Card.Header>
+          <br />
+          <Card.Description>You have no catches logged. Go to "My Catches" to start logging catches.</Card.Description>
+          <br />
+          <Card.Description>After you log catches, you can view detailed statistics here</Card.Description>
+        </Card.Content>
+      </Card>
+    </div>
+  );
+};
 
 
 
@@ -438,11 +525,14 @@ const UserStatsPage = props => {
 
         <div style={{margin: '10px 0px'}}>
           {/* show date range */}
-          {basicCatchStats && renderBasicStatsCard(basicCatchStats)}
+          {basicCatchStats && basicCatchStats.catchCount > 0 && renderBasicStatsCard(basicCatchStats)}
           {/* total species caught aggregate  */}
           {/* and by fishing type: offshore, inshore, onshore */}
         </div>
 
+        {basicCatchStats && basicCatchStats.catchCount === 0 &&
+          renderNoUserCatches()
+        }
         
         {/* <div>
           show date range
@@ -551,9 +641,7 @@ const UserStatsPage = props => {
           }
 
             {/* <button onClick={() => {
-                const testFilteredCatches = userCatchesData.getCatches.filter(thisCatch => (new Date(thisCatch.catchDate).getFullYear() === 2021 && new Date(thisCatch.catchDate).getMonth() === 5  ));
-                console.log(createGroupedDataForHistogram(testFilteredCatches))
-                setGroupedData(createGroupedDataForHistogram(testFilteredCatches) );
+                
               }}  
             >
               test

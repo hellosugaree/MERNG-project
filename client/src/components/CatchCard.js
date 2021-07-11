@@ -7,7 +7,7 @@ import PostCardMenu from '../components/PostCardMenu';
 
 
 function CatchCard(props) {
-  const { id, username, fishingType, species, catchDate, catchLocation, catchLength, notes} = props.catch;
+  const { id, username, fishingType, species, catchDate, catchLocation, catchLength, images, notes} = props.catch;
  
   // use to determine if a user is logged in
   const { user } = useContext(AuthContext); 
@@ -32,9 +32,11 @@ function CatchCard(props) {
           {catchLocation && typeof catchLocation.lat === 'number' && typeof catchLocation.lng === 'number' && <Card.Meta>{`${catchLocation.lat.toFixed(4)}, ${catchLocation.lng.toFixed(4)}`}</Card.Meta>}
           <Card.Header style={{marginTop: 5, fontSize: 18}}>{species} {catchLength && <span style={{marginLeft: 8}}>{catchLength} in</span>}</Card.Header>
 
+          {images && images.map(image => <img key={image.asset_id} src={`https://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload/w_100,h_100/${image.public_id}.jpg`} /> )}
+
           {notes && <Card.Description>{notes}</Card.Description>}
 
-
+          
           {/* show restricted options only on user's post card when user is logged in */}
           {(!props.hideMenu && user && user.username === props.catch.username) && (
             <PostCardMenu postId={props.catch.id}/>

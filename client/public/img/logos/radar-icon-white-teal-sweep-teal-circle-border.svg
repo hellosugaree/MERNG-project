@@ -1,21 +1,36 @@
 
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" width="451px" height="451px" viewBox="30 30 390 390">
 <defs>
-<linearGradient id="Gradient_1" gradientUnits="userSpaceOnUse" x1="320.1875" y1="152.525" x2="221.01250000000002" y2="151.17499999999998" spreadMethod="pad">
+<!-- <linearGradient id="Gradient_1" gradientUnits="userSpaceOnUse" x1="320.1875" y1="152.525" x2="221.01250000000002" y2="151.17499999999998" spreadMethod="pad"> -->
+<linearGradient id="Gradient_1" gradientUnits="userSpaceOnUse" x1="320.1875" y1="152.525" x2="221.01250000000002" y2="230.17499999999998" spreadMethod="pad">
 <stop  offset="0%" stop-color="#008080"/>
-
 <stop  offset="100%" stop-color="#FFFFFF"/>
 </linearGradient>
-
+<!--  original gradient
 <linearGradient id="Gradient_2" gradientUnits="userSpaceOnUse" x1="224.1125" y1="134.4" x2="248.4875" y2="132.6" spreadMethod="pad">
 <stop  offset="0%" stop-color="#008080"/>
 
 <stop  offset="100%" stop-color="#FFFFFF"/>
+</linearGradient> -->
+
+
+<linearGradient id="Gradient_2" gradientUnits="userSpaceOnUse" x1="224.1125" y1="134.4" x2="248.4875" y2="132.6" spreadMethod="pad" >
+<!-- <stop  offset="0%" stop-color="#68A5A7" /> -->
+
+<stop  offset="0%" stop-color="#ACCFD1" />
+
+<!-- <stop  offset="50%" stop-color="#008080"/> -->
+<!-- <stop  offset="30%" stop-color="#A6CBCD"/> -->
+
+<!-- <stop  offset="50%" stop-color="#6DA8AA"/> -->
+
+<stop  offset="100%" stop-color="white"/>
 </linearGradient>
+
 
 <g id="Layer3_0_FILL">
 <!-- <path fill="#FFFFFF" stroke="none" d="
-M 438.7 14.3
+M 438.7 14.3X
 Q 425.55 1.15 406.9 1.15
 L 46.15 1.15
 Q 27.5 1.15 14.3 14.3 1.15 27.5 1.15 46.15

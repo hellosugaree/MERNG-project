@@ -148,6 +148,7 @@ export const CREATE_CATCH = gql `
     $catchDate: String!,
     $catchLocation: Location,
     $catchLength: Int,
+    $images: [String],
     $notes: String
   ) {
     createCatch(catchInput: {
@@ -156,6 +157,7 @@ export const CREATE_CATCH = gql `
       catchDate: $catchDate,
       catchLocation: $catchLocation,
       catchLength: $catchLength,
+      images: $images,
       notes: $notes
     }) {
       id
@@ -167,6 +169,7 @@ export const CREATE_CATCH = gql `
       catchDate
       catchLocation
       catchLength
+      images
       notes
     }
   }
@@ -185,6 +188,7 @@ export const GET_CATCHES = gql `
       catchLocation
       catchLength
       notes
+      images
       createdAt
     }
   }

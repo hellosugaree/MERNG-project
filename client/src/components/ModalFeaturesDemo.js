@@ -98,13 +98,13 @@ const ModalFeaturesDemo = props => {
               <div style={{position: 'relative'}}>
               <img style={{width: '100%', height: '100%', objectFit: 'contain'}} src={renderMainImage()}/>
 
-              <div style={{position: 'absolute', left: 0, top: '50%', transform: 'translateY(-50%)', display: 'inline-block',  padding: 5, border: '1px solid green'}}>
+              <div style={{position: 'absolute', left: 0, top: '50%', transform: 'translateY(-50%)', display: 'inline-block',  padding: 5,}}>
                 <FontAwesomeIcon onClick={() => handlePageChange('back')} className='change-page' icon={faChevronCircleLeft} style={{ height: 40, width: 40 }}  />
               </div>
 
            
               {/* PAGE FORWARD */}
-              <div style={{position: 'absolute', right: 0, top: '50%', transform: 'translateY(-50%)',display: 'inline-block', padding: 5, border: '1px solid green'}}>
+              <div style={{position: 'absolute', right: 0, top: '50%', transform: 'translateY(-50%)',display: 'inline-block', padding: 5, }}>
                 <FontAwesomeIcon onClick={() => handlePageChange('forward')} className='change-page' icon={faChevronCircleRight} style={{ height: 40, width: 40 }} />
               </div> 
           </div>

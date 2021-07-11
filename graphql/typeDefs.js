@@ -49,7 +49,9 @@ const typeDefs = gql`
     email: String!
   }
 
+  # Custom scalar for location { lat: <number>, lng: <number> }
   scalar Location
+  scalar CloudinaryImage
 
   type Catch {
     id: ID!
@@ -60,8 +62,10 @@ const typeDefs = gql`
     catchLocation: Location
     catchLength: Int
     notes: String
+    images: [CloudinaryImage]
     createdAt: String!
     user: ID!
+
   }
 
 
@@ -69,9 +73,10 @@ const typeDefs = gql`
     species: String!
     fishingType: String!
     catchDate: String!
-    catchLocation: Location
-    notes: String
     catchLength: Int
+    catchLocation: Location
+    images: [String]
+    notes: String
   }
 
   type Query {
@@ -97,7 +102,4 @@ const typeDefs = gql`
 
 module.exports = typeDefs;
 
-// notes for mutation
-// """rather than define all the types, we reference RegisterInput above to determine data fields"""
-// """Returns a User"""
 

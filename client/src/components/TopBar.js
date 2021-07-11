@@ -1,37 +1,24 @@
 import React, { useContext } from 'react';
+import { withRouter } from 'react-router-dom';
 import { useDropdown } from '../utilities/hooks';
 import { Icon } from 'semantic-ui-react';
 import { AuthContext } from '../context/auth';
-
 import '../App.css';
 
-
-
-export default function TopBar() {
+function TopBar(props) {
 
   const { logout, user } = useContext(AuthContext);
 
-  // gets 'login' from '/login' etc
-  // const currentPath = window.location.pathname === '/' ? 'home' : window.location.pathname.substring(1,window.location.pathname.length); // get current path from window so we can set the state for active item based on current path
-  // sets activeItem based on current path
-  // const [activeItem, setActiveItem] = useState(currentPath); 
-  
   const { showDropdown, toggleDropdown } = useDropdown();
 
-  // destructure name from target prop
-  // const handleItemClick = (e, { name }) => setActiveItem(name);
-
   const handleLogout = () => {
-    window.location.pathname='/';
+    props.history.push('/');
     logout();
   }
 
   const logoStyle = {
     maxHeight: '100%',
     padding: '1px 0px'
-    // display: 'block',
-    // margin: '0 auto 0 auto',
-    // padding: '5px 0 5px 100px'
   };
 
   const loggedInMenu = () => {
@@ -49,9 +36,13 @@ export default function TopBar() {
     );
   }
 
+  //'#f2fdff' old bg color
+//00cccc
+//C9E0E1
+//#b4eded
   const menuBar = () => {
     return (
-      <div style={{backgroundColor: '#f2fdff', height: 45, borderBottom: '1px solid lightgrey', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+      <div style={{backgroundColor: '#4CA4A0', height: 45, borderBottom: '1px solid lightgrey', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
           
           {/* <div style={{height: '100%', padding: '2px 0px 2px 2px'}}>
             <img src='/img/logos/radar-icon-white-teal-sweep-teal-circle-border.svg' alt='logo of radar displaying fish location' style={{width: 'auto', height: '100%'}} />
@@ -80,3 +71,5 @@ export default function TopBar() {
   ); 
 }
 
+
+export default withRouter(TopBar);

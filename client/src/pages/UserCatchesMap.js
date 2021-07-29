@@ -854,7 +854,7 @@ const UserCatchesMap = () => {
 
       <div style={{display: 'flex', width: '100%'}}>
       <div style={{height: 200, width: 100, flexGrow: 1, overflowY: 'hidden', overflowX: 'scoll', whiteSpace: 'nowrap', }}>
-        {showCreateCatch && displayImageData.map((image, index) => <img key={index} src={image} style={{maxHeight: 200, width: 'auto', display: 'inline-block'}} /> )}
+        {showCreateCatch && displayImageData.map((image, index) => <img key={index} src={image} alt='your catch' style={{maxHeight: 200, width: 'auto', display: 'inline-block'}} /> )}
       </div>
       </div>
 

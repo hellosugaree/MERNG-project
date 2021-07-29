@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { groupBy } from 'lodash';
-import { VictoryChart, VictoryLabel, VictoryPie, VictoryVoronoiContainer, VictoryStack, VictoryHistogram, VictoryAxis, createContainer } from 'victory';
+import { VictoryChart, VictoryLabel, VictoryPie, VictoryStack, VictoryHistogram, VictoryAxis, createContainer } from 'victory';
 import { DateTime, Interval } from 'luxon';
 import * as d3 from 'd3';
 import { GET_CATCHES, GET_USER_BASIC_DATA } from '../gql/gql';
@@ -9,8 +9,6 @@ import { AuthContext } from '../context/auth';
 import { Card } from 'semantic-ui-react';
 import LoaderFish from '../components/LoaderFish';
 import Dropdown from '../components/Dropdown';
-import 'react-datepicker/dist/react-datepicker.css';
-// import 'react-datepicker/dist/react-datepicker-cssmodules.css'
 import '../App.css';
 
 const VictoryZoomVoronoiContainer = createContainer("zoom", "voronoi");
@@ -399,10 +397,7 @@ const UserStatsPage = props => {
   const [filteredCatches, setFilteredCatches] = useState(null);
   const [allCatches, setAllCatches] = useState(null)
   const [basicCatchStats, setBasicCatchStats] = useState(null);
-  // for testing
   const [groupedData, setGroupedData] = useState(null);
-  //{ x: [new Date(2021,1,1), new Date(2025,12,1)] }
-  const [chartZoom, setChartZoom ] = useState( { x: [new Date(2020, 1, 1), new Date(2021, 12, 1)] })
   const [filteredCatchesXDomain, setFilteredCatchesXDomain] = useState(null);
   // state for histogram display properties
   const [histogramProperties, setHistogramProperties] = useState({ bins: null });
@@ -412,10 +407,6 @@ const UserStatsPage = props => {
 
 
 
-  const handleZoom = domain => {
-    console.log(domain)
-    setChartZoom (domain);
-  };
 
 
   // useEffect to initialize filteredCatches when we get server data for the first time
@@ -519,9 +510,6 @@ const UserStatsPage = props => {
           }
         </div>
 
-        {/* <div>
-          date range filters
-        </div> */}
 
         <div style={{margin: '10px 0px'}}>
           {/* show date range */}
@@ -534,13 +522,6 @@ const UserStatsPage = props => {
           renderNoUserCatches()
         }
         
-        {/* <div>
-          show date range
-          subject to main date range filter
-          graph of catches by month
-          individually filterable by species
-        </div> */}
-
         {(allCatches && allCatches.length > 0 && groupedData) &&
           <div style={{ width: 800, backgroundColor: 'white', padding: '0px 0px 0px 0px', border: '1px solid lightgrey', borderRadius: 5 }}>
           { dateRange &&
@@ -633,8 +614,7 @@ const UserStatsPage = props => {
               <VictoryAxis
                 dependentAxis
                 label="Catch Count"
-                style={{axisLabel: { fontSize: 30 }}}
-                style={sharedAxisStyles}
+                style={{...sharedAxisStyles, axisLabel: { fontSize: 30 }}}
                 tickFormat={datum => Number.parseInt(datum)}
               />
             </VictoryChart>
@@ -649,12 +629,6 @@ const UserStatsPage = props => {
           </div>
         }
 
-
-
-
-
-
-
       </div>
     </div>
   )
@@ -668,7 +642,6 @@ export default UserStatsPage;
 
 /*
 
-// working but slow brush and zoom
         {groupedData &&
           <div style={{width: 800, border: '1px solid red'}}>
             test with victory data as is

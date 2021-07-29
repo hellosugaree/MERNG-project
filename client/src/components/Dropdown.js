@@ -8,7 +8,7 @@ const Dropdown = props => {
 
   const [showDropdown, setShowDropdown] = useState(false);
 
-  const defaultFilters = {apply: false, isDefault: true, species: [], catchDate: 'ALL'};
+  // const defaultFilters = {apply: false, isDefault: true, species: [], catchDate: 'ALL'};
 
   const [selectedIndex, setSelectedIndex] = useState(defaultIndex ? defaultIndex : 0 );
 
@@ -59,7 +59,7 @@ const Dropdown = props => {
         <ul className='species-list' style={{ display: showDropdown ? 'block' : 'none', position: 'absolute', width: 150,  }}>
           {props.items.map((item, index) => (
             <li key={item}>
-              <button className='species-button' name={item} onClick={(e) => {setSelectedIndex(index); handleItemSelect(e)}} className='species-button'>
+              <button className='species-button' name={item} onClick={(e) => {setSelectedIndex(index); handleItemSelect(e)}} >
                 {item}
               </button>                    
             </li>

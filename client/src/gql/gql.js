@@ -201,6 +201,11 @@ export const GET_USER_BASIC_DATA = gql `
       username
       catches
       catchCount
+      preferences {
+        profilePicture {
+          asset_id
+        }
+      }
       createdAt
     }
   }

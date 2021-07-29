@@ -6,7 +6,6 @@ const locationScalar = new GraphQLScalarType({
     description: 'Location in format of {lat: FLOAT, lng: FLOAT}',
     // process outgoing data returned from server
     serialize(value) {
-      // console.log(value);
       try {
         const jsonValue = JSON.parse(value);
         // console.log('returning parsed')

@@ -30,6 +30,18 @@ const typeDefs = gql`
     createdAt: String!
   }
 
+  scalar Location
+  scalar CloudinaryImage
+
+  type CloudinaryImageObject {
+    id: ID!
+    asset_id: String
+  }
+
+  type UserPreferences {
+    profilePicture: CloudinaryImageObject
+  }
+
   type User {
     id: ID!
     email: String!
@@ -38,6 +50,7 @@ const typeDefs = gql`
     createdAt: String!
     catches: [ID]!
     catchCount: Int!
+    preferences: UserPreferences
     # biggestCatch: Int
   }
   
@@ -50,8 +63,7 @@ const typeDefs = gql`
   }
 
   # Custom scalar for location { lat: <number>, lng: <number> }
-  scalar Location
-  scalar CloudinaryImage
+
 
   type Catch {
     id: ID!

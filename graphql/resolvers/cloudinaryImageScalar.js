@@ -7,6 +7,7 @@ const cloudinaryImageScalar = new GraphQLScalarType({
     // process outgoing data
     serialize(value) {
       console.log('serialize');
+      console.log(value);
       const jsonValue = JSON.parse(value);
       return jsonValue;
     },

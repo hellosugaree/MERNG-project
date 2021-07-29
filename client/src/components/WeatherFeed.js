@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { staticGridData, staticDayData } from '../staticDataForTesting/staticData';
-import { groupBy } from 'lodash';
+import React, { useState, useEffect } from 'react';
+import { staticGridData } from '../staticDataForTesting/staticData';
 import { VictoryLine, VictoryChart, VictoryAxis, VictoryScatter, VictoryLegend, VictoryLabel, VictoryBar } from 'victory';
 import { Card, Icon, Checkbox } from 'semantic-ui-react';
 import WeatherCard from './WeatherCard';
@@ -37,12 +36,6 @@ import { isNonEmptyArray } from '@apollo/client/utilities';
 const selectLocationButton = document.createElement('button');
 selectLocationButton.classList.add('custom-map-control-button');
 selectLocationButton.innerHTML='Get Weather';
-
-// function to determine if value is between min (not inclusive) and max (inclusive)
-const inRange = (value, min, max) => {
-  return value >= min && value < max;
-};
-
 
 const HorizontalBarDataLabel = props => {
   console.log(props);
@@ -1236,13 +1229,13 @@ export default WeatherFeed;
 
 
 
-      {/* {
+      /* {
         groupedPhenomena.map((phenomenon, index) => {
           console.log(index)
           return <HorizontalBarDataLabel text="test" />
         })
-      }       */}
-{/* 
+      }       */
+/* 
       <VictoryAxis 
         domain={[0, groupedPhenomena.length + 0.5]}
         style={{
@@ -1257,9 +1250,9 @@ export default WeatherFeed;
         //   />
         // }
 
-      /> */}
+      /> */
 
-      {/* <VictoryAxis 
+      /* <VictoryAxis 
         style={{
           padding: {top: 20, bottom: 50},
           axis: {stroke: "#756f6a"},
@@ -1268,7 +1261,7 @@ export default WeatherFeed;
           axisLabel: {fontSize: 9, padding: 15},
         }} 
         domain={[0,2]}
-      /> */}
+      /> */
 
 /*
   const hazards = `BZ   Blizzard

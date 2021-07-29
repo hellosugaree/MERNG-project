@@ -87,9 +87,6 @@ const GoogleMap = props => {
 
   }, [props.showCenterMarker, centerMarkerRef.current]);
 
-
-
-
   function handleCenterChange() {
     // throttledUpdateCenterMarker();
     if (props.onCenterChangeCallback) {

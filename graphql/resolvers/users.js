@@ -29,8 +29,8 @@ module.exports = {
     async getUser(_, { userId }) {
       try {
         const privateUserData = await User.findById(userId);
-        const { _id, email, catches, username, createdAt } = privateUserData;
-        const publicUserData = { _id, email, username, catches, createdAt};
+        const { _id, email, catches, username, createdAt, preferences } = privateUserData;
+        const publicUserData = { _id, email, username, catches, preferences, createdAt };
         console.log(publicUserData);
         return publicUserData;
       } catch (err) {

@@ -1,15 +1,15 @@
 import React, { useContext, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { Grid, Card, Dropdown } from 'semantic-ui-react';
-import PostFeed from '../components/PostFeed';
-import CatchFeed from '../components/CatchFeed';
-import WeatherFeed from '../components/WeatherFeed';
+import PostFeed from '../PostFeed';
+import CatchFeed from '../CatchFeed';
+import WeatherFeed from '../WeatherFeed';
 
-import { FETCH_POSTS_QUERY, GET_CATCHES, GET_USER_BASIC_DATA } from '../gql/gql';
+import { FETCH_POSTS_QUERY, GET_CATCHES, GET_USER_BASIC_DATA } from '../../gql/gql';
 import '../App.css';
-import { AuthContext } from '../context/auth';
+import { AuthContext } from '../../context/auth';
 import { DateTime } from 'luxon';
-import BeachAccessLocations from '../components/BeachAccessLocations';
+import BeachAccessLocations from '../BeachAccessLocations';
 
 
 

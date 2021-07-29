@@ -327,17 +327,6 @@ const BeachAccessLocations = (props) => {
       }
     }
   }, [displayFilters, searchedAccessLocations, accessLocations, setFilteredAccessLocations, mapRef, mapMarkers]);
-// last 4 added
-
-
-
-  // // sort accessLocations when dropdown changes
-  // useEffect(() => {
-  //   console.log('displayFilters.sortDropdownValue changed')
-  //   if (filteredAccessLocations) {
-  //     setFilteredAccessLocations(prevLocations => sortAccessLocations(prevLocations));
-  //   }
-  // }, [displayFilters.sortDropdownValue])
 
     // effect called when search by named value changes
     useEffect(() => {
@@ -640,7 +629,7 @@ const BeachAccessLocations = (props) => {
     );
   };
 
-  const testLog = () => {
+/*   const testLog = () => {
     // generate array of initial markers to load on the map
     const markersArray = [];
     filteredAccessLocations.forEach(location => {
@@ -650,7 +639,7 @@ const BeachAccessLocations = (props) => {
       }
     })
     mapMarkers(markersArray, mapRef);
-  }
+  } */
 
   return (
         /* CONTAINER FOR FILTERS AND POSTS */
@@ -674,15 +663,9 @@ const BeachAccessLocations = (props) => {
 
       </div>
   );
-
 };
 
-
-
-
 export default BeachAccessLocations;
-
-
 
 /*
 

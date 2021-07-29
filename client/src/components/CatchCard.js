@@ -3,6 +3,8 @@ import { Card, Image } from 'semantic-ui-react';
 import { DateTime } from 'luxon';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/auth';
+import { ModalContext } from '../context/modal';
+import ModalSingleImage from './ModalSingleImage';
 import PostCardMenu from '../components/PostCardMenu';
 
 
@@ -14,12 +16,15 @@ function CatchCard(props) {
   // style for highlighted card if props.highlighted is true
   const highlightedStyle = {border: '3px solid grey', boxShadow: '0 1px 4px -1px rgba(0, 0, 0, 0.3)'};
 
+  const { showCustomModal } = useContext(ModalContext);
+
     return (
       //onClick={props.onClick}
     // <div style={{ maxWidth: 400, margin: '10px auto 10px auto'}}>
       <Card onClick={props.onClick} fluid style={props.highlight ? { ...highlightedStyle, ...props.style } : {...props.style} } > 
         <Card.Content>
           <Image
+            alt='profile'
             floated='right'
             size='mini'
             src='https://react.semantic-ui.com/images/avatar/large/molly.png'
@@ -32,7 +37,15 @@ function CatchCard(props) {
           {catchLocation && typeof catchLocation.lat === 'number' && typeof catchLocation.lng === 'number' && <Card.Meta>{`${catchLocation.lat.toFixed(4)}, ${catchLocation.lng.toFixed(4)}`}</Card.Meta>}
           <Card.Header style={{marginTop: 5, fontSize: 18}}>{species} {catchLength && <span style={{marginLeft: 8}}>{catchLength} in</span>}</Card.Header>
 
-          {images && images.map(image => <img key={image.asset_id} src={`https://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload/w_100,h_100/${image.public_id}.jpg`} /> )}
+          {images && images.map(image => 
+            <img 
+              key={image.asset_id} 
+              alt='catch'
+              src={`https://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload/c_limit,w_150,h_100/${image.public_id}.jpg`} 
+              onClick={() => showCustomModal(<ModalSingleImage src={`https://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload/c_limit,w_800,h_800/${image.public_id}.jpg`} alt='catch photo' />)}
+              style={{borderRadius: 10, padding: 5}}
+            /> 
+          )}
 
           {notes && <Card.Description>{notes}</Card.Description>}
 

@@ -1,6 +1,6 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Route } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+// import { useQuery } from '@apollo/client';
 import { Icon } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUmbrellaBeach, faComments, faFish } from '@fortawesome/free-solid-svg-icons'
@@ -12,8 +12,9 @@ import WeatherFeed from '../components/WeatherFeed';
 // import LoaderFish from '../components/LoaderFish';
 import UserCatchesMap from '../pages/UserCatchesMap';
 import BeachAccessLocations from '../components/BeachAccessLocations';
+import UserSettings from './UserSettings';
 
-import { GET_CATCHES } from '../gql/gql';
+// import { GET_CATCHES } from '../gql/gql';
 import { AuthContext } from '../context/auth';
 // import { DateTime } from 'luxon';
 import '../App.css';
@@ -28,18 +29,13 @@ function Home(props) {
   //   variables: { userId: user.id }, onError: (err) => console.log(err)
   // } );
 
-  const { loading: loadingUserCatches, error: userCatchesError, data: userCatchesData } = useQuery(GET_CATCHES, {
-    variables: { userId: user.id }
-  });
- 
-
+  // const { data: userCatchesData } = useQuery(GET_CATCHES, {
+  //   variables: { userId: user.id }
+  // });
 
   // const { loading: postsLoading, error: postsError, data: postsData } = useQuery(FETCH_POSTS_QUERY);
 
-  const { loading: feedCatchesLoading, error: feedCatchesError, data: feedCatchesData } = useQuery(GET_CATCHES);
-
-  const [displayOptions, setDisplayOptions] = useState({ showCreateCatch: false });
-
+  // const { loading: feedCatchesLoading, error: feedCatchesError, data: feedCatchesData } = useQuery(GET_CATCHES);
 
   // only for testing purposes
 /*   const handleLog = () => {
@@ -64,11 +60,6 @@ function Home(props) {
 
 
   const handleSidebarClick = (event) => {
-    if (event.target.name==='logCatch') {
-      // props.history.push('/logcatch');
-      // toggle showLogCatch
-      setDisplayOptions(prevOptions => ({ ...prevOptions, showCreateCatch: !prevOptions.showCreateCatch }));
-    }
     switch (event.target.name) {
       case 'userCatchMap':
         props.history.push('/user/catchmap');
@@ -80,31 +71,23 @@ function Home(props) {
         props.history.push('/weather');
       break;
       case 'beaches':
-      props.history.push('/beaches');
+        props.history.push('/beaches');
       break;
       case 'posts':
-      props.history.push('/posts');
+        props.history.push('/posts');
       break;
       case 'catchfeed':
-      props.history.push('/catchfeed');
-      break;   
-      default:
         props.history.push('/catchfeed');
+      break;   
+      case 'settings':
+        props.history.push('/settings');
+      break;
+      default:
+        props.history.push('/');
       break;         
     }
-
-
-
-    console.log(props.location.pathname);
   };
 
-  // update our biggest catch if user logs a bigger catch
-  let userHasBiggestCatch;
-  let biggestCatch;
-  if (userCatchesData) {
-    userHasBiggestCatch = Math.max(...userCatchesData.getCatches.map(value => value.catchLength)) > 0;
-    biggestCatch = Math.max(...userCatchesData.getCatches.map(value => value.catchLength))
-  }
 
   return (
   
@@ -137,7 +120,7 @@ function Home(props) {
                   </Card> */}
 
                   <div style={{width: '100%', padding: '0px 40px 0px 0px', marginLeft: 5}}>
-                    <img src='/img/logos/radar-icon-white-teal-sweep-teal-circle-border.svg' alt='logo of radar displaying fish location' style={{width: '60%', height: 'auto'}} />
+                    <img src='/img/logos/radar-icon-white-teal-sweep-teal-circle-border.svg' alt='logo of radar displaying fish location' style={{width: '66%', height: 'auto'}} />
                   </div>
 
                   <button type='button' name='home' 
@@ -195,6 +178,16 @@ function Home(props) {
                     Beaches
                   </button>
 
+                  <button type='button' name='settings' 
+                    className='side-bar-menu-button' 
+                    onClick={handleSidebarClick}
+                    style={path === '/settings' ? activeSideBarButtonStyle : {}}
+                  >
+                    {/* <Icon name='umbrella-beach' style={{marginRight: 10}} /> */}
+                    <Icon name='settings' style={{marginRight: 10}} />
+                    Settings
+                  </button>
+
                   {/* <button type='button' name='logCatch' 
                     className='side-bar-menu-button' 
                     onClick={handleSidebarClick}>
@@ -215,6 +208,7 @@ function Home(props) {
           <Route exact path='/weather' component={WeatherFeed} />
           <Route exact path='/beaches' component={BeachAccessLocations} />
           <Route exact path='/posts' ><MixedFeed user={user} /></Route>
+          <Route exact path='/settings'><UserSettings /></Route>
           <Route exact path='/' ><UserStatsPage /></Route>
         </div>
 

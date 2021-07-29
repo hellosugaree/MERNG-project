@@ -7,7 +7,7 @@ const TemperaturePoint = ({ x, y, datum }) => {
   // dark blue at 0 or below (hue 243)
   // red at 100 or above
   // 243/100 = 2.43
-  const hue = 243 - (datum.temperature * 2.43);
+  let hue = 243 - (datum.temperature * 2.43);
   if (hue < 0) {
     hue = 0;
   }

@@ -11,7 +11,6 @@ const CreateComment = (props) => {
 const { handleChange, onSubmit, handleFormErrors, values, errors } = useForm(createCommentCallback, {body: ''});
 
 const [createPost, { loading }] = useMutation(CREATE_COMMENT, {
-  // destructure createComment from data.createComment and assign to commentCreated
   update(cache, { data: { createComment : commentCreated }}) {
     // get just the comments from this specific post from the cache as a fragment so we can add the new comment
     const { comments: cachedComments, commentCount } = cache.readFragment({

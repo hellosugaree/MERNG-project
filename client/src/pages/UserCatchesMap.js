@@ -117,7 +117,7 @@ toggleMarkerClustersButton.innerHTML=``;
           position: {lat: catchObj.catchLocation.lat, lng: catchObj.catchLocation.lng},
           map: mapRef.current,
           icon: catchIcon,
-          collisionBehavior: window.google.maps.CollisionBehavior.REQUIRED,
+          // collisionBehavior: window.google.maps.CollisionBehavior.REQUIRED,
           catchId: catchObj.id,
           species: catchObj.species
         });

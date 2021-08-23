@@ -1001,7 +1001,8 @@ const WeatherFeed = (props) => {
       // center our map on selected place
       mapRef.current.setCenter(place.geometry.location);
       mapRef.current.setZoom(9);
-      getForecast(place.geometry.location);
+      console.log(place.geometry.location.lat())
+      getForecast(mapRef.current.getCenter().toJSON());
     } else {
       // no place returned, see if the input is in decimal degrees
       const coordinates = { lat: null, lng: null };

@@ -1,72 +1,153 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useDropdown } from '../utilities/hooks';
 import { Icon } from 'semantic-ui-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUmbrellaBeach, faComments, faFish } from '@fortawesome/free-solid-svg-icons'
 import { AuthContext } from '../context/auth';
+import UserMenu from './UserMenu';
+import MobileNav from './MobileNav';
 import '../App.css';
+
+
+const logoStyle = {
+  objectFit: 'cover',
+  padding: '1px 0px'
+};
+
+const activeNavButtonStyle = {
+  textDecoration: 'underline',
+  textDecorationColor: 'rgb(123, 172, 189)'
+};
+
+const activeNavIconStyle = {
+  color: 'rgb(123, 172, 189)',
+};
 
 function TopBar(props) {
 
-  const { logout, user } = useContext(AuthContext);
+  const path = props.location.pathname;
+
+  const { user } = useContext(AuthContext);
 
   const { showDropdown, toggleDropdown } = useDropdown();
+  const [ showNavMenu, setShowNavMenu ] = useState(false);
 
-  const handleLogout = () => {
-    props.history.push('/');
-    logout();
-  }
-
-  const logoStyle = {
-    maxHeight: '100%',
-    padding: '1px 0px'
+  const handleSidebarClick = (event) => {
+    switch (event.currentTarget.name) {
+      case 'userCatchMap':
+        props.history.push('/user/catchmap');
+      break;
+      case 'home':
+        props.history.push('/');
+      break;
+      case 'weather':
+        props.history.push('/weather');
+      break;
+      case 'beaches':
+        props.history.push('/beaches');
+      break;
+      case 'posts':
+        props.history.push('/posts');
+      break;
+      case 'catchfeed':
+        props.history.push('/catchfeed');
+      break;   
+      case 'settings':
+        props.history.push('/settings');
+      break;
+      default:
+        props.history.push('/');
+      break;         
+    }
   };
 
-  const loggedInMenu = () => {
+  // const loggedInMenu = () => {
+  //   return (
+  //     <div className='dropdown-menu'>
+  //     <ul style={{
+  //       display: showDropdown ? 'block' : 'none',
+  //       width: 150, 
+  //       right: 10, 
+  //       top: '100%'
+  //     }}>
+  //       <li style={{height: 40}}><button onClick={handleLogout} className='dropdown-button'>Logout <Icon name='log out' style={{marginRight: 5, marginLeft: 'auto'}} /> </button></li>
+  //     </ul>
+  //   </div>
+  //   );
+  // }
+
+  const LoggedInBar = () => {
     return (
-      <div className='dropdown-menu'>
-      <ul style={{
-        display: showDropdown ? 'block' : 'none',
-        width: 150, 
-        right: 10, 
-        top: '100%'
-      }}>
-        <li style={{height: 40}}><button onClick={handleLogout} className='dropdown-button'>Logout <Icon name='log out' style={{marginRight: 5, marginLeft: 'auto'}} /> </button></li>
-      </ul>
-    </div>
-    );
-  }
-
-  //'#f2fdff' old bg color
-//00cccc
-//C9E0E1
-//#b4eded
-  const menuBar = () => {
-    return (
-      <div style={{backgroundColor: '#4CA4A0', height: 45, borderBottom: '1px solid lightgrey', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-          
-          {/* <div style={{height: '100%', padding: '2px 0px 2px 2px'}}>
-            <img src='/img/logos/radar-icon-white-teal-sweep-teal-circle-border.svg' alt='logo of radar displaying fish location' style={{width: 'auto', height: '100%'}} />
-          </div> */}
-          {/* radar-teal-square.svg */}
-
-          <div style={{height: '100%', flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-          <div style={{color: 'black', fontSize: 30, fontFamily: 'Brush Script MT, cursive', paddingRight: 10}}>Fish</div>
-            <img style={logoStyle} src='/img/Leopard-Shark-Cropped-3840-1920.svg' alt='Leopard Shark'/>
-          <div style={{color: 'black', fontSize: 30, fontFamily: 'Brush Script MT, cursive', paddingLeft: 5}}>Smart</div>
+      <div className='logged-in-bar'>
+        <div className='user-menu-trigger' onClick={toggleDropdown}>
+          <img className='top-bar-profile' src='https://react.semantic-ui.com/images/avatar/large/molly.png' alt='profile' />
+          {user.username}
         </div>
-
-        <div style={{height: '100%', width: 50, display: 'flex', alignItems: 'center', position: 'relative'}}>
-          <button className='top-bar-button' onClick={e => toggleDropdown(e)} style={{display: user ? 'flex' : 'none' , alignItems: 'center', justifyContent: 'center', width: 40, height: 40, marginRight: 10, border: '1px solid lightgray', borderRadius: '50%'}}><Icon size='large' style={{margin: 0}} name='ellipsis vertical' /></button>
-          {/* DROPDOWN CONTENT */}
-          {user && loggedInMenu()}
-        </div>
-      </div>
+        {showDropdown && <UserMenu />}
+      </div> 
     );
-  }
+  };
+
+  const toggleNavMenu = () => {
+    setShowNavMenu(prevState => !prevState);
+  };
+
 
   return (
-    <div>
-      {menuBar()}
+    <div style={{ position: 'relative' }}>
+      {user && LoggedInBar()}
+      <div className='top-bar'>
+        <img className='top-bar-logo' src='/img/logos/fs-logo-2.png' alt='yellowtail logo' onClick={() => props.history.push('/')} />
+        {user && 
+          <nav className='top-bar-nav-container'>
+            <button 
+              type='button' 
+              name='userCatchMap' 
+              className='top-bar-nav-button' 
+              onClick={handleSidebarClick}
+            >
+              <FontAwesomeIcon className='top-bar-nav-icon' style={path === '/user/catchmap' ? { ...activeNavIconStyle, fontSize: '1.2em' } : { fontSize: '1.2em' }} icon={faFish} />
+              <span style={ path === '/user/catchmap' ? {...activeNavButtonStyle} : {} }>MY ACTIVITY</span>
+            </button>
+
+            <button 
+              type='button' 
+              name='posts' 
+              className='top-bar-nav-button' 
+              onClick={handleSidebarClick}
+            >
+              <FontAwesomeIcon className='top-bar-nav-icon' style={ path === '/posts' ? {...activeNavIconStyle} : {} } icon={faComments} />
+              <span style={ path === '/posts' ? {...activeNavButtonStyle} : {} }>FEED</span>
+            </button>
+
+            <button 
+              type='button' 
+              name='weather' 
+              className='top-bar-nav-button' 
+              onClick={handleSidebarClick}
+            >
+              <Icon className='top-bar-nav-icon' name='sun' style={ path === '/weather' ? {...activeNavIconStyle} : {} } />
+              <span style={ path === '/weather' ? {...activeNavButtonStyle} : {} }>WEATHER</span>
+            </button>
+            
+            <button 
+              type='button' 
+              name='beaches' 
+              className='top-bar-nav-button' 
+              onClick={handleSidebarClick}
+            >
+              <FontAwesomeIcon className='top-bar-nav-icon' style={ path === '/beaches' ? { ...activeNavIconStyle, fontSize: '1em' } : { fontSize: '1em' } } icon={faUmbrellaBeach} />
+              <span style={ path === '/beaches' ? {...activeNavButtonStyle} : {} }>BEACHES</span>
+            </button>
+          </nav>
+        }
+        <div style={{ flexGrow: 1 }} />
+        {user &&
+          <button className='top-bar-menu-toggle' onClick={toggleNavMenu}><Icon size='big' name='bars' /></button>
+        }
+      </div>
+      {showNavMenu && <MobileNav toggleNavMenu={toggleNavMenu} />}
     </div>
   ); 
 }

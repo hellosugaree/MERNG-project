@@ -55,19 +55,22 @@ const CreateCatchForm = props => {
     options: () => ({ errorPolicy: 'all' }),
     update(cache, data) {
       // read the cached catches query
-      const { getCatches : cachedCatchData } = cache.readQuery({
+      const queryData = cache.readQuery({
         query: GET_CATCHES    // our gql file used to make the query initially
       });
-
-      // write catch to the caches catches data
-      if (cachedCatchData) {
-        cache.writeQuery({ 
-          query: GET_CATCHES, 
-          data: {
-            getCatches: [data.data.createCatch, ...cachedCatchData]
-          }
-        }); 
+      if (queryData) {
+        const { getCatches: cachedCatchData } = queryData;
+        // write catch to the caches catches data
+        if (cachedCatchData) {
+          cache.writeQuery({ 
+            query: GET_CATCHES, 
+            data: {
+              getCatches: [data.data.createCatch, ...cachedCatchData]
+            }
+          }); 
+        }
       }
+
 
       // update user-specific catches query data
       const { getCatches : cachedUserCatchData } = cache.readQuery({

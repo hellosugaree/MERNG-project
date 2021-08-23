@@ -38,75 +38,73 @@ const renderBasicStatsCard = (basicCatchStats) => {
   };  
 
   return (
-    <div style={{width: 800}}>
-      <Card fluid >
-        <Card.Content style={{fontSize: 16}}>
-          <Card.Header>{basicCatchStats.username}</Card.Header>
-          <hr />
-          <Card.Meta>Joined Fishsmart {DateTime.fromMillis(Date.parse(basicCatchStats.createdAt)).toRelative()}</Card.Meta>
+      <div className='user-stats-card'>
+          <div className='card-title'>{basicCatchStats.username}</div>
+          <div className='card-meta'>Joined Fishsmart {DateTime.fromMillis(Date.parse(basicCatchStats.createdAt)).toRelative()}</div>
 
-          <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-            <div style={{display: 'flex', flexDirection: 'column', border: '1px solid lightgrey', borderRadius: 5, padding: 15}}>
-
+          <div className='catch-stats-outer-container' >
+            <div className='catch-stats-text-container'>
               {/* total caught */}
-              <div className='catch-stats-grid-row' style={{display: 'flex',}}>
-                <div className='catch-stats-grid-column' style={{width: 150, }}>
-                  <Card.Description style={{padding: '3px 0px'}}><b>Catches: </b></Card.Description>
+              <div className='catch-stats-grid-row'>
+                <div className='catch-stats-category'>
+                  <b>Catches: </b>
                 </div>
                 <div className='catch-stats-grid-column'>
-                  <Card.Description style={{padding: '3px 0px'}}>{basicCatchStats.catchCount}</Card.Description>
+                  {basicCatchStats.catchCount}
                 </div>
               </div>
+              <hr />
               {/* species caught */}
-              <div className='catch-stats-grid-row' style={{display: 'flex'}}>
-                <div className='catch-stats-grid-column' style={{width: 150}}>
-                  <Card.Description style={{padding: '3px 0px'}}><b>Species Caught: </b></Card.Description>
+              <div className='catch-stats-grid-row'>
+                <div className='catch-stats-category'>
+                  <b>Species: </b>
                 </div>
                 <div className='catch-stats-grid-column' >
-                  <Card.Description style={{padding: '3px 0px'}}>{basicCatchStats.speciesList.length}</Card.Description>
+                  {basicCatchStats.speciesList.length}
                 </div>
               </div>
+              <hr />
               {/* best month */}
-              <div className='catch-stats-grid-row' style={{display: 'flex'}}>
-                <div className='catch-stats-grid-column' style={{width: 150}}>
-                  <Card.Description style={{padding: '3px 0px'}}><b>Best month: </b></Card.Description>
+              <div className='catch-stats-grid-row'>
+                <div className='catch-stats-category'>
+                  <b>Top month: </b>
                 </div>
                 <div className='catch-stats-grid-column' >
                   {/* month is zero indexed */}
-                  <Card.Description style={{padding: '3px 0px'}}>{basicCatchStats.bestMonth.month + 1}/{basicCatchStats.bestMonth.year} - {basicCatchStats.bestMonth.count} fish</Card.Description>
+                  {basicCatchStats.bestMonth.month + 1}/{basicCatchStats.bestMonth.year} <br /> {basicCatchStats.bestMonth.count} fish
                 </div>
               </div>
+              <hr />
               {/* best day */}
-              <div className='catch-stats-grid-row' style={{display: 'flex'}}>
-                <div className='catch-stats-grid-column' style={{width: 150}}>
-                  <Card.Description style={{padding: '3px 0px'}}><b>Best day: </b></Card.Description>
+              <div className='catch-stats-grid-row'>
+                <div className='catch-stats-category'>
+                  <b>Top day: </b>
                 </div>
                 <div className='catch-stats-grid-column' >
                   {/* month is zero indexed */}
-                  <Card.Description style={{padding: '3px 0px'}}>{basicCatchStats.bestDay.month + 1}/{basicCatchStats.bestDay.day}/{basicCatchStats.bestDay.year} - {basicCatchStats.bestDay.count} fish</Card.Description>
+                  {basicCatchStats.bestDay.month + 1}/{basicCatchStats.bestDay.day}/{basicCatchStats.bestDay.year} <br /> {basicCatchStats.bestDay.count} fish
                 </div>
               </div>
-                            
+              <hr />     
               {/* most caught species */}
               {basicCatchStats.catchCount > 0 &&
-              <div className='catch-stats-grid-row' style={{display: 'flex'}}>
-                <div className='catch-stats-grid-column' style={{width: 150}}>
-                  <Card.Description style={{padding: '3px 0px'}}><b>Most caught: </b></Card.Description>
+              <div className='catch-stats-grid-row'>
+                <div className='catch-stats-category' >
+                  <b>Most: </b>
                 </div>
-                <div className='catch-stats-grid-column' >
-                  <Card.Description style={{padding: '0px 0px'}}>            
-                    <div style={{ display: 'flex', flexDirection: 'column', }}>
-                      {renderTopCatches(basicCatchStats.speciesList)}
-                    </div>
-                  </Card.Description>
+                <div className='catch-stats-grid-column' > 
+                  <div style={{ display: 'flex', flexDirection: 'column', }}>
+                    {renderTopCatches(basicCatchStats.speciesList)}
+                  </div>
                 </div>
               </div>
               }
+              <hr />
               {/* longest catch */}
               {basicCatchStats.biggestCatch &&
-                <div className='catch-stats-grid-row' style={{display: 'flex'}}>
-                  <div className='catch-stats-grid-column' style={{width: 150}}>
-                    <Card.Description style={{padding: '3px 0px'}}><b>Longest Catch: </b></Card.Description>
+                <div className='catch-stats-grid-row'>
+                  <div className='catch-stats-category' >
+                    <Card.Description style={{padding: '3px 0px'}}><b>Longest: </b></Card.Description>
                   </div>
                   <div className='catch-stats-grid-column'>
                     <Card.Description style={{padding: '3px 0px'}}>{basicCatchStats.biggestCatch} in</Card.Description>
@@ -116,9 +114,10 @@ const renderBasicStatsCard = (basicCatchStats) => {
             </div>
               {basicCatchStats.catchCount > 0 ? 
                 ( //basicCatchStats.fishingTypeFrequency
-                  <div style={{height: 275}}>
+                  <div className='fishing-frequency-pie-container'>
                     <VictoryPie 
-                      style={{labels: { padding: 15 }}}
+                      width={475}
+                      style={{ labels: { padding: 15 } }}
                       colorScale={['navy', 'teal', 'tomato']}
                       // x={ (datum) => datum.type ? datum.type: null }
                       // y={(datum) => datum.count ? datum.count: null}
@@ -167,17 +166,10 @@ const renderBasicStatsCard = (basicCatchStats) => {
                 )
               }
           </div>
-        </Card.Content>
-      </Card>
-    </div>
+      </div>
   )
 
 };
-
-
-
-
-
 
 
 const createSpeciesList = catches => {
@@ -376,11 +368,6 @@ const renderNoUserCatches = () => {
   );
 };
 
-
-
-
-
-
 const UserStatsPage = props => {
   const { user } = useContext(AuthContext);
 
@@ -404,10 +391,6 @@ const UserStatsPage = props => {
   const [dateRange, setDateRange] = useState(null);
 
   const [filters, setFilters] = useState({ apply: false, year: null, month: null });
-
-
-
-
 
   // useEffect to initialize filteredCatches when we get server data for the first time
   useEffect (() => {
@@ -470,12 +453,6 @@ const UserStatsPage = props => {
     }
   }, [filters, allCatches, setFilters, setFilteredCatches, setFilteredCatchesXDomain, setHistogramProperties])
 
-
-
-  console.log('re render stats page')
-
-
-
   const catchYearSelectCallback = e => {
     if (e.target.name === 'All Years') {
       setFilters(prevFilters => ({ ...prevFilters, month: null, year: null, apply: true }));
@@ -493,30 +470,18 @@ const UserStatsPage = props => {
     }
   };
 
-
-
-
-
-
   return (
-    <div style={{width: '100%', height: '100%', overflowY: 'auto'}}>
-      <div style={{width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
-        <div>
-          {(loadingUserBasicData || loadingUserCatches) && 
-            <div>
-              <LoaderFish />
-              Loading your stats
-            </div>
-          }
-        </div>
-
-
-        <div style={{margin: '10px 0px'}}>
+      <div className='user-stats-page'>
+        {(loadingUserBasicData || loadingUserCatches) && 
+          <div>
+            <LoaderFish />
+            Loading your stats
+          </div>
+        }
           {/* show date range */}
           {basicCatchStats && basicCatchStats.catchCount > 0 && renderBasicStatsCard(basicCatchStats)}
           {/* total species caught aggregate  */}
           {/* and by fishing type: offshore, inshore, onshore */}
-        </div>
 
         {basicCatchStats && basicCatchStats.catchCount === 0 &&
           renderNoUserCatches()
@@ -630,7 +595,6 @@ const UserStatsPage = props => {
         }
 
       </div>
-    </div>
   )
 }
 

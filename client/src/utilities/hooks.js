@@ -499,7 +499,7 @@ export const useGoogleMap = () => {
     if (markers.length > 0) {
       markerClusterRef.current = new MarkerClusterer(mapRef.current, markers,
         {
-          gridSize: 10,
+          gridSize: 20,
           // imagePath: 'http://localhost:3000/img/markerclusterer/m1.png'
           imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
         });

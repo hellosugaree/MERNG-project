@@ -20,13 +20,9 @@ const getCurrentLocationButton = document.createElement('button');
 getCurrentLocationButton.classList.add("custom-map-control-button");
 getCurrentLocationButton.innerHTML='<i class="blue location arrow icon"></i>';
 
-
 const toggleMarkerClustersButton = document.createElement('button');
 toggleMarkerClustersButton.classList.add("custom-map-control-button");
 toggleMarkerClustersButton.innerHTML=``;
-
-
-
 
   // calculate our map bounds based on the catch data so we can contain the data within the map
   function calculateBounds(catchData) {
@@ -52,9 +48,21 @@ toggleMarkerClustersButton.innerHTML=``;
     return ({ north: maxLat, south: minLat, west: minLng, east: maxLng });
   }
 
-
   // function to generate markers on the map for our currently selected catches
   function createMarkers(catches, catchMarkersRef, infoWindowRef, mapRef, markerClusterRef, clusterMarkers, setHighlightedCatch) {
+    const mapImages = (catchObj) => {
+      if (catchObj.images && catchObj.images.length > 0) {
+        return catchObj.images.map(image => (
+          <img 
+            key={image.asset_id} 
+            alt='catch'
+            src={`https://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload/c_limit,w_150,h_100/${image.public_id}.jpg`}
+            style={{borderRadius: 10, padding: 5}}
+            /> 
+        ));
+      }
+    };
+    
     console.log('generating markers');
     // first clear the map of all markers in case we are remapping markers after filtering catches
     catchMarkersRef.current.forEach(marker => marker.setMap(null));
@@ -124,11 +132,22 @@ toggleMarkerClustersButton.innerHTML=``;
         // create an info window for the marker
         const infoDivStyle = 'padding-bottom: 5px; font-size: 16px;'
         const infoJSX = `
-          <div style='width: 150px'>
+          <div class="map-tooltip-catch">
             <div style='${infoDivStyle}'><b>${catchObj.species}</b></div>
             <div style='${infoDivStyle}; color: grey'>${DateTime.fromMillis(Date.parse(catchObj.catchDate)).toRelative()}</div>
             ${catchObj.catchLength ? `<div style='${infoDivStyle}'>Length: ${catchObj.catchLength}</div>` : ``}
             ${catchObj.fishingType ? `<div style='${infoDivStyle}'>${catchObj.fishingType}</div>` : ``}
+            <div class="map-tooltip-image-container">
+            ${catchObj.images && catchObj.images.length > 0 && catchObj.images.map(image => {
+              return `<img 
+                key={image.asset_id}
+                class="map-tooltip-catch-image" 
+                alt='catch'
+                src=${`https://res.cloudinary.com/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload/c_limit,w_130,h_150/${image.public_id}.jpg`}
+                style={{borderRadius: 10, padding: 5}}
+                />`
+            })}    
+            </div>        
             ${catchObj.notes ? `<div style='${infoDivStyle}'>Notes: ${catchObj.notes}</div>` : ``}                  
           </div>
         `;
@@ -173,61 +192,41 @@ toggleMarkerClustersButton.innerHTML=``;
     console.log('generating marker clusters');
     const markerStyles = [
       MarkerClusterer.withDefaultStyle({
-        // url: "../img/icons/Calico-Bass-3840-1920.png",
         url: "../img/markerclusterer/m1.png",
-        // height: 80,
-        // width: 177,
         height: 53,
         width: 53,
-        // anchorIcon: [37.5, 37.5],
         textColor: "#000000",
         textSize: 15,
         maxZoom: 10,
       }),  
       MarkerClusterer.withDefaultStyle({
-        // url: "../img/icons/Calico-Bass-3840-1920.png",
         url: "../img/markerclusterer/m2.png",
-        // height: 80,
-        // width: 177,
         height: 56,
         width: 56,
-        // anchorIcon: [37.5, 37.5],
         textColor: "#000000",
         textSize: 15,
         maxZoom: 10,
       }),  
       MarkerClusterer.withDefaultStyle({
-        // url: "../img/icons/Calico-Bass-3840-1920.png",
         url: "../img/markerclusterer/m3.png",
-        // height: 80,
-        // width: 177,
         height: 66,
         width: 66,
-        // anchorIcon: [37.5, 37.5],
         textColor: "#FFFFFF",
         textSize: 15,
         maxZoom: 10,
       }),  
       MarkerClusterer.withDefaultStyle({
-        // url: "../img/icons/Calico-Bass-3840-1920.png",
         url: "../img/markerclusterer/m4.png",
-        // height: 80,
-        // width: 177,
         height: 78,
         width: 78,
-        // anchorIcon: [37.5, 37.5],
         textColor: "#FFFFFF",
         textSize: 15,
         maxZoom: 10,
       }),
       MarkerClusterer.withDefaultStyle({
-        // url: "../img/icons/Calico-Bass-3840-1920.png",
         url: "../img/markerclusterer/m5.png",
-        // height: 80,
-        // width: 177,
         height: 90,
         width: 90,
-        // anchorIcon: [37.5, 37.5],
         textColor: "#FFFFFF",
         textSize: 15,
         maxZoom: 10,
@@ -235,7 +234,6 @@ toggleMarkerClustersButton.innerHTML=``;
     ];
     markerClusterRef.current = new MarkerClusterer(mapRef.current, markers, {
       styles: markerStyles,
-        // imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
       maxZoom: 10,
       averageCenter: true,
       gridSize: 60,
@@ -834,7 +832,7 @@ const UserCatchesMap = () => {
         </div>
         
         {/* RIGHT SIDE WITH CATCH CARDS AND FILTER OPTIONS */}
-        <div style={{display: 'flex', flexDirection: 'column'}}>
+        <div style={{display: 'flex', flexDirection: 'column', display: 'none'}}>
           {/* CONTAINER FOR FILTER MENU*/}
           <div style={{paddingLeft: 10, display: 'flex'}}>
             {!showCreateCatch && filteredCatches && speciesList &&
@@ -851,27 +849,15 @@ const UserCatchesMap = () => {
           </div>
         </div>
       </div>
-
-      <div style={{display: 'flex', width: '100%'}}>
-      <div style={{height: 200, width: 100, flexGrow: 1, overflowY: 'hidden', overflowX: 'scoll', whiteSpace: 'nowrap', }}>
-        {showCreateCatch && displayImageData.map((image, index) => <img key={index} src={image} alt='your catch' style={{maxHeight: 200, width: 'auto', display: 'inline-block'}} /> )}
-      </div>
-      </div>
-
-
+      {/* BOTTOM CONTAINER FOR IMAGE PREVIEWS */}
+      {/* <div style={{display: 'flex', width: '100%'}}>
+        <div style={{height: 200, width: 100, flexGrow: 1, overflowY: 'hidden', overflowX: 'scoll', whiteSpace: 'nowrap', }}>
+          {showCreateCatch && displayImageData.map((image, index) => <img key={index} src={image} alt='your catch' style={{maxHeight: 200, width: 'auto', display: 'inline-block'}} /> )}
+        </div>
+      </div> */}
       </div>
   );
 };
 
 
 export default UserCatchesMap;
-
-
-
-/*
-
-            <div style={{height: 300, width: '100%', overflowY: 'hidden', overflowX: 'auto', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center'}}>
-              DFSFD
-            </div>
-
-*/

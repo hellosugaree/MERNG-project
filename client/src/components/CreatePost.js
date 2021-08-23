@@ -76,13 +76,14 @@ function CreatePost (props) {
 
 
   return (
-    <Card fluid >
+    <Card style={{width: '100%'}}>
       <Card.Header content='Create a post' style={{fontSize: 20, fontWeight: 'bold', padding: '10px 0px'}} textAlign='center' /> 
-          <Form style={{margin: '5px auto 5px auto', padding: '0px 10px 0px 10px', width: '100%'}} 
-      error={errors ? true : false} onSubmit={onSubmit} className={loading ? 'loading' : ''}
-      >
+        <Form style={{margin: '5px auto 5px auto', padding: '0px 10px 0px 10px', width: '100%'}} 
+          error={errors ? true : false} onSubmit={onSubmit} className={loading ? 'loading' : ''}
+        >
         <Form.Group style={{padding: '0px 20px'}}>
           <Form.Input
+            style={{margin: '5px 0px'}}
             width={16}  
             placeholder='post title' 
             type="text"
@@ -94,7 +95,7 @@ function CreatePost (props) {
         </Form.Group>
         <Form.Group style={{padding: '0px 20px'}}>
           <Form.TextArea
-            style={{marginBottom: 10}}
+            style={{margin: '5px 0px'}}
             width={16}
             placeholder='post body'
             type='body'
@@ -108,7 +109,6 @@ function CreatePost (props) {
         <Form.Group style={{display: 'block'}}>
           <Form.Button style={{display: 'block', margin: '0px auto 0px auto'}} color='blue' type="submit">Submit</Form.Button>
         </Form.Group> 
-
       </Form>
     </Card>
   )

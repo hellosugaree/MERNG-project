@@ -128,16 +128,7 @@ const MixedFeed = props => {
   ]);
 
   return (
-    <div
-      style={{
-        width: "100%",
-        height: "100%",
-        overflowY: "auto",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
+    <div className='feed-container' >
       {(postsError || catchesError) && (
         <div className="grid-row">
           <h1 className="page-title">Failed to load feed</h1>
@@ -145,7 +136,7 @@ const MixedFeed = props => {
       )}
 
       {user && (
-        <div style={{ width: 450, margin: "10px 0px" }}>
+        <div className='feed-card-container'>
           <CreatePost />
         </div>
       )}
@@ -167,31 +158,27 @@ const MixedFeed = props => {
 
       {feed && (
         <>
-          <div className="grid-row">
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <Dropdown
-                inline
-                options={postSortOptions}
-                defaultValue={postSortOptions[0].value}
-              />
-            </div>
-          </div>
+          <Dropdown
+            style={{margin: '10px 0px'}}
+            inline
+            options={postSortOptions}
+            defaultValue={postSortOptions[0].value}
+          />
 
           <Transition.Group animation="fly right" duration={600}>
             {feed.map(feedItem => {
               return feedItem.__typename === "Post" ? (
                 <div
-                  className="grid-row"
+                  className='feed-card-container'
                   key={feedItem.id}
-                  style={{ width: 450 }}
                 >
                   <PostCard post={feedItem} />
                 </div>
               ) : feedItem.__typename === "Catch" ? (
                 <div
-                  className="grid-row"
+                  className='feed-card-container'
                   key={feedItem.id}
-                  style={{ width: 450 }}
+
                 >
                   <CatchCard catch={feedItem} style={{ margin: "10px 0px" }} />
                 </div>

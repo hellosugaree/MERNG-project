@@ -488,7 +488,7 @@ const UserStatsPage = props => {
         }
         
         {(allCatches && allCatches.length > 0 && groupedData) &&
-          <div style={{ width: 800, backgroundColor: 'white', padding: '0px 0px 0px 0px', border: '1px solid lightgrey', borderRadius: 5 }}>
+          <div style={{  backgroundColor: 'white', padding: '0px 0px 0px 0px', border: '1px solid lightgrey', borderRadius: 5 }}>
           { dateRange &&
             <div style={{width: '100%', padding: '5px 20px 0px 0px', height: 50}}>
               <Dropdown style={{float: 'right'}} onItemSelect={catchYearSelectCallback} items={[ 'All Years', ...getYearsFromRange(dateRange)]} defaultIndex={getYearsFromRange(dateRange).length} />
@@ -509,7 +509,6 @@ const UserStatsPage = props => {
                   zoomDimension="x"
                   allowZoom={false}
                   allowPan={false}
-                  width={800}
                   // style={{border: '1px solid black'}}
                   labels= { 
                     Object.keys(groupedData).length > 0 

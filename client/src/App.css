@@ -354,6 +354,20 @@ input[type=number]::-webkit-outer-spin-button {
   background: #ebebeb;
 }
 
+.map-tooltip-catch {
+  max-width: 300px;
+}
+
+.map-tooltip-catch-image {
+  margin: 10px 5px;
+  border-radius: 5px;
+}
+
+.map-tooltip-image-container {
+  display: 'flex';
+  align-items: center;
+  justify-content: center;
+}
 
 .close-modal:hover {
   cursor: pointer;
@@ -612,4 +626,24 @@ input[type=number]::-webkit-outer-spin-button {
 
 .fishing-frequency-pie-container {
   width: 300px;
+}
+
+.feed-container {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.feed-card-container {
+  width: 95%;
+  max-width: 500px;
+}
+
+.feed-card {
+  width: 100% !important;
+  max-width: 500px;
+  margin: 5px 0px !important;
 }

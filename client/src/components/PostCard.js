@@ -140,7 +140,7 @@ function PostCard(props) {
     }
 
     return (
-    <Card fluid style={{ margin: '10px auto 10px auto'}} > {/* fluid lets the cards stretch to fill */}
+    <Card className='feed-card' > 
       <Card.Content>
         <Image
           floated='right'

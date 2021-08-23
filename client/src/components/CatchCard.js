@@ -19,9 +19,7 @@ function CatchCard(props) {
   const { showCustomModal } = useContext(ModalContext);
 
     return (
-      //onClick={props.onClick}
-    // <div style={{ maxWidth: 400, margin: '10px auto 10px auto'}}>
-      <Card onClick={props.onClick} fluid style={props.highlight ? { ...highlightedStyle, ...props.style } : {...props.style} } > 
+      <Card className='feed-card' onClick={props.onClick} fluid style={props.highlight ? { ...highlightedStyle, ...props.style } : {...props.style} } > 
         <Card.Content>
           <Image
             alt='profile'
@@ -30,13 +28,11 @@ function CatchCard(props) {
             src='https://react.semantic-ui.com/images/avatar/large/molly.png'
           />
           <Card.Header>{username} logged a catch</Card.Header>
-          
           {/* can pass true to fromNow to remove 'ago' from date display */}
           <Card.Meta as={Link} to={`/catches/${id}`}>{DateTime.fromMillis(Date.parse(catchDate)).toRelative()}</Card.Meta>
           {fishingType && <Card.Meta>{fishingType}</Card.Meta>}
           {catchLocation && typeof catchLocation.lat === 'number' && typeof catchLocation.lng === 'number' && <Card.Meta>{`${catchLocation.lat.toFixed(4)}, ${catchLocation.lng.toFixed(4)}`}</Card.Meta>}
           <Card.Header style={{marginTop: 5, fontSize: 18}}>{species} {catchLength && <span style={{marginLeft: 8}}>{catchLength} in</span>}</Card.Header>
-
           {images && images.map(image => 
             <img 
               key={image.asset_id} 
@@ -46,19 +42,14 @@ function CatchCard(props) {
               style={{borderRadius: 10, padding: 5}}
             /> 
           )}
-
           {notes && <Card.Description>{notes}</Card.Description>}
-
-          
           {/* show restricted options only on user's post card when user is logged in */}
           {(!props.hideMenu && user && user.username === props.catch.username) && (
             <PostCardMenu postId={props.catch.id}/>
           )
           }
-          
         </Card.Content>
       </Card>
-
   );
 }
 

@@ -10,7 +10,7 @@ import MixedFeed from '../components/MixedFeed';
 import WeatherFeed from '../components/WeatherFeed';
 // import LoaderFish from '../components/LoaderFish';
 import UserCatchesMap from '../pages/UserCatchesMap';
-import BeachAccessLocations from '../components/BeachAccessLocations';
+import BeachAccessLocations from './BeachAccessLocations/BeachAccessLocations';
 import UserSettings from './UserSettings';
 
 // import { GET_CATCHES } from '../gql/gql';

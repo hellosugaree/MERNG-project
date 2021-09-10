@@ -340,27 +340,6 @@ export const useGoogleMap2 = (showBasicControls = true, additionalControls, onCe
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 export const useGoogleMap = () => {
   // loading state for google api
   const [apiStatus, setApiStatus] = useState({errors: null, loading: true});
@@ -384,7 +363,7 @@ export const useGoogleMap = () => {
   const basicControls = [{ position: 'RIGHT_CENTER', element: getCurrentLocationButton, listeners: [{event: 'click', callback: handleGetLocationButtonClick}] }];
 
   const loader = new Loader({
-    apiKey: `${process.env.REACT_APP_GOOGLE_API_KEY}`,
+    // apiKey: `${process.env.REACT_APP_GOOGLE_API_KEY}`,
     version: "weekly",
     libraries: ["places"],
   });

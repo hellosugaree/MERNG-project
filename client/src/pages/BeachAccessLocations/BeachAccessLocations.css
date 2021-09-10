@@ -1,0 +1,104 @@
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0px;
+}
+
+.sort-by {
+  margin: 5px 0px 10px 0px;
+}
+
+.name-search-input {
+  z-index: 1;
+  flex-grow: 1;
+  border: 1px solid gray;
+  border-radius: 5px;
+  height: 30px;
+  font-size: 1rem;
+  padding: 5px 30px 5px 5px;
+}
+
+.dropdown-container {
+  display: flex;
+  width: 60%;
+  max-width: 150px;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  margin-top: 10px;
+}
+
+
+.toggle-container {
+  display: flex;
+  flex-wrap:wrap;
+}
+
+.filter-toggle {
+  margin-left: 20px;
+  margin-top: 5px;
+}
+
+.items-per-page-container {
+  font-size: 1.1rem;
+  margin-top: 10px;
+}
+
+label {
+  margin-right: 10px;
+}
+
+.filter-and-map-container {
+  flex-grow: 1;
+  padding: 0px 10px 20px 10px;
+}
+
+.beach-cards-container {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.beach-cards-and-pagination-container {
+  width: 400px;
+}
+
+.beach-tooltip-image {
+  max-height: 150px;
+  max-width: 150px;
+}
+
+@media (max-width: 768px) {
+  .beach-cards-and-pagination-container {
+    display: none;
+  }
+  .items-per-page-container {
+    display: none;
+  }
+  .sort-by {
+    display: none;
+  }
+}
+
+@media (max-height: 800px) {
+  .beach-cards-and-pagination-container {
+    display: none;
+  }
+  .items-per-page-container {
+    display: none;
+  }
+  .filter-and-map-container {
+    flex-direction: row;
+  }
+  .filter-container {
+    margin-top: 30px;
+    margin-right: 20px;
+  }
+  .toggle-container {
+    flex-direction: column;
+  }
+  .sort-by {
+    display: none;
+  }
+}

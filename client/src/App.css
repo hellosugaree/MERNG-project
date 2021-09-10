@@ -18,6 +18,39 @@ hr {
   border: 1px solid lightgray;
 }
 
+.flex {
+  display: flex;
+}
+
+.fit {
+  height: 100%;
+  width: 100%;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.justify {
+  justify-content: center;
+}
+
+.align {
+  align-items: center;
+}
+
+.relative {
+  position: relative;
+}
+
+.center {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
 .white-card {
   border-radius: 5px;
   background-color: white;

@@ -801,9 +801,6 @@ const WeatherFeed = (props) => {
     }
   }, [geolocationStatus]);
   
-
-
-
   // type defaults to forecast. If forecast is unavailable, or we get a marine error in the second fetch, we will fetch and display grid forecastGridData
   const getForecastUrl = async (pos) => {
     setFetchStatus(defaultFetchStatus);
@@ -834,8 +831,6 @@ const WeatherFeed = (props) => {
     return { url: forecastUrl, error };
   };
 
-
-  
   const getGridForecast = async gridUrl => {
     let fetchSuccess = false;
     await fetch(gridUrl)
@@ -985,11 +980,6 @@ const WeatherFeed = (props) => {
     console.log(days);
     setProcessedGridData(days);
   };
-
-
-
-
-
 
   function handlePlaceSelect() {
     console.log('place select callback')

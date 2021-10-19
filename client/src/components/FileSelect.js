@@ -20,7 +20,6 @@ const FileSelect = (props) => {
     <div>
       <Button
         onClick={handleAccept}
-        inline
         color="teal"
         type="button"
         style={{ fontSize: 20, padding: 10 }}
@@ -29,7 +28,6 @@ const FileSelect = (props) => {
       </Button>
       <Button
         onClick={handleCancel}
-        inline
         color="red"
         type="button"
         style={{ fontSize: 20, padding: 10 }}

@@ -19,9 +19,9 @@ selectLocationButton.classList.add('custom-map-control-button');
 selectLocationButton.innerHTML='Accept catch location';
 
 
-const CreateCatchForm = props => {
+const CreateCatchForm = (props) => {
   const { user } = useContext(AuthContext);
-
+  const { handleCloseForm, handleLocationInputClick } = props;
 
   // FORM RELATED STUFF DOWN HERE
   const initialValues = {
@@ -174,9 +174,6 @@ const CreateCatchForm = props => {
       console.log('invalid int')
       delete filteredInput.catchLength;
     }
-
-    // const testValues = {species: "trout", fishingType: "offshore", catchLength: 3, catchDate: "adss", notes: "", catchLocation: "" };
-    // console.log(filteredInput);
     createCatch({ variables: filteredInput });
   }
 
@@ -190,138 +187,139 @@ const CreateCatchForm = props => {
   }
 
   return (
-        // outer form container
-        <div style={{maxWidth: 400, justifyContent: 'center',  alignItems: 'center', display: 'flex', flexGrow: 1, ...props.style}}>
-          {/* THE ACTUAL FORM CARD */}
-          <div style={{display: 'flex', width: 300, flexGrow: 1}}>
-              <Card fluid style={{padding: 10}}>
-                <Card.Header content='Log a catch' style={{fontSize: 20, fontWeight: 'bold', padding: '10px 0px 10px 0px'}} textAlign='center' /> 
-                <Form unstackable style={{ margin: '0px 5px 0px 5px' }} 
-                error={errors ? true : false} onSubmit={onSubmit} className={loading ? 'loading' : ''}
-                >
-                  {/*  CALENDAR DATE SELECTOR */}
-                  <Form.Group style={{marginBottom: 10}}>
-                    <Form.Field required>
-                      <label>Catch date</label>
-                    <DatePicker
-                      dateFormat='MM/dd/yyyy'
-                      selected={values.catchDate} 
-                      onChange={(date) => handleDateChange(date, 'catchDate')}
-                      maxDate={new Date()}
+            <Card fluid style={{padding: '5px 15px', ...props.style}}>
+              <Card.Header style={{fontSize: 20, fontWeight: 'bold', padding: '10px 0px 10px 0px'}} textAlign='center'>
+                <span className='flex center' style={{flexGrow: 1}}>Log a Catch</span>
+                <span className='close-modal' onClick={handleCloseForm}>&#10006;</span>
+              </Card.Header> 
+              <Form unstackable style={{ margin: '0px 5px 0px 5px' }} 
+              error={errors ? true : false} onSubmit={onSubmit} className={loading ? 'loading' : ''}
+              >
+                {/*  CALENDAR DATE SELECTOR */}
+                <Form.Group style={{marginBottom: 10}}>
+                  <Form.Field required>
+                    <label>Catch date</label>
+                  <DatePicker
+                    dateFormat='MM/dd/yyyy'
+                    selected={values.catchDate} 
+                    onChange={(date) => handleDateChange(date, 'catchDate')}
+                    maxDate={new Date()}
+                  />
+                  </Form.Field>
+                </Form.Group>
+
+                <Form.Group style={{marginBottom: 5}}>
+                  {/* SPECIES */}
+                  <Form.Field required width={10} style={{marginTop: 5}} >
+                    <label>Species</label>
+                    <AutoSearchInputClass
+                      passInputValueToParent={(value) => getSpeciesInputValue(value)}
+                      controlledValue={values.species}
                     />
                     </Form.Field>
-                  </Form.Group>
+                    {/* LENGTH */}
+                    <Form.Field width={6} style={{marginTop: 5}}>
+                      <Form.Input 
+                        type='number'
+                        label='Length (in)'
+                        placeholder='Length'
+                        name='catchLength'
+                        min='1'
+                        max='1200'
+                        value={values.catchLength}
+                        onChange={handleChange}
+                        onKeyPress={preventFormSubmitOnEnter}
 
-                  <Form.Group style={{marginBottom: 5}}>
-                    {/* SPECIES */}
-                    <Form.Field required width={10} style={{marginTop: 5}} >
-                      <label>Species</label>
-                      <AutoSearchInputClass
-                        passInputValueToParent={(value) => getSpeciesInputValue(value)}
-                        controlledValue={values.species}
                       />
-                      </Form.Field>
-                      {/* LENGTH */}
-                      <Form.Field width={6} style={{marginTop: 5}}>
-                        <Form.Input 
-                          type='number'
-                          label='Length (in)'
-                          placeholder='Length'
-                          name='catchLength'
-                          min='1'
-                          max='1200'
-                          value={values.catchLength}
-                          onChange={handleChange}
-                          onKeyPress={preventFormSubmitOnEnter}
+                    </Form.Field>
+                </Form.Group>
+                {/* UNKOWN SPECIES CHECKBOX */}
+                <Form.Group style={{marginBottom: 20}}>
+                <Form.Checkbox 
+                  label='Unknown species'
+                  onClick={handleUnknownSpeciesClick}
+                  checked={values.species==='Unknown'}
+                  onKeyPress={preventFormSubmitOnEnter}
+                />
+                </Form.Group>
+                {/* CATCH LOCATION */}
+                <Form.Group style={{marginBottom: 10}} >
+                  <Form.Field 
+                    onClick={handleLocationInputClick}
+                    required 
+                    width={16}
+                  >
+                    <label>Catch location (select on map)</label>
+                    <div style={{height: 40, padding: 10, margin: '0px 5px 0px 0px', display: 'flex', alignItems: 'center', border: '1px solid #DEDEDF', borderRadius: 5}}>
+                      {props.catchLocation.lat.toFixed(5)}, {props.catchLocation.lng.toFixed(5)}
+                    </div>
+                  </Form.Field>
+                </Form.Group>     
 
-                        />
-                      </Form.Field>
-                  </Form.Group>
-                  {/* UNKOWN SPECIES CHECKBOX */}
-                  <Form.Group style={{marginBottom: 20}}>
-                  <Form.Checkbox 
-                    label='Unknown species'
-                    onClick={handleUnknownSpeciesClick}
-                    checked={values.species==='Unknown'}
+                {/* RADIO BUTTONS FOR FISHING TYPE */}
+                <div className='field'>
+                <label>Fishing type</label>
+                <Form.Group inline style={{marginBottom: 10}}>
+                  <Form.Radio
+                    id='1'
+                    label='onshore'
+                    value='onshore'
+                    name='fishingType'
+                    checked={values.fishingType === 'onshore'}
+                    onClick={handleChange}
                     onKeyPress={preventFormSubmitOnEnter}
                   />
-                  </Form.Group>
-                  {/* CATCH LOCATION */}
-                  <Form.Group style={{marginBottom: 10}} >
-                    <Form.Field required width={16}>
-                      <label>Catch location (select on map)</label>
-                      <div style={{height: 40, padding: 10, margin: '0px 5px 0px 0px', display: 'flex', alignItems: 'center', border: '1px solid #DEDEDF', borderRadius: 5}}>
-                        {props.catchLocation.lat.toFixed(5)}, {props.catchLocation.lng.toFixed(5)}
-                      </div>
-                    </Form.Field>
-                  </Form.Group>     
+                  <Form.Radio
+                    id='2'
+                    label='inshore'
+                    value='inshore'
+                    name='fishingType'
+                    checked={values.fishingType === 'inshore'}
+                    onClick={handleChange}
+                    onKeyPress={preventFormSubmitOnEnter}
 
-                  {/* RADIO BUTTONS FOR FISHING TYPE */}
-                  <div className='field'>
-                  <label>Fishing type</label>
-                  <Form.Group inline style={{marginBottom: 10}}>
-                    <Form.Radio
-                      id='1'
-                      label='onshore'
-                      value='onshore'
-                      name='fishingType'
-                      checked={values.fishingType === 'onshore'}
-                      onClick={handleChange}
-                      onKeyPress={preventFormSubmitOnEnter}
-                    />
-                    <Form.Radio
-                      id='2'
-                      label='inshore'
-                      value='inshore'
-                      name='fishingType'
-                      checked={values.fishingType === 'inshore'}
-                      onClick={handleChange}
-                      onKeyPress={preventFormSubmitOnEnter}
+                  />
+                  <Form.Radio
+                    id='3'
+                    label='offshore'
+                    value='offshore'
+                    name='fishingType'
+                    checked={values.fishingType === 'offshore'}
+                    onClick={handleChange}
+                    onKeyPress={preventFormSubmitOnEnter}
+                  />
+                </Form.Group>
+                </div>
 
-                    />
-                    <Form.Radio
-                      id='3'
-                      label='offshore'
-                      value='offshore'
-                      name='fishingType'
-                      checked={values.fishingType === 'offshore'}
-                      onClick={handleChange}
-                      onKeyPress={preventFormSubmitOnEnter}
-                    />
-                  </Form.Group>
+                <Form.Group>
+                  {renderFileSelect()} 
+                  <div style={{paddingLeft: 10, fontSize: 16, display: 'flex', alignItems: 'center'}}>
+                    Selected pictures: {values.images.length}
                   </div>
-
-                  <Form.Group>
-                    {renderFileSelect()} 
-                    <div style={{paddingLeft: 10, fontSize: 16, display: 'flex', alignItems: 'center'}}>
-                      Selected pictures: {values.images.length}
-                    </div>
-                  </Form.Group>
-          
-                  {/* TEXT INPUT FOR NOTES */}
-                  <Form.Group style={{marginBottom: 10}} >
-                    <Form.Field width={16}>
-                      <label>Notes</label>
-                      <Form.TextArea
-                        placeholder='notes'
-                        type='text'
-                        name='notes'
-                        value={values.notes}
-                        onChange={handleChange}
-                        error={errors.errorFields && errors.errorFields.notes}
-                      />
-                    </Form.Field>
-                  </Form.Group> 
-
-                {Object.keys(errors).length > 0 && (<FormError errors={errors.errorMessages} />)}
-                <Form.Group style={{display: 'block', marginBottom: 10}}>
-                  <Form.Button style={{display: 'block', margin: '0px auto 0px auto'}} color='blue' type="submit">Submit</Form.Button>
+                </Form.Group>
+        
+                {/* TEXT INPUT FOR NOTES */}
+                <Form.Group style={{margin: '10px 0px'}} >
+                  <Form.Field width={16}>
+                    <label>Notes</label>
+                    <Form.TextArea
+                      placeholder='notes'
+                      type='text'
+                      name='notes'
+                      value={values.notes}
+                      onChange={handleChange}
+                      error={errors.errorFields && errors.errorFields.notes}
+                    />
+                  </Form.Field>
                 </Form.Group> 
-              </Form>
-              {/* <button type='button' onClick={() => console.log(values)} > test log</button> */}
-            </Card>
-          </div>
-        </div>
+
+              {Object.keys(errors).length > 0 && (<FormError errors={errors.errorMessages} />)}
+              <Form.Group style={{display: 'block', marginBottom: 10}}>
+                <Form.Button style={{display: 'block', margin: '0px auto 0px auto'}} color='blue' type="submit">Submit</Form.Button>
+              </Form.Group> 
+            </Form>
+            {/* <button type='button' onClick={() => console.log(values)} > test log</button> */}
+          </Card>
   );
 }
 

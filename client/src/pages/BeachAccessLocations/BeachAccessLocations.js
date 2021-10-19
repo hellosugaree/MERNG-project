@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { useGoogleMap } from '../../utilities/hooks';
-import _ from 'lodash';
 import GoogleMap from '../../components/GoogleMap';
 import Pagination from '../../components/Pagination';
 import BeachCard from './BeachCard';
@@ -11,7 +10,6 @@ import '../../App.css';
 import './BeachAccessLocations.css';
 
 const BeachAccessLocations = (props) => {
-  console.log(window.innerWidth);
   // hook for google map refs and loader
   const { mapMarkers, loadMap, center, mapContainerRef, markersRef, mapRef, apiStatus, basicControls } = useGoogleMap();
   // store initial fetched data 
@@ -29,7 +27,7 @@ const BeachAccessLocations = (props) => {
     if (apiStatus.loading && !apiStatus.errors) {
       loadMap();
     }
-  }, [apiStatus]);
+  }, [apiStatus, loadMap]);
 
   // map markers
   useEffect(() => {

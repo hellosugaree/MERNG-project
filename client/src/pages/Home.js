@@ -9,9 +9,9 @@ import MixedFeed from '../components/MixedFeed';
 // import CatchFeed from '../components/CatchFeed';
 import WeatherFeed from '../components/WeatherFeed';
 // import LoaderFish from '../components/LoaderFish';
-import UserCatchesMap from '../pages/UserCatchesMap';
+import UserCatchesMap from '../pages/UserCatchesMap/UserCatchesMap';
 import BeachAccessLocations from './BeachAccessLocations/BeachAccessLocations';
-import UserSettings from './UserSettings';
+import UserSettings from './UserSettings/UserSettings';
 
 // import { GET_CATCHES } from '../gql/gql';
 import { AuthContext } from '../context/auth';

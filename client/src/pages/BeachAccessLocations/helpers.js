@@ -44,7 +44,7 @@ const sortAccessLocations = (locations, filters) => {
 
 
 export const applyFilters = (locations, filters) => {
-  const { applied, county, hasBoating, isRocky, isSandy, hasCampground, searchInName } = filters;
+  const { county, hasBoating, isRocky, isSandy, hasCampground, searchInName } = filters;
   let filteredLocations = filterByName(locations, searchInName);
   filteredLocations = county !== 'All counties' ? filteredLocations.filter(loc => loc.COUNTY === county) : filteredLocations;
   filteredLocations = hasBoating ? filteredLocations.filter(loc => loc.BOATING.toLowerCase() === "yes") : filteredLocations;

@@ -14,6 +14,39 @@ export const useGoogleAutocomplete = placeSelectCallback => {
   const autocompleteInputRef = useRef(null);
   const autocompleteRef = useRef(null);
 
+  const parseCoordinatesFromPlaceInput = (input) => {
+    const coordinates = { lat: null, lng: null };
+    // remove all spaces and split at comma
+    let splitString = input.name.replace(/ /g, '').split(',');
+    if (splitString.length === 2) {
+      // check if potential lat and lng are both numbers within a valid lat and lng range
+      if (typeof Number.parseFloat(splitString[0]) === 'number' && Math.abs(Number.parseFloat(splitString[0])) <= 90 ) {
+        coordinates.lat = Number.parseFloat(splitString[0]);
+      }
+      if (typeof Number.parseFloat(splitString[1]) === 'number' && Math.abs(Number.parseFloat(splitString[1])) <= 180 ) {
+        coordinates.lng = Number.parseFloat(splitString[1]);
+      }
+    }
+    if (coordinates.lat && coordinates.lng) {
+      return coordinates;
+    } else {
+      return null;
+    }
+  };
+  
+  const getCoordinatesFromAutocomplete = () => {
+    const place = autocompleteRef.current.getPlace();
+    if (place.geometry && place.geometry.location) {
+      return place.geometry.location;
+    }
+    // no place returned, see if the input is in decimal degrees
+    const coordinates = parseCoordinatesFromPlaceInput(place);
+    if (coordinates) {
+      return coordinates;
+    }
+    return place;
+  };
+  
   const loadAutocomplete = () => {
     const center = { lat: 33.4672, lng: -117.6981 };
     // set default search bounds to +/- 100km from default location
@@ -37,7 +70,7 @@ export const useGoogleAutocomplete = placeSelectCallback => {
     autocompleteRef.current.addListener('place_changed', placeSelectCallback)
   };
 
-  return { loadAutocomplete, autocompleteRef, autocompleteInputRef };
+  return { loadAutocomplete, getCoordinatesFromAutocomplete, autocompleteRef, autocompleteInputRef };
 
 };
 
@@ -45,19 +78,21 @@ export const useGoogleAutocomplete = placeSelectCallback => {
 
 
 
-export const useGoogleMap2 = (showBasicControls = true, additionalControls, onCenterChangeCallback, showCenterMarker, mapOptions, defaultZoom = 13) => {
-/**
- * @callback onCenterChangeCallback - (optional) callback function executed when map center changed
- * @param {boolean} showBasicControls - include basic controls (default true)
- * @param {Object[]} additionalControls - array of additional controls
- * @param {boolean} showCenterMarker - show a marker that stays fixed in the center of the map
- * @param {Object} mapOptions - object of map options to pass to the google.maps.Map constructor
- * @param {number} defaultZoom - specify initial zoom of map in google.maps.Map constructor
- */
+export const useGoogleMap2 = (options) => {
+
+  options = { showBasicControls: true, defaultZoom: 13, ...options };
+  const { 
+    showBasicControls, 
+    additionalControls, 
+    onCenterChangeCallback, 
+    showCenterMarker, 
+    mapOptions, 
+    defaultZoom 
+  } = options;
+
   const getCurrentLocationButton = document.createElement('button');
   getCurrentLocationButton.classList.add("custom-map-control-button");
   getCurrentLocationButton.innerHTML='<i class="blue location arrow icon"></i>';
-
   const controls = [];
 
   if (showBasicControls) {
@@ -82,7 +117,7 @@ export const useGoogleMap2 = (showBasicControls = true, additionalControls, onCe
   const centerMarkerRef = useRef(null);
   
   // center to control map center via props
-  const center = { lat: 33.4672, lng: -117.6981 };
+  const center = options.defaultCenter ? options.defaultCenter : { lat: 33.4672, lng: -117.6981 };
 
   const { getPosition, geolocationStatus } = useGeolocation();
 
@@ -94,13 +129,6 @@ export const useGoogleMap2 = (showBasicControls = true, additionalControls, onCe
   const createCenterMarker = useCallback((mapRef, centerMarkerRef) => {
     // set a new crosshair marker at center of map and add it to state so we can set it as center every time the map moves
     // apply current position status to map
-    console.log('creating center marker')
-    // const circleIcon = { 
-    //   scale: 15,
-    //   strokeWeight: 2,
-    //   path: window.google.maps.SymbolPath.CIRCLE 
-    // };
-
     const fishTargetIcon = {
       url: 'http://localhost:3000/img/icons/yellowfin-crosshair.png',
       scaledSize: new window.google.maps.Size(75, 75),
@@ -113,7 +141,7 @@ export const useGoogleMap2 = (showBasicControls = true, additionalControls, onCe
       map: mapRef.current,
       // icon: 'http://localhost:3000/img/icons/yellowfin-crosshair.png',
       icon: fishTargetIcon,
-      opacity: 0.5,
+      opacity: 0.8,
     });
   },[]);
 
@@ -121,14 +149,13 @@ export const useGoogleMap2 = (showBasicControls = true, additionalControls, onCe
     // load the API
   if (!apiStatus.errors && apiStatus.loading === false && apiStatus.complete === false) {
     setApiStatus({ ...apiStatus, loading: true });
-    console.log('loading api from inside useGoogleMap2 hook')
     loadApi();
   }
 
   // load the api script
   function loadApi() {
     const loader = new Loader({
-      apiKey: `${process.env.REACT_APP_GOOGLE_API_KEY}`,
+      // apiKey: `${process.env.REACT_APP_GOOGLE_API_KEY}`,
       version: "weekly",
       libraries: ["places"],
     });
@@ -146,7 +173,7 @@ export const useGoogleMap2 = (showBasicControls = true, additionalControls, onCe
   };
 
   // load the map
-  function loadMap () {
+  function loadMap() {
     // load and initialize map
     mapRef.current = new window.google.maps.Map(mapContainerRef.current, {
       center: center,
@@ -289,12 +316,11 @@ export const useGoogleMap2 = (showBasicControls = true, additionalControls, onCe
     }
   };
 
-
   // functions for handling map events
   function handleCenterChange() {
     // throttledUpdateCenterMarker();
     if (onCenterChangeCallback) {
-      onCenterChangeCallback();
+      onCenterChangeCallback(mapRef.current.getCenter().toJSON());
     }
     updateCenterMarker();
   }
@@ -334,6 +360,7 @@ export const useGoogleMap2 = (showBasicControls = true, additionalControls, onCe
     mapLoaded,
     center,
     markersRef,
+    markerClusterRef
   };
 
 };

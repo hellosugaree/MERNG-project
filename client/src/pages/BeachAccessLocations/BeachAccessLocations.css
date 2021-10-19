@@ -81,7 +81,7 @@ label {
   }
 }
 
-@media (max-height: 800px) {
+@media (max-height: 500px) {
   .beach-cards-and-pagination-container {
     display: none;
   }

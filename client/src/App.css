@@ -238,23 +238,27 @@ hr {
 .user-menu {
   display: flex;
   flex-direction: column;
-  align-items: center;
   background-color: white;
   color: black;
   z-index: 3;
   position: absolute;
   top: 40px;
   right: 10px;
-  padding: 5px;
+  padding: 5px 10px;
   border: 1px solid gray;
   pointer-events:inherit;
 }
-.user-menu-link {
 
+.user-menu-link {
+  padding: 2px 0px;
+}
+
+.user-menu-link i {
+  margin-right: 10px;
 }
 
 .user-menu-link:hover {
-  color: rgb(66, 66, 66);
+  color: rgb(123, 172, 189);
   cursor: pointer;
 }
 
@@ -380,9 +384,15 @@ input[type=number]::-webkit-outer-spin-button {
   font: 400 18px Roboto, Arial, sans-serif;
   height: 40px;
   cursor: pointer;
-  margin-bottom: 25px;
-  margin-right: 10px
+  margin: 5px;
+  /* margin-bottom: 25px;
+  margin-right: 10px */
 }
+
+.get-weather-button {
+  margin-bottom: 30px;
+}
+
 .custom-map-control-button:hover {
   background: #ebebeb;
 }
@@ -591,17 +601,6 @@ input[type=number]::-webkit-outer-spin-button {
   background-color: gray;
 }
 
-.log-catch-map-button {
-  padding: 0px;
-  margin: 0px;
-  position: absolute;
-  height: 40px;
-  width: 150px; 
-  z-index: 100; 
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-}
 
 .user-stats-page {
   display: flex;

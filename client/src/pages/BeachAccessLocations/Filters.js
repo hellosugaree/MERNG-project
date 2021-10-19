@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Dropdown, Checkbox } from 'semantic-ui-react';
 import { sortOptions, countyDropdownOptions } from './helpers'
 import '../../App.css';
@@ -7,12 +7,9 @@ import './BeachAccessLocations.css';
 const Filters = (props) => {
 
   const { 
-    filteredAccessLocations,
     setDisplayFilters,
     displayFilters,
   } = props;
-
-  const [loadingSearchInName, setLoadingSearchInName] = useState(false);
 
   // update state for filter toggles
   const handleFilterToggle = (e, checked, name) => {
@@ -66,7 +63,7 @@ const Filters = (props) => {
           <div 
             className='animate-spinner'
             style={{
-              display: loadingSearchInName ? '' : 'none',
+              display: false ? '' : 'none',
               position: 'absolute',
               borderRadius: '50%', border: '6px solid #898A8A', borderTop: '6px solid lightblue',
               right: 2, bottom: 2, 

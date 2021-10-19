@@ -35,6 +35,7 @@ import { isNonEmptyArray } from '@apollo/client/utilities';
 
 const selectLocationButton = document.createElement('button');
 selectLocationButton.classList.add('custom-map-control-button');
+selectLocationButton.classList.add('get-weather-button');
 selectLocationButton.innerHTML='Get Weather';
 
 const HorizontalBarDataLabel = props => {
@@ -775,8 +776,18 @@ const WeatherFeed = (props) => {
   
   const [weatherFilters, setWeatherFilters] = useState({ windSpeed: true, temperature: true, swellHeight: true, hazards: true, skyCover: false, windWaveHeight: false });
 
-  const additonalControls = [{ position: 'BOTTOM_CENTER', element: selectLocationButton, listeners: [{event: 'click', callback: handleSelectLocationButtonClick}] }];
-  const { loadMap, showInfoWindowInCenter, mapContainerRef, mapRef, infoWindowRef, apiStatus, mapLoaded, getPosition, geolocationStatus } = useGoogleMap2(true, additonalControls, null, true, null, 8);
+  const additionalControls = [{ position: 'BOTTOM_CENTER', element: selectLocationButton, listeners: [{event: 'click', callback: handleSelectLocationButtonClick}] }];
+  const { 
+    loadMap, 
+    showInfoWindowInCenter, 
+    mapContainerRef, 
+    mapRef, 
+    infoWindowRef, 
+    apiStatus, 
+    mapLoaded, 
+    getPosition, 
+    geolocationStatus 
+  } = useGoogleMap2({ showBasicControls: true, showCenterMarker: true, additionalControls, defaultZoom: 8 });
   const { autocompleteInputRef, autocompleteRef, loadAutocomplete } = useGoogleAutocomplete(handlePlaceSelect);
 
   // controls.push({ position: 'BOTTOM_CENTER', element: selectLocationButton, listeners: [{event: 'click', callback: handleSelectLocationButtonClick}] })

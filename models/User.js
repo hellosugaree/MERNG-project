@@ -1,8 +1,5 @@
 const mongoose = require('mongoose');
 
-// note: required fields handled by graphQL layer rather than mongoose layer
-
-
 const cloudinaryImageSchema = new mongoose.Schema({
   asset_id: String,
   public_id: String, 
@@ -16,7 +13,6 @@ const cloudinaryImageSchema = new mongoose.Schema({
   secure_url: String
 });
 
-
 const userPreferencesSchema = new mongoose.Schema({
   profilePicture: cloudinaryImageSchema
 });
@@ -26,13 +22,7 @@ const userSchema = new mongoose.Schema({
   password: String,
   email: String,
   catches: Array,
-  preferences: {
-    type: userPreferencesSchema,
-    required: true,
-    default: { 
-      profilePicture: { asset_id: null } 
-    }
-  },
+  profilePhoto: String,
   createdAt: String
 });
 

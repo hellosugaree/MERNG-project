@@ -9,13 +9,11 @@ module.exports = {
   Query: {
     async getPosts(_, { postsToReturn = 200, userId = null }){ // return 200 by default if no value specified in query
       try {
-
         // sort posts by createdAt to put newest posts first in array
         // if no userId is provided in arguments, return all posts, otherwise return posts with specific userId
-        const posts = userId 
+        return userId 
           ? await Post.find({user: userId}).limit(postsToReturn).sort({ createdAt: -1 }) 
           : await Post.find().limit(postsToReturn).sort({ createdAt: -1 }); 
-        return posts;
       } catch (err) {
         throw new Error(err);
       }
@@ -87,7 +85,7 @@ module.exports = {
           username: user.username,
           body,
           createdAt: new Date().toISOString()
-        });        
+        });  
         postFound.comments.unshift(newComment);
         await postFound.save();
         return newComment;
@@ -140,12 +138,6 @@ module.exports = {
       } else {
         throw new UserInputError('Post not found')
       }
-
-
-
-
-
-
     }
 
     

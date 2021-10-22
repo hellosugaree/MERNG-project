@@ -1,15 +1,18 @@
 import React, { useContext, useState } from "react";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { Button } from "semantic-ui-react";
 import { AuthContext } from "../../context/auth";
-import { GET_USER_BASIC_DATA } from "../../gql/gql";
+import { GET_USER_BASIC_DATA, CREATE_OR_UPDATE_PROFILE_PHOTO } from "../../gql/gql";
 import LoaderFish from "../../components/LoaderFish";
 import FileSelect from "../../components/FileSelect";
 import "../../App.css";
 import "./UserSettings.css"
 
 function UserSettings(props) {
+
   const { user } = useContext(AuthContext);
+
+  const [newProfilePictureData, setNewProfilePictureData] = useState(null);
 
   const {
     loading: loadingUserBasicData,
@@ -19,7 +22,40 @@ function UserSettings(props) {
     onError: err => console.log(err),
   });
 
-  const [newProfilePictureData, setNewProfilePictureData] = useState(null);
+
+  console.log(userBasicData);
+  const [createOrUpdateProfilePhoto, { loading }] = useMutation(CREATE_OR_UPDATE_PROFILE_PHOTO, {
+    // options: () => ({ errorPolicy: 'all' }),
+    update(cache, data) {
+      const query = cache.readQuery({
+        query: GET_USER_BASIC_DATA,
+        variables: { userId: user.id },
+      });
+      // make sure the cached data exists
+      if (query) {
+        const { getUser: cachedUser } = query;
+        // now update our user data query so our stats are updated
+        if (cachedUser) {
+          cache.writeQuery({
+            query: GET_USER_BASIC_DATA,
+            variables: { userId: user.id },
+            data: {
+              getUser: {
+                ...cachedUser,
+                profilePhoto: data.profilePhoto
+              }
+            }
+          });
+        }
+      }
+      setNewProfilePictureData(null);
+    },
+    onError(err) {
+      console.log(err);
+    }
+  });
+
+
 
   const handleFileSelect = async file => {
     if (!file) {
@@ -57,6 +93,8 @@ function UserSettings(props) {
 
   const uploadNewProfilePhoto = () => {
     // upload new profile photo
+    console.log(newProfilePictureData);
+    createOrUpdateProfilePhoto({ variables: { data: newProfilePictureData } });
   };
 
 
@@ -75,10 +113,12 @@ function UserSettings(props) {
           <div className="profile-photo-container" >
             {!newProfilePictureData && (
               <div className="profile-photo-status-container">
-                {userBasicData.getUser.preferences.profilePicture.asset_id ? (
-                  <div>
-                    you have a profile picture
-                  </div>
+                {userBasicData.getUser.profilePhoto ? (
+                  <img 
+                    className="profile-photo-preview"
+                    alt="profile"
+                    src={userBasicData.getUser.profilePhoto.secure_url}
+                  />
                 ) : (
                   <div>
                     No profile photo
@@ -89,8 +129,8 @@ function UserSettings(props) {
             {newProfilePictureData && (
               <img
                 className="profile-photo-preview"
-                src={newProfilePictureData}
                 alt="profile"
+                src={newProfilePictureData}
               />
             )}
           </div>

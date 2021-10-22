@@ -11,12 +11,10 @@ import CommentCard from '../components/CommentCard';
 import CreateComment from '../components/CreateComment';
 
 function PostCard(props) {
-  const { id, username, createdAt, title, comments, body, likes, likeCount, commentCount } = props.post;
- 
-  // use to determine if a user is logged in
+  const { id, username, createdAt, title, comments, body, likes, likeCount, commentCount, profilePhoto } = props.post;
+  console.log(props)
   const { user } = useContext(AuthContext); 
 
-  // handle form errors for mutations
   const { handleFormErrors } = useForm();
 
   // state to manage animation for like and comment buttons when logged out
@@ -86,7 +84,7 @@ function PostCard(props) {
     // map comments into an array of comment cards
     // we need to pass the commentId and postId so our comment card menu can run mutations on comments
     const mappedComments = comments.length > 0 
-      ? comments.map(comment => (<CommentCard key={comment.id} commentId={comment.id} postId={id} body={comment.body} username={comment.username} createdAt={comment.createdAt}/>))
+      ? comments.map(comment => (<CommentCard key={comment.id} { ...comment } />))
       : false;
 
     const showMoreComments = () => {
@@ -145,7 +143,7 @@ function PostCard(props) {
         <Image
           floated='right'
           size='mini'
-          src='https://react.semantic-ui.com/images/avatar/large/molly.png'
+          src={profilePhoto.secure_url}
         />
         <Card.Header>{username}</Card.Header>
         

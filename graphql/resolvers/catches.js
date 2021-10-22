@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const checkAuth = require('../../utilities/check-auth');
 const Catch = require('../../models/Catch');
 const User = require('../../models/User');
@@ -36,22 +37,22 @@ fields: {
 }
 
 */
+
+
 module.exports = {
 
   Query: {
     async getCatches(_, { catchesToReturn = 10000, userId = null }) {
       try {
-        // different handling depending on whether or not a userId is supplied
-        const catches = userId 
-          ? await Catch.find({user: userId}).limit(catchesToReturn).sort({createdAt: -1})
+        return userId 
+          ? await Catch.find({ user: userId }).limit(catchesToReturn).sort({createdAt: -1})
           : await Catch.find().limit(catchesToReturn).sort({createdAt: -1});
-          // console.log(catches);
-          return catches;
+
+        // return extendProfilePhoto(catches, 'user');
       } catch (err) {
         throw new Error(err);
       }
     }
-
   },
 
   Mutation: {

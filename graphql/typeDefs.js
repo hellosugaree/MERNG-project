@@ -1,8 +1,7 @@
- const { gql } = require('apollo-server');
+const { gql } = require('apollo-server');
 
-// ! means required in typeDefs
 const typeDefs = gql`
-  """comment"""
+
   type Post {
     id: ID!
     user: ID!
@@ -14,6 +13,7 @@ const typeDefs = gql`
     likes: [Like]!
     likeCount: Int!
     commentCount: Int!
+    profilePhoto: CloudinaryImage
   }
 
   type Comment {
@@ -22,6 +22,7 @@ const typeDefs = gql`
     body: String!
     createdAt: String!
     user: ID!
+    profilePhoto: CloudinaryImage
   }
 
   type Like {
@@ -50,7 +51,8 @@ const typeDefs = gql`
     createdAt: String!
     catches: [ID]!
     catchCount: Int!
-    preferences: UserPreferences
+    # preferences: UserPreferences
+    profilePhoto: CloudinaryImage
     # biggestCatch: Int
   }
   
@@ -77,9 +79,8 @@ const typeDefs = gql`
     images: [CloudinaryImage]
     createdAt: String!
     user: ID!
-
+    profilePhoto: CloudinaryImage
   }
-
 
   input CatchInput {
     species: String!
@@ -109,6 +110,7 @@ const typeDefs = gql`
     deletePost(postId: ID!): Post!
     createCatch(catchInput: CatchInput): Catch!
     deleteCatch(catchId: ID!): Catch!
+    createOrUpdateProfilePhoto(data: String!): User!
   }
 `;
 

@@ -26,16 +26,21 @@ export const FETCH_POSTS_QUERY = gql `
       username 
       likeCount 
       title
+
       likes {
         username
       }
       commentCount
+
       comments {
         id 
         username 
         createdAt 
         body
+        profilePhoto
       }
+      
+      profilePhoto
     }
   }
 `;
@@ -68,7 +73,11 @@ export const CREATE_POST = gql `
       }
       commentCount
       comments {
-        id username createdAt body
+        id
+        username
+        createdAt
+        body
+        profilePhoto
       }
     }
   }
@@ -102,6 +111,7 @@ export const CREATE_COMMENT = gql `
       username
       body
       createdAt
+      profilePhoto
     }
   }
 `;
@@ -138,8 +148,6 @@ export const REGISTER_USER = gql `
     }
   }
 `;
-
-
 
 export const CREATE_CATCH = gql `
   mutation createCatch(   
@@ -190,10 +198,10 @@ export const GET_CATCHES = gql `
       notes
       images
       createdAt
+      profilePhoto
     }
   }
 `;
-
 
 export const GET_USER_BASIC_DATA = gql `
   query getUser($userId: ID) {
@@ -201,13 +209,22 @@ export const GET_USER_BASIC_DATA = gql `
       username
       catches
       catchCount
-      preferences {
-        profilePicture {
-          asset_id
-        }
-      }
+      # preferences {
+      #   profilePicture {
+      #     asset_id
+      #   }
+      # }
+      profilePhoto
       createdAt
     }
   }
+`;
 
+
+export const CREATE_OR_UPDATE_PROFILE_PHOTO = gql `
+  mutation createOrUpdateProfilePhoto($data: String!) {
+    createOrUpdateProfilePhoto(data: $data) {
+      profilePhoto
+    }
+  }
 `;

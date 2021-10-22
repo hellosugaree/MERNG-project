@@ -8,16 +8,10 @@ const locationScalar = new GraphQLScalarType({
     serialize(value) {
       try {
         const jsonValue = JSON.parse(value);
-        // console.log('returning parsed')
-        // console.log(jsonValue);
         return jsonValue;
       } catch {
-        // catch block is for locations entered prior to making location an object, so parse will fail
-        // console.log('returning unparsed')
-        // cosole.log(value)
         return value;
       }
-      // convert outgoing data back to object
     },
       // process incoming data from variable
     parseValue(value) {

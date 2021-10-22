@@ -3,15 +3,14 @@ import { DateTime } from 'luxon';
 import { useContext } from 'react';
 import { AuthContext } from '../context/auth'
 import CommentCardMenu from './CommentCardMenu';
-// Uses luxon (DateTime) instead of moment per recommendation of moment docs
-// Our dates are stored as javascript Date.toISOString
-// We need to parse them into ms then convert into a DateTime object, then use DateTime's toRelative() method to convert that into human readable time from now
 
 const CommentCard = (props) => {
+  console.log(props);
+  console.log(props.profilePhoto);
   const { user: loggedInUser } = useContext(AuthContext);
   return (
     <Comment>
-      <Comment.Avatar src='https://react.semantic-ui.com/images/avatar/small/matt.jpg' />
+      <Comment.Avatar src={props.profilePhoto.secure_url} />
       <Comment.Content>
         {
           // if we have a user logged in, and the user matches the comment creator's user, show a menu for comment options
@@ -28,12 +27,3 @@ const CommentCard = (props) => {
 }
 
 export default CommentCard;
-
-
-/*
-
-      <Comment.Actions>
-        <Comment.Action>Reply</Comment.Action>
-      </Comment.Actions>
-
-*/

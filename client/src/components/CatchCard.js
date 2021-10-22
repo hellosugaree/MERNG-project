@@ -9,7 +9,7 @@ import PostCardMenu from '../components/PostCardMenu';
 
 
 function CatchCard(props) {
-  const { id, username, fishingType, species, catchDate, catchLocation, catchLength, images, notes} = props.catch;
+  const { id, username, fishingType, species, catchDate, catchLocation, catchLength, images, notes, profilePhoto } = props.catch;
  
   // use to determine if a user is logged in
   const { user } = useContext(AuthContext); 
@@ -25,7 +25,7 @@ function CatchCard(props) {
             alt='profile'
             floated='right'
             size='mini'
-            src='https://react.semantic-ui.com/images/avatar/large/molly.png'
+            src={profilePhoto.secure_url}
           />
           <Card.Header>{username} logged a catch</Card.Header>
           {/* can pass true to fromNow to remove 'ago' from date display */}
@@ -54,52 +54,3 @@ function CatchCard(props) {
 }
 
 export default CatchCard;
-
-/* <Comment.Action  style={{display: 'block'}} onClick={showLessComments} >show less comments...</Comment.Action> */
-
-
-/*
-          <Button icon='thumbs up' size='mini' basic color='teal' />
-          <Button icon='comment' size='mini' color='teal' />
-          */
-
-
-
-          /*
-         <Popup 
-            disabled={ otherState.hidePostMenu } 
-            content={
-              <PostCardMenu />             
-            } 
-            on='click'
-            trigger={
-              <Button 
-                circular
-                loading={deletePostLoading}
-                onClick={handleDeleteClick}
-                size='tiny'
-                basic floated='right' 
-                icon='ellipsis vertical'
-              />
-            }
-          />
-
-
-          <Comment key={comment.id} body={comment.body} username={comment.username} createdAt={comment.createdAt} />
-
-
-
-                {mappedComments ? (
-      <Card.Content>
-        <Comment.Group>
-        {mappedComments}
-        </Comment.Group>
-      </Card.Content>
-      ) : ''
-      }
-
-
-
-
-
-          */

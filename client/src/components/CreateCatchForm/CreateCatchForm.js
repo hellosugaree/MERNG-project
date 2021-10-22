@@ -1,23 +1,20 @@
-import React, { useEffect, useContext } from 'react';
-import { AuthContext } from '../context/auth';
+import React, { useEffect, useContext, useState } from 'react';
+import { AuthContext } from '../../context/auth';
 import { Card, Form } from 'semantic-ui-react';
 import { useMutation } from '@apollo/client';
-import { CREATE_CATCH } from '../gql/gql'
-import { useForm } from '../utilities/hooks';
+import { CREATE_CATCH } from '../../gql/gql'
+import { useForm } from '../../utilities/hooks';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { GET_CATCHES, GET_USER_BASIC_DATA } from '../gql/gql';
-import AutoSearchInputClass from './AutoSearchInputClass';
-import FormError from './FormError';
+import { GET_CATCHES, GET_USER_BASIC_DATA } from '../../gql/gql';
+import AutoSearchInputClass from '../AutoSearchInputClass';
+import FormError from '../FormError';
+import { generateFileDataArray } from '../../utilities/helpers'
+import '../../App.css';
 
-import '../App.css';
-
-// create custom control elements to send to our map
-// create a button to accept our location
 const selectLocationButton = document.createElement('button');
 selectLocationButton.classList.add('custom-map-control-button');
 selectLocationButton.innerHTML='Accept catch location';
-
 
 const CreateCatchForm = (props) => {
   const { user } = useContext(AuthContext);
@@ -32,7 +29,7 @@ const CreateCatchForm = (props) => {
     notes: '',
     // if form is on the create catch page which already has a map, we'll take the map center from that, otherwise set as null
     catchLocation: props.catchLocation,
-    images: props.imageData ? props.imageData : null
+    images: []
   };
 
   const { errors, values, onSubmit, handleChange, handleDateChange, handleFormErrors, setValues } 
@@ -42,14 +39,6 @@ const CreateCatchForm = (props) => {
   useEffect(() => {
       setValues(prevValues => ({ ...prevValues, catchLocation: props.catchLocation }));
   }, [props.catchLocation, setValues]);
-
-
-  // update values for image data from props
-  useEffect(() => {
-    if (props.imageData) {
-      setValues(prevValues => ({ ...prevValues, images: props.imageData }));
-    }
-  }, [props.imageData, setValues]);
 
   const [createCatch, { loading }] = useMutation(CREATE_CATCH, {
     options: () => ({ errorPolicy: 'all' }),
@@ -71,7 +60,6 @@ const CreateCatchForm = (props) => {
         }
       }
 
-
       // update user-specific catches query data
       const { getCatches : cachedUserCatchData } = cache.readQuery({
         query: GET_CATCHES,    // our gql file used to make the query initially
@@ -90,7 +78,6 @@ const CreateCatchForm = (props) => {
       }
 
       // now update our user data query so our stats are updated
-      //{ getUser: cachedUser }
       const query = cache.readQuery({
         query: GET_USER_BASIC_DATA,
         variables: { userId: user.id },
@@ -140,7 +127,7 @@ const CreateCatchForm = (props) => {
 
   // process values sent back from our search input and update them into the form state values
   const getSpeciesInputValue = (value) => {
-    setValues({...values, species: value})
+    setValues(prevValues => ({...prevValues, species: value}))
   }
 
   // handle unknown species check box
@@ -152,10 +139,14 @@ const CreateCatchForm = (props) => {
     setValues(prevValues => ({...prevValues, species: 'Unknown'}));
   }
 
+  const handleFileSelect = async images => {
+    // convert to an array of image data and update the state used to display previews and pass back to our form for the controlled image data value
+    const fileData = await generateFileDataArray(images);    
+    setValues(prevValues => ({ ...prevValues, images: fileData }))
+  }
 
   // callback to use our mutation
   function createCatchCallback() {
-    // we need to convert the date from our date selector to a date object.toISOString to store dates consistently
     // set the local time of catch to 12:00 then convert to ISO to store
     const localDate = new Date(values.catchDate);
     // set time to 12:00:00
@@ -164,8 +155,7 @@ const CreateCatchForm = (props) => {
     const ISODate = localDate.toISOString();
     for (const key in values) console.log(`${key}: ${values[key]}`)
 
-    // take our form inputs and feed them appropriately to the server
-    const filteredInput = {...values};
+    const filteredInput = { ...values };
     filteredInput.catchDate = ISODate;
 
     if (Number.parseInt(values.catchLength)) {
@@ -181,7 +171,13 @@ const CreateCatchForm = (props) => {
     return (
       <label className='file-input-label'>
         Select Pictures
-        <input onChange={e => props.handleFileSelect(e.target.files)} type='file' name='images' multiple accept='image/*' style={{display: 'none'}} />
+        <input 
+          onChange={e => handleFileSelect(e.target.files)}
+          type='file' 
+          name='images' 
+          multiple
+          accept='image/*'
+          style={{display: 'none'}} />
       </label>
     )
   }
@@ -190,7 +186,7 @@ const CreateCatchForm = (props) => {
             <Card fluid style={{padding: '5px 15px', ...props.style}}>
               <Card.Header style={{fontSize: 20, fontWeight: 'bold', padding: '10px 0px 10px 0px'}} textAlign='center'>
                 <span className='flex center' style={{flexGrow: 1}}>Log a Catch</span>
-                <span className='close-modal' onClick={handleCloseForm}>&#10006;</span>
+                <span className='close-modal' onClick={() => {handleCloseForm(); setValues(initialValues);}}>&#10006;</span>
               </Card.Header> 
               <Form unstackable style={{ margin: '0px 5px 0px 5px' }} 
               error={errors ? true : false} onSubmit={onSubmit} className={loading ? 'loading' : ''}
@@ -322,7 +318,6 @@ const CreateCatchForm = (props) => {
           </Card>
   );
 }
-
 
 export default CreateCatchForm;
 

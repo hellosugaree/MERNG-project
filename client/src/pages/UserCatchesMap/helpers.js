@@ -253,30 +253,6 @@ export const createMarkers = (catches, catchMarkersRef, infoWindowRef, mapRef, m
   }
 }
 
-export const generateFileDataArray = async (fileList) => {
-  const readFile = file => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        resolve(reader.result);
-      };
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-    })
-  };
-  const previewData = [];
-  fileList.forEach(file => {
-    try {
-      let fileData = readFile(file);
-      previewData.push(fileData);
-    } catch (err) {
-      console.log(err);
-    }
-  })
-  const data = await Promise.all(previewData).then(values => values);
-  return data;
-};
-
 export const applyFilters = (data, filters) => {
   console.log('applying filters')
   let filteredData = [];

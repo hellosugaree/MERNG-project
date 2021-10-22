@@ -11,7 +11,7 @@ import LoaderFish from '../../components/LoaderFish';
 import Filters from './Filters';
 import CreateCatchForm from '../../components/CreateCatchForm';
 import ModalCreateCatchSuccess from '../../components/ModalCreateCatchSuccess';
-import { generateFileDataArray, createMarkers, createCatchCardRefs, createSpeciesList, applyFilters } from './helpers';
+import { createMarkers, createCatchCardRefs, createSpeciesList, applyFilters } from './helpers';
 import '../../App.css';
 import './UserCatchesMap.css';
 
@@ -26,8 +26,6 @@ const UserCatchesMap = () => {
 
   const [highlightedCatch, setHighlightedCatch] = useState(null);
   const [formStatus, setFormStatus] = useState(defaultFormStatus);
-  // state to hold image data for 
-  const [displayImageData, setDisplayImageData] = useState([]);
 
   const { 
     loadMap, 
@@ -87,7 +85,6 @@ const UserCatchesMap = () => {
   // useEffect for when we get data from query. This will trigger on initial data, and when we add a catch and the query updates
   useEffect(() => {
     if (userCatchesData && mapLoaded) { // don't trigger until map is loaded and we have query data
-      // reset filter options
       setFilters(defaultFilters);
       // populate species list in state to generate species filter options
       const speciesList = createSpeciesList(userCatchesData.getCatches);
@@ -143,7 +140,6 @@ const UserCatchesMap = () => {
     }
   };
 
-
   // toggle form, argument defaults to true, but when we toggle on successful catch log, we don't want to generate markers since new ones will be generated from the query update useffect
   const handleLogCatchClick = () => {
     if (markerClusterRef.current) {
@@ -153,7 +149,7 @@ const UserCatchesMap = () => {
   };
 
   const handleAcceptLocation = () => {
-    setFormStatus(prevStatus => ({ ...prevStatus, showAcceptLocation: false ,showCreateCatch: true }));
+    setFormStatus(prevStatus => ({ ...prevStatus, showAcceptLocation: false, showCreateCatch: true }));
   };
 
   const handleCloseForm = () => {
@@ -164,7 +160,7 @@ const UserCatchesMap = () => {
   };
 
   const handleLocationInputClick = () => {
-    setFormStatus(prevStatus => ({ ...prevStatus, showAcceptLocation: true ,showCreateCatch: false }));
+    setFormStatus(prevStatus => ({ ...prevStatus, showAcceptLocation: true, showCreateCatch: false }));
   };
 
   // pass to the form to run in update function after successful mutation
@@ -175,14 +171,6 @@ const UserCatchesMap = () => {
     setTimeout(() => closeModal(), 3000);
   }
 
-  // callback passed to our form that gets file list for image upload selections
-  const handleFileSelect = async images => {
-    // convert to an array of image data and update the state used to display previews and pass back to our form for the controlled image data value
-    const fileData = await generateFileDataArray(images);    
-    setDisplayImageData(fileData);
-  }
-
-  
   function handlePlaceSelect() {
     // get the place the user selected
     const coordinates = getCoordinatesFromAutocomplete();
@@ -296,20 +284,12 @@ const UserCatchesMap = () => {
           </div>
         </div>
       </div>
-      {/* BOTTOM CONTAINER FOR IMAGE PREVIEWS */}
-      {/* <div style={{display: 'flex', width: '100%'}}>
-        <div style={{height: 200, width: 100, flexGrow: 1, overflowY: 'hidden', overflowX: 'scoll', whiteSpace: 'nowrap', }}>
-          {showCreateCatch && displayImageData.map((image, index) => <img key={index} src={image} alt='your catch' style={{maxHeight: 200, width: 'auto', display: 'inline-block'}} /> )}
-        </div>
-      </div> */}
-        {formStatus.showCreateCatch &&
-          <div style={{overflowY: 'auto', position: 'fixed', height: '100vh', width: '100vw', top: 0, left: 0, zIndex: 5, backgroundColor: 'rgba(0,0,0,0.8)'}}>
+        {formStatus.initiated &&
+          <div style={{display: formStatus.showCreateCatch ? '' : 'none', overflowY: 'auto', position: 'fixed', height: '100vh', width: '100vw', top: 0, left: 0, zIndex: 5, backgroundColor: 'rgba(0,0,0,0.8)'}}>
             <div className='catch-form-container'>
               <CreateCatchForm
                 handleCloseForm={handleCloseForm}
                 handleLocationInputClick={handleLocationInputClick}
-                imageData={displayImageData} 
-                handleFileSelect={handleFileSelect} 
                 onSuccessCallback={successfulCatchLogCallback} 
                 catchLocation={mapRef.current ? mapRef.current.getCenter().toJSON() : null} 
               />
@@ -319,7 +299,6 @@ const UserCatchesMap = () => {
     </div>
   );
 };
-
 
 export default UserCatchesMap;
 

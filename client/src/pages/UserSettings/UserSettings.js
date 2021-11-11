@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
-import { Button } from "semantic-ui-react";
 import { AuthContext } from "../../context/auth";
 import { GET_USER_BASIC_DATA, CREATE_OR_UPDATE_PROFILE_PHOTO } from "../../gql/gql";
 import LoaderFish from "../../components/LoaderFish";
@@ -11,7 +10,6 @@ import "./UserSettings.css"
 function UserSettings(props) {
 
   const { user } = useContext(AuthContext);
-
   const [newProfilePictureData, setNewProfilePictureData] = useState(null);
 
   const {
@@ -21,7 +19,6 @@ function UserSettings(props) {
     variables: { userId: user.id },
     onError: err => console.log(err),
   });
-
 
   console.log(userBasicData);
   const [createOrUpdateProfilePhoto, { loading }] = useMutation(CREATE_OR_UPDATE_PROFILE_PHOTO, {
@@ -55,8 +52,6 @@ function UserSettings(props) {
     }
   });
 
-
-
   const handleFileSelect = async file => {
     if (!file) {
       return setNewProfilePictureData(null);
@@ -82,7 +77,6 @@ function UserSettings(props) {
       return data;
     }
 
-    // convert to an array of image data and update the state used to display previews and pass back to our form for the controlled image data value
     const fileData = await generateFileData(file);
     setNewProfilePictureData(fileData);
   };
@@ -96,8 +90,6 @@ function UserSettings(props) {
     console.log(newProfilePictureData);
     createOrUpdateProfilePhoto({ variables: { data: newProfilePictureData } });
   };
-
-
 
   return (
     <div className="fit">

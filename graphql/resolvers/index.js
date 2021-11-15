@@ -23,7 +23,6 @@ module.exports = {
   },
   User: {
     catchCount: (parent) => parent.catches.length,
-    // biggestCatch: parent => calculateBiggestCatch(parent.catches)
   },
   Comment: {
     profilePhoto: (parent) => getProfilePhoto(parent.user),

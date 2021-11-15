@@ -11,10 +11,7 @@ const cloudinaryImageScalar = new GraphQLScalarType({
     parseValue(value) {
       return JSON.stringify(value);
     },
-    // when incoming value is a hard-coded argument rather than a variable argument
     parseLiteral(_) {
-      console.log('literal')
-        // throw new UserInputError('Literal')
     }
   });
 

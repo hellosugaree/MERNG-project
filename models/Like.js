@@ -5,6 +5,4 @@ const likeSchema = new mongoose.Schema({
   createdAt: String
 });
 
-
-
 module.exports = mongoose.model('Like', likeSchema);

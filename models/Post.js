@@ -31,13 +31,4 @@ const postSchema = new mongoose.Schema({
 
 });
 
-
 module.exports = mongoose.model('Post', postSchema);
-
-/*
-{
-      username: String,
-      body: String,
-      createdAt: String
-}
-*/

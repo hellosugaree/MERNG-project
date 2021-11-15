@@ -1,16 +1,14 @@
 const Post = require('../../models/Post');
 const Like = require('../../models/Like');
 const Comment = require('../../models/Comment');
-const checkAuth = require('../../utilities/check-auth'); // import auth check function
+const checkAuth = require('../../utilities/check-auth');
 const { UserInputError, AuthenticationError } = require('apollo-server');
 const { validateCommentInput, validatePostInput } = require('../../utilities/validators');
 
 module.exports = {
   Query: {
-    async getPosts(_, { postsToReturn = 200, userId = null }){ // return 200 by default if no value specified in query
+    async getPosts(_, { postsToReturn = 200, userId = null }){
       try {
-        // sort posts by createdAt to put newest posts first in array
-        // if no userId is provided in arguments, return all posts, otherwise return posts with specific userId
         return userId 
           ? await Post.find({user: userId}).limit(postsToReturn).sort({ createdAt: -1 }) 
           : await Post.find().limit(postsToReturn).sort({ createdAt: -1 }); 
@@ -34,11 +32,8 @@ module.exports = {
   },
 
   Mutation: {
-
     async createPost(_, { title, body }, context) {
-      // check authorization token via checkAuth function in utilities
       const user = checkAuth(context);
-      // if code gets to this point, there were no errors from checkAuth so a user definitely exists
       const { errors, valid } = validatePostInput(title, body);
       if (!valid) {
         throw new UserInputError('User input error', errors);
@@ -58,16 +53,13 @@ module.exports = {
       const user = checkAuth(context);
       try {
         const postFound = await Post.findById(postId);
-        if (postFound.username === user.username) {  // make sure person trying to delete is person who created post
+        if (postFound.username === user.username) {
           const postDeleted = await postFound.delete();
-          console.log(postDeleted);
           return postDeleted;
         } else {
           throw new AuthenticationError('Not authorized to delete post');
         }
       } catch (err) {
-        console.log('caught error')
-        console.log('Post not found');
         throw new Error(err);
       }
     },
@@ -90,7 +82,6 @@ module.exports = {
         await postFound.save();
         return newComment;
       } else {
-        console.log('Post not found');
         throw new UserInputError('Post not found');
       }
     },
@@ -103,7 +94,7 @@ module.exports = {
           const commentFound = postFound.comments[commentIndex];
           if (commentFound){
             if (commentFound.username === user.username) {
-              postFound.comments.splice(commentIndex, 1); // delete the comment
+              postFound.comments.splice(commentIndex, 1);
               await postFound.save();
               return commentFound;
             } else {
@@ -123,10 +114,8 @@ module.exports = {
       if (postFound) {
         const likeIndex = postFound.likes.findIndex(like => like.username === user.username);
         if (likeIndex > -1) {
-          // already existing like by this user
           postFound.likes.splice(likeIndex, 1);
         } else {
-          // no existing like by this user
           const newLike = new Like({
             username: user.username,
             createdAt: new Date().toISOString()
@@ -139,9 +128,5 @@ module.exports = {
         throw new UserInputError('Post not found')
       }
     }
-
-    
-
   }
-
 };

@@ -56,16 +56,12 @@ const typeDefs = gql`
     # biggestCatch: Int
   }
   
-  
   input RegisterInput {
     username: String!
     password: String!
     confirmPassword: String!
     email: String!
   }
-
-  # Custom scalar for location { lat: <number>, lng: <number> }
-
 
   type Catch {
     id: ID!
@@ -115,5 +111,3 @@ const typeDefs = gql`
 `;
 
 module.exports = typeDefs;
-
-

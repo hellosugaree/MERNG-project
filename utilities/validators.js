@@ -17,18 +17,18 @@ module.exports.validateRegisterInput = (username, email, password, confirmPasswo
 
   return {
     errors,
-    valid: Object.keys(errors).length < 1 // data valid 
+    valid: Object.keys(errors).length < 1
   };
 }
 
 module.exports.validateLoginInput = (username, password) => {
   const errors = {};
   if (username.trim() === '') {
-    errors.username = 'Username must not be empty';
+    errors.username = 'Username empty';
   }
   
   if (password === '') {
-    errors.password = 'Password must not be empty';
+    errors.password = 'Password empty';
   }
   return {
     errors,
@@ -39,7 +39,7 @@ module.exports.validateLoginInput = (username, password) => {
 module.exports.validateCommentInput = (body) => {
   const errors = {};
   if (body.trim() === '') {
-    errors.body = 'Body must not be empty'
+    errors.body = 'Comment body missing'
   }
   return {
     errors,
@@ -50,10 +50,10 @@ module.exports.validateCommentInput = (body) => {
 module.exports.validatePostInput = (title, body) => {
   const errors = {};
   if (title.trim() === '') {
-    errors.title = 'Title must not be empty';
+    errors.title = 'Title missing';
   }
   if (body.trim() === '') {
-    errors.body = 'Body must not be empty';
+    errors.body = 'Post body missing';
   }
   return {
     errors,

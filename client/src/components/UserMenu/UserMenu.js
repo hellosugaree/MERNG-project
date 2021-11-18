@@ -17,17 +17,17 @@ const UserMenu = (props) => {
       <div style={{ alignSelf: 'center' }}>{user.username}</div>
       <div 
         className='user-menu-link'
-        onClick={handleLogout}
-      >
-        <Icon name='log out' style={{ marginLeft: 0 }} />
-        <span >Logout</span>
-      </div>
-      <div 
-        className='user-menu-link'
         onClick={() => props.history.push('/settings')}
       >
         <Icon name='settings' />
         <span >Settings</span>
+      </div>
+      <div 
+        className='user-menu-link'
+        onClick={handleLogout}
+      >
+        <Icon name='log out' style={{ marginLeft: 0 }} />
+        <span >Logout</span>
       </div>
     </div>
   );

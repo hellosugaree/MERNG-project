@@ -41,31 +41,37 @@ const LoginForm = props => {
   return (
     <div  style={{...props.style}}>
       <Form error={ errors ? true : false } onSubmit={onSubmit} className={loading ? 'loading' : ''}>
-          <Form.Input 
-            required 
-            label='Username' 
-            placeholder='Username' 
-            type="text"
-            name='username'
-            autoComplete='username'
-            value={values.username}
-            onChange={handleChange}
-            error={errors.errorFields && errors.errorFields.username}
-          />
-          <Form.Input required label='Password' placeholder='Password' 
-            type="password"
-            name='password'
-            autoComplete='current-password'
-            value={values.password}
-            onChange={handleChange}
-            error={errors.errorFields && errors.errorFields.password}
-          />
-
+        <Form.Input 
+          required 
+          label='Username' 
+          placeholder='Username' 
+          type="text"
+          name='username'
+          autoComplete='username'
+          value={values.username}
+          onChange={handleChange}
+          error={errors.errorFields && errors.errorFields.username}
+        />
+        <Form.Input required label='Password' placeholder='Password' 
+          type="password"
+          name='password'
+          autoComplete='current-password'
+          value={values.password}
+          onChange={handleChange}
+          error={errors.errorFields && errors.errorFields.password}
+        />
         {Object.keys(errors).length > 0 && (<FormError errors={errors.errorMessages} />)}
-          <Form.Button fluid color='teal' type="submit" style={{fontSize: 20, padding: 10}}>Log in</Form.Button>
-          <div style={{display: loginSuccess ? '' : 'none', border: '1px solid lightgrey', padding: 10, fontSize: '16px', marginBottom: 20}}>
-            You have successfully logged in
-          </div>
+        <Form.Button 
+          fluid 
+          color='teal' 
+          type="submit" 
+          style={{fontSize: 20, padding: 10}}
+        >
+          Log in
+        </Form.Button>
+        <div style={{display: loginSuccess ? '' : 'none', border: '1px solid lightgrey', padding: 10, fontSize: '16px', marginBottom: 20}}>
+          You have successfully logged in
+        </div>
       </Form>
     </div>
   );

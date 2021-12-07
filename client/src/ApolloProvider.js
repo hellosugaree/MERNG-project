@@ -10,11 +10,8 @@ const httpLink = new HttpLink({
   uri: 'http://localhost:5000/' // our graphQL server
 });
 
-// add auth header with every request
 const authLink = setContext((_, { headers }) => {
-  // get the authentication token from local storage if it exists
   const token = localStorage.getItem('authToken');
-  // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
@@ -29,7 +26,6 @@ export const client = new ApolloClient({
 });
 
 export default (
-
   <ApolloProvider client={client}>
     <AuthProvider>
       <ModalProvider>

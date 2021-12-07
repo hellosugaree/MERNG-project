@@ -1,4 +1,4 @@
-import { createRef } from 'react';
+import { createRef, useContext } from 'react';
 import MarkerClusterer from '@googlemaps/markerclustererplus';
 import { DateTime, Interval } from 'luxon';
 
@@ -138,6 +138,7 @@ export const generateMarkerClusters = (markers, markerClusterRef, mapRef) => {
 
 // function to generate markers on the map for our currently selected catches
 export const createMarkers = (catches, catchMarkersRef, infoWindowRef, mapRef, markerClusterRef, setHighlightedCatch) => {
+
   catchMarkersRef.current = [];
   // close open infoWindow if it exists
   if (infoWindowRef.current) {

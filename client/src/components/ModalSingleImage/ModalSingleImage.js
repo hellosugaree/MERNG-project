@@ -6,21 +6,11 @@ const ModalSingleImage = props => {
 
   return ( 
     <div style={{display: 'flex', height: '100%', alignItems: 'center', justifyContent: 'center'}}>
-      {/* MODAL WINDOW */}
       <div style={{maxWidth: '80%', overflow: 'hidden'}}>
-        {/* HEADER */}
-        <div style={{ height: 50, backgroundColor: 'teal', color: 'white', fontSize: '20px' }}>
-          <div style={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-            <div style={{textAlign: 'center', flexGrow: 1}}>Nice Catch!</div>
-          <div className='close-modal' onClick={closeModal} style={{ alignSelf: 'flex-start', padding: 5, fontSize: '25px'}}>&#10006;</div>
-        </div>
-
-        </div>
-        <div style={{ backgroundColor: 'white', fontSize: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20,}}>
-          <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-            <img src={props.src} alt={props.alt} style={{maxWidth: '80%', maxHeight: '80%'}} />
+          <div style={{position: 'relative'}}>
+            <img src={props.src} alt={props.alt} style={{borderRadius: 5 }} />
+            <div className='close-modal' onClick={closeModal} style={{ position: 'absolute', top: 20, right: 20, padding: 10, fontSize: '25px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.2)'}}>&#10006;</div>
           </div>
-        </div>
       </div>
     </div>
   );

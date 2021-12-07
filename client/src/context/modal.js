@@ -9,10 +9,7 @@ const ModalContext = createContext({
   closeModal: () => {}
 });
 
-
 const ModalProvider = props => {
-
-  // initial state for our modal
   const initialState = {
     showModal: false,
     modalContent: null

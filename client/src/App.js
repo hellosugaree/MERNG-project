@@ -28,4 +28,3 @@ function App() {
 }
 
 export default App;
-// </AuthProvider><Route exact path='/register' component={Register} />

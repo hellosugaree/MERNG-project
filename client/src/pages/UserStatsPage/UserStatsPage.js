@@ -325,13 +325,9 @@ const calculateFilteredCatchesXDomain = filters => {
   return null;
 };
 
-
-
-
 const calculateTimeBins = (catchData, binType) => {
   // takes catch data in format received from server and bin type and calculates x axis time bins
   // bin types are 'month', 'week'
-
   // set the bin type
   const d3BinType = binType === 'week' ? 'utcWeek' : 'utcMonth';
   // map catches into dates
@@ -394,16 +390,13 @@ const UserStatsPage = props => {
 
   // useEffect to initialize filteredCatches when we get server data for the first time
   useEffect (() => {
-    console.log('data useEffect')
     if (!loadingUserCatches && !userCatchesError &&  !loadingUserBasicData && !userBasicDataError && userCatchesData && userBasicData ) {
-      console.log('setting filtered catches on server data receipt');
       setFilteredCatches(userCatchesData.getCatches);
       setAllCatches(userCatchesData.getCatches);
       // set our time bins to monthly
       setHistogramProperties(prevProperties => ({ ...prevProperties, bins: calculateTimeBins(userCatchesData.getCatches, 'month') }));
       if (userCatchesData.getCatches.length > 0) {
         const dateRangeForAllCatches = calculateDateRange(userCatchesData.getCatches.map(thisCatch => new Date(thisCatch.catchDate)));
-        console.log(dateRangeForAllCatches);
         // date range to populate our filter menu
         setDateRange(dateRangeForAllCatches);
         // date range to set x axis domain for histogram chart
@@ -411,10 +404,7 @@ const UserStatsPage = props => {
         // get the length of the interval of the date range and adjust if it's less than 1 year
         const { values: { milliseconds } } = Interval.fromDateTimes(...dateRangeForAllCatches).toDuration();
         // find the center of the date range and add 6 months to each side
-        console.log(dateRangeForAllCatches[0].getTime())
         const middleOfDateRange = new Date((dateRangeForAllCatches[0].getTime() + dateRangeForAllCatches[1].getTime()) / 2);
-        console.log(middleOfDateRange)
-        console.log(middleOfDateRange.getYear())
         const xDomain = milliseconds < 31556926000 
           ? [new Date(middleOfDateRange.getFullYear(), middleOfDateRange.getMonth() - 6, middleOfDateRange.getDate()), new Date(middleOfDateRange.getFullYear(), middleOfDateRange.getMonth() + 6, middleOfDateRange.getDate())]
           : dateRangeForAllCatches;
@@ -424,7 +414,6 @@ const UserStatsPage = props => {
       // create set the basic catch stats object 
       setBasicCatchStats(createBasicStatsObject(userCatchesData.getCatches, userBasicData.getUser));
     }
-
   }, [loadingUserCatches, userCatchesError, userCatchesData, loadingUserBasicData, userBasicDataError, userBasicData, setAllCatches, setFilteredCatches, setBasicCatchStats, setGroupedData, setFilteredCatchesXDomain, setHistogramProperties]);
   
 
@@ -442,8 +431,6 @@ const UserStatsPage = props => {
   useEffect(() => {
     if (filters.apply && allCatches) {
       const newFilteredCatches = applyCatchFilters(allCatches, filters);
-      console.log('filtered catches')
-      console.log(newFilteredCatches)
       // set our histogram time bins as weekly if we're filtering a month, otherwise set bins monthly
       const binInterval = filters.month ? 'week' : 'month';
       setHistogramProperties(prevProperties => ({ ...prevProperties, bins: calculateTimeBins(newFilteredCatches, binInterval) }));
@@ -463,7 +450,6 @@ const UserStatsPage = props => {
 
   const catchMonthSelectCallback = e => {
     if (e.target.name === 'All Months') {
-      console.log('setting filers all months')
       setFilters(prevFilters => ({ ...prevFilters, month: null, apply: true }));
     } else {
       setFilters(prevFilters => ({ ...prevFilters, month: e.target.name, apply: true }));
@@ -491,7 +477,7 @@ const UserStatsPage = props => {
           <div style={{  backgroundColor: 'white', padding: '0px 0px 0px 0px', border: '1px solid lightgrey', borderRadius: 5 }}>
           { dateRange &&
             <div style={{width: '100%', padding: '5px 20px 0px 0px', height: 50}}>
-              <Dropdown style={{float: 'right'}} onItemSelect={catchYearSelectCallback} items={[ 'All Years', ...getYearsFromRange(dateRange)]} defaultIndex={getYearsFromRange(dateRange).length} />
+              <Dropdown style={{float: 'right'}} onItemSelect={catchYearSelectCallback} items={[ 'All Years', ...getYearsFromRange(dateRange)]} defaultIndex={0} />
               <Dropdown style={{float: 'right'}} onItemSelect={catchMonthSelectCallback} items={monthDropdownItems} defaultIndex={0} disabled={ !filters.year } />
             </div>
           }

@@ -28,6 +28,9 @@ module.exports = {
         const privateUserData = await User.findById(userId);
         const { _id, email, catches, username, createdAt, preferences, profilePhoto } = privateUserData;
         const publicUserData = { _id, email, username, catches, preferences, createdAt, profilePhoto };
+        if (!profilePhoto) {
+          publicUserData.profilePhoto = '{"secure_url": "/img/icons/small/Rockfish-Small.png"}';
+        }
         return publicUserData;
       } catch (err) {
         throw new Error (err);

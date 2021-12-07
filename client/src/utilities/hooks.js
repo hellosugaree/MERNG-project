@@ -9,6 +9,11 @@ import MarkerClusterer from '@googlemaps/markerclustererplus'
 import '../App.css';
 
 
+export const useCustomModal = () => {
+  const { showCustomModal } = useContext(ModalContext);
+  return showCustomModal;
+};
+
 export const useGoogleAutocomplete = placeSelectCallback => {
 
   const autocompleteInputRef = useRef(null);
@@ -155,7 +160,7 @@ export const useGoogleMap2 = (options) => {
   // load the api script
   function loadApi() {
     const loader = new Loader({
-      // apiKey: `${process.env.REACT_APP_GOOGLE_API_KEY}`,
+      apiKey: `${process.env.REACT_APP_GOOGLE_API_KEY}`,
       version: "weekly",
       libraries: ["places"],
     });
@@ -390,7 +395,7 @@ export const useGoogleMap = () => {
   const basicControls = [{ position: 'RIGHT_CENTER', element: getCurrentLocationButton, listeners: [{event: 'click', callback: handleGetLocationButtonClick}] }];
 
   const loader = new Loader({
-    // apiKey: `${process.env.REACT_APP_GOOGLE_API_KEY}`,
+    apiKey: `${process.env.REACT_APP_GOOGLE_API_KEY}`,
     version: "weekly",
     libraries: ["places"],
   });

@@ -31,7 +31,6 @@ function CatchCard(props) {
           {/* can pass true to fromNow to remove 'ago' from date display */}
           <Card.Meta as={Link} to={`/catches/${id}`}>{DateTime.fromMillis(Date.parse(catchDate)).toRelative()}</Card.Meta>
           {fishingType && <Card.Meta>{fishingType}</Card.Meta>}
-          {catchLocation && typeof catchLocation.lat === 'number' && typeof catchLocation.lng === 'number' && <Card.Meta>{`${catchLocation.lat.toFixed(4)}, ${catchLocation.lng.toFixed(4)}`}</Card.Meta>}
           <Card.Header style={{marginTop: 5, fontSize: 18}}>{species} {catchLength && <span style={{marginLeft: 8}}>{catchLength} in</span>}</Card.Header>
           {images && images.map(image => 
             <img 
